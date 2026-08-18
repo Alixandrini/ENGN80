@@ -1,0 +1,23 @@
+{
+  "about.qmd": {
+    "about.html": "003655b9"
+  },
+  "analise_geoespacial.qmd": {
+    "analise_geoespacial.html": "f1019ce0"
+  },
+  "aquisicao_dados.qmd": {
+    "aquisicao_dados.html": "7615d628"
+  },
+  "index.qmd": {
+    "index.html": "2a037e12"
+  },
+  "integracao.qmd": {
+    "integracao.html": "b6e5c563"
+  },
+  "introducao.qmd": {
+    "introducao.html": "0061dcbb"
+  },
+  "sensoriamento_remoto.qmd": {
+    "sensoriamento_remoto.html": "c62cf446"
+  }
+}

@@ -1,0 +1,5 @@
+---
+title: "Sobre o Curos"
+---
+
+Esta é uma pagina feita com recurso Quarto.org para a disciplina de Geotécnologia aplicada aos Recursos Hídricos do Mestrado Profissional em Gestão e Regulação de RH e Saneamento do polo UFBA.

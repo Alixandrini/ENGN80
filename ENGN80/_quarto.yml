@@ -1,0 +1,31 @@
+project:
+  type: website
+
+website:
+  title: "ENGN80"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: introducao.qmd
+        text: Introdução às Geotecnologias
+      - href: aquisicao_dados.qmd
+        text: Aquisição de dados
+      - href: sensoriamento_remoto.qmd
+        text: Sensoriamento Remoto
+      - href: analise_geoespacial.qmd
+        text: Análise Geoespacial
+      - href: integracao.qmd
+        text: Instegração de Ferramentas
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+

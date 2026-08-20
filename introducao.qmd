@@ -1,6 +1,8 @@
 ---
-title: "Introcução"
+title: "Introdução"
 format: html
+description: "Módulo 1"
+image: "/images/logo_labfsr.png"
 ---
 
 # Introdução às Geotecnologias aplicadas a Gestão de Recursos Hídricos
@@ -56,16 +58,18 @@ Trata-se do campo abrangente que envolve diversas disciplinas e tecnologias de i
 O SIG é o sistema computacional (integrando hardware, software, dados, metodologias e pessoas) projetado para capturar, armazenar, manipular, analisar e visualizar dados geograficamente referenciados.
 
 A principal característica de um SIG é a integração entre o dado espacial (a geometria) e o dado alfanumérico (a tabela de atributos).
-┌─────────────────────────────────────────┐
-│               SISTEMA SIG               │
-├────────────────────┬────────────────────┤
-│   Componente       │   Exemplo          │
-├────────────────────┼────────────────────┤
-│ Dados Geográficos  │ Vetores / Rasters  │
-│ Tabela Atributos   │ População, área    │
-│ Software           │ QGIS, ArcGIS       │
-│ Análise Espacial   │ Overlays, Buffers  │
-└────────────────────┴────────────────────┘
+
+
+
+Sistema SIG
+
+|   Componente       |   Exemplo         |
+|:------------------:|:-------------------|
+| Dados Geográficos  | Vetores / Rasters  |
+| Tabela Atributos   | População, área    |
+| Software           | QGIS, ArcGIS       |
+| Análise Espacial   | Overlays, Buffers  |
+
 
 Estrutura Fundamental dos Dados num SIG:
   
@@ -99,9 +103,7 @@ A Terra não é uma esfera perfeita, tampouco um elipsóide homogêneo. Para fin
 	Geóide: A superfície equipotencial do campo de gravidade da Terra que melhor se aproxima do nível médio do mar em repouso. É a referência física para altitudes ortométricas (relevantes para dinâmica de fluidos e escoamento superficial).
 	Elipsóide de Referência: Uma figura matemática geométrica (resultado da rotação de uma elipse) usada para simplificar os cálculos de posição.
 
- Superfície Topográfica  ───/\/\/\─/\──────
- Geóide                 ~~~ ~ ~~~ ~~~~~~~  (Referência Física / Gravitacional)
- Elipsóide              ─────────────────  (Referência Matemática / Geométrica)
+![Superfícies de Referência](images/superficies_referencia.png)
 
 ## O que é o Datum?
 O Datum é o modelo matemático que define a orientação, o centro e as dimensões do elipsóide em relação à Terra. Ele estabelece a origem (0,0,0) do sistema de coordenadas.
@@ -114,107 +116,86 @@ Atenção Prática na Pós-Graduação: Reprojetar camadas ou converter vetores 
 
 ## Coordenadas Geográficas (Angulares)
 O sistema de Coordenadas Geográficas localiza qualquer ponto na superfície terrestre por meio de dois ângulos medidos a partir do centro da Terra, tendo como referência o elipsóide adotado:
-	Latitude (ϕ): Ângulo medido no plano meridiano, variando de 0^∘ no Equador a 90^∘ "N"  (+90^∘) no Polo Norte e 90^∘ "S"  (-90^∘) no Polo Sul.
-	Longitude (λ): Ângulo medido no plano do Equador, variando de 0^∘ no Meridiano de Greenwich a 180^∘ "E"  (+180^∘) a leste e 180^∘ "W"  (-180^∘) a oeste.
-       Norte (+90°)
-          │     . (Lat φ, Long λ)
-          │    /
-   ───────┼───/─── Equador (Lat 0°)
-         /│  / 
-        / │ /
-  Oeste   Sul (-90°)   Leste
+
+![Latitude e Longitude](images/latitudeogimage.webp)
 
 
 Características Relevantes para a Engenharia Ambiental:
-	Unidade de Medida: Graus, minutos e segundos (DMS) ou Graus Decimais (DD).
-	Não preservam distâncias ou áreas constantes: Um grau de longitude no Equador equivale a aproximadamente 111" km" , mas converge para 0" km"  nos polos.
-	Uso Ideal: Armazenamento de bases de dados continentais/globais, intercâmbio de dados e representação de amplas extensões geográficas. Não deve ser utilizado para cálculos diretos de área, perímetro ou distâncias em projetos locais/regionais.
+* Unidade de Medida: Graus, minutos e segundos (DMS) ou Graus Decimais (DD).
+* Não preservam distâncias ou áreas constantes: Um grau de longitude no Equador equivale a aproximadamente 111" km" , mas converge para 0" km"  nos polos.
+* Uso Ideal: Armazenamento de bases de dados continentais/globais, intercâmbio de dados e representação de amplas extensões geográficas. Não deve ser utilizado para cálculos diretos de área, perímetro ou distâncias em projetos locais/regionais.
 
 ## Coordenadas Planas UTM (Projeção Universal Transversa de Mercator)
 Para realizar cálculos euclidianos simples (A=b×h, distâncias em metros) e trabalhar em ambiente CAD/SIG, é necessário projetar a superfície curva do elipsóide em um plano. A projeção UTM é o sistema conforme mais utilizado na engenharia.
-    Cilindro Transverso (Secante)
-         ┌─────────────┐
-         │   /  │  \   │
-         │  /   │   \  │
-         │ (    │    ) │  <- 60 Fusos de 6°
-         │  \   │   /  │
-         │   \  │  /   │
-         └─────────────┘
-]Propriedades da Projeção UTM:
-	
-    Cilindrica Transversa e Secante: O cilindro de projeção envolve a Terra transversalmente ao eixo de rotação e intercepta o elipsóide em duas linhas secantes.
-	Conforme: Preserva os ângulos e as formas locais, mas altera distâncias e áreas à medida que se afasta da linha central de projeção.
-	Divisão em Fusos (Zonas): O globo é dividido em 60 fusos transversais de 6^∘ de longitude cada, numerados de 1 a 60 a partir do anti-meridiano de Greenwich (180^∘ "W" ) em direção a Leste.
+
+![Projeção UTM](images/utm.webp)
+
+Propriedades da Projeção UTM:
+* Cilindrica Transversa e Secante: O cilindro de projeção envolve a Terra transversalmente ao eixo de rotação e intercepta o elipsóide em duas linhas secantes.
+* Conforme: Preserva os ângulos e as formas locais, mas altera distâncias e áreas à medida que se afasta da linha central de projeção.
+* Divisão em Fusos (Zonas): O globo é dividido em 60 fusos transversais de 6^∘ de longitude cada, numerados de 1 a 60 a partir do anti-meridiano de Greenwich (180^∘ "W" ) em direção a Leste.
 
 O Sistema de Coordenadas Métricas no Fuso UTM:
 Para evitar valores negativos e facilitar a identificação, cada fuso possui uma origem local própria:
-	Eixo X (Easting / Este): O Meridiano Central (MC) de cada fuso recebe arbitrariamente o valor de 500.000" m" . Valores a oeste do MC são menores que 500.000" m" ; valores a leste são maiores.
-	Eixo Y (Northing / Norte):
-	Hemisfério Norte: O Equador é a origem com valor 0" m" .
-	Hemisfério Sul: O Equador recebe o valor falso de 10.000.000" m" , decrescendo em direção ao Polo Sul (garantindo que todas as coordenadas Y no Hemisfério Sul sejam positivas).
+* Eixo X (Easting / Este): O Meridiano Central (MC) de cada fuso recebe arbitrariamente o valor de 500.000" m" . Valores a oeste do MC são menores que 500.000" m" ; valores a leste são maiores.
+* Eixo Y (Northing / Norte):
+    - Hemisfério Norte: O Equador é a origem com valor 0" m" .
+	- Hemisfério Sul: O Equador recebe o valor falso de 10.000.000" m" , decrescendo em direção ao Polo Sul (garantindo que todas as coordenadas Y no Hemisfério Sul sejam positivas).
 
-Hemisfério Sul:
-Y = 10.000.000 m ─────────────── Equador (0°)
-                 │      │
-                 │  MC  │
-                 │ 500km│
-                 ▼      ▼
-                 (Easting, Northing em metros)
-Fator de Escala (k_0):
+![Coordenadas UTM](images/utm-coordenadas.png)
 
 No Meridiano Central do fuso, a escala sofre uma redução de 0,9996 (k_0=0,9996) para minimizar as deformações nas bordas do fuso, onde k>1.
 
+![Fusos UTM do Brasil](images/utm-brasil.jpg)
 
 # Estruturas de Dados Geoespaciais
 
 Para os estudos avançados em Engenharia Ambiental e Modelagem Hidrológica, a escolha da Estrutura de Dados Geoespaciais determina não apenas a precisão da representação do mundo real, mas também a eficiência computacional dos algoritmos de análise.
 No ambiente computacional, a realidade geográfica é abstraída primariamente em dois modelos fundamentais: Vetorial e Matricial (Raster), complementados por estruturas tridimensionais avançadas para modelagem de superfície.
+
 ## Modelo Vetorial (Vector Data Model)
 
 O modelo vetorial utiliza a geometria euclidiana para representar feições geográficas discretas com limites bem definidos. Cada feição é associada diretamente a uma tabela de atributos alfanuméricos.
-Ponto (X, Y)       Linha (Nó ─── Nó)       Polígono (Anel Fechado)
-     •               •───────•                   ┌───────┐
-                                                 │       │
-                                                 └───────┘
-	
-    Ponto (Zero Dimensões): Definido por um único par de coordenadas (X,Y). Usado para feições pontuais onde a área não é relevante na escala de análise (ex.: estações fluviométricas, poços de monitoramento, pontos de amostragem de água).
-	Linha / Polilinha (Uma Dimensão): Sequência ordenada de pontos conectados por segmentos de reta (vértices e nós). Representa elementos lineares (ex.: cursos d'água, redes de esgoto, rodovias).
-	Polígono (Duas Dimensões): Linha fechada cujos vértices inicial e final coincidem, delimitando uma área interna. Representa feições contínuas e discretas (ex.: limites de bacias hidrográficas, manchas de inundação, reservatórios, polígonos de uso do solo).
+
+Ponto (Zero Dimensões): Definido por um único par de coordenadas (X,Y). Usado para feições pontuais onde a área não é relevante na escala de análise (ex.: estações fluviométricas, poços de monitoramento, pontos de amostragem de água).
+
+Linha / Polilinha (Uma Dimensão): Sequência ordenada de pontos conectados por segmentos de reta (vértices e nós). Representa elementos lineares (ex.: cursos d'água, redes de esgoto, rodovias).
+
+Polígono (Duas Dimensões): Linha fechada cujos vértices inicial e final coincidem, delimitando uma área interna. Representa feições contínuas e discretas (ex.: limites de bacias hidrográficas, manchas de inundação, reservatórios, polígonos de uso do solo).
+
 Vantagens e Limitações do Modelo Vetorial:
-	Vantagens: Alta precisão de localização; excelente definição de limites e topologia; topologia de redes para modelagem de fluxo (direção do rio, redes de abastecimento); arquivos geralmente compactos para feições discretas.
-	Limitações: Estrutura de dados complexa; inadequado para representar fenômenos contínuos que variam suavemente no espaço (ex.: precipitação, temperatura).
+
+Vantagens: Alta precisão de localização; excelente definição de limites e topologia; topologia de redes para modelagem de fluxo (direção do rio, redes de abastecimento); arquivos geralmente compactos para feições discretas.
+
+Limitações: Estrutura de dados complexa; inadequado para representar fenômenos contínuos que variam suavemente no espaço (ex.: precipitação, temperatura).
+
 ## Modelo Matricial (Raster Data Model)
 
 O modelo matricial representa a superfície por meio de uma grade (grid) contínua de células bidimensionais (pixels) organizadas em linhas e colunas. Cada pixel possui uma dimensão espacial fixa (resolução espacial) e armazena um único valor representativo do fenômeno.
-       Coluna (X)
-      ┌───┬───┬───┐
-L     │12 │15 │18 │  Pixel = Resolução Espacial (ex.: 30m x 30m)
-i     ├───┼───┼───┤
-n     │10 │14 │17 │  Valor = Variável contínua (ex.: Cota topográfica em metros)
-h     ├───┼───┼───┤
-a (Y) │08 │11 │13 │
-      └───┴───┴───┘
+
+![Sistema de Coordenadas da Imagem](images/coordenadas-imagem.webp)
+
 Propriedades Chave:
-	Resolução Espacial: Dimensão do pixel no terreno (ex.: um pixel de 30" m"×30" m"  no SRTM representa 900〖" m" 〗^2).
-	Fenômenos Contínuos: É o modelo ideal para variáveis que mudam continuamente no espaço, como altitude, declividade, precipitação, temperatura e índices de vegetação (NDVI).
+* Resolução Espacial: Dimensão do pixel no terreno (ex.: um pixel de 30" m"×30" m"  no SRTM representa 900〖" m" 〗^2).
+* Fenômenos Contínuos: É o modelo ideal para variáveis que mudam continuamente no espaço, como altitude, declividade, precipitação, temperatura e índices de vegetação (NDVI).
+
 Vantagens e Limitações do Modelo Matricial:
-	Vantagens: Estrutura de dados simples (matrizes); processamento eficiente para álgebra de mapas e modelagem matemática (operações célula a célula); ideal para imagens de satélite e dados de sensoriamento remoto.
-	Limitações: Arquivos volumosos em altas resoluções; perda de precisão geométrica dependendo do tamanho do pixel (efeito "pixelado"); conversões frequentes vetorial-raster geram degradação dos dados.
+* Vantagens: Estrutura de dados simples (matrizes); processamento eficiente para álgebra de mapas e modelagem matemática (operações célula a célula); ideal para imagens de satélite e dados de sensoriamento remoto.
+* Limitações: Arquivos volumosos em altas resoluções; perda de precisão geométrica dependendo do tamanho do pixel (efeito "pixelado"); conversões frequentes vetorial-raster geram degradação dos dados.
+
 ## Modelagem de Superfície: MDE, MDT e TIN
 Na engenharia ambiental, a representação do relevo é crítica para a definição de linhas de cumeada, direções de fluxo e acúmulo de escoamento. Três nomenclaturas e estruturas são fundamentais:
-    Matriz Regular (Raster/MDE)            TIN (Rede de Triângulos Unregulares)
-       ┌───┬───┬───┐                              /\  /\
-       │ • │ • │ • │                             /__\/__\
-       ├───┼───┼───┤                            /\  /\  /\
-       │ • │ • │ • │                           /__\/__\/__\
-       └───┴───┴───┘
-	Modelos de Elevação (Raster):
-	MDE (Modelo Digital de Elevação / DEM): Termo genérico para grades matriciais de altitude.
-	MDS (Modelo Digital de Superfície): Inclui os elementos acima do solo (copas de árvores, edificações). Obtido via LiDAR ou Fotogrametria.
-	MDT (Modelo Digital do Terreno): Representa exclusivamente a superfície nua do terreno (bare earth), essencial para hidrologia após a filtragem da vegetação.
-	TIN (Triangulated Irregular Network):
-	Estrutura vetorial tridimensional baseada em uma rede de triângulos não sobrepostos formados a partir de pontos de cota conhecidos (Triangulação de Delaunay).
-	Aplicação: Representa o relevo com densidade variável de pontos — alta densidade em áreas de vale e escarpas, baixa densidade em áreas planas —, otimizando o armazenamento e preservando feições estruturais (linhas de talvegue e cristas).
+    Matriz Regular (Raster/MDE)            TIN (Rede de Triângulos Irregulares)
+
+![Matriz Regular (Raster/MDE) e TIN (Rede de Triângulos Irregulares)](images/TIN.png)
+
+Modelos de Elevação (Raster):
+-> MDE (Modelo Digital de Elevação / DEM): Termo genérico para grades matriciais de altitude.
+-> MDS (Modelo Digital de Superfície): Inclui os elementos acima do solo (copas de árvores, edificações). Obtido via LiDAR ou Fotogrametria.
+-> MDT (Modelo Digital do Terreno): Representa exclusivamente a superfície nua do terreno (bare earth), essencial para hidrologia após a filtragem da vegetação.
+-> TIN (Triangulated Irregular Network):
+	- Estrutura vetorial tridimensional baseada em uma rede de triângulos não sobrepostos formados a partir de pontos de cota conhecidos (Triangulação de Delaunay).
+	- Aplicação: Representa o relevo com densidade variável de pontos — alta densidade em áreas de vale e escarpas, baixa densidade em áreas planas —, otimizando o armazenamento e preservando feições estruturais (linhas de talvegue e cristas).
 
 # Prática Hands-on 
 ## Exercício Prático: Configuração do QGIS, projeção de camadas e criação de um projeto inicial

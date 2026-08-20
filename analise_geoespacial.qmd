@@ -1,5 +1,7 @@
 ---
-title: "Untitled"
+title: "Análise Geoespacial"
 format: html
+description: "Módulo 4"
+image: images/logo_labfsr.png
 ---
 

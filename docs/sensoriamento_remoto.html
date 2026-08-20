@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Módulo 3">
 
-<title>Untitled – ENGN80</title>
+<title>Sensoriamento Remoto – ENGN80</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,6 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./analise_geoespacial.html" rel="next">
+<link href="./aquisicao_dados.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -75,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,32 +96,38 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="./index.html"> <i class="bi bi-geo" role="img">
+</i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./introducao.html"> 
+    <a class="nav-link active" href="./introducao.html" aria-current="page"> <i class="bi bi-globe2" role="img">
+</i> 
 <span class="menu-text">Introdução às Geotecnologias</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aquisicao_dados.html"> 
+    <a class="nav-link" href="./aquisicao_dados.html"> <i class="bi bi-globe-americas" role="img">
+</i> 
 <span class="menu-text">Aquisição de dados</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./sensoriamento_remoto.html" aria-current="page"> 
+    <a class="nav-link" href="./sensoriamento_remoto.html"> <i class="bi bi-rocket-takeoff" role="img">
+</i> 
 <span class="menu-text">Sensoriamento Remoto</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analise_geoespacial.html"> 
+    <a class="nav-link" href="./analise_geoespacial.html"> <i class="bi bi-graph-up-arrow" role="img">
+</i> 
 <span class="menu-text">Análise Geoespacial</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./integracao.html"> 
-<span class="menu-text">Instegração de Ferramentas</span></a>
+    <a class="nav-link" href="./integracao.html"> <i class="bi bi-diagram-3" role="img">
+</i> 
+<span class="menu-text">Integração de Ferramentas</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">Sobre o Curos</span></a>
+<span class="menu-text">Sobre o Curso</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -126,10 +135,57 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sensoriamento_remoto.html">Módulo 3 - Sensoriamento Remoto</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 1 - Introdução às Geotecnologias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aquisicao_dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 2 - Aquisição de dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensoriamento_remoto.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Módulo 3 - Sensoriamento Remoto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analise_geoespacial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 4 - Análise Geoespacial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 5 - Integração de Ferramentas</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -139,9 +195,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Untitled</h1>
+<h1 class="title">Sensoriamento Remoto</h1>
 </div>
 
+<div>
+  <div class="description">
+    Módulo 3
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -560,7 +621,32 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./aquisicao_dados.html" class="pagination-link" aria-label="Módulo 2 - Aquisição de dados">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Módulo 2 - Aquisição de dados</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./analise_geoespacial.html" class="pagination-link" aria-label="Módulo 4 - Análise Geoespacial">
+        <span class="nav-page-text">Módulo 4 - Análise Geoespacial</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Mauro Alixandrini</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

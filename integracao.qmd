@@ -1,5 +1,7 @@
 ---
-title: "Untitled"
+title: "Integração"
 format: html
+description: "Módulo 5"
+image: images/logo_labfsr.png
 ---
 

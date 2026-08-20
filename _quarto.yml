@@ -3,21 +3,44 @@ project:
 
 website:
   title: "ENGN80"
+  page-navigation: true
+  page-footer: "Copyright 2026, Mauro Alixandrini"
   navbar:
     left:
       - href: index.qmd
         text: Home
+        icon: bi-geo
       - href: introducao.qmd
         text: Introdução às Geotecnologias
+        icon: globe2
       - href: aquisicao_dados.qmd
         text: Aquisição de dados
+        icon: globe-americas
       - href: sensoriamento_remoto.qmd
         text: Sensoriamento Remoto
+        icon: rocket-takeoff
       - href: analise_geoespacial.qmd
         text: Análise Geoespacial
+        icon: graph-up-arrow
       - href: integracao.qmd
-        text: Instegração de Ferramentas
-      - about.qmd
+        text: Integração de Ferramentas
+        icon: diagram-3
+      - href: about.qmd
+  sidebar: 
+    contents:
+      - href: introducao.qmd
+        text: Módulo 1 - Introdução às Geotecnologias
+      - href: aquisicao_dados.qmd
+        text: Módulo 2 - Aquisição de dados
+      - href: sensoriamento_remoto.qmd
+        text: Módulo 3 - Sensoriamento Remoto
+      - href: analise_geoespacial.qmd
+        text: Módulo 4 - Análise Geoespacial
+      - href: integracao.qmd
+        text: Módulo 5 - Integração de Ferramentas
+
+logo: 
+  medium: logo.png
 
 format:
   html:

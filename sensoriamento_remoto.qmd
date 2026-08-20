@@ -1,5 +1,7 @@
 ---
-title: "Untitled"
+title: "Sensoriamento Remoto"
 format: html
+description: "Módulo 3"
+image: "logo_labfsr.png"
 ---
 

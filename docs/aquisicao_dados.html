@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Módulo 2">
 
-<title>Untitled – ENGN80</title>
+<title>Aquisição de Dados – ENGN80</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,6 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./sensoriamento_remoto.html" rel="next">
+<link href="./introducao.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -71,11 +74,40 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,32 +125,38 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="./index.html"> <i class="bi bi-geo" role="img">
+</i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./introducao.html"> 
+    <a class="nav-link active" href="./introducao.html" aria-current="page"> <i class="bi bi-globe2" role="img">
+</i> 
 <span class="menu-text">Introdução às Geotecnologias</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./aquisicao_dados.html" aria-current="page"> 
+    <a class="nav-link" href="./aquisicao_dados.html"> <i class="bi bi-globe-americas" role="img">
+</i> 
 <span class="menu-text">Aquisição de dados</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./sensoriamento_remoto.html"> 
+    <a class="nav-link" href="./sensoriamento_remoto.html"> <i class="bi bi-rocket-takeoff" role="img">
+</i> 
 <span class="menu-text">Sensoriamento Remoto</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./analise_geoespacial.html"> 
+    <a class="nav-link" href="./analise_geoespacial.html"> <i class="bi bi-graph-up-arrow" role="img">
+</i> 
 <span class="menu-text">Análise Geoespacial</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./integracao.html"> 
-<span class="menu-text">Instegração de Ferramentas</span></a>
+    <a class="nav-link" href="./integracao.html"> <i class="bi bi-diagram-3" role="img">
+</i> 
+<span class="menu-text">Integração de Ferramentas</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">Sobre o Curos</span></a>
+<span class="menu-text">Sobre o Curso</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -126,22 +164,100 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aquisicao_dados.html">Módulo 2 - Aquisição de dados</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 1 - Introdução às Geotecnologias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aquisicao_dados.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Módulo 2 - Aquisição de dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensoriamento_remoto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 3 - Sensoriamento Remoto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analise_geoespacial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 4 - Análise Geoespacial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 5 - Integração de Ferramentas</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#modelos-digitais-de-elevação" id="toc-modelos-digitais-de-elevação" class="nav-link active" data-scroll-target="#modelos-digitais-de-elevação">Modelos Digitais de Elevação</a>
+  <ul class="collapse">
+  <li><a href="#pré-processamento-do-mde" id="toc-pré-processamento-do-mde" class="nav-link" data-scroll-target="#pré-processamento-do-mde">Pré-processamento do MDE</a>
+  <ul class="collapse">
+  <li><a href="#correção-hidrológica-preenchimento-de-depressões" id="toc-correção-hidrológica-preenchimento-de-depressões" class="nav-link" data-scroll-target="#correção-hidrológica-preenchimento-de-depressões">Correção Hidrológica (Preenchimento de Depressões)</a></li>
+  <li><a href="#suavização-e-filtragem-de-ruído-filtering-smoothing" id="toc-suavização-e-filtragem-de-ruído-filtering-smoothing" class="nav-link" data-scroll-target="#suavização-e-filtragem-de-ruído-filtering-smoothing">Suavização e Filtragem de Ruído (Filtering &amp; Smoothing)</a></li>
+  <li><a href="#interpolação-e-preenchimento-de-nulos-nodata-fill" id="toc-interpolação-e-preenchimento-de-nulos-nodata-fill" class="nav-link" data-scroll-target="#interpolação-e-preenchimento-de-nulos-nodata-fill">Interpolação e Preenchimento de Nulos (NoData Fill)</a></li>
+  <li><a href="#reamostragem-reprojeção-e-ajuste-de-resolução" id="toc-reamostragem-reprojeção-e-ajuste-de-resolução" class="nav-link" data-scroll-target="#reamostragem-reprojeção-e-ajuste-de-resolução">Reamostragem, Reprojeção e Ajuste de Resolução</a></li>
+  </ul></li>
+  <li><a href="#análise-hidrológica-de-mde" id="toc-análise-hidrológica-de-mde" class="nav-link" data-scroll-target="#análise-hidrológica-de-mde">Análise hidrológica de MDE</a>
+  <ul class="collapse">
+  <li><a href="#direção-de-fluxo-flow-direction" id="toc-direção-de-fluxo-flow-direction" class="nav-link" data-scroll-target="#direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</a></li>
+  <li><a href="#acúmulo-de-fluxo-flow-accumulation" id="toc-acúmulo-de-fluxo-flow-accumulation" class="nav-link" data-scroll-target="#acúmulo-de-fluxo-flow-accumulation">Acúmulo de Fluxo (Flow Accumulation)</a></li>
+  <li><a href="#delimitação-automática-de-bacias-e-sub-bacias" id="toc-delimitação-automática-de-bacias-e-sub-bacias" class="nav-link" data-scroll-target="#delimitação-automática-de-bacias-e-sub-bacias">Delimitação Automática de Bacias e Sub-bacias</a></li>
+  <li><a href="#extração-da-rede-de-drenagem-sintética" id="toc-extração-da-rede-de-drenagem-sintética" class="nav-link" data-scroll-target="#extração-da-rede-de-drenagem-sintética">Extração da rede de drenagem sintética</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercício-prático" id="toc-exercício-prático" class="nav-link" data-scroll-target="#exercício-prático">Exercício Prático:</a>
+  <ul class="collapse">
+  <li><a href="#cálculo-do-índice-de-umidade-topográfica" id="toc-cálculo-do-índice-de-umidade-topográfica" class="nav-link" data-scroll-target="#cálculo-do-índice-de-umidade-topográfica">Cálculo do Índice de Umidade Topográfica</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Untitled</h1>
+<h1 class="title">Aquisição de Dados</h1>
 </div>
 
+<div>
+  <div class="description">
+    Módulo 2
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -156,8 +272,478 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="modelos-digitais-de-elevação" class="level1">
+<h1>Modelos Digitais de Elevação</h1>
+<p>Modelos de Elevação representam a altimetria da superfície terrestre, divididos principalmente entre MDT/DTM (Modelo Digital do Terreno — superfície do solo “careca”) e MDS/DSM (Modelo Digital de Superfície — inclui topo de vegetação e edificações). Princípios do Processamento e DiferençasOs modelos citados utilizam diferentes tecnologias para capturar e tratar a altimetria:InSAR (Interferometria Radar): Sensores emissores de micro-ondas (bandas C, L ou X) capturam o retorno de fase da onda eletromagnética para calcular o relevo, atravessando nuvens sem dependência de iluminação solar.Comprimento de Onda: Ondas mais curtas (Banda C/X) refletem no topo do dossel florestal e infraestrutura (gerando MDS). Ondas mais longas (Banda L) penetram mais na copa de árvores, atingindo o solo com maior facilidade. Remoção por Machine Learning: Quando o dado bruto inclui artefatos da vegetação e construções (MDS), utilizam-se algoritmos preditivos e dados auxiliares para “filtrar” e estimar a cota real do solo humano/natural (MDT).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 24%">
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Modelo</th>
+<th style="text-align: center;">Tecnologia/Banda</th>
+<th style="text-align: center;">Tipo Originário</th>
+<th style="text-align: center;">Resolução</th>
+<th style="text-align: center;">Fontes de Acesso Gratuito</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">SRTM</td>
+<td style="text-align: center;">Radar de Apertura Sintética Interf. (InSAR - Banda C / X)</td>
+<td style="text-align: center;">MDS (reflete topo da vegetação)</td>
+<td style="text-align: center;">~30 metros (1 arc-sec)</td>
+<td style="text-align: center;">USGS EarthExplorer, NASA Earthdata, Google Earth Engine</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ALOS PALSAR</td>
+<td style="text-align: center;">Radar de Apertura Sintética (InSAR - Banda L)</td>
+<td style="text-align: center;">MDS (maior penetração em vegetação)</td>
+<td style="text-align: center;">12,5 metros (radiométrico)/30 m</td>
+<td style="text-align: center;">ASF Data Search (Alaska Satellite Facility), JAXA EORC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">COPENHAGEN/ COPERNICUS DEM</td>
+<td style="text-align: center;">Radar TanDEM-X/TerraSAR-X (InSAR - Banda X)</td>
+<td style="text-align: center;">MDS (GLO-30 e GLO-90)</td>
+<td style="text-align: center;">30 metros / 90 metros</td>
+<td style="text-align: center;">Copernicus Open Access Hub, OpenTopography, AWS Public Dataset</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">FABDEM</td>
+<td style="text-align: center;">Processamento computacional sobre o Copernicus DEM</td>
+<td style="text-align: center;">MDT (Forest And Buildings removed)</td>
+<td style="text-align: center;">~30 metros</td>
+<td style="text-align: center;">Repositório da University of Bristol (Data.bris), OpenTopography</td>
+</tr>
+</tbody>
+</table>
+<section id="pré-processamento-do-mde" class="level2">
+<h2 class="anchored" data-anchor-id="pré-processamento-do-mde">Pré-processamento do MDE</h2>
+<p>No QGIS, o pré-processamento de Modelos Digitais de Elevação (MDE/DEM) ocorre principalmente através dos provedores nativos e das bibliotecas integradas na Toolbox de Processamento, como <strong>GDAL</strong>, <strong>SAGA GIS</strong> e <strong>GRASS GIS</strong>.</p>
+<section id="correção-hidrológica-preenchimento-de-depressões" class="level3">
+<h3 class="anchored" data-anchor-id="correção-hidrológica-preenchimento-de-depressões">Correção Hidrológica (Preenchimento de Depressões)</h3>
+<p>Antes de extrair redes de drenagem ou delimitar bacias, é necessário remover imperfeições (<em>sinks</em> ou <em>depressions</em>) para garantir o fluxo contínuo da água.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Algoritmo</th>
+<th style="text-align: left;">Provedor</th>
+<th style="text-align: left;">Função / Princípio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Fill Sinks (Wang &amp; Liu)</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Identifica e preenche depressões espúrias mantendo uma inclinação mínima contínua em direção às saídas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Fill Sinks (Planchon &amp; Darboux)</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Algoritmo rápido que “inunda” a superfície e remove as depressões secando as células sobressalentes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>r.fill.dir</strong></td>
+<td style="text-align: left;">GRASS GIS</td>
+<td style="text-align: left;">Filtra depressões e gera diretamente as superfícies corrigidas e os mapas de direção de fluxo (<em>Flow Direction</em>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Fill Sinks (XXL / Wang &amp; Liu)</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Otimizado para gerenciar matrizes de dados massivas com baixo consumo de memória RAM.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="suavização-e-filtragem-de-ruído-filtering-smoothing" class="level3">
+<h3 class="anchored" data-anchor-id="suavização-e-filtragem-de-ruído-filtering-smoothing">Suavização e Filtragem de Ruído (Filtering &amp; Smoothing)</h3>
+<p>Utilizados para suavizar variações bruscas de altimetria, artefatos de sensoriamento remoto ou ruídos do processamento de nuvem de pontos.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Algoritmo</th>
+<th style="text-align: left;">Provedor</th>
+<th style="text-align: left;">Função / Princípio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Simple Filter / Gaussian Filter</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Aplica filtros convolutionais (passa-baixas, gaussianos ou mediana) para suavizar a matriz de pixels.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>r.denoise</strong></td>
+<td style="text-align: left;">GRASS GIS</td>
+<td style="text-align: left;">Preserva cristas e talvegues afiados (<em>edges</em>) enquanto remove o ruído em superfícies suaves.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Filter (Gauß, Median, Mean)</strong></td>
+<td style="text-align: left;">GDAL / QGIS</td>
+<td style="text-align: left;">Suavização rápida via reamostragem ou aplicação de matriz de vizinhança.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interpolação-e-preenchimento-de-nulos-nodata-fill" class="level3">
+<h3 class="anchored" data-anchor-id="interpolação-e-preenchimento-de-nulos-nodata-fill">Interpolação e Preenchimento de Nulos (NoData Fill)</h3>
+<p>Preenchem lacunas causadas por nuvens, sombras de radar ou ausência de dados na aquisição.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Algoritmo</th>
+<th style="text-align: left;">Provedor</th>
+<th style="text-align: left;">Função / Princípio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Fill NoData</strong></td>
+<td style="text-align: left;">GDAL</td>
+<td style="text-align: left;">Preenche pixels sem valor extrapolando as bordas válidas via interpolação ponderada pela distância (IDW).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Close Gaps</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Utiliza interpolação por B-Splines ou métodos locais para recompor falhas internas na grade raster.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>r.fillnulls</strong></td>
+<td style="text-align: left;">GRASS GIS</td>
+<td style="text-align: left;">Emprega <em>Regularized Splines with Tension</em> (RST) para reconstituir lacunas grandes mantendo a continuidade topográfica.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reamostragem-reprojeção-e-ajuste-de-resolução" class="level3">
+<h3 class="anchored" data-anchor-id="reamostragem-reprojeção-e-ajuste-de-resolução">Reamostragem, Reprojeção e Ajuste de Resolução</h3>
+<ul>
+<li><strong>Warp / Reproject (gdal:warpreproject):</strong> Reprojeta o MDE entre sistemas de coordenadas (ex: de WGS 84 geográfico para SIRGAS 2000 UTM) ajustando a escala vertical e a orientação dos pixels.<br>
+</li>
+<li><strong>Resample / Grid Normalization:</strong> Altera a resolução espacial (ex: de 30m para 10m) utilizando métodos de interpolação como <em>Bilinear</em>, <em>Cubic</em>, ou <em>Nearest Neighbor</em>.</li>
+</ul>
+</section>
+</section>
+<section id="análise-hidrológica-de-mde" class="level2">
+<h2 class="anchored" data-anchor-id="análise-hidrológica-de-mde">Análise hidrológica de MDE</h2>
+<p>A análise hidrológica em SIG baseia-se no princípio de que a água flui pela gravidade seguindo a linha de maior declividade. No QGIS, as ferramentas dos provedores SAGA e GRASS processam essa dinâmica célula a célula sobre um Modelo Digital de Elevação (MDE) pré-tratado sem depressões.</p>
+<section id="direção-de-fluxo-flow-direction" class="level3">
+<h3 class="anchored" data-anchor-id="direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</h3>
+<p>Determina para qual célula vizinha a água contida na célula central irá escoar. O algoritmo avalia as 8 células adjacentes (matriz <span class="math inline">\(3 \times 3\)</span>) e calcula a rampa de maior declive (<span class="math inline">\(S\)</span>):</p>
+<p><span class="math display">\[S = \frac{\Delta Z}{d}\]</span><br>
+onde <span class="math inline">\(\Delta Z\)</span> é a diferença de altitude entre o pixel central e o vizinho, e <span class="math inline">\(d\)</span> é a distância entre os centros dos pixels (<span class="math inline">\(d = \text{resolução}\)</span> para vizinhos cardinais; <span class="math inline">\(d = \text{resolução} \cdot \sqrt{2}\)</span> para diagonais).</p>
+<ul>
+<li><strong>Método D8 (Determinístico 8):</strong> O mais tradicional. Direciona 100% do fluxo para uma <strong>única</strong> célula vizinha com o maior valor de <span class="math inline">\(S\)</span>. Cada direção recebe um código binário (<span class="math inline">\(1=\text{Leste}\)</span>, <span class="math inline">\(2=\text{Sudeste}\)</span>, <span class="math inline">\(4=\text{Sul}\)</span>, <span class="math inline">\(8=\text{Sudoeste}\)</span>, etc.).<br>
+</li>
+<li><strong>Métodos Múltiplos (FD8 / MFD / D-Infinity):</strong> Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.</li>
+</ul>
+</section>
+<section id="acúmulo-de-fluxo-flow-accumulation" class="level3">
+<h3 class="anchored" data-anchor-id="acúmulo-de-fluxo-flow-accumulation">Acúmulo de Fluxo (Flow Accumulation)</h3>
+<p>Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em <span class="math inline">\(\\text{m}^2\)</span> ou <span class="math inline">\(\\text{km}^2\)</span>).</p>
+<ul>
+<li><strong>Contribuição Recursiva:</strong> Células localizadas em divisores de água (topos de morro) têm acúmulo igual a <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> (apenas sua própria área).<br>
+</li>
+<li><strong>Definição da Rede de Drenagem:</strong> Ao aplicar um limiar (<em>threshold</em>) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.</li>
+</ul>
+</section>
+<section id="delimitação-automática-de-bacias-e-sub-bacias" class="level3">
+<h3 class="anchored" data-anchor-id="delimitação-automática-de-bacias-e-sub-bacias">Delimitação Automática de Bacias e Sub-bacias</h3>
+<p>Com base na matriz de direção de fluxo e na rede de drenagem gerada, os algoritmos agrupam as células do terreno aplicando o conceito topológico de <strong>exutório</strong>:</p>
+<ul>
+<li><strong>Ponto de Exutório (Pour Point):</strong> Define-se a seção transversal de interesse na rede de drenagem.<br>
+</li>
+<li><strong>Rastreamento Inverso (Upstream Tracing):</strong> O algoritmo percorre a matriz de direção de fluxo “contra a corrente”, identificando e selecionando todas as células montante cujas direções apontam direta ou indiretamente para aquele ponto de exutório.<br>
+</li>
+<li><strong>Vetorização e Delimitação:</strong> A borda externa do conjunto de pixels selecionados forma o divisor topográfico de águas. Quando executado de forma automática para toda a grade (ex: algoritmo r.watershed do GRASS ou Basin Channels do SAGA), o software segmenta a área total em sub-bacias correspondentes às confluências da rede de drenagem.</li>
+</ul>
+</section>
+<section id="extração-da-rede-de-drenagem-sintética" class="level3">
+<h3 class="anchored" data-anchor-id="extração-da-rede-de-drenagem-sintética">Extração da rede de drenagem sintética</h3>
+<p>A <strong>extração da rede de drenagem sintética</strong> é o processo de mapear computacionalmente os canais de escoamento superficial a partir do acúmulo de fluxo calculado sobre um Modelo Digital de Elevação (MDE). É chamada de “sintética” porque não é mapeada por vetorização manual ou fotointerpretação, mas derivada matematicamente da topografia.<br>
+<strong>Princípio da Extração e Etapas</strong><br>
+O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:</p>
+<ul>
+<li><strong>Definição do Limiar Crítico (<em>Threshold</em>):</strong> Estabelece a área de contribuição mínima necessária (em número de pixels ou <span class="math inline">\(\\text{km}^2\)</span>) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:<br>
+<span class="math display">\[\text{Canal} = \begin{cases} 1, &amp; \text{se Acúmulo de Fluxo} \ge \text{Limiar} \\\\ \text{NoData}, &amp; \text{se Acúmulo de Fluxo} &lt; \text{Limiar} \end{cases}\]</span></li>
+<li><strong>Classificação de Ordem dos Canais (<em>Stream Order</em>):</strong> Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:
+<ul>
+<li><strong>Strahler:</strong> Canais de nascente recebem ordem 1. A junção de dois canais de mesma ordem <span class="math inline">\(n\)</span> gera um canal de ordem <span class="math inline">\(n+1\)</span>. A junção de ordens diferentes mantém a ordem do maior.<br>
+</li>
+<li><strong>Shreve:</strong> Soma as ordens de todos os tributários a jusante, refletindo a magnitude total do fluxo acumulado.<br>
+</li>
+</ul></li>
+<li><strong>Vetorização e Esqueletização (Thinning):</strong> As células raster contínuas marcadas como canais são conectadas e convertidas em feições vetoriais de linha (polylines), conectando os centros dos pixels ordenadamente do topo da bacia até o exutório.</li>
+</ul>
+<p><strong>Algoritmos Principais no QGIS</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Algoritmo</th>
+<th style="text-align: left;">Provedor</th>
+<th style="text-align: left;">Função e Saída</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Channel Network and Drainage Basins</strong></td>
+<td style="text-align: left;">SAGA GIS</td>
+<td style="text-align: left;">Gera diretamente o raster de canais, o vetor de drenagem (.shp/.gpkg) e a hierarquia de Strahler/Shreve em um único passo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>r.stream.extract</strong></td>
+<td style="text-align: left;">GRASS GIS</td>
+<td style="text-align: left;">Extrai a rede de drenagem vetorial com alta precisão topológica, permitindo calibrar o limiar por área ou fluxo acumulado.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>r.stream.order</strong></td>
+<td style="text-align: left;">GRASS GIS</td>
+<td style="text-align: left;">Calcula múltiplos índices de ordenação fluvial (Strahler, Shreve, Horton, Hack) sobre a rede extraída.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Calculadora Raster (Nativa)</strong></td>
+<td style="text-align: left;">QGIS</td>
+<td style="text-align: left;">Executa a filtragem por limiar customizado via expressão booleana (“Acumulo@1” &gt;= 500).</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="exercício-prático" class="level1">
+<h1>Exercício Prático:</h1>
+<p>A extração de parâmetros morfométricos permite quantificar a geometria, a topografia e a rede de drenagem de uma bacia hidrográfica. No QGIS, este fluxo é executado utilizando as ferramentas integradas do <strong>GRASS GIS</strong> e do <strong>SAGA GIS</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>1.Pré-processamento e Correção Hidrológica do MDE:</strong>Garantia de continuidade do fluxo de água.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Certifique-se de que o <strong>Modelo Digital de Elevação (MDE)</strong> esteja em um <strong>Sistema de Coordenadas Projetadas</strong> (ex: SIRGAS 2000 / UTM zone 24S) com unidade em metros.<br>
+</li>
+<li>Abra o menu <strong>Processamento</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Caixa de Ferramentas</strong> (<em>Toolbox</em>).<br>
+</li>
+<li>Busque por <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Fill Sinks (Wang &amp; Liu)</strong>.<br>
+</li>
+<li>Selecione o MDE bruto na camada de entrada e execute para gerar o raster <strong>Filled DEM</strong> (MDE corrigido sem depressões).</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>2.Geração das Matrizes Hidrológicas com r.watershed:</strong>Execução no GRASS GIS.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Na Caixa de Ferramentas, busque por <strong>GRASS</strong> <span class="math inline">\(\rightarrow\)</span> <strong>r.watershed</strong>.<br>
+</li>
+<li>Em <strong>Elevation</strong>, selecione o MDE corrigido (<em>Filled DEM</em>).<br>
+</li>
+<li>Em <strong>Minimum size of exterior watershed basin</strong>, defina o número mínimo de células para início de um canal (ex: para pixel de <span class="math inline">\(30\text{m}\)</span>, insira 1000 células <span class="math inline">\(\approx 0,9\text{ km}^2\)</span>).<br>
+</li>
+<li>Marque para salvar as seguintes saídas:<br>
+</li>
+</ol>
+<ul>
+<li><strong>Number of cells that drain through each cell</strong> (<em>Acúmulo de Fluxo</em>)<br>
+</li>
+<li><strong>Drainage direction</strong> (<em>Direção de Fluxo</em>)<br>
+</li>
+<li><strong>Unique label for each watershed basin</strong> (<em>Bacias/Sub-bacias</em>)</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>3.Delimitação e Vetorização da Bacia Hydrográfica:</strong>Isolamento da área de estudo.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Para obter o limite exato da bacia a partir de um exutório específico:<br>
+</li>
+</ol>
+<ul>
+<li>Abra a ferramenta <strong>GRASS</strong> <span class="math inline">\(\rightarrow\)</span> <strong>r.water.outlet</strong>.<br>
+</li>
+<li>Escolha o mapa de <strong>Direção de Fluxo</strong> gerado no passo anterior.<br>
+</li>
+<li>Clique no mapa para capturar as coordenadas <span class="math inline">\(X/Y\)</span> do ponto exutório sobre a rede de drenagem.<br>
+</li>
+</ul>
+<ol start="2" type="1">
+<li>Converta a bacia delimitada em vetor:<br>
+</li>
+</ol>
+<ul>
+<li>Vá em <strong>Raster</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Conversão</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Poligonizar (Raster para Vetor)</strong>.<br>
+</li>
+<li>Salve a camada como bacia_limite.gpkg.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>4.Extração da Rede de Drenagem e Ordem de Strahler:</strong>Processamento da rede fluvial.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Abra a ferramenta <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Channel Network and Drainage Basins</strong>.<br>
+</li>
+<li>Selecione o MDE corrigido (<em>Filled DEM</em>) e ajuste o parâmetro <strong>Threshold</strong> (ex: 8 ou 9 dependendo da escala).<br>
+</li>
+<li>O algoritmo gera a drenagem vetorial e a camada de <strong>Hierarquia Fluvial</strong> (Ordem de Strahler).<br>
+</li>
+<li>Recorte o vetor de drenagem pelo limite exato da bacia usando a ferramenta <strong>Vetor</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Geoprocessamento</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Recortar</strong> (<em>Clip</em>).</li>
+</ol>
+</blockquote>
+<p><strong>5.Cálculo dos Parâmetros Geométricos e Altimétricos:</strong>Atributos da bacia e da rede.<br>
+Acesse a <strong>Tabela de Atributos</strong> da camada vetorial do limite da bacia ou use a ferramenta <strong>Calculadora de Campos</strong> ($area e $perimeter):</p>
+<blockquote class="blockquote">
+<ul>
+<li><strong>Área da Bacia (<span class="math inline">\(A\)</span>):</strong> <span class="math inline">\(area / 1000000 (\)</span>^2$)<br>
+</li>
+<li><strong>Perímetro (<span class="math inline">\(P\)</span>):</strong> <span class="math inline">\(perimeter / 1000 (\)</span>$)<br>
+</li>
+<li><strong>Comprimento do Canal Principal (<span class="math inline">\(L_{cp}\)</span>):</strong> Meça o comprimento do maior rio da nascente ao exutório (<span class="math inline">\(\text{km}\)</span>).<br>
+</li>
+<li><strong>Comprimento Total da Drenagem (<span class="math inline">\(L_t\)</span>):</strong> Na camada de drenagem recortada, utilize a soma do comprimento das linhas com a <strong>Estatística de Campo</strong> ($length / 1000).<br>
+</li>
+<li><strong>Estatísticas Altimétricas:</strong> Execute <strong>Raster</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Estatísticas Zonais</strong> sobre o MDE usando o polígono da bacia para extrair a <span class="math inline">\(Z_{\min}\)</span>, <span class="math inline">\(Z_{\max}\)</span> e <span class="math inline">\(Z_{\text{média}}\)</span>.</li>
+</ul>
+</blockquote>
+<p><strong>6.Cálculo dos Índices Morfométricos:</strong>Aplicação das fórmulas na Calculadora de Campos.<br>
+Crie novos campos na tabela de atributos da bacia para computar as equações clássicas:</p>
+<blockquote class="blockquote">
+<ul>
+<li><strong>Fator de Forma (<span class="math inline">\(F_f\)</span>):</strong> <span class="math inline">\(F_f = \frac{A}{L_{cp}^2}\)</span><br>
+</li>
+<li><strong>Índice de Circularidade (<span class="math inline">\(I_c\)</span>):</strong> <span class="math inline">\(I_c = \frac{12,57 \cdot A}{P^2}\)</span><br>
+</li>
+<li><strong>Coeficiente de Compacidade (<span class="math inline">\(K_c\)</span>):</strong> <span class="math inline">\(K_c = 0,28 \cdot \frac{P}{\sqrt{A}}\)</span><br>
+</li>
+<li><strong>Densidade de Drenagem (<span class="math inline">\(D_d\)</span>):</strong> <span class="math inline">\(D_{d} = \frac{L_t}{A}\)</span> (<span class="math inline">\(\text{km/km}^2\)</span>)<br>
+</li>
+<li><strong>Amplitude Topográfica (<span class="math inline">\(H\)</span>):</strong> <span class="math inline">\(H = Z_{\max} - Z_{\min}\)</span> (<span class="math inline">\(\text{m}\)</span>)<br>
+</li>
+<li><strong>Relação de Relevo (<span class="math inline">\(R_r\)</span>):</strong> <span class="math inline">\(R_r = \frac{H}{L_{cp}}\)</span></li>
+</ul>
+</blockquote>
+<section id="cálculo-do-índice-de-umidade-topográfica" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-do-índice-de-umidade-topográfica">Cálculo do Índice de Umidade Topográfica</h2>
+<p>O <strong>Índice de Umidade Topográfica (TWI - <em>Topographic Wetness Index</em>)</strong>, desenvolvido por Beven e Kirkby (1979), quantifica o controle topográfico nos processos hidrológicos e prevê áreas propensas à acumulação de água e saturação do solo.<br>
+O TWI é definido por:</p>
+<p><span class="math display">\[\text{TWI} = \ln\left(\frac{a}{\tan \beta}\right)\]</span><br>
+Onde:</p>
+<ul>
+<li><span class="math inline">\(a\)</span> é a <strong>área de contribuição específica a montante</strong> por unidade de largura de contorno (<span class="math inline">\(\text{m}^2/\text{m}\)</span> ou simplesmente a extensão de acúmulo ajustada à resolução do pixel).<br>
+</li>
+<li><span class="math inline">\(\beta\)</span> é o <strong>ângulo de declividade do terreno</strong> em radianos (<em>slope</em>).</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>1.Verificação do MDE:</strong>Formato e projeção do raster.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Certifique-se de que o seu <strong>Modelo Digital de Elevação (MDE)</strong> esteja em um <strong>Sistema de Coordenadas Projetadas (UTM)</strong> com unidade em metros (ex: SIRGAS 2000 / UTM zone 24S).<br>
+</li>
+<li>Garanta que o MDE passou pelo pré-processamento de <strong>correção hidrológica</strong> (<em>Fill Sinks</em>), evitando falhas de cálculo no acúmulo de fluxo.</li>
+</ol>
+</blockquote>
+<p><strong>2.Cálculo Direto Automático (Método Recomendado):</strong>SAGA GIS / Toolbox.<br>
+O QGIS possui um algoritmo nativo via SAGA que calcula todos os componentes intermediários e entrega o TWI direto em um passo:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Abra a <strong>Caixa de Ferramentas de Processamento</strong> (Ctrl + Alt + T).<br>
+</li>
+<li>Busque por <strong>SAGA</strong> <span class="math inline">\(\\rightarrow\)</span> <strong>Topographic Wetness Index (TWI)</strong>.<br>
+</li>
+<li>No campo <strong>Elevation</strong>, selecione o MDE corrigido (<em>Filled DEM</em>).<br>
+</li>
+<li>Nos métodos de acúmulo de fluxo (<strong>Area Type</strong> ou <strong>Flow Accumulation Method</strong>), você pode manter o padrão ou selecionar <strong>D-Infinity</strong> / <strong>Multiple Flow Direction (MFD)</strong> para melhor distribuição do fluxo em encostas.<br>
+</li>
+<li>Clique em <strong>Executar</strong>. O QGIS gerará a camada raster do <strong>TWI</strong> diretamente.</li>
+</ol>
+</blockquote>
+<p><strong>3.Cálculo Manual por Etapas (Para Controle de Parâmetros):</strong>SAGA / GRASS / Calculadora Raster.<br>
+Caso deseje personalizar os métodos de escoamento e declividade, você pode gerar as camadas intermediárias separadamente:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li><strong>Gerar a Declividade em Radianos (<span class="math inline">\(\\beta\)</span>):</strong><br>
+</li>
+</ol>
+<ul>
+<li>Acesse <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Slope, Aspect, Curvature</strong>.<br>
+</li>
+<li>Selecione o MDE e no parâmetro <strong>Slope Units</strong>, altere para <strong>Radians</strong> (ou use a Calculadora Raster convertendo graus para radianos: Declividade_graus * (pi / 180)).<br>
+</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Gerar a Área de Contribuição Específica (<span class="math inline">\(a\)</span>):</strong><br>
+</li>
+</ol>
+<ul>
+<li>Acesse <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Catchment Area</strong>.<br>
+</li>
+<li>Escolha um método de fluxo contínuo (ex: <em>MFD</em> ou <em>D-Infinity</em>).<br>
+</li>
+<li>O resultado nos dá a área de contribuição acumulada.<br>
+</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Aplicar a Equação na Calculadora Raster:</strong><br>
+</li>
+</ol>
+<ul>
+<li>Acesse <strong>Raster</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Calculadora Raster</strong>.<br>
+</li>
+<li>Insira a fórmula adicionando um valor mínimo constante (ex: 0.00001) ao denominador para evitar <strong>divisão por zero</strong> em áreas planas (<span class="math inline">\(\tan(0) = 0\)</span>):</li>
+</ul>
+</blockquote>
+<p>Plaintext<br>
+ln( “Area_Contribuição@1” / tan( max(“Declividade_Radianos@1”, 0.001) ) )</p>
+<blockquote class="blockquote">
+<p><strong>4.Estilização do Resultado:</strong>Simbologia e Interpretação.</p>
+</blockquote>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Clique com o botão direito na camada TWI gerada e acesse <strong>Propriedades</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Simbologia</strong>.<br>
+</li>
+<li>Modifique o tipo de renderização para <strong>Banda simples falsa-cor</strong>.<br>
+</li>
+<li>Escolha uma rampa de cores apropriada (ex: <strong>Blues</strong> ou <strong>YlGnBu</strong>).<br>
+</li>
+<li><strong>Interpretação dos Valores:</strong><br>
+</li>
+</ol>
+<ul>
+<li><strong>Valores Elevados (Altos):</strong> Zonas planas, fundos de vale e áreas de convergência de fluxo <span class="math inline">\(\rightarrow\)</span> Alta capacidade de retenção e saturação de umidade.<br>
+</li>
+<li><strong>Valores Baixos:</strong> Cristas, topos de morro e encostas íngremes <span class="math inline">\(\rightarrow\)</span> Rápido escoamento superficial e baixa retenção de água.</li>
+</ul>
+</blockquote>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -560,7 +1146,32 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./introducao.html" class="pagination-link" aria-label="Módulo 1 - Introdução às Geotecnologias">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Módulo 1 - Introdução às Geotecnologias</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./sensoriamento_remoto.html" class="pagination-link" aria-label="Módulo 3 - Sensoriamento Remoto">
+        <span class="nav-page-text">Módulo 3 - Sensoriamento Remoto</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Mauro Alixandrini</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

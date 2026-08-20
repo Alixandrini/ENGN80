@@ -1,6 +1,10 @@
 ---
 title: "ENGN80"
+format: html
+description: "Descrição do curso"
 ---
+[![](images/logo-profagua.png)](https://profagua.ufba.br/)
+
 
 # Geotecnologias Aplicadas aos Recursos Hídricos 
 

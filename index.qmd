@@ -1,24 +1,30 @@
 ---
-title: "ENGN80"
+title: "Geotecnologias Aplicadas aos Recursos Hídricos"
 format: html
-description: "Descrição do curso"
+
 ---
+
+
+::: {.text-center}
 [![](images/logo-profagua.png)](https://profagua.ufba.br/)
 
+*Mestrado Profissional em Gestão e Regulação de Recurso Hídricos*
+:::
 
-# Geotecnologias Aplicadas aos Recursos Hídricos 
+
+# Descrição do Curso
 
 **Carga Horária**: 45h (5 módulos / semanas intensivas)
 Ementa: Conceitos e técnicas de geotecnologias visando seu uso como ferramenta de apoio à tomada de decisões para fins de gerenciamento hidroambiental. Conceitos de Cartografia Básica e Sistemas de Informação Geográfica, Formato de Dados Espaciais, Entrada de Dados. Funções dos SIGs. Mapeamento e análise ambiental. Sensoriamento remoto: princípios, tipos de sensores e aplicações Plataforma de coleta de dados: categorias e aplicações na hidrologia, hidrometeorológia e hidrogeologia. Aplicação de modelos hidrológicos, hidrometeorológicos e hidrogeológicos aos Sistemas de Informação dos Recursos Hídricos. Métodos computacionais em Recursos Hídricos. Determinação de parâmetros morfométricos e de relevo de uma bacia hidrográfica. Estudo da rede de  drenagem. 
-**Periodicidade**: 1 semana por mês | Terças e Quintas-feiras (Vespertino: ~4h30 por dia) no LABFSR sexto Andar Escola Politécnica da UFBA.
+
 **Softwares Principais**: QGIS (com complementos PCRaster, QuickOSM, Semi-Automatic Classification Plugin - SCP), QGIS Cloud / WebGIS.
 
-## Metodologia
+# Metodologia
 Ensino centrado em resolução de problemas (PBL) com tutoriais hands-on aplicados a estudos de caso de recursos hídricos e saneamento.
 
-## Estrutura e Cronograma por Semana Módulo
+# Estrutura e Cronograma por Semana Módulo
 
-### Módulo 1 
+### Módulo 1 <i class="bi bi-globe2"></i>
 (Mês 1) – Introdução às Geotecnologias, Cartografia Básica e Estrutura do QGIS
 
 **Terça-feira (4,5h) – Fundamentos Teóricos e Conceituais:**
@@ -30,28 +36,30 @@ o Estruturas de Dados Espaciais: Vetorial (Pontos, Linhas, Polígonos) vs. Matri
 o Apresentação da Interface do QGIS e configuração do ambiente de trabalho.
 
 **Quinta-feira (4,5h) – Prática Hands-on (QGIS):**
+
 **Exercício Prático**: Configuração do QGIS, projeção de camadas e criação de um projeto inicial.
 
 o Obtenção e organização de dados abertos para recursos hídricos (ANA, IBGE, SNIS, GeoSistemas estaduais).
 o Importação, organização e consulta de dados vetoriais (rede de drenagem, outorgas, estações fluviométricas/pluviométricas e redes de abastecimento/esgotamento).
 
-### Módulo 2 
+### Módulo 2 []{.bi-globe-americas}
 (Mês 2) – Aquisição de Dados, Modelos Digitais de Elevação (MDE) e Delimitação de Bacias
 
 **Terça-feira (4,5h) – MDEs e Delimitação Automática de Bacias:**
 
 o Modelos Digitais de Elevação (MDE / DEM): SRTM, ALOS PALSAR, FABDEM, COPEMICUS.
-o Pré-processamento do MDE: Correção de pias (Sink Fill / Depression Filling).
+o Pré-processamento do MDE: (Sink Fill / Depression Filling).
 o Análise hidrológica de MDE: Direção de Fluxo (Flow Direction), Acúmulo de Fluxo (Flow Accumulation).
 o Delimitação automática de bacias e sub-bacias hidrográficas e extração da rede de drenagem sintética.
 
 **Quinta-feira (4,5h) – Prática Hands-on (Livro van der Kwast/Menke):**
+
 **Exercício Prático:** Baixar MDEs globais direto no QGIS e delimitar a bacia hidrográfica de interesse (ou da exutória de uma ETE/ETA).
 
 o Extração de parâmetros morfométricos da bacia (área, perímetro, declividade, comprimento do rio principal, densidade de drenagem).
 o Cálculo do Índice de Umidade Topográfica (TWI - Topographic Wetness Index) para mapeamento de áreas suscetíveis a alagamento/inundação.
 
-### Módulo 3 
+### Módulo 3 []{.bi-rocket-takeoff}
 (Mês 3) – Sensoriamento Remoto, Uso do Solo e Processamento Digital de Imagens (PDI)
 
 **Terça-feira (4,5h) – Princípios de Sensoriamento Remoto Aplicados à Água:**
@@ -62,14 +70,16 @@ o Índices Espectrais para recursos hídricos: NDWI (Normalized Difference Water
 o Introdução ao Processamento Digital de Imagens (PDI): Classificação Supervisionada e Não-Supervisionada de Uso e Ocupação do Solo.
 
 **Quinta-feira (4,5h) – Prática Hands-on (QGIS + SCP Plugin):**
+
 **Exercício Prático:** Download de imagens Sentinel-2 / Landsat-9 via QGIS.
 
 o Mapeamento de espelhos d'água e variação reservatórios/represas via NDWI.
 o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).
 o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d'água.
 
-### Módulo 4 
+### Módulo 4 []{.bi-graph-up-arrow}
 (Mês 4) – Análise Espacial Avançada, Modelagem e Aplicação no Saneamento
+
 **Terça-feira (4,5h) – Análise Espacial e Infraestrutura de Saneamento:**
 
 o Ferramentas analíticas e operações de proximidade (Buffer, Overlay, Interseção, Junção Espacial).
@@ -77,11 +87,14 @@ o Interpolação Espacial (IDW, Krigagem): Aplicação para mapeamento de precip
 o Aplicações do SIG no Saneamento Básico: Mapeamento de redes de água e esgoto, universalização dos serviços, gestão de perdas e localização de áreas para instalação de infraestruturas (ETEs, aterros sanitários).
 
 **Quinta-feira (4,5h) – Prática Hands-on (QGIS / Análise Multi-critério):**
+
 **Exercício Prático 1:** Interpolação de dados de chuva ou parâmetros de qualidade da água (ex: DBO, Turbidez).
+
 **Exercício Prático 2:** (Tomada de Decisão Multi-critério): Modelagem de adequabilidade/vulnerabilidade (AHP / Combinação Linear Ponderada no QGIS) para escolha de local apropriado para implantação de um Aterro Sanitário ou Estação de Tratamento de Esgoto (ETE), considerando restrições ambientais (distância de rios, declividade, uso do solo, áreas urbanas).
 
-### Módulo 5 
+### Módulo 5 []{.bi-diagram-3}
 (Mês 5) – Integração, Estudos de Caso em Gestão/Regulação e Apresentação de Projetos
+
 **Terça-feira (4,5h) – Comunicação de Dados, WebGIS e Indicadores:**
 
 o Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.
@@ -94,7 +107,8 @@ o Trabalho orientador final em sala: Suporte aos alunos no desenvolvimento do Es
 o Apresentação dos Seminários/Projetos Finais aplicados pelos alunos (focados em seus temas de dissertação ou problemas reais de suas instituições/bacias de atuação).
 o Discussão geral e encerramento da disciplina.
 
-## Procedimentos de Avaliação da Aprendizagem
+# Procedimentos de Avaliação da Aprendizagem
+
 **Relatórios Práticos / Exercícios por Módulo (40%):** Pequenas entregas baseadas nas práticas do livro van der Kwast & Menke adaptadas para uma bacia de estudo regional.
 **Projeto Aplicado Final (60%):** Desenvolvimento de um estudo de caso completo em que o mestrando escolhe uma bacia ou município/região de interesse e aplica as etapas da disciplina:
 
@@ -103,17 +117,36 @@ o Mapeamento de uso do solo e recursos hídricos/saneamento;
 o Análise espacial ou multi-critério voltada para regulação, gestão ou saneamento;
 o Layout final de mapa / Dashboard / Relatório de apoio à tomada de decisão.
 
-## Bibliografia Atualizada e Complementar
+# Bibliografia Atualizada
 
 **Livro-Texto / Guia Prático Central:**
 
-VAN DER KWAST, Hans; MENKE, Kurt. QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management. Locate Press, 2019 / edições recentes.
+[1] VAN DER KWAST, Hans; MENKE, Kurt. QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management. Locate Press, 2019 / edições recentes.
 
 **Bibliografias de Apoio (ProfÁgua & Referências Brasileiras):**
 
-MENDES, C. A. B.; CIRILO, J. A. Geoprocessamento em Recursos Hídricos: princípios, integração e aplicação. ABRH. 
-BURROUGH, P.; MCDONNELL, R. Principles of Geographical Information Systems. Oxford University Press. 
-CHUVIECO, E. Fundamentals of Satellite Remote Sensing: An Environmental Approach. CRC Press.
-FLORENZANO, T. G. Imagens de satélite para estudos ambientais. Oficina de Textos. 
-Tucci, C. E. M. Hidrologia: Ciência e Aplicação. Editora da UFRGS / ABRH.
-Geoprocessamento aplicado no planejamento de bacias hidrográficas [recurso eletrônico] / Organizadores Sérgio Campos... [et al.]. – Ponta Grossa (PR): Atena Editora, 2019.
+[2] MENDES, C. A. B.; CIRILO, J. A. Geoprocessamento em Recursos Hídricos: princípios, integração e aplicação. ABRH. 
+
+[3] BURROUGH, P.; MCDONNELL, R. Principles of Geographical Information Systems. Oxford University Press. 
+
+[4] CHUVIECO, E. Fundamentals of Satellite Remote Sensing: An Environmental Approach. CRC Press.
+
+[5] FLORENZANO, T. G. Imagens de satélite para estudos ambientais. Oficina de Textos. 
+
+[6] Tucci, C. E. M. Hidrologia: Ciência e Aplicação. Editora da UFRGS / ABRH.
+
+[7] Geoprocessamento aplicado no planejamento de bacias hidrográficas [recurso eletrônico] / Organizadores Sérgio Campos... [et al.]. – Ponta Grossa (PR): Atena Editora, 2019.
+
+# Professores
+
+::: {.text-left}
+![Mauro Alixandrini](images/Mauro.png){fig-align="left"}
+:::
+
+Atualmente é Professor Associado da Universidade Federal da Bahia onde atua em disciplinas do curso de Graduação em Engenharia de Agrimensura e Cartográfica e no Programa de Pós-Graduação em Engenharia Civil na área de Informações Espaciais e no Mestrado Profissional em rede nacional em gestão e regulação de águas - Profágua polo UFBA. Tem experiência na área de Geociências, com ênfase em Sensoriamento Remoto e Fotogrametria.
+
+::: {.text-left}
+![Fernanda Puga Carvalho](images/Fernanda.png){fig-align="left"}
+:::
+
+Possui graduação em Engenharia Cartográfica pela Universidade Estadual Paulista Júlio de Mesquita Filho (2007), mestrado em Ciências Cartográficas pela Universidade Estadual Paulista Júlio de Mesquita Filho (2010) e doutorado em Ciências Cartográficas com período Sanduíche no Instituto Superior Técnico da Universidade de Lisboa (2016). Desde 2017 é professora adjunta com dedicação exclusiva na Escola Politécnica na Universidade Federal da Bahia - Departamento de Engenharia de Transportes e Geodésia. Atualmente, está vinculada ao Programa de Pós-Graduação em Engenharia Civil da UFBA como membro pesquisadora. 

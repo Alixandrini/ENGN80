@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Módulo 2">
+<meta name="description" content="Aquisição de Dados, Modelos Digitais de Elevação (MDE) e Delimitação de Bacias">
 
-<title>Aquisição de Dados – ENGN80</title>
+<title>Módulo 2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -113,22 +113,12 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">ENGN80</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> <i class="bi bi-geo" role="img">
-</i> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./introducao.html" aria-current="page"> <i class="bi bi-globe2" role="img">
 </i> 
@@ -179,8 +169,20 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação da Disciplina</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introducao.html" class="sidebar-item-text sidebar-link">
@@ -221,8 +223,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#modelos-digitais-de-elevação" id="toc-modelos-digitais-de-elevação" class="nav-link active" data-scroll-target="#modelos-digitais-de-elevação">Modelos Digitais de Elevação</a>
-  <ul class="collapse">
+  <li><a href="#modelos-digitais-de-elevação" id="toc-modelos-digitais-de-elevação" class="nav-link active" data-scroll-target="#modelos-digitais-de-elevação">Modelos Digitais de Elevação</a></li>
   <li><a href="#pré-processamento-do-mde" id="toc-pré-processamento-do-mde" class="nav-link" data-scroll-target="#pré-processamento-do-mde">Pré-processamento do MDE</a>
   <ul class="collapse">
   <li><a href="#correção-hidrológica-preenchimento-de-depressões" id="toc-correção-hidrológica-preenchimento-de-depressões" class="nav-link" data-scroll-target="#correção-hidrológica-preenchimento-de-depressões">Correção Hidrológica (Preenchimento de Depressões)</a></li>
@@ -232,7 +233,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#análise-hidrológica-de-mde" id="toc-análise-hidrológica-de-mde" class="nav-link" data-scroll-target="#análise-hidrológica-de-mde">Análise hidrológica de MDE</a>
   <ul class="collapse">
-  <li><a href="#direção-de-fluxo-flow-direction" id="toc-direção-de-fluxo-flow-direction" class="nav-link" data-scroll-target="#direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</a></li>
+  <li><a href="#direção-de-fluxo-flow-direction" id="toc-direção-de-fluxo-flow-direction" class="nav-link" data-scroll-target="#direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</a>
+  <ul class="collapse">
   <li><a href="#acúmulo-de-fluxo-flow-accumulation" id="toc-acúmulo-de-fluxo-flow-accumulation" class="nav-link" data-scroll-target="#acúmulo-de-fluxo-flow-accumulation">Acúmulo de Fluxo (Flow Accumulation)</a></li>
   <li><a href="#delimitação-automática-de-bacias-e-sub-bacias" id="toc-delimitação-automática-de-bacias-e-sub-bacias" class="nav-link" data-scroll-target="#delimitação-automática-de-bacias-e-sub-bacias">Delimitação Automática de Bacias e Sub-bacias</a></li>
   <li><a href="#extração-da-rede-de-drenagem-sintética" id="toc-extração-da-rede-de-drenagem-sintética" class="nav-link" data-scroll-target="#extração-da-rede-de-drenagem-sintética">Extração da rede de drenagem sintética</a></li>
@@ -250,12 +252,12 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aquisição de Dados</h1>
+<h1 class="title">Módulo 2</h1>
 </div>
 
 <div>
   <div class="description">
-    Módulo 2
+    Aquisição de Dados, Modelos Digitais de Elevação (MDE) e Delimitação de Bacias
   </div>
 </div>
 
@@ -323,11 +325,12 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="pré-processamento-do-mde" class="level2">
-<h2 class="anchored" data-anchor-id="pré-processamento-do-mde">Pré-processamento do MDE</h2>
+</section>
+<section id="pré-processamento-do-mde" class="level1">
+<h1>Pré-processamento do MDE</h1>
 <p>No QGIS, o pré-processamento de Modelos Digitais de Elevação (MDE/DEM) ocorre principalmente através dos provedores nativos e das bibliotecas integradas na Toolbox de Processamento, como <strong>GDAL</strong>, <strong>SAGA GIS</strong> e <strong>GRASS GIS</strong>.</p>
-<section id="correção-hidrológica-preenchimento-de-depressões" class="level3">
-<h3 class="anchored" data-anchor-id="correção-hidrológica-preenchimento-de-depressões">Correção Hidrológica (Preenchimento de Depressões)</h3>
+<section id="correção-hidrológica-preenchimento-de-depressões" class="level2">
+<h2 class="anchored" data-anchor-id="correção-hidrológica-preenchimento-de-depressões">Correção Hidrológica (Preenchimento de Depressões)</h2>
 <p>Antes de extrair redes de drenagem ou delimitar bacias, é necessário remover imperfeições (<em>sinks</em> ou <em>depressions</em>) para garantir o fluxo contínuo da água.</p>
 <table class="caption-top table">
 <colgroup>
@@ -366,8 +369,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="suavização-e-filtragem-de-ruído-filtering-smoothing" class="level3">
-<h3 class="anchored" data-anchor-id="suavização-e-filtragem-de-ruído-filtering-smoothing">Suavização e Filtragem de Ruído (Filtering &amp; Smoothing)</h3>
+<section id="suavização-e-filtragem-de-ruído-filtering-smoothing" class="level2">
+<h2 class="anchored" data-anchor-id="suavização-e-filtragem-de-ruído-filtering-smoothing">Suavização e Filtragem de Ruído (Filtering &amp; Smoothing)</h2>
 <p>Utilizados para suavizar variações bruscas de altimetria, artefatos de sensoriamento remoto ou ruídos do processamento de nuvem de pontos.</p>
 <table class="caption-top table">
 <colgroup>
@@ -401,8 +404,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="interpolação-e-preenchimento-de-nulos-nodata-fill" class="level3">
-<h3 class="anchored" data-anchor-id="interpolação-e-preenchimento-de-nulos-nodata-fill">Interpolação e Preenchimento de Nulos (NoData Fill)</h3>
+<section id="interpolação-e-preenchimento-de-nulos-nodata-fill" class="level2">
+<h2 class="anchored" data-anchor-id="interpolação-e-preenchimento-de-nulos-nodata-fill">Interpolação e Preenchimento de Nulos (NoData Fill)</h2>
 <p>Preenchem lacunas causadas por nuvens, sombras de radar ou ausência de dados na aquisição.</p>
 <table class="caption-top table">
 <colgroup>
@@ -436,8 +439,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="reamostragem-reprojeção-e-ajuste-de-resolução" class="level3">
-<h3 class="anchored" data-anchor-id="reamostragem-reprojeção-e-ajuste-de-resolução">Reamostragem, Reprojeção e Ajuste de Resolução</h3>
+<section id="reamostragem-reprojeção-e-ajuste-de-resolução" class="level2">
+<h2 class="anchored" data-anchor-id="reamostragem-reprojeção-e-ajuste-de-resolução">Reamostragem, Reprojeção e Ajuste de Resolução</h2>
 <ul>
 <li><strong>Warp / Reproject (gdal:warpreproject):</strong> Reprojeta o MDE entre sistemas de coordenadas (ex: de WGS 84 geográfico para SIRGAS 2000 UTM) ajustando a escala vertical e a orientação dos pixels.<br>
 </li>
@@ -445,56 +448,49 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="análise-hidrológica-de-mde" class="level2">
-<h2 class="anchored" data-anchor-id="análise-hidrológica-de-mde">Análise hidrológica de MDE</h2>
+<section id="análise-hidrológica-de-mde" class="level1">
+<h1>Análise hidrológica de MDE</h1>
 <p>A análise hidrológica em SIG baseia-se no princípio de que a água flui pela gravidade seguindo a linha de maior declividade. No QGIS, as ferramentas dos provedores SAGA e GRASS processam essa dinâmica célula a célula sobre um Modelo Digital de Elevação (MDE) pré-tratado sem depressões.</p>
-<section id="direção-de-fluxo-flow-direction" class="level3">
-<h3 class="anchored" data-anchor-id="direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</h3>
+<section id="direção-de-fluxo-flow-direction" class="level2">
+<h2 class="anchored" data-anchor-id="direção-de-fluxo-flow-direction">Direção de Fluxo (Flow Direction)</h2>
 <p>Determina para qual célula vizinha a água contida na célula central irá escoar. O algoritmo avalia as 8 células adjacentes (matriz <span class="math inline">\(3 \times 3\)</span>) e calcula a rampa de maior declive (<span class="math inline">\(S\)</span>):</p>
 <p><span class="math display">\[S = \frac{\Delta Z}{d}\]</span><br>
 onde <span class="math inline">\(\Delta Z\)</span> é a diferença de altitude entre o pixel central e o vizinho, e <span class="math inline">\(d\)</span> é a distância entre os centros dos pixels (<span class="math inline">\(d = \text{resolução}\)</span> para vizinhos cardinais; <span class="math inline">\(d = \text{resolução} \cdot \sqrt{2}\)</span> para diagonais).</p>
 <ul>
-<li><strong>Método D8 (Determinístico 8):</strong> O mais tradicional. Direciona 100% do fluxo para uma <strong>única</strong> célula vizinha com o maior valor de <span class="math inline">\(S\)</span>. Cada direção recebe um código binário (<span class="math inline">\(1=\text{Leste}\)</span>, <span class="math inline">\(2=\text{Sudeste}\)</span>, <span class="math inline">\(4=\text{Sul}\)</span>, <span class="math inline">\(8=\text{Sudoeste}\)</span>, etc.).<br>
-</li>
-<li><strong>Métodos Múltiplos (FD8 / MFD / D-Infinity):</strong> Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.</li>
+<li><p><strong>Método D8 (Determinístico 8):</strong> O mais tradicional. Direciona 100% do fluxo para uma <strong>única</strong> célula vizinha com o maior valor de <span class="math inline">\(S\)</span>. Cada direção recebe um código binário (<span class="math inline">\(1=\text{Leste}\)</span>, <span class="math inline">\(2=\text{Sudeste}\)</span>, <span class="math inline">\(4=\text{Sul}\)</span>, <span class="math inline">\(8=\text{Sudoeste}\)</span>, etc.).</p></li>
+<li><p><strong>Métodos Múltiplos (FD8 / MFD / D-Infinity):</strong> Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.</p></li>
 </ul>
-</section>
 <section id="acúmulo-de-fluxo-flow-accumulation" class="level3">
 <h3 class="anchored" data-anchor-id="acúmulo-de-fluxo-flow-accumulation">Acúmulo de Fluxo (Flow Accumulation)</h3>
 <p>Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em <span class="math inline">\(\\text{m}^2\)</span> ou <span class="math inline">\(\\text{km}^2\)</span>).</p>
 <ul>
-<li><strong>Contribuição Recursiva:</strong> Células localizadas em divisores de água (topos de morro) têm acúmulo igual a <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> (apenas sua própria área).<br>
-</li>
-<li><strong>Definição da Rede de Drenagem:</strong> Ao aplicar um limiar (<em>threshold</em>) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.</li>
+<li><p><strong>Contribuição Recursiva:</strong> Células localizadas em divisores de água (topos de morro) têm acúmulo igual a <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> (apenas sua própria área).</p></li>
+<li><p><strong>Definição da Rede de Drenagem:</strong> Ao aplicar um limiar (<em>threshold</em>) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.</p></li>
 </ul>
 </section>
 <section id="delimitação-automática-de-bacias-e-sub-bacias" class="level3">
 <h3 class="anchored" data-anchor-id="delimitação-automática-de-bacias-e-sub-bacias">Delimitação Automática de Bacias e Sub-bacias</h3>
 <p>Com base na matriz de direção de fluxo e na rede de drenagem gerada, os algoritmos agrupam as células do terreno aplicando o conceito topológico de <strong>exutório</strong>:</p>
 <ul>
-<li><strong>Ponto de Exutório (Pour Point):</strong> Define-se a seção transversal de interesse na rede de drenagem.<br>
-</li>
-<li><strong>Rastreamento Inverso (Upstream Tracing):</strong> O algoritmo percorre a matriz de direção de fluxo “contra a corrente”, identificando e selecionando todas as células montante cujas direções apontam direta ou indiretamente para aquele ponto de exutório.<br>
-</li>
-<li><strong>Vetorização e Delimitação:</strong> A borda externa do conjunto de pixels selecionados forma o divisor topográfico de águas. Quando executado de forma automática para toda a grade (ex: algoritmo r.watershed do GRASS ou Basin Channels do SAGA), o software segmenta a área total em sub-bacias correspondentes às confluências da rede de drenagem.</li>
+<li><p><strong>Ponto de Exutório (Pour Point):</strong> Define-se a seção transversal de interesse na rede de drenagem.</p></li>
+<li><p><strong>Rastreamento Inverso (Upstream Tracing):</strong> O algoritmo percorre a matriz de direção de fluxo “contra a corrente”, identificando e selecionando todas as células montante cujas direções apontam direta ou indiretamente para aquele ponto de exutório.</p></li>
+<li><p><strong>Vetorização e Delimitação:</strong> A borda externa do conjunto de pixels selecionados forma o divisor topográfico de águas. Quando executado de forma automática para toda a grade (ex: algoritmo r.watershed do GRASS ou Basin Channels do SAGA), o software segmenta a área total em sub-bacias correspondentes às confluências da rede de drenagem.</p></li>
 </ul>
 </section>
 <section id="extração-da-rede-de-drenagem-sintética" class="level3">
 <h3 class="anchored" data-anchor-id="extração-da-rede-de-drenagem-sintética">Extração da rede de drenagem sintética</h3>
-<p>A <strong>extração da rede de drenagem sintética</strong> é o processo de mapear computacionalmente os canais de escoamento superficial a partir do acúmulo de fluxo calculado sobre um Modelo Digital de Elevação (MDE). É chamada de “sintética” porque não é mapeada por vetorização manual ou fotointerpretação, mas derivada matematicamente da topografia.<br>
-<strong>Princípio da Extração e Etapas</strong><br>
+<p>A <strong>extração da rede de drenagem sintética</strong> é o processo de mapear computacionalmente os canais de escoamento superficial a partir do acúmulo de fluxo calculado sobre um Modelo Digital de Elevação (MDE). É chamada de “sintética” porque não é mapeada por vetorização manual ou fotointerpretação, mas derivada matematicamente da topografia.</p>
+<p><strong>Princípio da Extração e Etapas</strong><br>
 O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:</p>
 <ul>
-<li><strong>Definição do Limiar Crítico (<em>Threshold</em>):</strong> Estabelece a área de contribuição mínima necessária (em número de pixels ou <span class="math inline">\(\\text{km}^2\)</span>) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:<br>
-<span class="math display">\[\text{Canal} = \begin{cases} 1, &amp; \text{se Acúmulo de Fluxo} \ge \text{Limiar} \\\\ \text{NoData}, &amp; \text{se Acúmulo de Fluxo} &lt; \text{Limiar} \end{cases}\]</span></li>
-<li><strong>Classificação de Ordem dos Canais (<em>Stream Order</em>):</strong> Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:
+<li><p><strong>Definição do Limiar Crítico (<em>Threshold</em>):</strong> Estabelece a área de contribuição mínima necessária (em número de pixels ou <span class="math inline">\(\\text{km}^2\)</span>) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:</p>
+<p><span class="math display">\[\text{Canal} = \begin{cases} 1, &amp; \text{se Acúmulo de Fluxo} \ge \text{Limiar} \\\\ \text{NoData}, &amp; \text{se Acúmulo de Fluxo} &lt; \text{Limiar} \end{cases}\]</span></p></li>
+<li><p><strong>Classificação de Ordem dos Canais (<em>Stream Order</em>):</strong> Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:</p>
 <ul>
-<li><strong>Strahler:</strong> Canais de nascente recebem ordem 1. A junção de dois canais de mesma ordem <span class="math inline">\(n\)</span> gera um canal de ordem <span class="math inline">\(n+1\)</span>. A junção de ordens diferentes mantém a ordem do maior.<br>
-</li>
-<li><strong>Shreve:</strong> Soma as ordens de todos os tributários a jusante, refletindo a magnitude total do fluxo acumulado.<br>
-</li>
+<li><p><strong>Strahler:</strong> Canais de nascente recebem ordem 1. A junção de dois canais de mesma ordem <span class="math inline">\(n\)</span> gera um canal de ordem <span class="math inline">\(n+1\)</span>. A junção de ordens diferentes mantém a ordem do maior.</p></li>
+<li><p><strong>Shreve:</strong> Soma as ordens de todos os tributários a jusante, refletindo a magnitude total do fluxo acumulado.</p></li>
+<li><p><strong>Vetorização e Esqueletização (Thinning):</strong> As células raster contínuas marcadas como canais são conectadas e convertidas em feições vetoriais de linha (polylines), conectando os centros dos pixels ordenadamente do topo da bacia até o exutório.</p></li>
 </ul></li>
-<li><strong>Vetorização e Esqueletização (Thinning):</strong> As células raster contínuas marcadas como canais são conectadas e convertidas em feições vetoriais de linha (polylines), conectando os centros dos pixels ordenadamente do topo da bacia até o exutório.</li>
 </ul>
 <p><strong>Algoritmos Principais no QGIS</strong></p>
 <table class="caption-top table">

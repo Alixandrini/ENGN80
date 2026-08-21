@@ -1,7 +1,13 @@
 ---
-title: "Integração"
+title: "Módulo 5"
 format: html
-description: "Módulo 5"
-image: images/logo_labfsr.png
+description: "Integração, Estudos de Caso em Gestão/Regulação e Apresentação de Projetos"
 ---
 
+o Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.
+
+o Elaboração de mapas temáticos profissionais e Layout de Impressão no QGIS.
+
+o Introdução ao WebGIS, dashboards espaciais e publicação de dados (QGIS Cloud, Felt ou exportação para GeoJSON/KML para tomada de decisão).
+
+o Trabalho orientador final em sala: Suporte aos alunos no desenvolvimento do Estudo de Caso / Mini-Projeto Aplicado.

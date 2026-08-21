@@ -1,7 +1,18 @@
 ---
-title: "Análise Geoespacial"
+title: "Módulo 4"
 format: html
-description: "Módulo 4"
+description: "Análise Espacial Avançada, Modelagem e Aplicação no Saneamento"
 image: images/logo_labfsr.png
 ---
 
+o Ferramentas analíticas e operações de proximidade (Buffer, Overlay, Interseção, Junção Espacial).
+
+o Interpolação Espacial (IDW, Krigagem): Aplicação para mapeamento de precipitação/qualidade da água a partir de pontos de amostragem.
+
+o Aplicações do SIG no Saneamento Básico: Mapeamento de redes de água e esgoto, universalização dos serviços, gestão de perdas e localização de áreas para instalação de infraestruturas (ETEs, aterros sanitários).
+
+o Mapeamento de espelhos d'água e variação reservatórios/represas via NDWI.
+
+o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).
+
+o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d'água.

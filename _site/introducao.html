@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Módulo 1">
 
-<title>Introdução – ENGN80</title>
+<title>Módulo 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -35,6 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./aquisicao_dados.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -112,22 +112,12 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">ENGN80</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> <i class="bi bi-geo" role="img">
-</i> 
-<span class="menu-text">Home</span></a>
-  </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./introducao.html" aria-current="page"> <i class="bi bi-globe2" role="img">
 </i> 
@@ -178,8 +168,20 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação da Disciplina</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./introducao.html" class="sidebar-item-text sidebar-link active">
@@ -251,14 +253,9 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introdução</h1>
+<h1 class="title">Módulo 1</h1>
 </div>
 
-<div>
-  <div class="description">
-    Módulo 1
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -362,7 +359,11 @@ window.Quarto = {
 </section>
 <section id="o-que-é-o-datum" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-é-o-datum">O que é o Datum?</h2>
-<p>O Datum é o modelo matemático que define a orientação, o centro e as dimensões do elipsóide em relação à Terra. Ele estabelece a origem (0,0,0) do sistema de coordenadas. Datuns Topocêntricos (Locais): Ajustados para minimizar as deformações em uma região específica, fixando a origem na superfície (ex.: SAD69 ou Córrego Alegre no Brasil). Datuns Geocêntricos (Globais): A origem do elipsóide coincide com o centro de massa da Terra (baricentro). São a base dos sistemas globais de navegação por satélite (GNSS). WGS84: Datum padrão do sistema GPS. SIRGAS2000: Sistema de Referência Geocêntrico para as Américas, oficial e obrigatório no Brasil desde 2015.</p>
+<p>O Datum é o modelo matemático que define a orientação, o centro e as dimensões do elipsóide em relação à Terra. Ele estabelece a origem (0,0,0) do sistema de coordenadas.</p>
+<p>Datuns Topocêntricos (Locais): Ajustados para minimizar as deformações em uma região específica, fixando a origem na superfície (ex.: SAD69 ou Córrego Alegre no Brasil).</p>
+<p>Datuns Geocêntricos (Globais): A origem do elipsóide coincide com o centro de massa da Terra (baricentro). São a base dos sistemas globais de navegação por satélite (GNSS).</p>
+<p>WGS84: Datum padrão do sistema GPS.</p>
+<p>SIRGAS2000: Sistema de Referência Geocêntrico para as Américas, oficial e obrigatório no Brasil desde 2015.</p>
 <p>Atenção Prática na Pós-Graduação: Reprojetar camadas ou converter vetores sem definir corretamente o Datum de origem causa o conhecido erro de Datum (no Brasil, a conversão incorreta entre SAD69 e SIRGAS2000 gera um deslocamento sistemático de aproximadamente 65 metros).</p>
 </section>
 <section id="coordenadas-geográficas-angulares" class="level2">
@@ -374,7 +375,12 @@ window.Quarto = {
 <figcaption>Latitude e Longitude</figcaption>
 </figure>
 </div>
-<p>Características Relevantes para a Engenharia Ambiental: * Unidade de Medida: Graus, minutos e segundos (DMS) ou Graus Decimais (DD). * Não preservam distâncias ou áreas constantes: Um grau de longitude no Equador equivale a aproximadamente 111” km” , mas converge para 0” km” nos polos. * Uso Ideal: Armazenamento de bases de dados continentais/globais, intercâmbio de dados e representação de amplas extensões geográficas. Não deve ser utilizado para cálculos diretos de área, perímetro ou distâncias em projetos locais/regionais.</p>
+<p>Características Relevantes para a Engenharia Ambiental:</p>
+<ul>
+<li><p>Unidade de Medida: Graus, minutos e segundos (DMS) ou Graus Decimais (DD).</p></li>
+<li><p>Não preservam distâncias ou áreas constantes: Um grau de longitude no Equador equivale a aproximadamente 111” km” , mas converge para 0” km” nos polos.</p></li>
+<li><p>Uso Ideal: Armazenamento de bases de dados continentais/globais, intercâmbio de dados e representação de amplas extensões geográficas. Não deve ser utilizado para cálculos diretos de área, perímetro ou distâncias em projetos locais/regionais.</p></li>
+</ul>
 </section>
 <section id="coordenadas-planas-utm-projeção-universal-transversa-de-mercator" class="level2">
 <h2 class="anchored" data-anchor-id="coordenadas-planas-utm-projeção-universal-transversa-de-mercator">Coordenadas Planas UTM (Projeção Universal Transversa de Mercator)</h2>
@@ -385,8 +391,22 @@ window.Quarto = {
 <figcaption>Projeção UTM</figcaption>
 </figure>
 </div>
-<p>Propriedades da Projeção UTM: * Cilindrica Transversa e Secante: O cilindro de projeção envolve a Terra transversalmente ao eixo de rotação e intercepta o elipsóide em duas linhas secantes. * Conforme: Preserva os ângulos e as formas locais, mas altera distâncias e áreas à medida que se afasta da linha central de projeção. * Divisão em Fusos (Zonas): O globo é dividido em 60 fusos transversais de 6^∘ de longitude cada, numerados de 1 a 60 a partir do anti-meridiano de Greenwich (180^∘ “W” ) em direção a Leste.</p>
-<p>O Sistema de Coordenadas Métricas no Fuso UTM: Para evitar valores negativos e facilitar a identificação, cada fuso possui uma origem local própria: * Eixo X (Easting / Este): O Meridiano Central (MC) de cada fuso recebe arbitrariamente o valor de 500.000” m” . Valores a oeste do MC são menores que 500.000” m” ; valores a leste são maiores. * Eixo Y (Northing / Norte): - Hemisfério Norte: O Equador é a origem com valor 0” m” . - Hemisfério Sul: O Equador recebe o valor falso de 10.000.000” m” , decrescendo em direção ao Polo Sul (garantindo que todas as coordenadas Y no Hemisfério Sul sejam positivas).</p>
+<p>Propriedades da Projeção UTM:</p>
+<ul>
+<li>Cilindrica Transversa e Secante: O cilindro de projeção envolve a Terra transversalmente ao eixo de rotação e intercepta o elipsóide em duas linhas secantes.</li>
+<li>Conforme: Preserva os ângulos e as formas locais, mas altera distâncias e áreas à medida que se afasta da linha central de projeção.</li>
+<li>Divisão em Fusos (Zonas): O globo é dividido em 60 fusos transversais de 6^∘ de longitude cada, numerados de 1 a 60 a partir do anti-meridiano de Greenwich (180^∘ “W” ) em direção a Leste.</li>
+</ul>
+<p>O Sistema de Coordenadas Métricas no Fuso UTM:</p>
+<p>Para evitar valores negativos e facilitar a identificação, cada fuso possui uma origem local própria:</p>
+<ul>
+<li>Eixo X (Easting / Este): O Meridiano Central (MC) de cada fuso recebe arbitrariamente o valor de 500.000” m” . Valores a oeste do MC são menores que 500.000” m” ; valores a leste são maiores.</li>
+<li>Eixo Y (Northing / Norte):
+<ul>
+<li>Hemisfério Norte: O Equador é a origem com valor 0” m” .</li>
+<li>Hemisfério Sul: O Equador recebe o valor falso de 10.000.000” m” , decrescendo em direção ao Polo Sul (garantindo que todas as coordenadas Y no Hemisfério Sul sejam positivas).</li>
+</ul></li>
+</ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/utm-coordenadas.png" class="img-fluid figure-img"></p>
@@ -436,7 +456,8 @@ window.Quarto = {
 <figcaption>Matriz Regular (Raster/MDE) e TIN (Rede de Triângulos Irregulares)</figcaption>
 </figure>
 </div>
-<p>Modelos de Elevação (Raster): -&gt; MDE (Modelo Digital de Elevação / DEM): Termo genérico para grades matriciais de altitude. -&gt; MDS (Modelo Digital de Superfície): Inclui os elementos acima do solo (copas de árvores, edificações). Obtido via LiDAR ou Fotogrametria. -&gt; MDT (Modelo Digital do Terreno): Representa exclusivamente a superfície nua do terreno (bare earth), essencial para hidrologia após a filtragem da vegetação. -&gt; TIN (Triangulated Irregular Network): - Estrutura vetorial tridimensional baseada em uma rede de triângulos não sobrepostos formados a partir de pontos de cota conhecidos (Triangulação de Delaunay). - Aplicação: Representa o relevo com densidade variável de pontos — alta densidade em áreas de vale e escarpas, baixa densidade em áreas planas —, otimizando o armazenamento e preservando feições estruturais (linhas de talvegue e cristas).</p>
+<p>Modelos de Elevação (Raster):</p>
+<p>-&gt; MDE (Modelo Digital de Elevação / DEM): Termo genérico para grades matriciais de altitude. -&gt; MDS (Modelo Digital de Superfície): Inclui os elementos acima do solo (copas de árvores, edificações). Obtido via LiDAR ou Fotogrametria. -&gt; MDT (Modelo Digital do Terreno): Representa exclusivamente a superfície nua do terreno (bare earth), essencial para hidrologia após a filtragem da vegetação. -&gt; TIN (Triangulated Irregular Network): - Estrutura vetorial tridimensional baseada em uma rede de triângulos não sobrepostos formados a partir de pontos de cota conhecidos (Triangulação de Delaunay). - Aplicação: Representa o relevo com densidade variável de pontos — alta densidade em áreas de vale e escarpas, baixa densidade em áreas planas —, otimizando o armazenamento e preservando feições estruturais (linhas de talvegue e cristas).</p>
 </section>
 </section>
 <section id="prática-hands-on" class="level1">
@@ -866,6 +887,9 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Apresentação da Disciplina">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Apresentação da Disciplina</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./aquisicao_dados.html" class="pagination-link" aria-label="Módulo 2 - Aquisição de dados">

@@ -1,8 +1,7 @@
 ---
-title: "Introdução"
+title: "Módulo 1"
 format: html
-description: "Módulo 1"
-image: "/images/logo_labfsr.png"
+
 ---
 
 # Introdução às Geotecnologias aplicadas a Gestão de Recursos Hídricos
@@ -107,10 +106,14 @@ A Terra não é uma esfera perfeita, tampouco um elipsóide homogêneo. Para fin
 
 ## O que é o Datum?
 O Datum é o modelo matemático que define a orientação, o centro e as dimensões do elipsóide em relação à Terra. Ele estabelece a origem (0,0,0) do sistema de coordenadas.
-	Datuns Topocêntricos (Locais): Ajustados para minimizar as deformações em uma região específica, fixando a origem na superfície (ex.: SAD69 ou Córrego Alegre no Brasil).
-	Datuns Geocêntricos (Globais): A origem do elipsóide coincide com o centro de massa da Terra (baricentro). São a base dos sistemas globais de navegação por satélite (GNSS).
-	WGS84: Datum padrão do sistema GPS.
-	SIRGAS2000: Sistema de Referência Geocêntrico para as Américas, oficial e obrigatório no Brasil desde 2015.
+
+Datuns Topocêntricos (Locais): Ajustados para minimizar as deformações em uma região específica, fixando a origem na superfície (ex.: SAD69 ou Córrego Alegre no Brasil).
+
+Datuns Geocêntricos (Globais): A origem do elipsóide coincide com o centro de massa da Terra (baricentro). São a base dos sistemas globais de navegação por satélite (GNSS).
+
+WGS84: Datum padrão do sistema GPS.
+
+SIRGAS2000: Sistema de Referência Geocêntrico para as Américas, oficial e obrigatório no Brasil desde 2015.
 
 Atenção Prática na Pós-Graduação: Reprojetar camadas ou converter vetores sem definir corretamente o Datum de origem causa o conhecido erro de Datum (no Brasil, a conversão incorreta entre SAD69 e SIRGAS2000 gera um deslocamento sistemático de aproximadamente 65 metros).
 
@@ -121,8 +124,11 @@ O sistema de Coordenadas Geográficas localiza qualquer ponto na superfície ter
 
 
 Características Relevantes para a Engenharia Ambiental:
+
 * Unidade de Medida: Graus, minutos e segundos (DMS) ou Graus Decimais (DD).
+
 * Não preservam distâncias ou áreas constantes: Um grau de longitude no Equador equivale a aproximadamente 111" km" , mas converge para 0" km"  nos polos.
+
 * Uso Ideal: Armazenamento de bases de dados continentais/globais, intercâmbio de dados e representação de amplas extensões geográficas. Não deve ser utilizado para cálculos diretos de área, perímetro ou distâncias em projetos locais/regionais.
 
 ## Coordenadas Planas UTM (Projeção Universal Transversa de Mercator)
@@ -131,12 +137,15 @@ Para realizar cálculos euclidianos simples (A=b×h, distâncias em metros) e tr
 ![Projeção UTM](images/utm.webp)
 
 Propriedades da Projeção UTM:
+
 * Cilindrica Transversa e Secante: O cilindro de projeção envolve a Terra transversalmente ao eixo de rotação e intercepta o elipsóide em duas linhas secantes.
 * Conforme: Preserva os ângulos e as formas locais, mas altera distâncias e áreas à medida que se afasta da linha central de projeção.
 * Divisão em Fusos (Zonas): O globo é dividido em 60 fusos transversais de 6^∘ de longitude cada, numerados de 1 a 60 a partir do anti-meridiano de Greenwich (180^∘ "W" ) em direção a Leste.
 
 O Sistema de Coordenadas Métricas no Fuso UTM:
+
 Para evitar valores negativos e facilitar a identificação, cada fuso possui uma origem local própria:
+
 * Eixo X (Easting / Este): O Meridiano Central (MC) de cada fuso recebe arbitrariamente o valor de 500.000" m" . Valores a oeste do MC são menores que 500.000" m" ; valores a leste são maiores.
 * Eixo Y (Northing / Norte):
     - Hemisfério Norte: O Equador é a origem com valor 0" m" .
@@ -190,6 +199,7 @@ Na engenharia ambiental, a representação do relevo é crítica para a definiç
 ![Matriz Regular (Raster/MDE) e TIN (Rede de Triângulos Irregulares)](images/TIN.png)
 
 Modelos de Elevação (Raster):
+
 -> MDE (Modelo Digital de Elevação / DEM): Termo genérico para grades matriciais de altitude.
 -> MDS (Modelo Digital de Superfície): Inclui os elementos acima do solo (copas de árvores, edificações). Obtido via LiDAR ou Fotogrametria.
 -> MDT (Modelo Digital do Terreno): Representa exclusivamente a superfície nua do terreno (bare earth), essencial para hidrologia após a filtragem da vegetação.

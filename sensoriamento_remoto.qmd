@@ -1,7 +1,20 @@
 ---
-title: "Sensoriamento Remoto"
+title: "Módulo 3"
 format: html
-description: "Módulo 3"
+description: "Sensoriamento Remoto, Uso do Solo e Processamento Digital de Imagens (PDI)"
 image: "logo_labfsr.png"
 ---
 
+o Princípios físicos do Sensoriamento Remoto (Espectro Eletromagnético e Comportamento Espectral da Água, Vegetação e Solo).
+
+o Satélites e Sensores Ópticos e de Radar (Landsat, Sentinel-2, Sentinel-1, CBERS).
+
+o Índices Espectrais para recursos hídricos: NDWI (Normalized Difference Water Index), NDVI (Normalized Difference Vegetation Index).
+
+o Introdução ao Processamento Digital de Imagens (PDI): Classificação Supervisionada e Não-Supervisionada de Uso e Ocupação do Solo.
+
+o Mapeamento de espelhos d'água e variação reservatórios/represas via NDWI.
+
+o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).
+
+o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d'água.

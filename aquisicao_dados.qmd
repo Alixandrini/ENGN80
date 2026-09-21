@@ -12,10 +12,10 @@ Modelos de Elevação representam a altimetria da superfície terrestre, dividid
 
 |  Modelo  |   Tecnologia/Banda   |   Tipo Originário  |   Resolução  | Fontes de Acesso Gratuito |
 |:--------:|:---------------------:|:-----------------:|:------------:|:--------------------------:|
-|SRTM	| Radar de Apertura Sintética Interf. (InSAR - Banda C / X)	| MDS (reflete topo da vegetação)	| ~30 metros (1 arc-sec) |	USGS EarthExplorer, NASA Earthdata, Google Earth Engine |
-|ALOS PALSAR |	Radar de Apertura Sintética (InSAR - Banda L)	| MDS (maior penetração em vegetação) |	12,5 metros (radiométrico)/30 m	|ASF Data Search (Alaska Satellite Facility), JAXA EORC |
-|COPENHAGEN/ COPERNICUS DEM |	Radar TanDEM-X/TerraSAR-X (InSAR - Banda X) |	MDS (GLO-30 e GLO-90)	| 30 metros / 90 metros |	Copernicus Open Access Hub, OpenTopography, AWS Public Dataset|
-| FABDEM	| Processamento computacional sobre o Copernicus DEM |	MDT (Forest And Buildings removed)	| ~30 metros	| Repositório da University of Bristol (Data.bris), OpenTopography|
+|SRTM	| Radar de Apertura Sintética Interf. (InSAR - Banda C / X)	| MDS (reflete topo da vegetação)	| ~30 metros (1 arc-sec) |	[USGS EarthExplorer](https://earthexplorer.usgs.gov/), NASA Earthdata, Google Earth Engine |
+|ALOS PALSAR |	Radar de Apertura Sintética (InSAR - Banda L)	| MDS (maior penetração em vegetação) |	12,5 metros (radiométrico)/30 m	|ASF Data Search (Alaska Satellite Facility), [JAXA EORC](https://www.eorc.jaxa.jp/ALOS/en/aw3d30/data/index.htm) |
+|COPENHAGEN/ COPERNICUS DEM |	Radar TanDEM-X/TerraSAR-X (InSAR - Banda X) |	MDS (GLO-30 e GLO-90)	| 30 metros / 90 metros |	[Copernicus Open Access Hub](https://browser.dataspace.copernicus.eu/), OpenTopography, AWS Public Dataset|
+| FABDEM	| Processamento computacional sobre o Copernicus DEM |	MDT (Forest And Buildings removed)	| ~30 metros	| Repositório da University of Bristol (Data.bris), [OpenTopography](https://portal.opentopography.org/dataCatalog?group=global)|
 
 
 # Pré-processamento do MDE
@@ -71,7 +71,7 @@ onde $\Delta Z$ é a diferença de altitude entre o pixel central e o vizinho, e
 * **Métodos Múltiplos (FD8 / MFD / D-Infinity):** Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.
 
 ### Acúmulo de Fluxo (Flow Accumulation)
-Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em $\\text{m}^2$ ou $\\text{km}^2$).
+Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em $\text{m}^2$ ou $\text{km}^2$).
 
 * **Contribuição Recursiva:** Células localizadas em divisores de água (topos de morro) têm acúmulo igual a $0$ ou $1$ (apenas sua própria área).  
 
@@ -93,7 +93,7 @@ A **extração da rede de drenagem sintética** é o processo de mapear computac
 **Princípio da Extração e Etapas**  
 O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:
 
-* **Definição do Limiar Crítico (*Threshold*):** Estabelece a área de contribuição mínima necessária (em número de pixels ou $\\text{km}^2$) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:  
+* **Definição do Limiar Crítico (*Threshold*):** Estabelece a área de contribuição mínima necessária (em número de pixels ou $\text{km}^2$) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:  
 
   $$\text{Canal} = \begin{cases} 1, & \text{se Acúmulo de Fluxo} \ge \text{Limiar} \\\\ \text{NoData}, & \text{se Acúmulo de Fluxo} < \text{Limiar} \end{cases}$$ 
 * **Classificação de Ordem dos Canais (*Stream Order*):** Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:  
@@ -120,7 +120,7 @@ A extração de parâmetros morfométricos permite quantificar a geometria, a to
 
 > **1.Pré-processamento e Correção Hidrológica do MDE:**Garantia de continuidade do fluxo de água.
 
-> 1. Certifique-se de que o **Modelo Digital de Elevação (MDE)** esteja em um **Sistema de Coordenadas Projetadas** (ex: SIRGAS 2000 / UTM zone 24S) com unidade em metros.  
+> 1. Certifique-se de que o **Modelo Digital de Elevação (MDE)**  e o projeto estejam em um **Sistema de Coordenadas Projetadas** (ex: SIRGAS 2000 / UTM zone 24S) com unidade em metros.  
 > 2. Abra o menu **Processamento** $\rightarrow$ **Caixa de Ferramentas** (*Toolbox*).  
 > 3. Busque por **SAGA** $\rightarrow$ **Fill Sinks (Wang & Liu)**.  
 > 4. Selecione o MDE bruto na camada de entrada e execute para gerar o raster **Filled DEM** (MDE corrigido sem depressões).
@@ -134,38 +134,49 @@ A extração de parâmetros morfométricos permite quantificar a geometria, a to
    * **Number of cells that drain through each cell** (*Acúmulo de Fluxo*)  
    * **Drainage direction** (*Direção de Fluxo*)  
    * **Unique label for each watershed basin** (*Bacias/Sub-bacias*)
+   * **Stream segments**(*Drenagem*)
 
 > **3.Delimitação e Vetorização da Bacia Hydrográfica:**Isolamento da área de estudo.
 
 > 1. Para obter o limite exato da bacia a partir de um exutório específico:  
    * Abra a ferramenta **GRASS** $\rightarrow$ **r.water.outlet**.  
    * Escolha o mapa de **Direção de Fluxo** gerado no passo anterior.  
-   * Clique no mapa para capturar as coordenadas $X/Y$ do ponto exutório sobre a rede de drenagem.  
+   * Clique no mapa para capturar as coordenadas $X/Y$ do ponto exutório sobre a rede de drenagem **Stream segments**.  
 > 2. Converta a bacia delimitada em vetor:  
    * Vá em **Raster** $\rightarrow$ **Conversão** $\rightarrow$ **Poligonizar (Raster para Vetor)**.  
    * Salve a camada como bacia\_limite.gpkg.
 
 > **4.Extração da Rede de Drenagem e Ordem de Strahler:**Processamento da rede fluvial.
 
-> 1. Abra a ferramenta **SAGA** $\rightarrow$ **Channel Network and Drainage Basins**.  
-> 2. Selecione o MDE corrigido (*Filled DEM*) e ajuste o parâmetro **Threshold** (ex: 8 ou 9 dependendo da escala).  
-> 3. O algoritmo gera a drenagem vetorial e a camada de **Hierarquia Fluvial** (Ordem de Strahler).  
-> 4. Recorte o vetor de drenagem pelo limite exato da bacia usando a ferramenta **Vetor** $\rightarrow$ **Geoprocessamento** $\rightarrow$ **Recortar** (*Clip*).
+> 1. Para Extrair Drenagem e Ordem de Strahler:
+   * Na Caixa de Ferramentas, abra GRASS $\rightarrow$ r.stream.extract.
+   * Em Input elevation map, selecione o MDE corrigido (Filled DEM).
+   * Em Minimum flow accumulation, defina o limiar desejado (ex: 1000 pixels).
+   * Na saída Unique stream ids (vector), defina o nome do arquivo para salvar a rede vetorial.
+   * Execute.
+> 2. Verificação: Um vetor de linhas com a rede hidrográfica completa aparecerá no painel de camadas. 
+> 3. Recorte o vetor de drenagem pelo limite exato da bacia usando a ferramenta **Vetor** $\rightarrow$ **Geoprocessamento** $\rightarrow$ **Recortar** (*Clip*).
 
 **5.Cálculo dos Parâmetros Geométricos e Altimétricos:**Atributos da bacia e da rede.  
-Acesse a **Tabela de Atributos** da camada vetorial do limite da bacia ou use a ferramenta **Calculadora de Campos** ($area e $perimeter):
+Acesse a **Tabela de Atributos** da camada vetorial do limite da bacia ou use a ferramenta **Calculadora de Campos** ($area$ e $perimeter$):
 
-> * **Área da Bacia ($A$):** $area / 1000000 ($\text{km}^2$)  
-> * **Perímetro ($P$):** $perimeter / 1000 ($\text{km}$)  
+> * **Área da Bacia ($A$):** $area / 1000000$ ($\text{km}^2$)
+> * **Perímetro ($P$):** $perimeter / 1000$ ($\text{km}$)
 > * **Comprimento do Canal Principal ($L_{cp}$):** Meça o comprimento do maior rio da nascente ao exutório ($\text{km}$).  
-> * **Comprimento Total da Drenagem ($L_t$):** Na camada de drenagem recortada, utilize a soma do comprimento das linhas com a **Estatística de Campo** ($length / 1000).  
+> * **Comprimento Total da Drenagem ($L_t$):** Na camada de drenagem recortada, utilize a soma do comprimento das linhas com a **Estatística de Campo** ($length / 1000$).  
 > * **Estatísticas Altimétricas:** Execute **Raster** $\rightarrow$ **Estatísticas Zonais** sobre o MDE usando o polígono da bacia para extrair a $Z_{\min}$, $Z_{\max}$ e $Z_{\text{média}}$.
 
 **6.Cálculo dos Índices Morfométricos:**Aplicação das fórmulas na Calculadora de Campos.  
 Crie novos campos na tabela de atributos da bacia para computar as equações clássicas:
 
 > * **Fator de Forma ($F_f$):** $F_f = \frac{A}{L_{cp}^2}$  
+   ```SQL
+   $area / ( aggregate(layer:='canal principal', aggregate:='sum', expression:="Comp (m)") ^ 2 )
+   ```
 > * **Índice de Circularidade ($I_c$):** $I_c = \frac{12,57 \cdot A}{P^2}$  
+   ```SQL
+   12.57*$area/($perimeter^2)
+   ```
 > * **Coeficiente de Compacidade ($K_c$):** $K_c = 0,28 \cdot \frac{P}{\sqrt{A}}$  
 > * **Densidade de Drenagem ($D_d$):** $D_{d} = \frac{L_t}{A}$ ($\text{km/km}^2$)  
 > * **Amplitude Topográfica ($H$):** $H = Z_{\max} - Z_{\min}$ ($\text{m}$)  
@@ -187,31 +198,23 @@ Onde:
 > 1. Certifique-se de que o seu **Modelo Digital de Elevação (MDE)** esteja em um **Sistema de Coordenadas Projetadas (UTM)** com unidade em metros (ex: SIRGAS 2000 / UTM zone 24S).  
 > 2. Garanta que o MDE passou pelo pré-processamento de **correção hidrológica** (*Fill Sinks*), evitando falhas de cálculo no acúmulo de fluxo.
 
-**2.Cálculo Direto Automático (Método Recomendado):**SAGA GIS / Toolbox.  
-O QGIS possui um algoritmo nativo via SAGA que calcula todos os componentes intermediários e entrega o TWI direto em um passo:
+**2.Cálculo Direto Automático (Método Recomendado):** Toolbox.  
+O QGIS possui um algoritmo nativo via GRASS que calcula todos os componentes intermediários e entrega o TWI direto em um passo:
 
-> 1. Abra a **Caixa de Ferramentas de Processamento** (Ctrl \+ Alt \+ T).  
-> 2. Busque por **SAGA** $\\rightarrow$ **Topographic Wetness Index (TWI)**.  
-> 3. No campo **Elevation**, selecione o MDE corrigido (*Filled DEM*).  
-> 4. Nos métodos de acúmulo de fluxo (**Area Type** ou **Flow Accumulation Method**), você pode manter o padrão ou selecionar **D-Infinity** / **Multiple Flow Direction (MFD)** para melhor distribuição do fluxo em encostas.  
-> 5. Clique em **Executar**. O QGIS gerará a camada raster do **TWI** diretamente.
+> 1. Na Caixa de Ferramentas de Processamento, busque por **GRASS** $\rightarrow$ **r.topidx**.
+> 2. Em Input elevation map, selecione o MDE corrigido (Filled DEM).
+> 3. Em Topographic index, defina o caminho ou nome para salvar a camada raster final.
+> 4. Clique em **Executar**. O QGIS gerará a camada raster do **TWI** diretamente.
 
-**3.Cálculo Manual por Etapas (Para Controle de Parâmetros):**SAGA / GRASS / Calculadora Raster.  
+**3.Cálculo Manual por Etapas (Para Controle de Parâmetros):** GRASS / Calculadora Raster.  
 Caso deseje personalizar os métodos de escoamento e declividade, você pode gerar as camadas intermediárias separadamente:
 
-> 1. **Gerar a Declividade em Radianos ($\\beta$):**  
-   * Acesse **SAGA** $\rightarrow$ **Slope, Aspect, Curvature**.  
-   * Selecione o MDE e no parâmetro **Slope Units**, altere para **Radians** (ou use a Calculadora Raster convertendo graus para radianos: Declividade\_graus \* (pi / 180)).  
-> 2. **Gerar a Área de Contribuição Específica ($a$):**  
-   * Acesse **SAGA** $\rightarrow$ **Catchment Area**.  
-   * Escolha um método de fluxo contínuo (ex: *MFD* ou *D-Infinity*).  
-   * O resultado nos dá a área de contribuição acumulada.  
-> 3. **Aplicar a Equação na Calculadora Raster:**  
-   * Acesse **Raster** $\rightarrow$ **Calculadora Raster**.  
-   * Insira a fórmula adicionando um valor mínimo constante (ex: 0.00001) ao denominador para evitar **divisão por zero** em áreas planas ($\tan(0) = 0$):
-
-Plaintext  
-ln( "Area\_Contribuição@1" / tan( max("Declividade\_Radianos@1", 0.001) ) )
+> 1. Com o raster de Acúmulo de Fluxo (células $\times$ resolução) e a Declividade em Radianos, abra a Calculadora Raster (GDAL ou nativa) e aplique a fórmula ajustada para evitar divisão por zero:
+   ```SQL
+   ln( ("Acumulo_m2@1") / tan( max("Declividade_rad@1", 0.001) ) )
+   ```
+   *Os valores do TWI resultantes concentram números maiores (10–20) nas linhas de talvegue/drenagem e números menores (3–6) nos divisores de água.
+     
 
 > **4.Estilização do Resultado:**Simbologia e Interpretação.
 

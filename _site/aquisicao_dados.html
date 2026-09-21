@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -278,13 +313,6 @@ window.Quarto = {
 <h1>Modelos Digitais de Elevação</h1>
 <p>Modelos de Elevação representam a altimetria da superfície terrestre, divididos principalmente entre MDT/DTM (Modelo Digital do Terreno — superfície do solo “careca”) e MDS/DSM (Modelo Digital de Superfície — inclui topo de vegetação e edificações). Princípios do Processamento e DiferençasOs modelos citados utilizam diferentes tecnologias para capturar e tratar a altimetria:InSAR (Interferometria Radar): Sensores emissores de micro-ondas (bandas C, L ou X) capturam o retorno de fase da onda eletromagnética para calcular o relevo, atravessando nuvens sem dependência de iluminação solar.Comprimento de Onda: Ondas mais curtas (Banda C/X) refletem no topo do dossel florestal e infraestrutura (gerando MDS). Ondas mais longas (Banda L) penetram mais na copa de árvores, atingindo o solo com maior facilidade. Remoção por Machine Learning: Quando o dado bruto inclui artefatos da vegetação e construções (MDS), utilizam-se algoritmos preditivos e dados auxiliares para “filtrar” e estimar a cota real do solo humano/natural (MDT).</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 24%">
-<col style="width: 20%">
-<col style="width: 14%">
-<col style="width: 29%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Modelo</th>
@@ -300,28 +328,28 @@ window.Quarto = {
 <td style="text-align: center;">Radar de Apertura Sintética Interf. (InSAR - Banda C / X)</td>
 <td style="text-align: center;">MDS (reflete topo da vegetação)</td>
 <td style="text-align: center;">~30 metros (1 arc-sec)</td>
-<td style="text-align: center;">USGS EarthExplorer, NASA Earthdata, Google Earth Engine</td>
+<td style="text-align: center;"><a href="https://earthexplorer.usgs.gov/">USGS EarthExplorer</a>, NASA Earthdata, Google Earth Engine</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">ALOS PALSAR</td>
 <td style="text-align: center;">Radar de Apertura Sintética (InSAR - Banda L)</td>
 <td style="text-align: center;">MDS (maior penetração em vegetação)</td>
 <td style="text-align: center;">12,5 metros (radiométrico)/30 m</td>
-<td style="text-align: center;">ASF Data Search (Alaska Satellite Facility), JAXA EORC</td>
+<td style="text-align: center;">ASF Data Search (Alaska Satellite Facility), <a href="https://www.eorc.jaxa.jp/ALOS/en/aw3d30/data/index.htm">JAXA EORC</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">COPENHAGEN/ COPERNICUS DEM</td>
 <td style="text-align: center;">Radar TanDEM-X/TerraSAR-X (InSAR - Banda X)</td>
 <td style="text-align: center;">MDS (GLO-30 e GLO-90)</td>
 <td style="text-align: center;">30 metros / 90 metros</td>
-<td style="text-align: center;">Copernicus Open Access Hub, OpenTopography, AWS Public Dataset</td>
+<td style="text-align: center;"><a href="https://browser.dataspace.copernicus.eu/">Copernicus Open Access Hub</a>, OpenTopography, AWS Public Dataset</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">FABDEM</td>
 <td style="text-align: center;">Processamento computacional sobre o Copernicus DEM</td>
 <td style="text-align: center;">MDT (Forest And Buildings removed)</td>
 <td style="text-align: center;">~30 metros</td>
-<td style="text-align: center;">Repositório da University of Bristol (Data.bris), OpenTopography</td>
+<td style="text-align: center;">Repositório da University of Bristol (Data.bris), <a href="https://portal.opentopography.org/dataCatalog?group=global">OpenTopography</a></td>
 </tr>
 </tbody>
 </table>
@@ -462,7 +490,7 @@ onde <span class="math inline">\(\Delta Z\)</span> é a diferença de altitude e
 </ul>
 <section id="acúmulo-de-fluxo-flow-accumulation" class="level3">
 <h3 class="anchored" data-anchor-id="acúmulo-de-fluxo-flow-accumulation">Acúmulo de Fluxo (Flow Accumulation)</h3>
-<p>Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em <span class="math inline">\(\\text{m}^2\)</span> ou <span class="math inline">\(\\text{km}^2\)</span>).</p>
+<p>Calcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em <span class="math inline">\(\text{m}^2\)</span> ou <span class="math inline">\(\text{km}^2\)</span>).</p>
 <ul>
 <li><p><strong>Contribuição Recursiva:</strong> Células localizadas em divisores de água (topos de morro) têm acúmulo igual a <span class="math inline">\(0\)</span> ou <span class="math inline">\(1\)</span> (apenas sua própria área).</p></li>
 <li><p><strong>Definição da Rede de Drenagem:</strong> Ao aplicar um limiar (<em>threshold</em>) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.</p></li>
@@ -483,7 +511,7 @@ onde <span class="math inline">\(\Delta Z\)</span> é a diferença de altitude e
 <p><strong>Princípio da Extração e Etapas</strong><br>
 O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:</p>
 <ul>
-<li><p><strong>Definição do Limiar Crítico (<em>Threshold</em>):</strong> Estabelece a área de contribuição mínima necessária (em número de pixels ou <span class="math inline">\(\\text{km}^2\)</span>) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:</p>
+<li><p><strong>Definição do Limiar Crítico (<em>Threshold</em>):</strong> Estabelece a área de contribuição mínima necessária (em número de pixels ou <span class="math inline">\(\text{km}^2\)</span>) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:</p>
 <p><span class="math display">\[\text{Canal} = \begin{cases} 1, &amp; \text{se Acúmulo de Fluxo} \ge \text{Limiar} \\\\ \text{NoData}, &amp; \text{se Acúmulo de Fluxo} &lt; \text{Limiar} \end{cases}\]</span></p></li>
 <li><p><strong>Classificação de Ordem dos Canais (<em>Stream Order</em>):</strong> Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:</p>
 <ul>
@@ -540,7 +568,7 @@ O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação 
 </blockquote>
 <blockquote class="blockquote">
 <ol type="1">
-<li>Certifique-se de que o <strong>Modelo Digital de Elevação (MDE)</strong> esteja em um <strong>Sistema de Coordenadas Projetadas</strong> (ex: SIRGAS 2000 / UTM zone 24S) com unidade em metros.<br>
+<li>Certifique-se de que o <strong>Modelo Digital de Elevação (MDE)</strong> e o projeto estejam em um <strong>Sistema de Coordenadas Projetadas</strong> (ex: SIRGAS 2000 / UTM zone 24S) com unidade em metros.<br>
 </li>
 <li>Abra o menu <strong>Processamento</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Caixa de Ferramentas</strong> (<em>Toolbox</em>).<br>
 </li>
@@ -569,6 +597,7 @@ O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação 
 <li><strong>Drainage direction</strong> (<em>Direção de Fluxo</em>)<br>
 </li>
 <li><strong>Unique label for each watershed basin</strong> (<em>Bacias/Sub-bacias</em>)</li>
+<li><strong>Stream segments</strong>(<em>Drenagem</em>)</li>
 </ul>
 </blockquote>
 <blockquote class="blockquote">
@@ -584,7 +613,7 @@ O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação 
 </li>
 <li>Escolha o mapa de <strong>Direção de Fluxo</strong> gerado no passo anterior.<br>
 </li>
-<li>Clique no mapa para capturar as coordenadas <span class="math inline">\(X/Y\)</span> do ponto exutório sobre a rede de drenagem.<br>
+<li>Clique no mapa para capturar as coordenadas <span class="math inline">\(X/Y\)</span> do ponto exutório sobre a rede de drenagem <strong>Stream segments</strong>.<br>
 </li>
 </ul>
 <ol start="2" type="1">
@@ -602,26 +631,29 @@ O cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação 
 </blockquote>
 <blockquote class="blockquote">
 <ol type="1">
-<li>Abra a ferramenta <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Channel Network and Drainage Basins</strong>.<br>
-</li>
-<li>Selecione o MDE corrigido (<em>Filled DEM</em>) e ajuste o parâmetro <strong>Threshold</strong> (ex: 8 ou 9 dependendo da escala).<br>
-</li>
-<li>O algoritmo gera a drenagem vetorial e a camada de <strong>Hierarquia Fluvial</strong> (Ordem de Strahler).<br>
-</li>
+<li>Para Extrair Drenagem e Ordem de Strahler:</li>
+</ol>
+<ul>
+<li>Na Caixa de Ferramentas, abra GRASS <span class="math inline">\(\rightarrow\)</span> r.stream.extract.</li>
+<li>Em Input elevation map, selecione o MDE corrigido (Filled DEM).</li>
+<li>Em Minimum flow accumulation, defina o limiar desejado (ex: 1000 pixels).</li>
+<li>Na saída Unique stream ids (vector), defina o nome do arquivo para salvar a rede vetorial.</li>
+<li>Execute.</li>
+</ul>
+<ol start="2" type="1">
+<li>Verificação: Um vetor de linhas com a rede hidrográfica completa aparecerá no painel de camadas.</li>
 <li>Recorte o vetor de drenagem pelo limite exato da bacia usando a ferramenta <strong>Vetor</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Geoprocessamento</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Recortar</strong> (<em>Clip</em>).</li>
 </ol>
 </blockquote>
 <p><strong>5.Cálculo dos Parâmetros Geométricos e Altimétricos:</strong>Atributos da bacia e da rede.<br>
-Acesse a <strong>Tabela de Atributos</strong> da camada vetorial do limite da bacia ou use a ferramenta <strong>Calculadora de Campos</strong> ($area e $perimeter):</p>
+Acesse a <strong>Tabela de Atributos</strong> da camada vetorial do limite da bacia ou use a ferramenta <strong>Calculadora de Campos</strong> (<span class="math inline">\(area\)</span> e <span class="math inline">\(perimeter\)</span>):</p>
 <blockquote class="blockquote">
 <ul>
-<li><strong>Área da Bacia (<span class="math inline">\(A\)</span>):</strong> <span class="math inline">\(area / 1000000 (\)</span>^2$)<br>
-</li>
-<li><strong>Perímetro (<span class="math inline">\(P\)</span>):</strong> <span class="math inline">\(perimeter / 1000 (\)</span>$)<br>
-</li>
+<li><strong>Área da Bacia (<span class="math inline">\(A\)</span>):</strong> <span class="math inline">\(area / 1000000\)</span> (<span class="math inline">\(\text{km}^2\)</span>)</li>
+<li><strong>Perímetro (<span class="math inline">\(P\)</span>):</strong> <span class="math inline">\(perimeter / 1000\)</span> (<span class="math inline">\(\text{km}\)</span>)</li>
 <li><strong>Comprimento do Canal Principal (<span class="math inline">\(L_{cp}\)</span>):</strong> Meça o comprimento do maior rio da nascente ao exutório (<span class="math inline">\(\text{km}\)</span>).<br>
 </li>
-<li><strong>Comprimento Total da Drenagem (<span class="math inline">\(L_t\)</span>):</strong> Na camada de drenagem recortada, utilize a soma do comprimento das linhas com a <strong>Estatística de Campo</strong> ($length / 1000).<br>
+<li><strong>Comprimento Total da Drenagem (<span class="math inline">\(L_t\)</span>):</strong> Na camada de drenagem recortada, utilize a soma do comprimento das linhas com a <strong>Estatística de Campo</strong> (<span class="math inline">\(length / 1000\)</span>).<br>
 </li>
 <li><strong>Estatísticas Altimétricas:</strong> Execute <strong>Raster</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Estatísticas Zonais</strong> sobre o MDE usando o polígono da bacia para extrair a <span class="math inline">\(Z_{\min}\)</span>, <span class="math inline">\(Z_{\max}\)</span> e <span class="math inline">\(Z_{\text{média}}\)</span>.</li>
 </ul>
@@ -632,8 +664,14 @@ Crie novos campos na tabela de atributos da bacia para computar as equações cl
 <ul>
 <li><strong>Fator de Forma (<span class="math inline">\(F_f\)</span>):</strong> <span class="math inline">\(F_f = \frac{A}{L_{cp}^2}\)</span><br>
 </li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$area <span class="op">/</span> ( aggregate(<span class="kw">layer</span><span class="op">:=</span><span class="st">'canal principal'</span>, aggregate<span class="op">:=</span><span class="st">'sum'</span>, expression<span class="op">:=</span><span class="ot">"Comp (m)"</span>) ^ <span class="dv">2</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
 <li><strong>Índice de Circularidade (<span class="math inline">\(I_c\)</span>):</strong> <span class="math inline">\(I_c = \frac{12,57 \cdot A}{P^2}\)</span><br>
 </li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">12.57</span><span class="op">*</span>$area<span class="op">/</span>($perimeter^<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
 <li><strong>Coeficiente de Compacidade (<span class="math inline">\(K_c\)</span>):</strong> <span class="math inline">\(K_c = 0,28 \cdot \frac{P}{\sqrt{A}}\)</span><br>
 </li>
 <li><strong>Densidade de Drenagem (<span class="math inline">\(D_d\)</span>):</strong> <span class="math inline">\(D_{d} = \frac{L_t}{A}\)</span> (<span class="math inline">\(\text{km/km}^2\)</span>)<br>
@@ -664,58 +702,25 @@ Onde:</p>
 <li>Garanta que o MDE passou pelo pré-processamento de <strong>correção hidrológica</strong> (<em>Fill Sinks</em>), evitando falhas de cálculo no acúmulo de fluxo.</li>
 </ol>
 </blockquote>
-<p><strong>2.Cálculo Direto Automático (Método Recomendado):</strong>SAGA GIS / Toolbox.<br>
-O QGIS possui um algoritmo nativo via SAGA que calcula todos os componentes intermediários e entrega o TWI direto em um passo:</p>
+<p><strong>2.Cálculo Direto Automático (Método Recomendado):</strong> Toolbox.<br>
+O QGIS possui um algoritmo nativo via GRASS que calcula todos os componentes intermediários e entrega o TWI direto em um passo:</p>
 <blockquote class="blockquote">
 <ol type="1">
-<li>Abra a <strong>Caixa de Ferramentas de Processamento</strong> (Ctrl + Alt + T).<br>
-</li>
-<li>Busque por <strong>SAGA</strong> <span class="math inline">\(\\rightarrow\)</span> <strong>Topographic Wetness Index (TWI)</strong>.<br>
-</li>
-<li>No campo <strong>Elevation</strong>, selecione o MDE corrigido (<em>Filled DEM</em>).<br>
-</li>
-<li>Nos métodos de acúmulo de fluxo (<strong>Area Type</strong> ou <strong>Flow Accumulation Method</strong>), você pode manter o padrão ou selecionar <strong>D-Infinity</strong> / <strong>Multiple Flow Direction (MFD)</strong> para melhor distribuição do fluxo em encostas.<br>
-</li>
+<li>Na Caixa de Ferramentas de Processamento, busque por <strong>GRASS</strong> <span class="math inline">\(\rightarrow\)</span> <strong>r.topidx</strong>.</li>
+<li>Em Input elevation map, selecione o MDE corrigido (Filled DEM).</li>
+<li>Em Topographic index, defina o caminho ou nome para salvar a camada raster final.</li>
 <li>Clique em <strong>Executar</strong>. O QGIS gerará a camada raster do <strong>TWI</strong> diretamente.</li>
 </ol>
 </blockquote>
-<p><strong>3.Cálculo Manual por Etapas (Para Controle de Parâmetros):</strong>SAGA / GRASS / Calculadora Raster.<br>
+<p><strong>3.Cálculo Manual por Etapas (Para Controle de Parâmetros):</strong> GRASS / Calculadora Raster.<br>
 Caso deseje personalizar os métodos de escoamento e declividade, você pode gerar as camadas intermediárias separadamente:</p>
 <blockquote class="blockquote">
 <ol type="1">
-<li><strong>Gerar a Declividade em Radianos (<span class="math inline">\(\\beta\)</span>):</strong><br>
-</li>
+<li>Com o raster de Acúmulo de Fluxo (células <span class="math inline">\(\times\)</span> resolução) e a Declividade em Radianos, abra a Calculadora Raster (GDAL ou nativa) e aplique a fórmula ajustada para evitar divisão por zero:</li>
 </ol>
-<ul>
-<li>Acesse <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Slope, Aspect, Curvature</strong>.<br>
-</li>
-<li>Selecione o MDE e no parâmetro <strong>Slope Units</strong>, altere para <strong>Radians</strong> (ou use a Calculadora Raster convertendo graus para radianos: Declividade_graus * (pi / 180)).<br>
-</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>Gerar a Área de Contribuição Específica (<span class="math inline">\(a\)</span>):</strong><br>
-</li>
-</ol>
-<ul>
-<li>Acesse <strong>SAGA</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Catchment Area</strong>.<br>
-</li>
-<li>Escolha um método de fluxo contínuo (ex: <em>MFD</em> ou <em>D-Infinity</em>).<br>
-</li>
-<li>O resultado nos dá a área de contribuição acumulada.<br>
-</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>Aplicar a Equação na Calculadora Raster:</strong><br>
-</li>
-</ol>
-<ul>
-<li>Acesse <strong>Raster</strong> <span class="math inline">\(\rightarrow\)</span> <strong>Calculadora Raster</strong>.<br>
-</li>
-<li>Insira a fórmula adicionando um valor mínimo constante (ex: 0.00001) ao denominador para evitar <strong>divisão por zero</strong> em áreas planas (<span class="math inline">\(\tan(0) = 0\)</span>):</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span>( (<span class="ot">"Acumulo_m2@1"</span>) <span class="op">/</span> <span class="fu">tan</span>( <span class="fu">max</span>(<span class="ot">"Declividade_rad@1"</span>, <span class="fl">0.001</span>) ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>*Os valores do TWI resultantes concentram números maiores (10–20) nas linhas de talvegue/drenagem e números menores (3–6) nos divisores de água.</p>
 </blockquote>
-<p>Plaintext<br>
-ln( “Area_Contribuição@1” / tan( max(“Declividade_Radianos@1”, 0.001) ) )</p>
 <blockquote class="blockquote">
 <p><strong>4.Estilização do Resultado:</strong>Simbologia e Interpretação.</p>
 </blockquote>

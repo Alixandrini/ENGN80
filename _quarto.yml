@@ -1,6 +1,6 @@
 project:
   type: website
-
+  output-dir: docs
 website:
   page-navigation: true
   page-footer: "Copyright 2026, Mauro Alixandrini"

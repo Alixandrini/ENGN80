@@ -152,6 +152,7 @@ A extração de parâmetros morfométricos permite quantificar a geometria, a to
    * Na Caixa de Ferramentas, abra GRASS $\rightarrow$ r.stream.extract.
    * Em Input elevation map, selecione o MDE corrigido (Filled DEM).
    * Em Minimum flow accumulation, defina o limiar desejado (ex: 1000 pixels).
+   * Em v.out.ogr output type use line.
    * Na saída Unique stream ids (vector), defina o nome do arquivo para salvar a rede vetorial.
    * Execute.
 > 2. Verificação: Um vetor de linhas com a rede hidrográfica completa aparecerá no painel de camadas. 

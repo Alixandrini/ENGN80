@@ -4,7 +4,161 @@
     "href": "sensoriamento_remoto.html",
     "title": "Módulo 3",
     "section": "",
-    "text": "o Princípios físicos do Sensoriamento Remoto (Espectro Eletromagnético e Comportamento Espectral da Água, Vegetação e Solo).\no Satélites e Sensores Ópticos e de Radar (Landsat, Sentinel-2, Sentinel-1, CBERS).\no Índices Espectrais para recursos hídricos: NDWI (Normalized Difference Water Index), NDVI (Normalized Difference Vegetation Index).\no Introdução ao Processamento Digital de Imagens (PDI): Classificação Supervisionada e Não-Supervisionada de Uso e Ocupação do Solo.\no Mapeamento de espelhos d’água e variação reservatórios/represas via NDWI.\no Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).\no Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d’água.",
+    "text": "O Sensoriamento Remoto (SR) constitui uma das ferramentas mais estratégicas para a gestão e regulação de recursos hídricos. Ao viabilizar a aquisição contínua, multitemporal e sinótica de informações sobre a superfície terrestre sem contato físico direto, o SR permite monitorar a dinâmica de reservatórios, identificar conflitos pelo uso da água, mapear a cobertura vegetal em bacias hidrográficas e auditar a integridade de Áreas de Preservação Permanente (APPs).\nNeste módulo, abordaremos as bases físicas da radiação eletromagnética, a resposta espectral dos principais alvos da paisagem, as características das constelações orbitais mais utilizadas no Brasil, o cálculo de índices biofísicos e os fluxos práticos de Processamento Digital de Imagens (PDI) no QGIS com o complemento SCP (Semi-Automatic Classification Plugin).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#radiação-eletromagnética-rem-e-leis-da-radiação",
+    "href": "sensoriamento_remoto.html#radiação-eletromagnética-rem-e-leis-da-radiação",
+    "title": "Módulo 3",
+    "section": "Radiação Eletromagnética (REM) e Leis da Radiação",
+    "text": "Radiação Eletromagnética (REM) e Leis da Radiação\nO sensoriamento remoto passivo baseia-se na detecção da Radiação Eletromagnética (REM) originada primariamente pelo Sol, propagada pelo vácuo e pela atmosfera, e refletida ou emitida pelos alvos da superfície terrestre.\nA REM propaga-se na velocidade da luz (\\(c \\approx 3 \\times 10^8 \\text{ m/s}\\)) e sua energia é descrita pela relação de Planck:\n\\[\nQ = h \\cdot \\nu = \\frac{h \\cdot c}{\\lambda}\n\\]\nOnde: * \\(Q\\): Energia de um fóton (\\(\\text{J}\\)) * \\(h\\): Constante de Planck (\\(6{,}626 \\times 10^{-34} \\text{ J}\\cdot\\text{s}\\)) * \\(\\nu\\): Frequência da onda (\\(\\text{Hz}\\)) * \\(\\lambda\\): Comprimento de onda (\\(\\mu\\text{m}\\) ou \\(\\text{nm}\\))\nDois princípios fundamentais regem a emissão de radiação térmica por corpos negros:\n\nLei de Stefan-Boltzmann: A emitância radiante total (\\(M\\)) é proporcional à quarta potência da temperatura absoluta (\\(T\\), em Kelvin): \\[\nM = \\sigma \\cdot T^4 \\quad (\\sigma \\approx 5{,}67 \\times 10^{-8} \\text{ W}\\cdot\\text{m}^{-2}\\cdot\\text{K}^{-4})\n\\]\nLei do Deslocamento de Wien: O comprimento de onda de máxima emissão (\\(\\lambda_{\\max}\\)) é inversamente proporcional à temperatura absoluta: \\[\n\\lambda_{\\max} = \\frac{2898}{T} \\quad (\\mu\\text{m}\\cdot\\text{K})\n\\]\n\nPara o Sol (\\(T \\approx 6.000\\text{ K}\\)), \\(\\lambda_{\\max} \\approx 0{,}48 \\mu\\text{m}\\) (região do visível).\nPara a Terra (\\(T \\approx 300\\text{ K}\\)), \\(\\lambda_{\\max} \\approx 9{,}7 \\mu\\text{m}\\) (infravermelho termal).\n\n\n                      ESPECTRO ELETROMAGNÉTICO NO SR\n+-------------+---------------------+-------------------+-------------------+\n|  UV (&lt;0,4)  |  Visível (0,4-0,7)  |  Infravermelho    | Micro-ondas /     |\n|             |  Azul / Verde /     |  NIR (0,7 - 1,1)  | Radar             |\n|             |  Vermelho           |  SWIR (1,1 - 2,5) | (1 mm a 1 m)      |\n|             |                     |  TIR (8 - 14)     |                   |\n+-------------+---------------------+-------------------+-------------------+",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#janelas-atmosféricas-e-interações",
+    "href": "sensoriamento_remoto.html#janelas-atmosféricas-e-interações",
+    "title": "Módulo 3",
+    "section": "Janelas Atmosféricas e Interações",
+    "text": "Janelas Atmosféricas e Interações\nAo atravessar a atmosfera terrestre, a REM sofre atenuação por espalhamento e absorção pelos gases constituintes (\\(O_3\\), \\(CO_2\\), \\(H_2O\\) vapor):\n\nEspalhamento Rayleigh: Ocorre quando o diâmetro das partículas é muito menor que o comprimento de onda (\\(\\propto \\lambda^{-4}\\)). Provoca a coloração azul do céu e degrada o contraste no canal visível.\nEspalhamento Mie: Ocorre quando o diâmetro é similar a \\(\\lambda\\) (poeira, fumaça, pólen).\nEspalhamento Não-Seletivo: Ocorre quando o diâmetro das partículas é muito maior que \\(\\lambda\\) (gotículas de água em nuvens e nevoeiros, bloqueando uniformemente o visível e o infravermelho).\nJanelas Atmosféricas: Faixas espectrais em que a absorção gasosa é mínima, viabilizando a observação orbital (ex.: \\(0{,}4\\text{ a }1{,}1 \\mu\\text{m}\\); \\(1{,}5\\text{ a }1{,}8 \\mu\\text{m}\\); \\(2{,}0\\text{ a }2{,}4 \\mu\\text{m}\\); e na janela termal de \\(8\\text{ a }12 \\mu\\text{m}\\)).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#água-e-ambientes-aquáticos",
+    "href": "sensoriamento_remoto.html#água-e-ambientes-aquáticos",
+    "title": "Módulo 3",
+    "section": "Água e Ambientes Aquáticos",
+    "text": "Água e Ambientes Aquáticos\n\nÁgua Pura e Profunda: Apresenta reflectância máxima na região do azul-esverdeado (\\(0{,}45\\text{ a }0{,}55 \\mu\\text{m}\\)) e absorção quase total a partir de \\(0{,}75 \\mu\\text{m}\\) (NIR e SWIR). Por essa razão, corpos d’água límpidos aparecem escuros ou negros em composições coloridas envolvendo bandas de infravermelho.\nÁgua Turva / Sedimentos em Suspensão: O aumento de sólidos suspensos inorgânicos desloca o pico de reflectância em direção ao vermelho (\\(0{,}6\\text{ a }0{,}7 \\mu\\text{m}\\)) e ao infravermelho próximo, elevando o albedo geral.\nFlorações de Algas / Eutrofização: A presença de clorofila-a gera um pequeno pico no verde, absorção no vermelho e uma elevação no NIR (comportamento semelhante a um dossel vegetal flutuante).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#vegetação-verde-sadia",
+    "href": "sensoriamento_remoto.html#vegetação-verde-sadia",
+    "title": "Módulo 3",
+    "section": "Vegetação Verde Sadia",
+    "text": "Vegetação Verde Sadia\n\nVisível (\\(0{,}4\\text{ a }0{,}7 \\mu\\text{m}\\)): Forte absorção pelos pigmentos fotossintetizantes (clorofilas a e b no azul e vermelho), gerando um pico relativo no verde (\\(0{,}55 \\mu\\text{m}\\)).\nInfravermelho Próximo (NIR: \\(0{,}7\\text{ a }1{,}1 \\mu\\text{m}\\)): Altíssima reflectância (\\(40\\text{ a }60\\%\\)) decorrente do espalhamento múltiplo da luz no mesofilo foliar esponjoso (red-edge característico).\nInfravermelho de Ondas Curtas (SWIR: \\(1{,}1\\text{ a }2{,}5 \\mu\\text{m}\\)): Vales de absorção marcados pelo conteúdo de água na folha, centrados em \\(1{,}45 \\mu\\text{m}\\) e \\(1{,}95 \\mu\\text{m}\\).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#solos-expostos",
+    "href": "sensoriamento_remoto.html#solos-expostos",
+    "title": "Módulo 3",
+    "section": "Solos Expostos",
+    "text": "Solos Expostos\nApresentam curva espectral geralmente ascendente e contínua do visível ao SWIR. A magnitude da curva é influenciada pelo teor de umidade (água reduz a reflectância global), presença de matéria orgânica (curva mais escura e plana) e mineralogia (presença de óxidos de ferro gera feições de absorção diagnósticas no visível e no NIR).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#sensores-ópticos-vs.-radar-de-abertura-sintética-sar",
+    "href": "sensoriamento_remoto.html#sensores-ópticos-vs.-radar-de-abertura-sintética-sar",
+    "title": "Módulo 3",
+    "section": "Sensores Ópticos vs. Radar de Abertura Sintética (SAR)",
+    "text": "Sensores Ópticos vs. Radar de Abertura Sintética (SAR)\nEnquanto os sensores ópticos dependem da iluminação solar e sofrem obstrução persistente por cobertura de nuvens (um gargalo recorrente em períodos chuvosos no Brasil), os sensores SAR (ex.: Sentinel-1) emitem seus próprios pulsos de micro-ondas.\nSobre superfícies d’água calmas, o feixe de radar sofre reflexão especular para longe da antena receptora, registrando coeficiente de retroespalhamento (\\(\\sigma^0\\)) extremamente baixo (valores em dB muito negativos, aparecendo como pixels negros). Esse contraste torna o SAR uma ferramenta complementar de alta precisão para delimitar inundações e cheias históricas mesmo sob céu completamente nublado.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#ndvi-normalized-difference-vegetation-index",
+    "href": "sensoriamento_remoto.html#ndvi-normalized-difference-vegetation-index",
+    "title": "Módulo 3",
+    "section": "NDVI (Normalized Difference Vegetation Index)",
+    "text": "NDVI (Normalized Difference Vegetation Index)\nDesenvolvido por Rouse et al. (1973), explora o contraste entre o espalhamento no NIR e a absorção clorofiliana no Vermelho:\n\\[\n\\text{NDVI} = \\frac{\\rho_{\\text{NIR}} - \\rho_{\\text{Vermelho}}}{\\rho_{\\text{NIR}} + \\rho_{\\text{Vermelho}}}\n\\]\n\nVaria no intervalo de \\([-1, +1]\\).\nÁgua: Valores negativos (\\(\\text{NDVI} &lt; 0\\)).\nSolo exposto e áreas urbanizadas: Próximo de zero (\\(0{,}0 \\text{ a } 0{,}2\\)).\nVegetação rala/pastagem: \\(0{,}2 \\text{ a } 0{,}5\\).\nFlorestas densas e matas ciliares preservadas: \\(\\text{NDVI} &gt; 0{,}7\\).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#ndwi-normalized-difference-water-index",
+    "href": "sensoriamento_remoto.html#ndwi-normalized-difference-water-index",
+    "title": "Módulo 3",
+    "section": "NDWI (Normalized Difference Water Index)",
+    "text": "NDWI (Normalized Difference Water Index)\nPara detecção de corpos d’água e mapeamento de espelhos d’água, destacam-se duas formulações clássicas:\n\nFormulação de McFeeters (1996)\nExplora o pico de reflectância da água no Verde e a alta absorção no NIR:\n\\[\n\\text{NDWI}_{\\text{McFeeters}} = \\frac{\\rho_{\\text{Verde}} - \\rho_{\\text{NIR}}}{\\rho_{\\text{Verde}} + \\rho_{\\text{NIR}}}\n\\]\n\nValores positivos (\\(\\text{NDWI} &gt; 0\\)) delineiam tipicamente corpos hídricos.\nEm áreas urbanas consolidadas, pode ocorrer confusão entre água e construções ou asfalto escuro.\n\n\n\nMNDWI (Modified NDWI - Xu, 2006)\nSubstitui o NIR pelo infravermelho de ondas curtas (SWIR), suprimindo ruídos urbanos e solos úmidos com grande eficácia:\n\\[\n\\text{MNDWI} = \\frac{\\rho_{\\text{Verde}} - \\rho_{\\text{SWIR}}}{\\rho_{\\text{Verde}} + \\rho_{\\text{SWIR}}}\n\\]\n\nEquivalência de bandas:\n\nSentinel-2: \\(\\frac{\\text{B03} - \\text{B11}}{\\text{B03} + \\text{B11}}\\)\nLandsat 8/9: \\(\\frac{\\text{B03} - \\text{B06}}{\\text{B03} + \\text{B06}}\\)",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#classificação-não-supervisionada",
+    "href": "sensoriamento_remoto.html#classificação-não-supervisionada",
+    "title": "Módulo 3",
+    "section": "Classificação Não-Supervisionada",
+    "text": "Classificação Não-Supervisionada\nO algoritmo agrupa pixels no espaço de atributos espectrais com base em medidas de similaridade euclidiana (como \\(k\\)-médias), sem intervenção prévia do analista. O intérprete analisa os clusters resultantes e atribui os significados ambientais a posteriori.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#classificação-supervisionada",
+    "href": "sensoriamento_remoto.html#classificação-supervisionada",
+    "title": "Módulo 3",
+    "section": "Classificação Supervisionada",
+    "text": "Classificação Supervisionada\nO analista define previamente amostras de treinamento representativas (Regions of Interest - ROIs) para cada classe temática. O algoritmo aprende a assinatura espectral dessas amostras e classifica o restante da imagem.\n\nMáxima Verossimilhança (MaxVer / Maximum Likelihood): Algoritmo paramétrico clássico fundamentado no Teorema de Bayes; assume distribuição normal multivariada das classes espectrais.\nRandom Forest (RF): Modelo não-paramétrico de aprendizado de máquina (ensemble de árvores de decisão). Robusto a ruídos e dados colineares, sendo o estado da arte na maioria das plataformas ambientais modernas (como MapBiomas).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#avaliação-de-exatidão-temática",
+    "href": "sensoriamento_remoto.html#avaliação-de-exatidão-temática",
+    "title": "Módulo 3",
+    "section": "Avaliação de Exatidão Temática",
+    "text": "Avaliação de Exatidão Temática\nA validação estatística do mapa gerado é indispensável e deve ser conduzida contra pontos de controle de campo ou imagens de alta resolução espacial não utilizados no treinamento:\n\nMatriz de Confusão (Matriz de Erros)\nExatidão Global (Overall Accuracy): Proporção total de pixels classificados corretamente.\nCoeficiente Kappa (\\(\\hat{K}\\)): Mede o grau de concordância descontando a concordância que ocorreria puramente por acaso: \\[\n\\hat{K} = \\frac{N \\sum_{i=1}^r x_{ii} - \\sum_{i=1}^r (x_{i+} \\cdot x_{+i})}{N^2 - \\sum_{i=1}^r (x_{i+} \\cdot x_{+i})}\n\\]",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#fluxo-metodológico-do-scp",
+    "href": "sensoriamento_remoto.html#fluxo-metodológico-do-scp",
+    "title": "Módulo 3",
+    "section": "Fluxo Metodológico do SCP",
+    "text": "Fluxo Metodológico do SCP\n[ Download / Importação de Bandas ]\n                │\n                ▼\n[ Pré-processamento: Correção Atmosférica DOS1 / TOA -&gt; BOA ]\n                │\n                ▼\n[ Criação do Band Set e Definição de Metadados ]\n                │\n                ▼\n[ Coleta de ROIs: Classes Macro (MC ID) e Micro (C ID) ]\n                │\n                ▼\n[ Avaliação da Separabilidade Espectral das Assinaturas ]\n                │\n                ▼\n[ Execução do Algoritmo (Random Forest, MaxVer ou Spectral Angle Mapping) ]\n                │\n                ▼\n[ Pós-processamento: Filtro de Moda (Limpeza de Ruído Sal-e-Pimenta) ]\n\nBoas Práticas na Coleta de ROIs\n\nDistribuir as amostras uniformemente ao longo de toda a cena, e não concentradas em um único quadrante.\nEvitar bordas de transição entre alvos para impedir assinaturas de “pixels mistos”.\nUtilizar o gráfico de assinaturas espectrais do SCP para inspecionar a separabilidade entre classes espectralmente próximas (como pastagem degradada e solo exposto).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#parâmetros-legais-lei-federal-nº-12.6512012---código-florestal",
+    "href": "sensoriamento_remoto.html#parâmetros-legais-lei-federal-nº-12.6512012---código-florestal",
+    "title": "Módulo 3",
+    "section": "Parâmetros Legais (Lei Federal nº 12.651/2012 - Código Florestal)",
+    "text": "Parâmetros Legais (Lei Federal nº 12.651/2012 - Código Florestal)\n\n\n\n\n\n\n\nFeição Hidrográfica\nLargura Mínima da Faixa Marginal de APP\n\n\n\n\nCursos d’água com largura \\(&lt; 10\\text{ m}\\)\n30 metros\n\n\nCursos d’água de \\(10\\text{ a }50\\text{ m}\\)\n50 metros\n\n\nCursos d’água de \\(50\\text{ a }200\\text{ m}\\)\n100 metros\n\n\nCursos d’água de \\(200\\text{ a }600\\text{ m}\\)\n200 metros\n\n\nCursos d’água com largura \\(&gt; 600\\text{ m}\\)\n500 metros\n\n\nNascentes e olhos d’água perenes\nRaio de 50 metros\n\n\nLagos e lagoas naturais em área rural (\\(&gt; 20\\text{ ha}\\))\n100 metros",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 3 - Sensoriamento Remoto"
+    ]
+  },
+  {
+    "objectID": "sensoriamento_remoto.html#protocolo-espacial-de-diagnóstico-no-qgis",
+    "href": "sensoriamento_remoto.html#protocolo-espacial-de-diagnóstico-no-qgis",
+    "title": "Módulo 3",
+    "section": "Protocolo Espacial de Diagnóstico no QGIS",
+    "text": "Protocolo Espacial de Diagnóstico no QGIS\nA identificação de passivos ambientais em APPs hídricas segue o cruzamento vetorial e matricial (overlay):\n       Drenagem Vetorial (Rios / Nascentes)\n                        │\n                        ▼\n       [ Buffer Normativo (30m, 50m, etc.) ]\n                        │\n                        ▼\n               Polígono de APP Legal\n                        │\n                        ├─── Interseção Espacial / Clip\n                        ▼\n       Raster de Uso e Cobertura da Terra (SCP)\n                        │\n                        ▼\n   [ Classificação de Conflito em Tabela Cruzada ]\n         ├── Vegetação Nativa  -&gt; APP Preservada\n         ├── Pastagem / Café   -&gt; Uso Consolidado / Conflito\n         └── Solo Exposto / Urb-&gt; Alto Risco Erosivo / Degradação\nO diagnóstico resultante fornece a base quantitativa (em hectares e percentual) para subsidiar Planos de Recuperação de Áreas Degradadas (PRAD), Termos de Ajustamento de Conduta (TAC) emitidos por órgãos reguladores ou comitês de bacia, e priorização de ações do Plano Diretor de Recursos Hídricos.",
     "crumbs": [
       "Introdução às Geotecnologias",
       "Módulo 3 - Sensoriamento Remoto"
@@ -15,7 +169,84 @@
     "href": "integracao.html",
     "title": "Módulo 5",
     "section": "",
-    "text": "o Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.\no Elaboração de mapas temáticos profissionais e Layout de Impressão no QGIS.\no Introdução ao WebGIS, dashboards espaciais e publicação de dados (QGIS Cloud, Felt ou exportação para GeoJSON/KML para tomada de decisão).\no Trabalho orientador final em sala: Suporte aos alunos no desenvolvimento do Estudo de Caso / Mini-Projeto Aplicado.",
+    "text": "Chegamos ao Módulo 5, momento de síntese e consolidação das competências desenvolvidas ao longo de toda a disciplina. Após dominarmos os conceitos de cartografia, bacias hidrográficas em modelos digitais de elevação, sensoriamento remoto multiespectral e análise espacial multi-critério, o foco migra para o elo decisivo: a comunicação técnica eficiente e a tomada de decisão gerencial.\nNo contexto do mestrado profissional e da atuação prática em órgãos gestores (ANA, órgãos estaduais), comitês de bacia hidrográfica (CBHs), concessionárias de saneamento e consultorias ambientais, o dado geoespacial só ganha valor pleno quando traduzido em instrumentos inteligíveis: mapas temáticos normatizados, plataformas WebGIS acessíveis e painéis de indicadores integrados.\nA organização deste módulo compreende:\n\nTerça-feira (4,5h) – Comunicação de Dados, WebGIS e Indicadores:\n\nIntegração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.\nCartografia Temática Profissional e Composição de Layouts no QGIS.\nDisseminação via WebGIS, Dashboards e Formatos de Intercâmbio (GeoJSON, KML, QGIS Cloud, Felt).\nOficina de Mentoria e Apoio Direto aos Mini-Projetos Aplicados dos mestrandos.\n\nQuinta-feira (4,5h) – Apresentação dos Projetos Aplicados e Encerramento:\n\nApresentação dos seminários técnicos individuais ou em duplas focados em problemas hidroambientais reais.\nRoda de discussão, avaliação por rubrica técnica e fechamento do semestre.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#aplicações-estratégicas-na-regulação-hídrica",
+    "href": "integracao.html#aplicações-estratégicas-na-regulação-hídrica",
+    "title": "Módulo 5",
+    "section": "Aplicações Estratégicas na Regulação Hídrica",
+    "text": "Aplicações Estratégicas na Regulação Hídrica\nO uso integrado do SIG subsidia diretamente instrumentos da Política Nacional de Recursos Hídricos (Lei Federal nº 9.433/1997):\n\nOutorga de Direito de Uso dos Recursos Hídricos:\n\nCálculo automatizado do balanço hídrico espacial: relação entre a soma das vazões outorgadas a montante (\\(\\sum Q_{\\text{outorgada}}\\)) e a vazão de referência mínima da bacia (ex.: \\(Q_{7,10}\\) ou \\(Q_{95}\\)):\n\n\n\\[\nI_{\\text{comprometimento}} = \\frac{\\sum_{i=1}^n Q_{\\text{outorgada}, i}}{Q_{\\text{referência}}} \\times 100 \\quad [\\%]\n\\]\n\nIdentificação de trechos fluviais sob estresse hídrico crítico (\\(I &gt; 70\\%\\)).\n\n\nCobrança pelo Uso da Água e Enquadramento:\n\nEspacialização de cargas poluidoras lançadas e outorgadas (DBO, fósforo total, nitrogênio) em relação à capacidade de autodepuração do corpo receptor.\n\nSegurança de Barragens e Contingência:\n\nManchas de inundação derivadas de simulações de rompimento (dam break) integradas a cadastros urbanos para definição de Zonas de Auto Salvamento (ZAS).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt",
+    "href": "integracao.html#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt",
+    "title": "Módulo 5",
+    "section": "Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)",
+    "text": "Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)\nTodo mapa gerado para fins de regulação, licenciamento ou plano de bacia deve contemplar:\n\nTítulo Claro e Objetivo: Deve responder O quê?, Onde? e Quando? (ex.: “Balanço de Disponibilidade Hídrica na Sub-bacia do Rio das Velhas - 2026”).\nProjeção e Datum: Indicação explícita do Sistema de Referência Geocêntrico (ex.: SIRGAS 2000, Projeção UTM Fuso 24S, EPSG: 31984).\nEscala Gráfica e Numérica: A escala gráfica é indispensável, pois permanece válida mesmo quando o mapa é redimensionado em relatórios digitais.\nOrientação do Norte Geográfico: Símbolo discreto e posicionado sem obstruir feições relevantes.\nLegenda Estruturada: Hierarquizada, com nomes descritivos em português (evitando códigos brutos de atributos como cod_trech_hidro).\nMetadados e Créditos: Fontes primárias de dados (ex.: ANA, IBGE, INPE, CPRM), autor do mapa e data de elaboração.\nGrade de Coordenadas: Reticulado com coordenadas em metros (UTM) ou graus decimais/GMS nas margens.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#o-compositor-de-impressão-do-qgis-print-layout",
+    "href": "integracao.html#o-compositor-de-impressão-do-qgis-print-layout",
+    "title": "Módulo 5",
+    "section": "O Compositor de Impressão do QGIS (Print Layout)",
+    "text": "O Compositor de Impressão do QGIS (Print Layout)\nRecursos avançados para produção profissional:\n\nMapas de Inserção (Overview / Inset Maps): Janela secundária em escala menor indicando a localização da área de estudo no contexto estadual ou nacional.\nGeração Automatizada com Atlas: Ferramenta que itera sobre feições de uma camada de cobertura (ex.: cada município da bacia ou cada estação de tratamento) e exporta automaticamente dezenas de pranchas PDF padronizadas com filtros dinâmicos de legenda e escala.\nExpressões Dinâmicas: Uso de campos calculados no rodapé (ex.: [% @project_title %], [% format_date(now(), 'dd/MM/yyyy') %]).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#formatos-de-intercâmbio-de-dados-vetoriais",
+    "href": "integracao.html#formatos-de-intercâmbio-de-dados-vetoriais",
+    "title": "Módulo 5",
+    "section": "Formatos de Intercâmbio de Dados Vetoriais",
+    "text": "Formatos de Intercâmbio de Dados Vetoriais\n\nGeoPackage (.gpkg): Padrão aberto da OGC baseado em SQLite. Substitui o formato legado Shapefile (.shp), superando limitações de tamanho (máximo de 2 GB do SHP), truncamento de nomes de campos a 10 caracteres e ausência de suporte nativo a múltiplos tipos de geometria em um único arquivo.\nGeoJSON (.geojson): Formato leve baseado em notação JSON para dados vetoriais, padrão da web moderna e amplamente suportado por bibliotecas como Leaflet, OpenLayers e Mapbox.\nKML/KMZ (.kml / .kmz): Estrutura em XML para visualização rápida no Google Earth, indispensável para vistorias visuais preliminares e alinhamento com equipes de campo.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#plataformas-ágeis-de-publicação-webgis",
+    "href": "integracao.html#plataformas-ágeis-de-publicação-webgis",
+    "title": "Módulo 5",
+    "section": "Plataformas Ágeis de Publicação WebGIS",
+    "text": "Plataformas Ágeis de Publicação WebGIS\n\nQGIS Cloud:\n\nPlugin integrado ao QGIS Desktop que publica o projeto completo (camadas, simbologia e rotulagem) para um banco de dados PostgreSQL/PostGIS hospedado na nuvem, gerando um mapa Web OGC (WMS/WFS) e interface interativa via navegador.\n\nFelt (felt.com):\n\nPlataforma moderna de mapeamento colaborativo em nuvem. Permite arrastar arquivos .gpkg, .geojson, .tif ou projetos inteiros do QGIS (via complemento oficial), oferecendo ferramentas intuitivas de anotação vetorial, medição de áreas e compartilhamento por link seguro com comitês e gestores.\n\nDashboards Espaciais:\n\nPainéis analíticos que sincronizam mapas a gráficos de barras, histogramas de vazão e medidores de cumprimento de metas do marco legal de saneamento.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#roteiro-metodológico-recomendado",
+    "href": "integracao.html#roteiro-metodológico-recomendado",
+    "title": "Módulo 5",
+    "section": "Roteiro Metodológico Recomendado",
+    "text": "Roteiro Metodológico Recomendado\nO projeto final deve integrar as etapas percorridas durante as 5 semanas da disciplina:\n[ 1. Caracterização Morfométrica ]\nDelimitação MDE + Declividade + Drenagem\n              │\n              ▼\n[ 2. Cobertura da Terra e Conflitos ]\nClassificação SCP / MapBiomas + APP Hídrica\n              │\n              ▼\n[ 3. Análise Espacial e Decisão ]\nInterpolação de Qualidade/Chuva OU Matriz AHP (Adequabilidade)\n              │\n              ▼\n[ 4. Comunicação Técnica e Gestão ]\nPrancha A3 Normatizada + Publicação WebGIS / GeoPackage",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Integração de Ferramentas"
+    ]
+  },
+  {
+    "objectID": "integracao.html#estrutura-do-seminário-técnico-de-quinta-feira",
+    "href": "integracao.html#estrutura-do-seminário-técnico-de-quinta-feira",
+    "title": "Módulo 5",
+    "section": "Estrutura do Seminário Técnico de Quinta-feira",
+    "text": "Estrutura do Seminário Técnico de Quinta-feira\nCada apresentação terá duração máxima de 15 minutos, seguida de 5 minutos de comentários e arguição pela banca:\n\nContextualização e Problema: Apresentação da bacia hidrográfica ou município, contexto regulatório ou conflito ambiental identificado (2 a 3 min).\nBase de Dados e Metodologia: Dados primários e secundários utilizados (estações, imagens orbitais, MDE) e fluxo no QGIS (3 a 4 min).\nResultados Espaciais e Discussão: Mapas temáticos, matriz de confusão/validação ou modelo de adequabilidade obtido (5 a 6 min).\nImplicações para a Gestão/Regulação: Como os produtos geoespaciais apoiam a tomada de decisão prática da instituição ou comitê (2 a 3 min).\nDemonstração WebGIS / Layout: Breve exibição do mapa interativo ou da prancha final elaborada (1 a 2 min).",
     "crumbs": [
       "Introdução às Geotecnologias",
       "Módulo 5 - Integração de Ferramentas"
@@ -110,7 +341,150 @@
     "href": "analise_geoespacial.html",
     "title": "Módulo 4",
     "section": "",
-    "text": "o Ferramentas analíticas e operações de proximidade (Buffer, Overlay, Interseção, Junção Espacial).\no Interpolação Espacial (IDW, Krigagem): Aplicação para mapeamento de precipitação/qualidade da água a partir de pontos de amostragem.\no Aplicações do SIG no Saneamento Básico: Mapeamento de redes de água e esgoto, universalização dos serviços, gestão de perdas e localização de áreas para instalação de infraestruturas (ETEs, aterros sanitários).\no Mapeamento de espelhos d’água e variação reservatórios/represas via NDWI.\no Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).\no Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d’água.",
+    "text": "Sejam bem-vindos ao Módulo 4 da nossa disciplina! Após termos explorado a estrutura de dados matriciais, modelos digitais de elevação (MDE) e o sensoriamento remoto com classificação de uso da terra nos módulos anteriores, avançamos agora para a análise espacial analítica e modelagem de decisão.\nNeste módulo, nosso foco se divide em dois pilares complementares:\n\nTerça-feira (Teoria e Fundamentos): Operações geométricas e analíticas avançadas em SIG, formulação matemática de interpolações espaciais contínuas (IDW e Krigagem) e o panorama da aplicação geoespacial no Saneamento Básico (perdas, universalização e infraestrutura).\nQuinta-feira (Prática Hands-on no QGIS): Da amostragem pontual à modelagem de decisão multi-critério (AHP / Combinação Linear Ponderada) para alocação locacional de infraestruturas hidroambientais (ETEs / Aterros Sanitários).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#operações-geométricas-e-de-proximidade",
+    "href": "analise_geoespacial.html#operações-geométricas-e-de-proximidade",
+    "title": "Módulo 4",
+    "section": "Operações Geométricas e de Proximidade",
+    "text": "Operações Geométricas e de Proximidade\n\nZonas de Amortecimento (Buffers)\nO operador de Buffer delimita uma área circunscrita a uma distância euclidiana \\(d\\) em torno de um elemento geométrico (ponto, linha ou polígono):\n\\[B(A, d) = \\{ x \\in \\mathbb{R}^2 \\mid \\exists y \\in A, \\, \\|x - y\\| \\le d \\}\\]\n\nAplicação no Saneamento e Recursos Hídricos:\n\nDelimitação automática de Áreas de Preservação Permanente (APPs) marginais de cursos d’água conforme Lei Federal 12.651/2012 (faixas de 30 m, 50 m, 100 m, etc.).\nFaixas de servidão e não-edificação ao longo de adutoras, emissários e canais de drenagem.\nZonas de proteção sanitária em poços tubulares profundos de captação de água subterrânea.\n\n\n\n\nOperações Topológicas de Sobreposição (Overlay)\nAs operações de sobreposição integram geometrias e tabelas de atributos de duas ou mais camadas de entrada:\n\nInterseção (Intersect): Retorna apenas a porção geométrica comum entre duas camadas, unindo seus atributos alfanuméricos. Essencial para identificar onde trechos de rede de esgoto cruzam zonas de risco geológico ou áreas ambientalmente protegidas.\nUnião (Union): Combina a abrangência total de polígonos sobrepostos, segmentando-os em novas feições poligonais com a fusão de atributos.\nDiferença / Corte (Clip e Difference): O Clip atua como um “cortador de biscoitos”, restringindo os dados de uma camada vetorial à fronteira administrativa ou hidrográfica de interesse.\n\n\n\nJunção Espacial (Spatial Join)\nDiferente da junção relacional clássica baseada em chaves primárias e estrangeiras (ID), a junção espacial transfere atributos com base no relacionamento topológico espacial entre feições: * Contém / Está contido (Contains / Within) * Intercepta (Intersects) * Mais próximo (Nearest)\nExemplo Prático: Associar a cada imóvel cadastrado no município o ID do setor censitário e a bacia de esgotamento na qual ele está geometricamente contido, calculando o déficit de cobertura domiciliar.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting",
+    "href": "analise_geoespacial.html#ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting",
+    "title": "Módulo 4",
+    "section": "Ponderação pelo Inverso da Distância (IDW - Inverse Distance Weighting)",
+    "text": "Ponderação pelo Inverso da Distância (IDW - Inverse Distance Weighting)\nO IDW é um estimador determinístico linear baseado na Primeira Lei da Geografia de Waldo Tobler: “Todas as coisas estão correlacionadas, mas coisas próximas estão mais correlacionadas do que coisas distantes”.\nA estimativa do valor \\(\\hat{Z}\\) no ponto não amostrado \\(s_0 = (x_0, y_0)\\) é calculada pela média ponderada dos valores medidos nos \\(n\\) pontos vizinhos \\(s_i\\):\n\\[\\hat{Z}(s_0) = \\frac{\\sum_{i=1}^{n} w_i Z(s_i)}{\\sum_{i=1}^{n} w_i}\\]\nOnde o peso \\(w_i\\) atribuído ao ponto \\(i\\) é o inverso de sua distância euclidiana \\(d(s_0, s_i)\\) elevado a uma potência de atenuação \\(p\\):\n\\[w_i = \\frac{1}{d(s_0, s_i)^p}\\]\n\nParâmetro de Potência (\\(p\\)):\n\nHabitualmente adota-se \\(p = 2\\) (quadrado do inverso da distância).\nQuanto maior o valor de \\(p\\), maior é o peso atribuído aos pontos estritamente vizinhos, gerando superfícies com picos isolados em torno dos pontos de amostragem (“efeito olho de boi” / bull’s eyes).\n\nLimitações: O IDW não extrapola valores fora do intervalo amostral (\\(Z_{\\min} \\le \\hat{Z} \\le Z_{\\max}\\)) e não fornece estimativa do erro associado à predição.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#geoestatística-e-krigagem-ordinária",
+    "href": "analise_geoespacial.html#geoestatística-e-krigagem-ordinária",
+    "title": "Módulo 4",
+    "section": "Geoestatística e Krigagem Ordinária",
+    "text": "Geoestatística e Krigagem Ordinária\nA Krigagem é um estimador linear não viesado de variância mínima (Best Linear Unbiased Estimator - BLUE). Ela fundamenta-se na Teoria das Variáveis Regionalizadas formulada por Georges Matheron.\nDiferente do IDW, a ponderação da Krigagem não considera apenas a distância geométrica, mas a estrutura de dependência espacial da variável, quantificada pelo Semivariograma Experimental \\(\\gamma(h)\\):\n\\[\\gamma(h) = \\frac{1}{2 N(h)} \\sum_{i=1}^{N(h)} \\left[ Z(s_i) - Z(s_i + h) \\right]^2\\]\nOnde: * \\(h\\): vetor de distância de separação (lag). * \\(N(h)\\): número de pares de pontos separados pela distância \\(h\\).\n\nAnatomia do Semivariograma Teórico\nApós calcular os pontos experimentais, ajusta-se um modelo teórico contínuo (Esférico, Exponencial ou Gaussiano), cujos parâmetros estruturais são:\n\nEfeito Pepita (\\(C_0\\)): Descontinuidade na origem (\\(h \\to 0\\)), representando erros de medição ou variabilidade em microescala menor que a malha amostral.\nPatamar (\\(C_0 + C\\)): Valor em que o semivariograma estabiliza; representa a variância total da amostra.\nAlcance (\\(a\\)): Distância limite além da qual cessa a autocorrelação espacial entre amostras. Amostras separadas por distâncias maiores que \\(a\\) são estatisticamente independentes.\n\n\\[\\text{Grau de Dependência Espacial (GDE)} = \\left(\\frac{C_0}{C_0 + C}\\right) \\times 100\\]\n\n\\(\\text{GDE} \\le 25\\%\\): Forte dependência espacial.\n\\(25\\% &lt; \\text{GDE} \\le 75\\%\\): Moderada dependência espacial.\n\\(\\text{GDE} &gt; 75\\%\\): Fraca dependência espacial.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento",
+    "href": "analise_geoespacial.html#cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento",
+    "title": "Módulo 4",
+    "section": "Cadastro Técnico Multifinalitário (CTM) e Redes de Abastecimento/Esgotamento",
+    "text": "Cadastro Técnico Multifinalitário (CTM) e Redes de Abastecimento/Esgotamento\n\nModelagem de redes em formato vetorial orientado a grafos topológicos (nós = conexões/válvulas/bombas; arcos = tubulações/adutoras/coletores).\nIntegração de dados cadastrais físicos (diâmetro, material, ano de assentamento, cota piezométrica) com dados comerciais e cadastros de hidrômetros georreferenciados.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#gestão-de-perdas-reais-e-aparentes-de-água",
+    "href": "analise_geoespacial.html#gestão-de-perdas-reais-e-aparentes-de-água",
+    "title": "Módulo 4",
+    "section": "Gestão de Perdas Reais e Aparentes de Água",
+    "text": "Gestão de Perdas Reais e Aparentes de Água\n\nDistritos de Medição e Controle (DMCs): Setorização espacial da rede de distribuição para monitoramento de balanço hídrico.\nCruzamento de dados de pressão hidráulica simulada com o histórico geoespacial de ordens de serviço (OS) de rompimento de tubulações, permitindo priorizar trocas preventivas de ramais e redes antigas.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#planejamento-da-drenagem-urbana-e-esgotamento",
+    "href": "analise_geoespacial.html#planejamento-da-drenagem-urbana-e-esgotamento",
+    "title": "Módulo 4",
+    "section": "Planejamento da Drenagem Urbana e Esgotamento",
+    "text": "Planejamento da Drenagem Urbana e Esgotamento\n\nAnálise topográfica via MDE de alta resolução para determinar bacias de contribuição e traçados ótimos por gravidade para coletores-tronco e interceptores ao longo dos talvegues.\nSimulação de manchas de inundação e áreas suscetíveis a alagamento urbano para dimensionamento de bacias de detenção/retenção e infraestrutura verde.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#critérios-fatores-vs.-restrições",
+    "href": "analise_geoespacial.html#critérios-fatores-vs.-restrições",
+    "title": "Módulo 4",
+    "section": "Critérios: Fatores vs. Restrições",
+    "text": "Critérios: Fatores vs. Restrições\n\nRestrições (Booleanas): Condições excludentes obrigatórias (binárias: 0 ou 1).\n\nExemplo: Dentro de APP marginal = 0 (proibido); Distância a aeródromos \\(&lt; 20\\text{ km}\\) para aterros sanitários (risco aviário) = 0.\n\nFatores (Gradativos): Variáveis que aumentam ou reduzem a aptidão de uma área específica. São normalizados em uma escala contínua (ex: 0 a 10 ou 0 a 100).\n\nExemplo: Declividade do terreno, proximidade da malha viária existente, permeabilidade do solo.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#o-processo-analítico-hierárquico-ahp---thomas-saaty",
+    "href": "analise_geoespacial.html#o-processo-analítico-hierárquico-ahp---thomas-saaty",
+    "title": "Módulo 4",
+    "section": "O Processo Analítico Hierárquico (AHP - Thomas Saaty)",
+    "text": "O Processo Analítico Hierárquico (AHP - Thomas Saaty)\nO AHP decompõe o problema decisório em uma estrutura hierárquica e estabelece pesos relativos aos fatores por meio de uma matriz de comparação pareada, utilizando a escala fundamental de Saaty (1 a 9):\n\n\n\nIntensidade\nDefinição\n\n\n\n\n1\nIgual importância\n\n\n3\nImportância moderada de um critério sobre outro\n\n\n5\nForte importância\n\n\n7\nImportância muito forte ou demonstrada\n\n\n9\nImportância extrema\n\n\n2, 4, 6, 8\nValores intermediários entre julgamentos adjacentes\n\n\n\n\nCálculo dos Pesos e da Razão de Consistência (\\(CR\\))\n\nConstrói-se a matriz quadrada recíproca \\(A = [a_{ij}]_{n \\times n}\\), onde \\(a_{ji} = \\frac{1}{a_{ij}}\\) e \\(a_{ii} = 1\\).\nDetermina-se o autovetor principal normalizado, correspondente aos pesos \\(w_i\\) de cada critério: \\[\\sum_{i=1}^n w_i = 1\\]\nAvalia-se a consistência lógica dos julgamentos do tomador de decisão calculando o Índice de Consistência (\\(CI\\)): \\[CI = \\frac{\\lambda_{\\max} - n}{n - 1}\\]\nCalcula-se a Razão de Consistência (\\(CR\\)): \\[CR = \\frac{CI}{RI}\\] (onde \\(RI\\) é o Índice Randômico tabelado em função da dimensão \\(n\\) da matriz).\n\n\\[\\text{Regra de Validação: } CR &lt; 0{,}10 \\quad (10\\%)\\] Se \\(CR \\ge 0{,}10\\), os julgamentos são inconsistentes e a matriz de comparação pareada deve ser revisada pelo especialista.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#combinação-linear-ponderada-wlc---weighted-linear-combination",
+    "href": "analise_geoespacial.html#combinação-linear-ponderada-wlc---weighted-linear-combination",
+    "title": "Módulo 4",
+    "section": "Combinação Linear Ponderada (WLC - Weighted Linear Combination)",
+    "text": "Combinação Linear Ponderada (WLC - Weighted Linear Combination)\nA modelagem final de adequabilidade espacial (\\(S\\)) é gerada na calculadora raster do QGIS pela equação:\n\\[S(x, y) = \\left( \\sum_{i=1}^{k} w_i \\cdot f_i(x, y) \\right) \\times \\prod_{j=1}^{m} r_j(x, y)\\]\nOnde: * \\(w_i\\): peso de importância do fator \\(i\\) obtido via AHP (\\(\\sum w_i = 1\\)). * \\(f_i(x, y)\\): valor padronizado do fator \\(i\\) na célula \\((x, y)\\). * \\(r_j(x, y)\\): restrição booleana \\(j\\) (0 para impróprio, 1 para apto).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva",
+    "href": "analise_geoespacial.html#exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva",
+    "title": "Módulo 4",
+    "section": "Exercício Prático 1: Interpolação de Qualidade da Água e Chuva",
+    "text": "Exercício Prático 1: Interpolação de Qualidade da Água e Chuva\n\nObjetivo: Mapear a variabilidade espacial da Demanda Bioquímica de Oxigênio (DBO) ou precipitação média em uma bacia hidrográfica.\nPasso a Passo Técnico:\n\nCarregar planilha de pontos monitorados (.csv georreferenciado em SIRGAS 2000 UTM).\nExecutar a interpolação por IDW via menu Raster -&gt; Análise -&gt; Grade (IDW) ou ferramentas do SAGA.\nExecutar a Krigagem Ordinária via Smart-Map Plugin ou SAGA GIS -&gt; Variogram Fitting & Ordinary Kriging.\nComparar os resultados matriciais, avaliando o comportamento nas bordas da bacia e o efeito de anisotropia.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc",
+    "href": "analise_geoespacial.html#exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc",
+    "title": "Módulo 4",
+    "section": "Exercício Prático 2: Alocação Locacional de Aterro Sanitário / ETE (AHP + WLC)",
+    "text": "Exercício Prático 2: Alocação Locacional de Aterro Sanitário / ETE (AHP + WLC)\n\nObjetivo: Elaborar o mapa final de aptidão locacional para implantação de uma infraestrutura de saneamento ambientalmente segura.\nCamadas de Entrada e Pré-processamento:\n\nRestrições:\n\nRios e corpos hídricos: Buffer de 200 m (Restrição total = 0).\nMancha urbana consolidada: Buffer de 1.000 m (Restrição total = 0).\n\nFatores:\n\nDeclividade do terreno derivada do MDE (faixa ótima: 2% a 15%).\nDistância às rodovias/acessos viários existentes (quanto mais próximo, menor o custo de transporte).\nTipo de solo / permeabilidade.\n\n\nProcessamento:\n\nPadronização dos fatores na escala contínua de 0 (pior) a 10 (melhor) via reclassificação raster (r.reclass ou calculadora raster).\nEstruturação da matriz AHP de comparação pareada e validação de \\(CR &lt; 0{,}10\\).\nExecução da Combinação Linear Ponderada na Calculadora Raster: \\[\\text{Aptidao} = (0{,}45 \\cdot \\text{Decliv\\_Norm} + 0{,}35 \\cdot \\text{Vias\\_Norm} + 0{,}20 \\cdot \\text{Solos\\_Norm}) \\times (\\text{Restr\\_Rios} \\times \\text{Restr\\_Urb})\\]\nExtração e vetorização das três melhores poligonais candidatas para a tomada de decisão gerencial.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#prática-1-interpolação-espacial-idw-e-krigagem",
+    "href": "analise_geoespacial.html#prática-1-interpolação-espacial-idw-e-krigagem",
+    "title": "Módulo 4",
+    "section": "1. Prática 1: Interpolação Espacial (IDW e Krigagem)",
+    "text": "1. Prática 1: Interpolação Espacial (IDW e Krigagem)\n\nArquivo: monitoramento_qualidade_chuva.csv\nEstrutura: 22 estações com coordenadas geográficas (EPSG:4326), contendo variáveis hidrológicas e de qualidade de água calibradas:\nPrecipitação mensal acumulada (precipitacao_mm)\nDemanda Bioquímica de Oxigênio (dbo_mg_l), apresentando picos a jusante de centros urbanos e ETEs\nTurbidez (turbidez_ntu), Oxigênio Dissolvido (od_mg_l) e Coliformes Termotolerantes (coliformes_nmp)\nFluxo no QGIS:\n\n\nCarregar via Camada &gt; Adicionar Camada de Texto Delimitado (X = longitude, Y = latitude).\nReprojetar para o sistema métrico da região (ex.: SIRGAS 2000 / UTM zone 24S — EPSG:31984) para cálculos métricos exatos.\nNo menu Processamento (Caixa de Ferramentas):\n\n\nExecutar IDW Interpolation (testando expoentes de potência \\(p = 1\\), \\(2\\) e \\(3\\)).\nExecutar Krigagem Ordinária (usando o módulo SAGA ou plugin Smart-Map/GRASS).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "analise_geoespacial.html#prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada",
+    "href": "analise_geoespacial.html#prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada",
+    "title": "Módulo 4",
+    "section": "2. Prática 2: Análise Multi-critério (AHP e Combinação Linear Ponderada)",
+    "text": "2. Prática 2: Análise Multi-critério (AHP e Combinação Linear Ponderada)\n\nArquivos: pesos_criterios_ahp.csv e tabela_reclassificacao_notas.csv\nVetor de Pesos Calculado (Consistência \\(CR = 0{,}028 &lt; 0{,}10\\)):\nDistância a Corpos Hídricos (\\(w_1\\)): \\(39{,}8\\%\\)\nDistância a Núcleos Urbanos (\\(w_2\\)): \\(25{,}6\\%\\)\nDeclividade (\\(w_3\\)): \\(16{,}1\\%\\)\nUso e Cobertura do Solo (\\(w_4\\)): \\(11{,}6\\%\\)\nPermeabilidade / Geotecnia do Solo (\\(w_5\\)): \\(6{,}9\\%\\)\nFórmula Pronta para a Calculadora Raster do QGIS:\n\n(\n  (\"R_Dist_Agua@1\" * 0.398) + \n  (\"R_Dist_Urbana@1\" * 0.256) + \n  (\"R_Declividade@1\" * 0.161) + \n  (\"R_Uso_Solo@1\" * 0.116) + \n  (\"R_Geologia@1\" * 0.069)\n) * \"Mascara_Restricao@1\"\n(Onde \"Mascara_Restricao@1\" assume valor 0 para áreas de exclusão legal — buffers de rios, áreas urbanas consolidadas e declividades \\(&gt; 30\\%\\) — e 1 para áreas aptas à instalação).",
     "crumbs": [
       "Introdução às Geotecnologias",
       "Módulo 4 - Análise Geoespacial"

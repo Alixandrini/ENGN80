@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -189,8 +218,57 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introdução-ao-módulo" id="toc-introdução-ao-módulo" class="nav-link active" data-scroll-target="#introdução-ao-módulo">Introdução ao Módulo</a></li>
+  <li><a href="#princípios-físicos-do-sensoriamento-remoto" id="toc-princípios-físicos-do-sensoriamento-remoto" class="nav-link" data-scroll-target="#princípios-físicos-do-sensoriamento-remoto">Princípios Físicos do Sensoriamento Remoto</a>
+  <ul class="collapse">
+  <li><a href="#radiação-eletromagnética-rem-e-leis-da-radiação" id="toc-radiação-eletromagnética-rem-e-leis-da-radiação" class="nav-link" data-scroll-target="#radiação-eletromagnética-rem-e-leis-da-radiação">Radiação Eletromagnética (REM) e Leis da Radiação</a></li>
+  <li><a href="#janelas-atmosféricas-e-interações" id="toc-janelas-atmosféricas-e-interações" class="nav-link" data-scroll-target="#janelas-atmosféricas-e-interações">Janelas Atmosféricas e Interações</a></li>
+  </ul></li>
+  <li><a href="#comportamento-espectral-dos-alvos-naturais" id="toc-comportamento-espectral-dos-alvos-naturais" class="nav-link" data-scroll-target="#comportamento-espectral-dos-alvos-naturais">Comportamento Espectral dos Alvos Naturais</a>
+  <ul class="collapse">
+  <li><a href="#água-e-ambientes-aquáticos" id="toc-água-e-ambientes-aquáticos" class="nav-link" data-scroll-target="#água-e-ambientes-aquáticos">Água e Ambientes Aquáticos</a></li>
+  <li><a href="#vegetação-verde-sadia" id="toc-vegetação-verde-sadia" class="nav-link" data-scroll-target="#vegetação-verde-sadia">Vegetação Verde Sadia</a></li>
+  <li><a href="#solos-expostos" id="toc-solos-expostos" class="nav-link" data-scroll-target="#solos-expostos">Solos Expostos</a></li>
+  </ul></li>
+  <li><a href="#plataformas-orbitais-sensores-ópticos-e-sensores-radar" id="toc-plataformas-orbitais-sensores-ópticos-e-sensores-radar" class="nav-link" data-scroll-target="#plataformas-orbitais-sensores-ópticos-e-sensores-radar">Plataformas Orbitais: Sensores Ópticos e Sensores Radar</a>
+  <ul class="collapse">
+  <li><a href="#sensores-ópticos-vs.-radar-de-abertura-sintética-sar" id="toc-sensores-ópticos-vs.-radar-de-abertura-sintética-sar" class="nav-link" data-scroll-target="#sensores-ópticos-vs.-radar-de-abertura-sintética-sar">Sensores Ópticos vs.&nbsp;Radar de Abertura Sintética (SAR)</a></li>
+  </ul></li>
+  <li><a href="#índices-espectrais-aplicados-a-recursos-hídricos" id="toc-índices-espectrais-aplicados-a-recursos-hídricos" class="nav-link" data-scroll-target="#índices-espectrais-aplicados-a-recursos-hídricos">Índices Espectrais Aplicados a Recursos Hídricos</a>
+  <ul class="collapse">
+  <li><a href="#ndvi-normalized-difference-vegetation-index" id="toc-ndvi-normalized-difference-vegetation-index" class="nav-link" data-scroll-target="#ndvi-normalized-difference-vegetation-index">NDVI (<em>Normalized Difference Vegetation Index</em>)</a></li>
+  <li><a href="#ndwi-normalized-difference-water-index" id="toc-ndwi-normalized-difference-water-index" class="nav-link" data-scroll-target="#ndwi-normalized-difference-water-index">NDWI (<em>Normalized Difference Water Index</em>)</a>
+  <ul class="collapse">
+  <li><a href="#formulação-de-mcfeeters-1996" id="toc-formulação-de-mcfeeters-1996" class="nav-link" data-scroll-target="#formulação-de-mcfeeters-1996">Formulação de McFeeters (1996)</a></li>
+  <li><a href="#mndwi-modified-ndwi---xu-2006" id="toc-mndwi-modified-ndwi---xu-2006" class="nav-link" data-scroll-target="#mndwi-modified-ndwi---xu-2006">MNDWI (<em>Modified NDWI</em> - Xu, 2006)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#processamento-digital-de-imagens-pdi-e-classificação-de-uso-do-solo" id="toc-processamento-digital-de-imagens-pdi-e-classificação-de-uso-do-solo" class="nav-link" data-scroll-target="#processamento-digital-de-imagens-pdi-e-classificação-de-uso-do-solo">Processamento Digital de Imagens (PDI) e Classificação de Uso do Solo</a>
+  <ul class="collapse">
+  <li><a href="#classificação-não-supervisionada" id="toc-classificação-não-supervisionada" class="nav-link" data-scroll-target="#classificação-não-supervisionada">Classificação Não-Supervisionada</a></li>
+  <li><a href="#classificação-supervisionada" id="toc-classificação-supervisionada" class="nav-link" data-scroll-target="#classificação-supervisionada">Classificação Supervisionada</a></li>
+  <li><a href="#avaliação-de-exatidão-temática" id="toc-avaliação-de-exatidão-temática" class="nav-link" data-scroll-target="#avaliação-de-exatidão-temática">Avaliação de Exatidão Temática</a></li>
+  </ul></li>
+  <li><a href="#mapeamento-prático-de-uso-e-cobertura-com-o-plugin-scp-qgis" id="toc-mapeamento-prático-de-uso-e-cobertura-com-o-plugin-scp-qgis" class="nav-link" data-scroll-target="#mapeamento-prático-de-uso-e-cobertura-com-o-plugin-scp-qgis">Mapeamento Prático de Uso e Cobertura com o Plugin SCP (QGIS)</a>
+  <ul class="collapse">
+  <li><a href="#fluxo-metodológico-do-scp" id="toc-fluxo-metodológico-do-scp" class="nav-link" data-scroll-target="#fluxo-metodológico-do-scp">Fluxo Metodológico do SCP</a>
+  <ul class="collapse">
+  <li><a href="#boas-práticas-na-coleta-de-rois" id="toc-boas-práticas-na-coleta-de-rois" class="nav-link" data-scroll-target="#boas-práticas-na-coleta-de-rois">Boas Práticas na Coleta de ROIs</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análise-de-conflito-de-uso-da-terra-em-áreas-de-preservação-permanente-apps" id="toc-análise-de-conflito-de-uso-da-terra-em-áreas-de-preservação-permanente-apps" class="nav-link" data-scroll-target="#análise-de-conflito-de-uso-da-terra-em-áreas-de-preservação-permanente-apps">Análise de Conflito de Uso da Terra em Áreas de Preservação Permanente (APPs)</a>
+  <ul class="collapse">
+  <li><a href="#parâmetros-legais-lei-federal-nº-12.6512012---código-florestal" id="toc-parâmetros-legais-lei-federal-nº-12.6512012---código-florestal" class="nav-link" data-scroll-target="#parâmetros-legais-lei-federal-nº-12.6512012---código-florestal">Parâmetros Legais (Lei Federal nº 12.651/2012 - Código Florestal)</a></li>
+  <li><a href="#protocolo-espacial-de-diagnóstico-no-qgis" id="toc-protocolo-espacial-de-diagnóstico-no-qgis" class="nav-link" data-scroll-target="#protocolo-espacial-de-diagnóstico-no-qgis">Protocolo Espacial de Diagnóstico no QGIS</a></li>
+  </ul></li>
+  <li><a href="#questões-de-fixação-e-debate" id="toc-questões-de-fixação-e-debate" class="nav-link" data-scroll-target="#questões-de-fixação-e-debate">Questões de Fixação e Debate</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -219,15 +297,349 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>o Princípios físicos do Sensoriamento Remoto (Espectro Eletromagnético e Comportamento Espectral da Água, Vegetação e Solo).</p>
-<p>o Satélites e Sensores Ópticos e de Radar (Landsat, Sentinel-2, Sentinel-1, CBERS).</p>
-<p>o Índices Espectrais para recursos hídricos: NDWI (Normalized Difference Water Index), NDVI (Normalized Difference Vegetation Index).</p>
-<p>o Introdução ao Processamento Digital de Imagens (PDI): Classificação Supervisionada e Não-Supervisionada de Uso e Ocupação do Solo.</p>
-<p>o Mapeamento de espelhos d’água e variação reservatórios/represas via NDWI.</p>
-<p>o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).</p>
-<p>o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d’água.</p>
+<section id="introdução-ao-módulo" class="level1">
+<h1>Introdução ao Módulo</h1>
+<p>O <strong>Sensoriamento Remoto (SR)</strong> constitui uma das ferramentas mais estratégicas para a gestão e regulação de recursos hídricos. Ao viabilizar a aquisição contínua, multitemporal e sinótica de informações sobre a superfície terrestre sem contato físico direto, o SR permite monitorar a dinâmica de reservatórios, identificar conflitos pelo uso da água, mapear a cobertura vegetal em bacias hidrográficas e auditar a integridade de Áreas de Preservação Permanente (APPs).</p>
+<p>Neste módulo, abordaremos as bases físicas da radiação eletromagnética, a resposta espectral dos principais alvos da paisagem, as características das constelações orbitais mais utilizadas no Brasil, o cálculo de índices biofísicos e os fluxos práticos de Processamento Digital de Imagens (PDI) no <strong>QGIS</strong> com o complemento <strong>SCP (Semi-Automatic Classification Plugin)</strong>.</p>
+</section>
+<section id="princípios-físicos-do-sensoriamento-remoto" class="level1">
+<h1>Princípios Físicos do Sensoriamento Remoto</h1>
+<section id="radiação-eletromagnética-rem-e-leis-da-radiação" class="level2">
+<h2 class="anchored" data-anchor-id="radiação-eletromagnética-rem-e-leis-da-radiação">Radiação Eletromagnética (REM) e Leis da Radiação</h2>
+<p>O sensoriamento remoto passivo baseia-se na detecção da <strong>Radiação Eletromagnética (REM)</strong> originada primariamente pelo Sol, propagada pelo vácuo e pela atmosfera, e refletida ou emitida pelos alvos da superfície terrestre.</p>
+<p>A REM propaga-se na velocidade da luz (<span class="math inline">\(c \approx 3 \times 10^8 \text{ m/s}\)</span>) e sua energia é descrita pela relação de Planck:</p>
+<p><span class="math display">\[
+Q = h \cdot \nu = \frac{h \cdot c}{\lambda}
+\]</span></p>
+<p>Onde: * <span class="math inline">\(Q\)</span>: Energia de um fóton (<span class="math inline">\(\text{J}\)</span>) * <span class="math inline">\(h\)</span>: Constante de Planck (<span class="math inline">\(6{,}626 \times 10^{-34} \text{ J}\cdot\text{s}\)</span>) * <span class="math inline">\(\nu\)</span>: Frequência da onda (<span class="math inline">\(\text{Hz}\)</span>) * <span class="math inline">\(\lambda\)</span>: Comprimento de onda (<span class="math inline">\(\mu\text{m}\)</span> ou <span class="math inline">\(\text{nm}\)</span>)</p>
+<p>Dois princípios fundamentais regem a emissão de radiação térmica por corpos negros:</p>
+<ol type="1">
+<li><p><strong>Lei de Stefan-Boltzmann:</strong> A emitância radiante total (<span class="math inline">\(M\)</span>) é proporcional à quarta potência da temperatura absoluta (<span class="math inline">\(T\)</span>, em Kelvin): <span class="math display">\[
+M = \sigma \cdot T^4 \quad (\sigma \approx 5{,}67 \times 10^{-8} \text{ W}\cdot\text{m}^{-2}\cdot\text{K}^{-4})
+\]</span></p></li>
+<li><p><strong>Lei do Deslocamento de Wien:</strong> O comprimento de onda de máxima emissão (<span class="math inline">\(\lambda_{\max}\)</span>) é inversamente proporcional à temperatura absoluta: <span class="math display">\[
+\lambda_{\max} = \frac{2898}{T} \quad (\mu\text{m}\cdot\text{K})
+\]</span></p>
+<ul>
+<li>Para o Sol (<span class="math inline">\(T \approx 6.000\text{ K}\)</span>), <span class="math inline">\(\lambda_{\max} \approx 0{,}48 \mu\text{m}\)</span> (região do visível).</li>
+<li>Para a Terra (<span class="math inline">\(T \approx 300\text{ K}\)</span>), <span class="math inline">\(\lambda_{\max} \approx 9{,}7 \mu\text{m}\)</span> (infravermelho termal).</li>
+</ul></li>
+</ol>
+<pre><code>                      ESPECTRO ELETROMAGNÉTICO NO SR
++-------------+---------------------+-------------------+-------------------+
+|  UV (&lt;0,4)  |  Visível (0,4-0,7)  |  Infravermelho    | Micro-ondas /     |
+|             |  Azul / Verde /     |  NIR (0,7 - 1,1)  | Radar             |
+|             |  Vermelho           |  SWIR (1,1 - 2,5) | (1 mm a 1 m)      |
+|             |                     |  TIR (8 - 14)     |                   |
++-------------+---------------------+-------------------+-------------------+</code></pre>
+</section>
+<section id="janelas-atmosféricas-e-interações" class="level2">
+<h2 class="anchored" data-anchor-id="janelas-atmosféricas-e-interações">Janelas Atmosféricas e Interações</h2>
+<p>Ao atravessar a atmosfera terrestre, a REM sofre atenuação por <strong>espalhamento</strong> e <strong>absorção</strong> pelos gases constituintes (<span class="math inline">\(O_3\)</span>, <span class="math inline">\(CO_2\)</span>, <span class="math inline">\(H_2O\)</span> vapor):</p>
+<ul>
+<li><strong>Espalhamento Rayleigh:</strong> Ocorre quando o diâmetro das partículas é muito menor que o comprimento de onda (<span class="math inline">\(\propto \lambda^{-4}\)</span>). Provoca a coloração azul do céu e degrada o contraste no canal visível.</li>
+<li><strong>Espalhamento Mie:</strong> Ocorre quando o diâmetro é similar a <span class="math inline">\(\lambda\)</span> (poeira, fumaça, pólen).</li>
+<li><strong>Espalhamento Não-Seletivo:</strong> Ocorre quando o diâmetro das partículas é muito maior que <span class="math inline">\(\lambda\)</span> (gotículas de água em nuvens e nevoeiros, bloqueando uniformemente o visível e o infravermelho).</li>
+<li><strong>Janelas Atmosféricas:</strong> Faixas espectrais em que a absorção gasosa é mínima, viabilizando a observação orbital (ex.: <span class="math inline">\(0{,}4\text{ a }1{,}1 \mu\text{m}\)</span>; <span class="math inline">\(1{,}5\text{ a }1{,}8 \mu\text{m}\)</span>; <span class="math inline">\(2{,}0\text{ a }2{,}4 \mu\text{m}\)</span>; e na janela termal de <span class="math inline">\(8\text{ a }12 \mu\text{m}\)</span>).</li>
+</ul>
+</section>
+</section>
+<section id="comportamento-espectral-dos-alvos-naturais" class="level1">
+<h1>Comportamento Espectral dos Alvos Naturais</h1>
+<p>A reflectância espectral (<span class="math inline">\(\rho_\lambda\)</span>) expressa a razão entre a energia refletida e a energia incidente em um dado comprimento de onda:</p>
+<p><span class="math display">\[
+\rho_\lambda = \frac{\Phi_{\text{refletido}}(\lambda)}{\Phi_{\text{incidente}}(\lambda)} \times 100 \quad [\%]
+\]</span></p>
+<pre><code>Reflectância (%)
+  ^
+60|                          .--. Vegetação Sadia (Pico no NIR)
+  |                         /    \
+40|         Solo Seco      /      '--.
+  |      .----------------'           '--. (Absorção por água no SWIR)
+20|     /
+  |    /  Água Limpa
+  |   .--.______
+ 0+---+---------+------------+------------+--------&gt; Comprimento de Onda
+     0.4 (Azul) 0.7 (Vermelho) 1.1 (NIR)   2.5 (SWIR) (µm)</code></pre>
+<section id="água-e-ambientes-aquáticos" class="level2">
+<h2 class="anchored" data-anchor-id="água-e-ambientes-aquáticos">Água e Ambientes Aquáticos</h2>
+<ul>
+<li><strong>Água Pura e Profunda:</strong> Apresenta reflectância máxima na região do azul-esverdeado (<span class="math inline">\(0{,}45\text{ a }0{,}55 \mu\text{m}\)</span>) e <strong>absorção quase total a partir de <span class="math inline">\(0{,}75 \mu\text{m}\)</span> (NIR e SWIR)</strong>. Por essa razão, corpos d’água límpidos aparecem escuros ou negros em composições coloridas envolvendo bandas de infravermelho.</li>
+<li><strong>Água Turva / Sedimentos em Suspensão:</strong> O aumento de sólidos suspensos inorgânicos desloca o pico de reflectância em direção ao vermelho (<span class="math inline">\(0{,}6\text{ a }0{,}7 \mu\text{m}\)</span>) e ao infravermelho próximo, elevando o albedo geral.</li>
+<li><strong>Florações de Algas / Eutrofização:</strong> A presença de clorofila-<em>a</em> gera um pequeno pico no verde, absorção no vermelho e uma elevação no NIR (comportamento semelhante a um dossel vegetal flutuante).</li>
+</ul>
+</section>
+<section id="vegetação-verde-sadia" class="level2">
+<h2 class="anchored" data-anchor-id="vegetação-verde-sadia">Vegetação Verde Sadia</h2>
+<ul>
+<li><strong>Visível (<span class="math inline">\(0{,}4\text{ a }0{,}7 \mu\text{m}\)</span>):</strong> Forte absorção pelos pigmentos fotossintetizantes (clorofilas <em>a</em> e <em>b</em> no azul e vermelho), gerando um pico relativo no verde (<span class="math inline">\(0{,}55 \mu\text{m}\)</span>).</li>
+<li><strong>Infravermelho Próximo (NIR: <span class="math inline">\(0{,}7\text{ a }1{,}1 \mu\text{m}\)</span>):</strong> Altíssima reflectância (<span class="math inline">\(40\text{ a }60\%\)</span>) decorrente do espalhamento múltiplo da luz no mesofilo foliar esponjoso (<em>red-edge</em> característico).</li>
+<li><strong>Infravermelho de Ondas Curtas (SWIR: <span class="math inline">\(1{,}1\text{ a }2{,}5 \mu\text{m}\)</span>):</strong> Vales de absorção marcados pelo conteúdo de água na folha, centrados em <span class="math inline">\(1{,}45 \mu\text{m}\)</span> e <span class="math inline">\(1{,}95 \mu\text{m}\)</span>.</li>
+</ul>
+</section>
+<section id="solos-expostos" class="level2">
+<h2 class="anchored" data-anchor-id="solos-expostos">Solos Expostos</h2>
+<p>Apresentam curva espectral geralmente ascendente e contínua do visível ao SWIR. A magnitude da curva é influenciada pelo teor de umidade (água reduz a reflectância global), presença de matéria orgânica (curva mais escura e plana) e mineralogia (presença de óxidos de ferro gera feições de absorção diagnósticas no visível e no NIR).</p>
+</section>
+</section>
+<section id="plataformas-orbitais-sensores-ópticos-e-sensores-radar" class="level1">
+<h1>Plataformas Orbitais: Sensores Ópticos e Sensores Radar</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Satélite / Sensor</th>
+<th>Tipo</th>
+<th>Resolução Espacial</th>
+<th>Resolução Temporal</th>
+<th>Bandas Principais de Interesse Hidroambiental</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Sentinel-2 (MSI)</strong></td>
+<td>Óptico multiespectral</td>
+<td>10 m (Vis/NIR), 20 m (Red-Edge/SWIR)</td>
+<td>5 dias (constelação A/B)</td>
+<td>B3 (Verde), B4 (Vermelho), B8 (NIR), B11/B12 (SWIR)</td>
+</tr>
+<tr class="even">
+<td><strong>Landsat-8/9 (OLI/TIRS)</strong></td>
+<td>Óptico multiespectral + Termal</td>
+<td>30 m (Multiespectral), 15 m (Pancromático), 100 m (Termal)</td>
+<td>16 dias (8 dias combinados)</td>
+<td>B3 (Verde), B4 (Vermelho), B5 (NIR), B6/B7 (SWIR), B10 (TIR)</td>
+</tr>
+<tr class="odd">
+<td><strong>CBERS-4A (WPM/MUX)</strong></td>
+<td>Óptico multiespectral</td>
+<td>2 m (Pan), 8 m (Multiespectral WPM); 20 m (MUX)</td>
+<td>31 dias</td>
+<td>B2 (Verde), B3 (Vermelho), B4 (NIR) - Excelente para detalhe de APPs</td>
+</tr>
+<tr class="even">
+<td><strong>Sentinel-1 (C-SAR)</strong></td>
+<td>Radar de Abertura Sintética (SAR, banda C)</td>
+<td>~10 m (modo IW)</td>
+<td>6 a 12 dias</td>
+<td>Polarizações VV e VH; opera através de nuvens e à noite</td>
+</tr>
+</tbody>
+</table>
+<section id="sensores-ópticos-vs.-radar-de-abertura-sintética-sar" class="level2">
+<h2 class="anchored" data-anchor-id="sensores-ópticos-vs.-radar-de-abertura-sintética-sar">Sensores Ópticos vs.&nbsp;Radar de Abertura Sintética (SAR)</h2>
+<p>Enquanto os sensores ópticos dependem da iluminação solar e sofrem obstrução persistente por cobertura de nuvens (um gargalo recorrente em períodos chuvosos no Brasil), os sensores <strong>SAR (ex.: Sentinel-1)</strong> emitem seus próprios pulsos de micro-ondas.</p>
+<p>Sobre superfícies d’água calmas, o feixe de radar sofre <strong>reflexão especular</strong> para longe da antena receptora, registrando coeficiente de retroespalhamento (<span class="math inline">\(\sigma^0\)</span>) extremamente baixo (valores em dB muito negativos, aparecendo como pixels negros). Esse contraste torna o SAR uma ferramenta complementar de alta precisão para delimitar inundações e cheias históricas mesmo sob céu completamente nublado.</p>
+</section>
+</section>
+<section id="índices-espectrais-aplicados-a-recursos-hídricos" class="level1">
+<h1>Índices Espectrais Aplicados a Recursos Hídricos</h1>
+<p>Os índices espectrais baseiam-se em razões de bandas matemáticas desenhadas para realçar o contraste radiométrico entre alvos específicos e atenuar variações de iluminação topográfica e sombras.</p>
+<section id="ndvi-normalized-difference-vegetation-index" class="level2">
+<h2 class="anchored" data-anchor-id="ndvi-normalized-difference-vegetation-index">NDVI (<em>Normalized Difference Vegetation Index</em>)</h2>
+<p>Desenvolvido por Rouse et al.&nbsp;(1973), explora o contraste entre o espalhamento no NIR e a absorção clorofiliana no Vermelho:</p>
+<p><span class="math display">\[
+\text{NDVI} = \frac{\rho_{\text{NIR}} - \rho_{\text{Vermelho}}}{\rho_{\text{NIR}} + \rho_{\text{Vermelho}}}
+\]</span></p>
+<ul>
+<li>Varia no intervalo de <span class="math inline">\([-1, +1]\)</span>.</li>
+<li>Água: Valores negativos (<span class="math inline">\(\text{NDVI} &lt; 0\)</span>).</li>
+<li>Solo exposto e áreas urbanizadas: Próximo de zero (<span class="math inline">\(0{,}0 \text{ a } 0{,}2\)</span>).</li>
+<li>Vegetação rala/pastagem: <span class="math inline">\(0{,}2 \text{ a } 0{,}5\)</span>.</li>
+<li>Florestas densas e matas ciliares preservadas: <span class="math inline">\(\text{NDVI} &gt; 0{,}7\)</span>.</li>
+</ul>
+</section>
+<section id="ndwi-normalized-difference-water-index" class="level2">
+<h2 class="anchored" data-anchor-id="ndwi-normalized-difference-water-index">NDWI (<em>Normalized Difference Water Index</em>)</h2>
+<p>Para detecção de corpos d’água e mapeamento de espelhos d’água, destacam-se duas formulações clássicas:</p>
+<section id="formulação-de-mcfeeters-1996" class="level3">
+<h3 class="anchored" data-anchor-id="formulação-de-mcfeeters-1996">Formulação de McFeeters (1996)</h3>
+<p>Explora o pico de reflectância da água no Verde e a alta absorção no NIR:</p>
+<p><span class="math display">\[
+\text{NDWI}_{\text{McFeeters}} = \frac{\rho_{\text{Verde}} - \rho_{\text{NIR}}}{\rho_{\text{Verde}} + \rho_{\text{NIR}}}
+\]</span></p>
+<ul>
+<li>Valores positivos (<span class="math inline">\(\text{NDWI} &gt; 0\)</span>) delineiam tipicamente corpos hídricos.</li>
+<li>Em áreas urbanas consolidadas, pode ocorrer confusão entre água e construções ou asfalto escuro.</li>
+</ul>
+</section>
+<section id="mndwi-modified-ndwi---xu-2006" class="level3">
+<h3 class="anchored" data-anchor-id="mndwi-modified-ndwi---xu-2006">MNDWI (<em>Modified NDWI</em> - Xu, 2006)</h3>
+<p>Substitui o NIR pelo infravermelho de ondas curtas (SWIR), suprimindo ruídos urbanos e solos úmidos com grande eficácia:</p>
+<p><span class="math display">\[
+\text{MNDWI} = \frac{\rho_{\text{Verde}} - \rho_{\text{SWIR}}}{\rho_{\text{Verde}} + \rho_{\text{SWIR}}}
+\]</span></p>
+<ul>
+<li><strong>Equivalência de bandas:</strong>
+<ul>
+<li><strong>Sentinel-2:</strong> <span class="math inline">\(\frac{\text{B03} - \text{B11}}{\text{B03} + \text{B11}}\)</span></li>
+<li><strong>Landsat 8/9:</strong> <span class="math inline">\(\frac{\text{B03} - \text{B06}}{\text{B03} + \text{B06}}\)</span></li>
+</ul></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="processamento-digital-de-imagens-pdi-e-classificação-de-uso-do-solo" class="level1">
+<h1>Processamento Digital de Imagens (PDI) e Classificação de Uso do Solo</h1>
+<p>A classificação de imagens visa atribuir cada pixel da cena a uma classe temática representativa do meio físico (ex.: Floresta, Pastagem, Agricultura, Área Urbana, Água).</p>
+<pre><code>+-------------------------------------------------------+
+|              Técnicas de Classificação                |
++---------------------------+---------------------------+
+                            |
+         +------------------+------------------+
+         |                                     |
+   Não-Supervisionada                    Supervisionada
+(Agrupamento estatístico)           (Amostras de treinamento/ROIs)
+         |                                     |
+    K-Means / ISODATA                Máxima Verossimilhança (MaxVer)
+                                     Random Forest (RF)
+                                     Support Vector Machines (SVM)</code></pre>
+<section id="classificação-não-supervisionada" class="level2">
+<h2 class="anchored" data-anchor-id="classificação-não-supervisionada">Classificação Não-Supervisionada</h2>
+<p>O algoritmo agrupa pixels no espaço de atributos espectrais com base em medidas de similaridade euclidiana (como <span class="math inline">\(k\)</span>-médias), sem intervenção prévia do analista. O intérprete analisa os <em>clusters</em> resultantes e atribui os significados ambientais <em>a posteriori</em>.</p>
+</section>
+<section id="classificação-supervisionada" class="level2">
+<h2 class="anchored" data-anchor-id="classificação-supervisionada">Classificação Supervisionada</h2>
+<p>O analista define previamente amostras de treinamento representativas (<em>Regions of Interest</em> - ROIs) para cada classe temática. O algoritmo aprende a assinatura espectral dessas amostras e classifica o restante da imagem.</p>
+<ul>
+<li><strong>Máxima Verossimilhança (<em>MaxVer</em> / <em>Maximum Likelihood</em>):</strong> Algoritmo paramétrico clássico fundamentado no Teorema de Bayes; assume distribuição normal multivariada das classes espectrais.</li>
+<li><strong>Random Forest (RF):</strong> Modelo não-paramétrico de aprendizado de máquina (<em>ensemble</em> de árvores de decisão). Robusto a ruídos e dados colineares, sendo o estado da arte na maioria das plataformas ambientais modernas (como MapBiomas).</li>
+</ul>
+</section>
+<section id="avaliação-de-exatidão-temática" class="level2">
+<h2 class="anchored" data-anchor-id="avaliação-de-exatidão-temática">Avaliação de Exatidão Temática</h2>
+<p>A validação estatística do mapa gerado é indispensável e deve ser conduzida contra pontos de controle de campo ou imagens de alta resolução espacial não utilizados no treinamento:</p>
+<ul>
+<li><strong>Matriz de Confusão (Matriz de Erros)</strong></li>
+<li><strong>Exatidão Global (<em>Overall Accuracy</em>):</strong> Proporção total de pixels classificados corretamente.</li>
+<li><strong>Coeficiente Kappa (<span class="math inline">\(\hat{K}\)</span>):</strong> Mede o grau de concordância descontando a concordância que ocorreria puramente por acaso: <span class="math display">\[
+\hat{K} = \frac{N \sum_{i=1}^r x_{ii} - \sum_{i=1}^r (x_{i+} \cdot x_{+i})}{N^2 - \sum_{i=1}^r (x_{i+} \cdot x_{+i})}
+\]</span></li>
+</ul>
+</section>
+</section>
+<section id="mapeamento-prático-de-uso-e-cobertura-com-o-plugin-scp-qgis" class="level1">
+<h1>Mapeamento Prático de Uso e Cobertura com o Plugin SCP (QGIS)</h1>
+<p>O <strong>Semi-Automatic Classification Plugin (SCP)</strong>, desenvolvido por Luca Congedo, é a suíte de código aberto mais completa para PDI e classificação de imagens orbitais integrada ao QGIS.</p>
+<section id="fluxo-metodológico-do-scp" class="level2">
+<h2 class="anchored" data-anchor-id="fluxo-metodológico-do-scp">Fluxo Metodológico do SCP</h2>
+<pre><code>[ Download / Importação de Bandas ]
+                │
+                ▼
+[ Pré-processamento: Correção Atmosférica DOS1 / TOA -&gt; BOA ]
+                │
+                ▼
+[ Criação do Band Set e Definição de Metadados ]
+                │
+                ▼
+[ Coleta de ROIs: Classes Macro (MC ID) e Micro (C ID) ]
+                │
+                ▼
+[ Avaliação da Separabilidade Espectral das Assinaturas ]
+                │
+                ▼
+[ Execução do Algoritmo (Random Forest, MaxVer ou Spectral Angle Mapping) ]
+                │
+                ▼
+[ Pós-processamento: Filtro de Moda (Limpeza de Ruído Sal-e-Pimenta) ]</code></pre>
+<section id="boas-práticas-na-coleta-de-rois" class="level3">
+<h3 class="anchored" data-anchor-id="boas-práticas-na-coleta-de-rois">Boas Práticas na Coleta de ROIs</h3>
+<ol type="1">
+<li>Distribuir as amostras uniformemente ao longo de toda a cena, e não concentradas em um único quadrante.</li>
+<li>Evitar bordas de transição entre alvos para impedir assinaturas de “pixels mistos”.</li>
+<li>Utilizar o gráfico de assinaturas espectrais do SCP para inspecionar a separabilidade entre classes espectralmente próximas (como pastagem degradada e solo exposto).</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="análise-de-conflito-de-uso-da-terra-em-áreas-de-preservação-permanente-apps" class="level1">
+<h1>Análise de Conflito de Uso da Terra em Áreas de Preservação Permanente (APPs)</h1>
+<p>As Áreas de Preservação Permanente hídricas desempenham papel central na conservação de recursos hídricos, amortecimento de cheias, recarga de aquíferos e contenção de processos erosivos e assoreamento.</p>
+<section id="parâmetros-legais-lei-federal-nº-12.6512012---código-florestal" class="level2">
+<h2 class="anchored" data-anchor-id="parâmetros-legais-lei-federal-nº-12.6512012---código-florestal">Parâmetros Legais (Lei Federal nº 12.651/2012 - Código Florestal)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feição Hidrográfica</th>
+<th>Largura Mínima da Faixa Marginal de APP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cursos d’água com largura <span class="math inline">\(&lt; 10\text{ m}\)</span></td>
+<td><strong>30 metros</strong></td>
+</tr>
+<tr class="even">
+<td>Cursos d’água de <span class="math inline">\(10\text{ a }50\text{ m}\)</span></td>
+<td><strong>50 metros</strong></td>
+</tr>
+<tr class="odd">
+<td>Cursos d’água de <span class="math inline">\(50\text{ a }200\text{ m}\)</span></td>
+<td><strong>100 metros</strong></td>
+</tr>
+<tr class="even">
+<td>Cursos d’água de <span class="math inline">\(200\text{ a }600\text{ m}\)</span></td>
+<td><strong>200 metros</strong></td>
+</tr>
+<tr class="odd">
+<td>Cursos d’água com largura <span class="math inline">\(&gt; 600\text{ m}\)</span></td>
+<td><strong>500 metros</strong></td>
+</tr>
+<tr class="even">
+<td>Nascentes e olhos d’água perenes</td>
+<td><strong>Raio de 50 metros</strong></td>
+</tr>
+<tr class="odd">
+<td>Lagos e lagoas naturais em área rural (<span class="math inline">\(&gt; 20\text{ ha}\)</span>)</td>
+<td><strong>100 metros</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="protocolo-espacial-de-diagnóstico-no-qgis" class="level2">
+<h2 class="anchored" data-anchor-id="protocolo-espacial-de-diagnóstico-no-qgis">Protocolo Espacial de Diagnóstico no QGIS</h2>
+<p>A identificação de passivos ambientais em APPs hídricas segue o cruzamento vetorial e matricial (<em>overlay</em>):</p>
+<pre><code>       Drenagem Vetorial (Rios / Nascentes)
+                        │
+                        ▼
+       [ Buffer Normativo (30m, 50m, etc.) ]
+                        │
+                        ▼
+               Polígono de APP Legal
+                        │
+                        ├─── Interseção Espacial / Clip
+                        ▼
+       Raster de Uso e Cobertura da Terra (SCP)
+                        │
+                        ▼
+   [ Classificação de Conflito em Tabela Cruzada ]
+         ├── Vegetação Nativa  -&gt; APP Preservada
+         ├── Pastagem / Café   -&gt; Uso Consolidado / Conflito
+         └── Solo Exposto / Urb-&gt; Alto Risco Erosivo / Degradação</code></pre>
+<p>O diagnóstico resultante fornece a base quantitativa (em hectares e percentual) para subsidiar <strong>Planos de Recuperação de Áreas Degradadas (PRAD)</strong>, Termos de Ajustamento de Conduta (TAC) emitidos por órgãos reguladores ou comitês de bacia, e priorização de ações do Plano Diretor de Recursos Hídricos.</p>
+</section>
+</section>
+<section id="questões-de-fixação-e-debate" class="level1">
+<h1>Questões de Fixação e Debate</h1>
+<ol type="1">
+<li>Por que corpos d’água limpos e profundos apresentam valores de reflectância próximos de zero no infravermelho próximo e médio, enquanto a vegetação verde exibe um pico acentuado no NIR?</li>
+<li>Em que circunstâncias práticas de gestão hidroambiental a aplicação do índice <strong>MNDWI</strong> (Xu, 2006) é tecnicamente preferível ao <strong>NDWI</strong> original (McFeeters, 1996)?</li>
+<li>Durante uma cheia severa de verão em uma bacia hidrográfica do Semiárido ou Sudeste brasileiro com cobertura de nuvens contínua por duas semanas, qual estratégia de sensoriamento remoto você recomendaria à agência reguladora e à defesa civil para delimitar o avanço da inundação? Justifique sua resposta com base nas propriedades dos sensores orbitais.</li>
+<li>Explique como a presença de pixels mistos (<em>mixels</em>) nas margens dos corpos hídricos afeta o cálculo do balanço hídrico superficial e quais cuidados metodológicos devem ser tomados na fase de treinamento do algoritmo supervisionado.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

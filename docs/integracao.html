@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -188,8 +217,35 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#apresentação-do-módulo-de-conclusão" id="toc-apresentação-do-módulo-de-conclusão" class="nav-link active" data-scroll-target="#apresentação-do-módulo-de-conclusão">Apresentação do Módulo de Conclusão</a></li>
+  <li><a href="#geoprocessamento-e-sistemas-de-apoio-à-decisão-sad" id="toc-geoprocessamento-e-sistemas-de-apoio-à-decisão-sad" class="nav-link" data-scroll-target="#geoprocessamento-e-sistemas-de-apoio-à-decisão-sad">Geoprocessamento e Sistemas de Apoio à Decisão (SAD)</a>
+  <ul class="collapse">
+  <li><a href="#aplicações-estratégicas-na-regulação-hídrica" id="toc-aplicações-estratégicas-na-regulação-hídrica" class="nav-link" data-scroll-target="#aplicações-estratégicas-na-regulação-hídrica">Aplicações Estratégicas na Regulação Hídrica</a></li>
+  </ul></li>
+  <li><a href="#cartografia-temática-e-layouts-profissionais-no-qgis" id="toc-cartografia-temática-e-layouts-profissionais-no-qgis" class="nav-link" data-scroll-target="#cartografia-temática-e-layouts-profissionais-no-qgis">Cartografia Temática e Layouts Profissionais no QGIS</a>
+  <ul class="collapse">
+  <li><a href="#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt" id="toc-elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt" class="nav-link" data-scroll-target="#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt">Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)</a></li>
+  <li><a href="#o-compositor-de-impressão-do-qgis-print-layout" id="toc-o-compositor-de-impressão-do-qgis-print-layout" class="nav-link" data-scroll-target="#o-compositor-de-impressão-do-qgis-print-layout">O Compositor de Impressão do QGIS (<em>Print Layout</em>)</a></li>
+  </ul></li>
+  <li><a href="#disseminação-webgis-dashboards-e-dados-abertos" id="toc-disseminação-webgis-dashboards-e-dados-abertos" class="nav-link" data-scroll-target="#disseminação-webgis-dashboards-e-dados-abertos">Disseminação WebGIS, Dashboards e Dados Abertos</a>
+  <ul class="collapse">
+  <li><a href="#formatos-de-intercâmbio-de-dados-vetoriais" id="toc-formatos-de-intercâmbio-de-dados-vetoriais" class="nav-link" data-scroll-target="#formatos-de-intercâmbio-de-dados-vetoriais">Formatos de Intercâmbio de Dados Vetoriais</a></li>
+  <li><a href="#plataformas-ágeis-de-publicação-webgis" id="toc-plataformas-ágeis-de-publicação-webgis" class="nav-link" data-scroll-target="#plataformas-ágeis-de-publicação-webgis">Plataformas Ágeis de Publicação WebGIS</a></li>
+  </ul></li>
+  <li><a href="#estruturação-do-trabalho-final-da-disciplina" id="toc-estruturação-do-trabalho-final-da-disciplina" class="nav-link" data-scroll-target="#estruturação-do-trabalho-final-da-disciplina">Estruturação do Trabalho Final da Disciplina</a>
+  <ul class="collapse">
+  <li><a href="#roteiro-metodológico-recomendado" id="toc-roteiro-metodológico-recomendado" class="nav-link" data-scroll-target="#roteiro-metodológico-recomendado">Roteiro Metodológico Recomendado</a></li>
+  <li><a href="#estrutura-do-seminário-técnico-de-quinta-feira" id="toc-estrutura-do-seminário-técnico-de-quinta-feira" class="nav-link" data-scroll-target="#estrutura-do-seminário-técnico-de-quinta-feira">Estrutura do Seminário Técnico de Quinta-feira</a></li>
+  </ul></li>
+  <li><a href="#matriz-de-avaliação-dos-projetos-finais-rubrica" id="toc-matriz-de-avaliação-dos-projetos-finais-rubrica" class="nav-link" data-scroll-target="#matriz-de-avaliação-dos-projetos-finais-rubrica">Matriz de Avaliação dos Projetos Finais (Rubrica)</a></li>
+  <li><a href="#leituras-e-recursos-de-apoio" id="toc-leituras-e-recursos-de-apoio" class="nav-link" data-scroll-target="#leituras-e-recursos-de-apoio">Leituras e Recursos de Apoio</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -218,12 +274,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>o Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.</p>
-<p>o Elaboração de mapas temáticos profissionais e Layout de Impressão no QGIS.</p>
-<p>o Introdução ao WebGIS, dashboards espaciais e publicação de dados (QGIS Cloud, Felt ou exportação para GeoJSON/KML para tomada de decisão).</p>
-<p>o Trabalho orientador final em sala: Suporte aos alunos no desenvolvimento do Estudo de Caso / Mini-Projeto Aplicado.</p>
+<section id="apresentação-do-módulo-de-conclusão" class="level1">
+<h1>Apresentação do Módulo de Conclusão</h1>
+<p>Chegamos ao <strong>Módulo 5</strong>, momento de síntese e consolidação das competências desenvolvidas ao longo de toda a disciplina. Após dominarmos os conceitos de cartografia, bacias hidrográficas em modelos digitais de elevação, sensoriamento remoto multiespectral e análise espacial multi-critério, o foco migra para o elo decisivo: <strong>a comunicação técnica eficiente e a tomada de decisão gerencial</strong>.</p>
+<p>No contexto do mestrado profissional e da atuação prática em órgãos gestores (ANA, órgãos estaduais), comitês de bacia hidrográfica (CBHs), concessionárias de saneamento e consultorias ambientais, o dado geoespacial só ganha valor pleno quando traduzido em instrumentos inteligíveis: mapas temáticos normatizados, plataformas WebGIS acessíveis e painéis de indicadores integrados.</p>
+<p>A organização deste módulo compreende:</p>
+<ul>
+<li><strong>Terça-feira (4,5h) – Comunicação de Dados, WebGIS e Indicadores:</strong>
+<ul>
+<li>Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.</li>
+<li>Cartografia Temática Profissional e Composição de Layouts no QGIS.</li>
+<li>Disseminação via WebGIS, Dashboards e Formatos de Intercâmbio (GeoJSON, KML, QGIS Cloud, Felt).</li>
+<li>Oficina de Mentoria e Apoio Direto aos Mini-Projetos Aplicados dos mestrandos.</li>
+</ul></li>
+<li><strong>Quinta-feira (4,5h) – Apresentação dos Projetos Aplicados e Encerramento:</strong>
+<ul>
+<li>Apresentação dos seminários técnicos individuais ou em duplas focados em problemas hidroambientais reais.</li>
+<li>Roda de discussão, avaliação por rubrica técnica e fechamento do semestre.</li>
+</ul></li>
+</ul>
+</section>
+<section id="geoprocessamento-e-sistemas-de-apoio-à-decisão-sad" class="level1">
+<h1>Geoprocessamento e Sistemas de Apoio à Decisão (SAD)</h1>
+<p>Um <strong>Sistema de Apoio à Decisão Espacial (SADE / SDSS)</strong> combina recursos analíticos de SIG, modelos matemáticos e bases alfanuméricas com o propósito de orientar decisões em cenários semiestruturados ou não estruturados.</p>
+<pre><code>       DADOS PRIMÁRIOS E SENSORES
+(Fluviometria, Satélites, Cadastro de Outorgas, Redes)
+                     │
+                     ▼
+       PLATAFORMA GEOESPACIAL (SIG / BDG)
+ (Topologia, Álgebra de Mapas, Análise Espacial)
+                     │
+                     ▼
+          MODELAGEM E INDICADORES
+(Índice de Escassez Hídrica, Balanço Qoutorga / Q95)
+                     │
+                     ▼
+          SISTEMA DE DECISÃO (SAD)
+(Comitês de Bacia, Agências Reguladoras, Defesa Civil)</code></pre>
+<section id="aplicações-estratégicas-na-regulação-hídrica" class="level2">
+<h2 class="anchored" data-anchor-id="aplicações-estratégicas-na-regulação-hídrica">Aplicações Estratégicas na Regulação Hídrica</h2>
+<p>O uso integrado do SIG subsidia diretamente instrumentos da Política Nacional de Recursos Hídricos (Lei Federal nº 9.433/1997):</p>
+<ol type="1">
+<li><strong>Outorga de Direito de Uso dos Recursos Hídricos:</strong>
+<ul>
+<li>Cálculo automatizado do balanço hídrico espacial: relação entre a soma das vazões outorgadas a montante (<span class="math inline">\(\sum Q_{\text{outorgada}}\)</span>) e a vazão de referência mínima da bacia (ex.: <span class="math inline">\(Q_{7,10}\)</span> ou <span class="math inline">\(Q_{95}\)</span>):</li>
+</ul></li>
+</ol>
+<p><span class="math display">\[
+I_{\text{comprometimento}} = \frac{\sum_{i=1}^n Q_{\text{outorgada}, i}}{Q_{\text{referência}}} \times 100 \quad [\%]
+\]</span></p>
+<ul>
+<li>Identificação de trechos fluviais sob estresse hídrico crítico (<span class="math inline">\(I &gt; 70\%\)</span>).</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Cobrança pelo Uso da Água e Enquadramento:</strong>
+<ul>
+<li>Espacialização de cargas poluidoras lançadas e outorgadas (DBO, fósforo total, nitrogênio) em relação à capacidade de autodepuração do corpo receptor.</li>
+</ul></li>
+<li><strong>Segurança de Barragens e Contingência:</strong>
+<ul>
+<li>Manchas de inundação derivadas de simulações de rompimento (<em>dam break</em>) integradas a cadastros urbanos para definição de Zonas de Auto Salvamento (ZAS).</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="cartografia-temática-e-layouts-profissionais-no-qgis" class="level1">
+<h1>Cartografia Temática e Layouts Profissionais no QGIS</h1>
+<p>A representação cartográfica deve assegurar precisão técnica, conformidade com as normas cartográficas e clareza para tomadores de decisão que nem sempre são especialistas em SIG.</p>
+<section id="elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt" class="level2">
+<h2 class="anchored" data-anchor-id="elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt">Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)</h2>
+<p>Todo mapa gerado para fins de regulação, licenciamento ou plano de bacia deve contemplar:</p>
+<ul>
+<li><strong>Título Claro e Objetivo:</strong> Deve responder <em>O quê?</em>, <em>Onde?</em> e <em>Quando?</em> (ex.: “Balanço de Disponibilidade Hídrica na Sub-bacia do Rio das Velhas - 2026”).</li>
+<li><strong>Projeção e Datum:</strong> Indicação explícita do Sistema de Referência Geocêntrico (ex.: SIRGAS 2000, Projeção UTM Fuso 24S, EPSG: 31984).</li>
+<li><strong>Escala Gráfica e Numérica:</strong> A escala gráfica é indispensável, pois permanece válida mesmo quando o mapa é redimensionado em relatórios digitais.</li>
+<li><strong>Orientação do Norte Geográfico:</strong> Símbolo discreto e posicionado sem obstruir feições relevantes.</li>
+<li><strong>Legenda Estruturada:</strong> Hierarquizada, com nomes descritivos em português (evitando códigos brutos de atributos como <code>cod_trech_hidro</code>).</li>
+<li><strong>Metadados e Créditos:</strong> Fontes primárias de dados (ex.: ANA, IBGE, INPE, CPRM), autor do mapa e data de elaboração.</li>
+<li><strong>Grade de Coordenadas:</strong> Reticulado com coordenadas em metros (UTM) ou graus decimais/GMS nas margens.</li>
+</ul>
+</section>
+<section id="o-compositor-de-impressão-do-qgis-print-layout" class="level2">
+<h2 class="anchored" data-anchor-id="o-compositor-de-impressão-do-qgis-print-layout">O Compositor de Impressão do QGIS (<em>Print Layout</em>)</h2>
+<p>Recursos avançados para produção profissional:</p>
+<ul>
+<li><strong>Mapas de Inserção (<em>Overview / Inset Maps</em>):</strong> Janela secundária em escala menor indicando a localização da área de estudo no contexto estadual ou nacional.</li>
+<li><strong>Geração Automatizada com Atlas:</strong> Ferramenta que itera sobre feições de uma camada de cobertura (ex.: cada município da bacia ou cada estação de tratamento) e exporta automaticamente dezenas de pranchas PDF padronizadas com filtros dinâmicos de legenda e escala.</li>
+<li><strong>Expressões Dinâmicas:</strong> Uso de campos calculados no rodapé (ex.: <code>[% @project_title %]</code>, <code>[% format_date(now(), 'dd/MM/yyyy') %]</code>).</li>
+</ul>
+</section>
+</section>
+<section id="disseminação-webgis-dashboards-e-dados-abertos" class="level1">
+<h1>Disseminação WebGIS, Dashboards e Dados Abertos</h1>
+<p>A evolução das geotecnologias descentralizou o consumo de mapas. Gestores municipais, promotores de justiça ambiental e a sociedade civil demandam interfaces acessíveis via navegador web ou dispositivos móveis, dispensando a instalação de softwares de desktop.</p>
+<pre><code>+-------------------------------------------------------------+
+|                 ECOSSISTEMA DE DISSEMINAÇÃO                 |
++------------------------------+------------------------------+
+                               |
+         +---------------------+---------------------+
+         |                                           |
+   WebGIS em Nuvem                             Formatos Abertos
+(Visualização interativa)                   (Intercâmbio e consumo)
+         |                                           |
+  QGIS Cloud / Felt /                         GeoJSON / Shapefile /
+  Geoserver / Leaflet                         GeoPackage / KML</code></pre>
+<section id="formatos-de-intercâmbio-de-dados-vetoriais" class="level2">
+<h2 class="anchored" data-anchor-id="formatos-de-intercâmbio-de-dados-vetoriais">Formatos de Intercâmbio de Dados Vetoriais</h2>
+<ul>
+<li><strong>GeoPackage (<code>.gpkg</code>):</strong> Padrão aberto da OGC baseado em SQLite. Substitui o formato legado Shapefile (<code>.shp</code>), superando limitações de tamanho (máximo de 2 GB do SHP), truncamento de nomes de campos a 10 caracteres e ausência de suporte nativo a múltiplos tipos de geometria em um único arquivo.</li>
+<li><strong>GeoJSON (<code>.geojson</code>):</strong> Formato leve baseado em notação JSON para dados vetoriais, padrão da web moderna e amplamente suportado por bibliotecas como Leaflet, OpenLayers e Mapbox.</li>
+<li><strong>KML/KMZ (<code>.kml</code> / <code>.kmz</code>):</strong> Estrutura em XML para visualização rápida no Google Earth, indispensável para vistorias visuais preliminares e alinhamento com equipes de campo.</li>
+</ul>
+</section>
+<section id="plataformas-ágeis-de-publicação-webgis" class="level2">
+<h2 class="anchored" data-anchor-id="plataformas-ágeis-de-publicação-webgis">Plataformas Ágeis de Publicação WebGIS</h2>
+<ol type="1">
+<li><strong>QGIS Cloud:</strong>
+<ul>
+<li>Plugin integrado ao QGIS Desktop que publica o projeto completo (camadas, simbologia e rotulagem) para um banco de dados PostgreSQL/PostGIS hospedado na nuvem, gerando um mapa Web OGC (WMS/WFS) e interface interativa via navegador.</li>
+</ul></li>
+<li><strong>Felt (felt.com):</strong>
+<ul>
+<li>Plataforma moderna de mapeamento colaborativo em nuvem. Permite arrastar arquivos <code>.gpkg</code>, <code>.geojson</code>, <code>.tif</code> ou projetos inteiros do QGIS (via complemento oficial), oferecendo ferramentas intuitivas de anotação vetorial, medição de áreas e compartilhamento por link seguro com comitês e gestores.</li>
+</ul></li>
+<li><strong>Dashboards Espaciais:</strong>
+<ul>
+<li>Painéis analíticos que sincronizam mapas a gráficos de barras, histogramas de vazão e medidores de cumprimento de metas do marco legal de saneamento.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="estruturação-do-trabalho-final-da-disciplina" class="level1">
+<h1>Estruturação do Trabalho Final da Disciplina</h1>
+<p>O Mini-Projeto Aplicado da disciplina foi concebido para aproximar as técnicas aprendidas aos temas de pesquisa do mestrando ou a demandas técnicas reais de suas instituições de origem.</p>
+<section id="roteiro-metodológico-recomendado" class="level2">
+<h2 class="anchored" data-anchor-id="roteiro-metodológico-recomendado">Roteiro Metodológico Recomendado</h2>
+<p>O projeto final deve integrar as etapas percorridas durante as 5 semanas da disciplina:</p>
+<pre><code>[ 1. Caracterização Morfométrica ]
+Delimitação MDE + Declividade + Drenagem
+              │
+              ▼
+[ 2. Cobertura da Terra e Conflitos ]
+Classificação SCP / MapBiomas + APP Hídrica
+              │
+              ▼
+[ 3. Análise Espacial e Decisão ]
+Interpolação de Qualidade/Chuva OU Matriz AHP (Adequabilidade)
+              │
+              ▼
+[ 4. Comunicação Técnica e Gestão ]
+Prancha A3 Normatizada + Publicação WebGIS / GeoPackage</code></pre>
+</section>
+<section id="estrutura-do-seminário-técnico-de-quinta-feira" class="level2">
+<h2 class="anchored" data-anchor-id="estrutura-do-seminário-técnico-de-quinta-feira">Estrutura do Seminário Técnico de Quinta-feira</h2>
+<p>Cada apresentação terá duração máxima de <strong>15 minutos</strong>, seguida de <strong>5 minutos</strong> de comentários e arguição pela banca:</p>
+<ol type="1">
+<li><strong>Contextualização e Problema:</strong> Apresentação da bacia hidrográfica ou município, contexto regulatório ou conflito ambiental identificado (2 a 3 min).</li>
+<li><strong>Base de Dados e Metodologia:</strong> Dados primários e secundários utilizados (estações, imagens orbitais, MDE) e fluxo no QGIS (3 a 4 min).</li>
+<li><strong>Resultados Espaciais e Discussão:</strong> Mapas temáticos, matriz de confusão/validação ou modelo de adequabilidade obtido (5 a 6 min).</li>
+<li><strong>Implicações para a Gestão/Regulação:</strong> Como os produtos geoespaciais apoiam a tomada de decisão prática da instituição ou comitê (2 a 3 min).</li>
+<li><strong>Demonstração WebGIS / Layout:</strong> Breve exibição do mapa interativo ou da prancha final elaborada (1 a 2 min).</li>
+</ol>
+</section>
+</section>
+<section id="matriz-de-avaliação-dos-projetos-finais-rubrica" class="level1">
+<h1>Matriz de Avaliação dos Projetos Finais (Rubrica)</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dimensão de Avaliação</th>
+<th style="text-align: left;">Critérios de Excelência</th>
+<th style="text-align: left;">Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Rigência Cartográfica</strong></td>
+<td style="text-align: left;">Aderência aos elementos formais (escala gráfica, SRC, grade, hierarquia visual da legenda e ausência de sobreposições).</td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Consistência Metodológica</strong></td>
+<td style="text-align: left;">Correção nas etapas de geoprocessamento (reprojeções, interpolações com parâmetros explicados, matriz AHP consistente).</td>
+<td style="text-align: left;">30%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Aderência aos Recursos Hídricos / Saneamento</strong></td>
+<td style="text-align: left;">Relevância da aplicação para os instrumentos da Política de Recursos Hídricos (Lei 9.433/97) ou Saneamento (Lei 14.026/20).</td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Comunicação e Disseminação</strong></td>
+<td style="text-align: left;">Clareza da apresentação oral, síntese visual dos mapas e facilidade de navegação no produto WebGIS.</td>
+<td style="text-align: left;">20%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="leituras-e-recursos-de-apoio" class="level1">
+<h1>Leituras e Recursos de Apoio</h1>
+<ol type="1">
+<li><strong>MENKE, K.; SMITH, R.; PIRELLI, L.; VAN HOESEN, J.</strong> <em>Mastering QGIS</em>. 2nd ed.&nbsp;Packt Publishing, 2016 (Capítulo sobre Cartografia Avançada e Atlas de Impressão).</li>
+<li><strong>VAN DER KWAST, H.; MENKE, K.</strong> <em>QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management</em>. Locate Press, 2019.</li>
+<li><strong>ANA - AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO.</strong> <em>Manual de Procedimentos Técnicos e Administrativos de Outorga de Direito de Uso de Recursos Hídricos</em>. Brasília: ANA, 2021.</li>
+<li><strong>IBGE.</strong> <em>Normas de Apresentação Cartográfica da Cartografia Sistemática Nacional</em>. Diretoria de Geociências, Rio de Janeiro.</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

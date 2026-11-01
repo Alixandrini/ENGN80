@@ -5,14 +5,262 @@ description: "Análise Espacial Avançada, Modelagem e Aplicação no Saneamento
 image: images/logo_labfsr.png
 ---
 
-o Ferramentas analíticas e operações de proximidade (Buffer, Overlay, Interseção, Junção Espacial).
+# Apresentação do Módulo
 
-o Interpolação Espacial (IDW, Krigagem): Aplicação para mapeamento de precipitação/qualidade da água a partir de pontos de amostragem.
+Sejam bem-vindos ao **Módulo 4** da nossa disciplina! Após termos explorado a estrutura de dados matriciais, modelos digitais de elevação (MDE) e o sensoriamento remoto com classificação de uso da terra nos módulos anteriores, avançamos agora para a **análise espacial analítica e modelagem de decisão**.
 
-o Aplicações do SIG no Saneamento Básico: Mapeamento de redes de água e esgoto, universalização dos serviços, gestão de perdas e localização de áreas para instalação de infraestruturas (ETEs, aterros sanitários).
+Neste módulo, nosso foco se divide em dois pilares complementares:
 
-o Mapeamento de espelhos d'água e variação reservatórios/represas via NDWI.
+1. **Terça-feira (Teoria e Fundamentos):** Operações geométricas e analíticas avançadas em SIG, formulação matemática de interpolações espaciais contínuas (IDW e Krigagem) e o panorama da aplicação geoespacial no Saneamento Básico (perdas, universalização e infraestrutura).
+2. **Quinta-feira (Prática Hands-on no QGIS):** Da amostragem pontual à modelagem de decisão multi-critério (AHP / Combinação Linear Ponderada) para alocação locacional de infraestruturas hidroambientais (ETEs / Aterros Sanitários).
 
-o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).
 
-o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d'água.
+# Fundamentos Teóricos: Operações Analíticas Espaciais
+
+A análise espacial consiste na aplicação de operadores matemáticos, lógicos e topológicos a dados referenciados geograficamente, visando derivar novas informações a partir de relações de adjacência, proximidade, inclusão e sobreposição.
+
+## Operações Geométricas e de Proximidade
+
+### Zonas de Amortecimento (*Buffers*)
+O operador de *Buffer* delimita uma área circunscrita a uma distância euclidiana $d$ em torno de um elemento geométrico (ponto, linha ou polígono):
+
+$$B(A, d) = \{ x \in \mathbb{R}^2 \mid \exists y \in A, \, \|x - y\| \le d \}$$
+
+* **Aplicação no Saneamento e Recursos Hídricos:** 
+  * Delimitação automática de Áreas de Preservação Permanente (APPs) marginais de cursos d'água conforme Lei Federal 12.651/2012 (faixas de 30 m, 50 m, 100 m, etc.).
+  * Faixas de servidão e não-edificação ao longo de adutoras, emissários e canais de drenagem.
+  * Zonas de proteção sanitária em poços tubulares profundos de captação de água subterrânea.
+
+### Operações Topológicas de Sobreposição (*Overlay*)
+As operações de sobreposição integram geometrias e tabelas de atributos de duas ou mais camadas de entrada:
+
+* **Interseção (*Intersect*):** Retorna apenas a porção geométrica comum entre duas camadas, unindo seus atributos alfanuméricos. Essencial para identificar onde trechos de rede de esgoto cruzam zonas de risco geológico ou áreas ambientalmente protegidas.
+* **União (*Union*):** Combina a abrangência total de polígonos sobrepostos, segmentando-os em novas feições poligonais com a fusão de atributos.
+* **Diferença / Corte (*Clip* e *Difference*):** O *Clip* atua como um "cortador de biscoitos", restringindo os dados de uma camada vetorial à fronteira administrativa ou hidrográfica de interesse.
+
+### Junção Espacial (*Spatial Join*)
+Diferente da junção relacional clássica baseada em chaves primárias e estrangeiras (`ID`), a junção espacial transfere atributos com base no relacionamento topológico espacial entre feições:
+* *Contém / Está contido* (`Contains` / `Within`)
+* *Intercepta* (`Intersects`)
+* *Mais próximo* (`Nearest`)
+
+**Exemplo Prático:** Associar a cada imóvel cadastrado no município o ID do setor censitário e a bacia de esgotamento na qual ele está geometricamente contido, calculando o déficit de cobertura domiciliar.
+
+
+# Interpolação Espacial: Da Amostragem Pontual à Superfície Contínua
+
+Em hidrologia e engenharia sanitária, grandezas ambientais como **precipitação pluvial**, **vazão**, **concentração de oxigênio dissolvido (OD)**, **demanda bioquímica de oxigênio (DBO)** e **turbidez** são monitoradas por amostragem pontual discreta (postos pluviométricos, réguas fluviométricas e pontos de coleta da rede de monitoramento de qualidade).
+
+Para converter pontos discretos em uma superfície contínua $Z(x, y)$, empregamos métodos de interpolação determinísticos ou geoestatísticos.
+
+```
++-------------------------------------------------------+
+|                 Métodos de Interpolação               |
++---------------------------+---------------------------+
+                            |
+         +------------------+------------------+
+         |                                     |
+   Determinísticos                       Geoestatísticos
+(Ex: Vizinho Mais Próximo,                 (Ex: Krigagem)
+ IDW, Splines)                                 |
+         |                                     v
+         v                              Modelagem da
+   Baseados puramente na            dependência espacial via
+   distância geométrica             semivariograma experimental
+```
+
+## Ponderação pelo Inverso da Distância (IDW - *Inverse Distance Weighting*)
+
+O IDW é um estimador determinístico linear baseado na **Primeira Lei da Geografia de Waldo Tobler**: *"Todas as coisas estão correlacionadas, mas coisas próximas estão mais correlacionadas do que coisas distantes"*.
+
+A estimativa do valor $\hat{Z}$ no ponto não amostrado $s_0 = (x_0, y_0)$ é calculada pela média ponderada dos valores medidos nos $n$ pontos vizinhos $s_i$:
+
+$$\hat{Z}(s_0) = \frac{\sum_{i=1}^{n} w_i Z(s_i)}{\sum_{i=1}^{n} w_i}$$
+
+Onde o peso $w_i$ atribuído ao ponto $i$ é o inverso de sua distância euclidiana $d(s_0, s_i)$ elevado a uma potência de atenuação $p$:
+
+$$w_i = \frac{1}{d(s_0, s_i)^p}$$
+
+* **Parâmetro de Potência ($p$):** 
+  * Habitualmente adota-se $p = 2$ (quadrado do inverso da distância).
+  * Quanto maior o valor de $p$, maior é o peso atribuído aos pontos estritamente vizinhos, gerando superfícies com picos isolados em torno dos pontos de amostragem ("efeito olho de boi" / *bull's eyes*).
+* **Limitações:** O IDW não extrapola valores fora do intervalo amostral ($Z_{\min} \le \hat{Z} \le Z_{\max}$) e não fornece estimativa do erro associado à predição.
+
+## Geoestatística e Krigagem Ordinária
+
+A Krigagem é um estimador linear não viesado de variância mínima (*Best Linear Unbiased Estimator* - BLUE). Ela fundamenta-se na **Teoria das Variáveis Regionalizadas** formulada por Georges Matheron.
+
+Diferente do IDW, a ponderação da Krigagem não considera apenas a distância geométrica, mas a **estrutura de dependência espacial** da variável, quantificada pelo **Semivariograma Experimental** $\gamma(h)$:
+
+$$\gamma(h) = \frac{1}{2 N(h)} \sum_{i=1}^{N(h)} \left[ Z(s_i) - Z(s_i + h) \right]^2$$
+
+Onde:
+* $h$: vetor de distância de separação (*lag*).
+* $N(h)$: número de pares de pontos separados pela distância $h$.
+
+### Anatomia do Semivariograma Teórico
+
+Após calcular os pontos experimentais, ajusta-se um modelo teórico contínuo (Esférico, Exponencial ou Gaussiano), cujos parâmetros estruturais são:
+
+1. **Efeito Pepita ($C_0$):** Descontinuidade na origem ($h \to 0$), representando erros de medição ou variabilidade em microescala menor que a malha amostral.
+2. **Patamar ($C_0 + C$):** Valor em que o semivariograma estabiliza; representa a variância total da amostra.
+3. **Alcance ($a$):** Distância limite além da qual cessa a autocorrelação espacial entre amostras. Amostras separadas por distâncias maiores que $a$ são estatisticamente independentes.
+
+$$\text{Grau de Dependência Espacial (GDE)} = \left(\frac{C_0}{C_0 + C}\right) \times 100$$
+
+* $\text{GDE} \le 25\%$: Forte dependência espacial.
+* $25\% < \text{GDE} \le 75\%$: Moderada dependência espacial.
+* $\text{GDE} > 75\%$: Fraca dependência espacial.
+
+
+
+# Geotecnologias no Saneamento Básico
+
+O Novo Marco Legal do Saneamento Básico no Brasil (Lei Federal nº 14.026/2020) impôs metas desafiadoras: universalização com **99% da população com acesso à água potável** e **90% com coleta e tratamento de esgoto sanitário** até 2033. O SIG é a espinha dorsal técnica para viabilizar esse planejamento.
+
+## Cadastro Técnico Multifinalitário (CTM) e Redes de Abastecimento/Esgotamento
+* Modelagem de redes em formato vetorial orientado a grafos topológicos (nós = conexões/válvulas/bombas; arcos = tubulações/adutoras/coletores).
+* Integração de dados cadastrais físicos (diâmetro, material, ano de assentamento, cota piezométrica) com dados comerciais e cadastros de hidrômetros georreferenciados.
+
+## Gestão de Perdas Reais e Aparentes de Água
+* **Distritos de Medição e Controle (DMCs):** Setorização espacial da rede de distribuição para monitoramento de balanço hídrico.
+* Cruzamento de dados de pressão hidráulica simulada com o histórico geoespacial de ordens de serviço (OS) de rompimento de tubulações, permitindo priorizar trocas preventivas de ramais e redes antigas.
+
+## Planejamento da Drenagem Urbana e Esgotamento
+* Análise topográfica via MDE de alta resolução para determinar bacias de contribuição e traçados ótimos por gravidade para coletores-tronco e interceptores ao longo dos talvegues.
+* Simulação de manchas de inundação e áreas suscetíveis a alagamento urbano para dimensionamento de bacias de detenção/retenção e infraestrutura verde.
+
+
+# Análise de Decisão Multi-Critério (MCDA) e o Método AHP
+
+Em engenharia hidroambiental e saneamento, a seleção locacional de infraestruturas críticas (ex: Aterros Sanitários, Estações de Tratamento de Esgoto - ETE, Estações de Tratamento de Água - ETA, Usinas de Triagem) envolve objetivos conflitantes de ordem técnica, econômica, social e ambiental.
+
+## Critérios: Fatores vs. Restrições
+
+* **Restrições (Booleanas):** Condições excludentes obrigatórias (binárias: 0 ou 1). 
+  * *Exemplo:* Dentro de APP marginal = 0 (proibido); Distância a aeródromos $< 20\text{ km}$ para aterros sanitários (risco aviário) = 0.
+* **Fatores (Gradativos):** Variáveis que aumentam ou reduzem a aptidão de uma área específica. São normalizados em uma escala contínua (ex: 0 a 10 ou 0 a 100).
+  * *Exemplo:* Declividade do terreno, proximidade da malha viária existente, permeabilidade do solo.
+
+## O Processo Analítico Hierárquico (AHP - Thomas Saaty)
+
+O AHP decompõe o problema decisório em uma estrutura hierárquica e estabelece pesos relativos aos fatores por meio de uma **matriz de comparação pareada**, utilizando a escala fundamental de Saaty (1 a 9):
+
+| Intensidade | Definição |
+|:---:|:---|
+| 1 | Igual importância |
+| 3 | Importância moderada de um critério sobre outro |
+| 5 | Forte importância |
+| 7 | Importância muito forte ou demonstrada |
+| 9 | Importância extrema |
+| 2, 4, 6, 8 | Valores intermediários entre julgamentos adjacentes |
+
+### Cálculo dos Pesos e da Razão de Consistência ($CR$)
+
+1. Constrói-se a matriz quadrada recíproca $A = [a_{ij}]_{n \times n}$, onde $a_{ji} = \frac{1}{a_{ij}}$ e $a_{ii} = 1$.
+2. Determina-se o autovetor principal normalizado, correspondente aos pesos $w_i$ de cada critério:
+   $$\sum_{i=1}^n w_i = 1$$
+3. Avalia-se a consistência lógica dos julgamentos do tomador de decisão calculando o Índice de Consistência ($CI$):
+   $$CI = \frac{\lambda_{\max} - n}{n - 1}$$
+4. Calcula-se a Razão de Consistência ($CR$):
+   $$CR = \frac{CI}{RI}$$
+   *(onde $RI$ é o Índice Randômico tabelado em função da dimensão $n$ da matriz)*.
+
+$$\text{Regra de Validação: } CR < 0{,}10 \quad (10\%)$$
+Se $CR \ge 0{,}10$, os julgamentos são inconsistentes e a matriz de comparação pareada deve ser revisada pelo especialista.
+
+## Combinação Linear Ponderada (WLC - *Weighted Linear Combination*)
+
+A modelagem final de adequabilidade espacial ($S$) é gerada na calculadora raster do QGIS pela equação:
+
+$$S(x, y) = \left( \sum_{i=1}^{k} w_i \cdot f_i(x, y) \right) \times \prod_{j=1}^{m} r_j(x, y)$$
+
+Onde:
+* $w_i$: peso de importância do fator $i$ obtido via AHP ($\sum w_i = 1$).
+* $f_i(x, y)$: valor padronizado do fator $i$ na célula $(x, y)$.
+* $r_j(x, y)$: restrição booleana $j$ (0 para impróprio, 1 para apto).
+
+
+
+# Roteiro da Sessão Prática de Quinta-feira
+
+Para a aula prática em laboratório, utilizaremos o **QGIS** com os complementos *Easy AHP* / *AHP for GIS* e as ferramentas nativas de análise raster e vetorial.
+
+## Exercício Prático 1: Interpolação de Qualidade da Água e Chuva
+* **Objetivo:** Mapear a variabilidade espacial da Demanda Bioquímica de Oxigênio (DBO) ou precipitação média em uma bacia hidrográfica.
+* **Passo a Passo Técnico:**
+  1. Carregar planilha de pontos monitorados (`.csv` georreferenciado em SIRGAS 2000 UTM).
+  2. Executar a interpolação por **IDW** via menu `Raster -> Análise -> Grade (IDW)` ou ferramentas do `SAGA`.
+  3. Executar a **Krigagem Ordinária** via *Smart-Map Plugin* ou `SAGA GIS -> Variogram Fitting & Ordinary Kriging`.
+  4. Comparar os resultados matriciais, avaliando o comportamento nas bordas da bacia e o efeito de anisotropia.
+
+## Exercício Prático 2: Alocação Locacional de Aterro Sanitário / ETE (AHP + WLC)
+* **Objetivo:** Elaborar o mapa final de aptidão locacional para implantação de uma infraestrutura de saneamento ambientalmente segura.
+* **Camadas de Entrada e Pré-processamento:**
+  * **Restrições:**
+    * Rios e corpos hídricos: *Buffer* de 200 m (Restrição total = 0).
+    * Mancha urbana consolidada: *Buffer* de 1.000 m (Restrição total = 0).
+  * **Fatores:**
+    * Declividade do terreno derivada do MDE (faixa ótima: 2% a 15%).
+    * Distância às rodovias/acessos viários existentes (quanto mais próximo, menor o custo de transporte).
+    * Tipo de solo / permeabilidade.
+* **Processamento:**
+  1. Padronização dos fatores na escala contínua de 0 (pior) a 10 (melhor) via reclassificação raster (`r.reclass` ou calculadora raster).
+  2. Estruturação da matriz AHP de comparação pareada e validação de $CR < 0{,}10$.
+  3. Execução da Combinação Linear Ponderada na **Calculadora Raster**:
+     $$\text{Aptidao} = (0{,}45 \cdot \text{Decliv\_Norm} + 0{,}35 \cdot \text{Vias\_Norm} + 0{,}20 \cdot \text{Solos\_Norm}) \times (\text{Restr\_Rios} \times \text{Restr\_Urb})$$
+  4. Extração e vetorização das três melhores poligonais candidatas para a tomada de decisão gerencial.
+
+
+# Materiais Complementares e Leituras Recomendadas
+
+1. **VAN DER KWAST, H.; MENKE, K.** *QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management*. Locate Press, 2019 (Capítulo sobre análise de terreno e modelagem raster).
+2. **SAATY, T. L.** *How to make a decision: The Analytic Hierarchy Process*. European Journal of Operational Research, v. 48, p. 9-26, 1990.
+3. **MENDES, C. A. B.; CIRILO, J. A.** *Geoprocessamento em Recursos Hídricos: princípios, integração e aplicação*. ABRH, 2001 (Capítulo 7: Ferramentas analíticas e tomada de decisão).
+4. **BRASIL.** *Lei Federal nº 14.026, de 15 de julho de 2020*. Atualiza o marco legal do saneamento básico.
+
+
+# Quinta-Feira Prática
+
+## 1. Prática 1: Interpolação Espacial (IDW e Krigagem)
+
+* **Arquivo:** [`monitoramento_qualidade_chuva.csv`](dados_praticos_modulo4_qgis.zip)
+* **Estrutura:** 22 estações com coordenadas geográficas (`EPSG:4326`), contendo variáveis hidrológicas e de qualidade de água calibradas:
+* Precipitação mensal acumulada (`precipitacao_mm`)
+* Demanda Bioquímica de Oxigênio (`dbo_mg_l`), apresentando picos a jusante de centros urbanos e ETEs
+* Turbidez (`turbidez_ntu`), Oxigênio Dissolvido (`od_mg_l`) e Coliformes Termotolerantes (`coliformes_nmp`)
+
+
+* **Fluxo no QGIS:**
+1. Carregar via **Camada > Adicionar Camada de Texto Delimitado** (X = `longitude`, Y = `latitude`).
+2. Reprojetar para o sistema métrico da região (ex.: **SIRGAS 2000 / UTM zone 24S — EPSG:31984**) para cálculos métricos exatos.
+3. No menu **Processamento (Caixa de Ferramentas)**:
+* Executar **IDW Interpolation** (testando expoentes de potência $p = 1$, $2$ e $3$).
+* Executar **Krigagem Ordinária** (usando o módulo SAGA ou plugin Smart-Map/GRASS).
+
+
+## 2. Prática 2: Análise Multi-critério (AHP e Combinação Linear Ponderada)
+
+* **Arquivos:** `pesos_criterios_ahp.csv` e `tabela_reclassificacao_notas.csv`
+* **Vetor de Pesos Calculado (Consistência $CR = 0{,}028 < 0{,}10$):**
+* **Distância a Corpos Hídricos ($w_1$):** $39{,}8\%$
+* **Distância a Núcleos Urbanos ($w_2$):** $25{,}6\%$
+* **Declividade ($w_3$):** $16{,}1\%$
+* **Uso e Cobertura do Solo ($w_4$):** $11{,}6\%$
+* **Permeabilidade / Geotecnia do Solo ($w_5$):** $6{,}9\%$
+
+
+* **Fórmula Pronta para a Calculadora Raster do QGIS:**
+
+```sql
+(
+  ("R_Dist_Agua@1" * 0.398) + 
+  ("R_Dist_Urbana@1" * 0.256) + 
+  ("R_Declividade@1" * 0.161) + 
+  ("R_Uso_Solo@1" * 0.116) + 
+  ("R_Geologia@1" * 0.069)
+) * "Mascara_Restricao@1"
+
+```
+
+*(Onde `"Mascara_Restricao@1"` assume valor `0` para áreas de exclusão legal — buffers de rios, áreas urbanas consolidadas e declividades $> 30\%$ — e `1` para áreas aptas à instalação).*

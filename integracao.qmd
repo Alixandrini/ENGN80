@@ -4,10 +4,170 @@ format: html
 description: "Integração, Estudos de Caso em Gestão/Regulação e Apresentação de Projetos"
 ---
 
-o Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.
+# Apresentação do Módulo de Conclusão
 
-o Elaboração de mapas temáticos profissionais e Layout de Impressão no QGIS.
+Chegamos ao **Módulo 5**, momento de síntese e consolidação das competências desenvolvidas ao longo de toda a disciplina. Após dominarmos os conceitos de cartografia, bacias hidrográficas em modelos digitais de elevação, sensoriamento remoto multiespectral e análise espacial multi-critério, o foco migra para o elo decisivo: **a comunicação técnica eficiente e a tomada de decisão gerencial**.
 
-o Introdução ao WebGIS, dashboards espaciais e publicação de dados (QGIS Cloud, Felt ou exportação para GeoJSON/KML para tomada de decisão).
+No contexto do mestrado profissional e da atuação prática em órgãos gestores (ANA, órgãos estaduais), comitês de bacia hidrográfica (CBHs), concessionárias de saneamento e consultorias ambientais, o dado geoespacial só ganha valor pleno quando traduzido em instrumentos inteligíveis: mapas temáticos normatizados, plataformas WebGIS acessíveis e painéis de indicadores integrados.
 
-o Trabalho orientador final em sala: Suporte aos alunos no desenvolvimento do Estudo de Caso / Mini-Projeto Aplicado.
+A organização deste módulo compreende:
+
+* **Terça-feira (4,5h) – Comunicação de Dados, WebGIS e Indicadores:**
+  * Integração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.
+  * Cartografia Temática Profissional e Composição de Layouts no QGIS.
+  * Disseminação via WebGIS, Dashboards e Formatos de Intercâmbio (GeoJSON, KML, QGIS Cloud, Felt).
+  * Oficina de Mentoria e Apoio Direto aos Mini-Projetos Aplicados dos mestrandos.
+
+* **Quinta-feira (4,5h) – Apresentação dos Projetos Aplicados e Encerramento:**
+  * Apresentação dos seminários técnicos individuais ou em duplas focados em problemas hidroambientais reais.
+  * Roda de discussão, avaliação por rubrica técnica e fechamento do semestre.
+
+# Geoprocessamento e Sistemas de Apoio à Decisão (SAD)
+
+Um **Sistema de Apoio à Decisão Espacial (SADE / SDSS)** combina recursos analíticos de SIG, modelos matemáticos e bases alfanuméricas com o propósito de orientar decisões em cenários semiestruturados ou não estruturados.
+
+```
+       DADOS PRIMÁRIOS E SENSORES
+(Fluviometria, Satélites, Cadastro de Outorgas, Redes)
+                     │
+                     ▼
+       PLATAFORMA GEOESPACIAL (SIG / BDG)
+ (Topologia, Álgebra de Mapas, Análise Espacial)
+                     │
+                     ▼
+          MODELAGEM E INDICADORES
+(Índice de Escassez Hídrica, Balanço Qoutorga / Q95)
+                     │
+                     ▼
+          SISTEMA DE DECISÃO (SAD)
+(Comitês de Bacia, Agências Reguladoras, Defesa Civil)
+```
+
+## Aplicações Estratégicas na Regulação Hídrica
+
+O uso integrado do SIG subsidia diretamente instrumentos da Política Nacional de Recursos Hídricos (Lei Federal nº 9.433/1997):
+
+1. **Outorga de Direito de Uso dos Recursos Hídricos:**
+   * Cálculo automatizado do balanço hídrico espacial: relação entre a soma das vazões outorgadas a montante ($\sum Q_{\text{outorgada}}$) e a vazão de referência mínima da bacia (ex.: $Q_{7,10}$ ou $Q_{95}$):
+
+$$
+I_{\text{comprometimento}} = \frac{\sum_{i=1}^n Q_{\text{outorgada}, i}}{Q_{\text{referência}}} \times 100 \quad [\%]
+$$
+
+   * Identificação de trechos fluviais sob estresse hídrico crítico ($I > 70\%$).
+
+2. **Cobrança pelo Uso da Água e Enquadramento:**
+   * Espacialização de cargas poluidoras lançadas e outorgadas (DBO, fósforo total, nitrogênio) em relação à capacidade de autodepuração do corpo receptor.
+
+3. **Segurança de Barragens e Contingência:**
+   * Manchas de inundação derivadas de simulações de rompimento (*dam break*) integradas a cadastros urbanos para definição de Zonas de Auto Salvamento (ZAS).
+
+# Cartografia Temática e Layouts Profissionais no QGIS
+
+A representação cartográfica deve assegurar precisão técnica, conformidade com as normas cartográficas e clareza para tomadores de decisão que nem sempre são especialistas em SIG.
+
+## Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)
+
+Todo mapa gerado para fins de regulação, licenciamento ou plano de bacia deve contemplar:
+
+* **Título Claro e Objetivo:** Deve responder *O quê?*, *Onde?* e *Quando?* (ex.: "Balanço de Disponibilidade Hídrica na Sub-bacia do Rio das Velhas - 2026").
+* **Projeção e Datum:** Indicação explícita do Sistema de Referência Geocêntrico (ex.: SIRGAS 2000, Projeção UTM Fuso 24S, EPSG: 31984).
+* **Escala Gráfica e Numérica:** A escala gráfica é indispensável, pois permanece válida mesmo quando o mapa é redimensionado em relatórios digitais.
+* **Orientação do Norte Geográfico:** Símbolo discreto e posicionado sem obstruir feições relevantes.
+* **Legenda Estruturada:** Hierarquizada, com nomes descritivos em português (evitando códigos brutos de atributos como `cod_trech_hidro`).
+* **Metadados e Créditos:** Fontes primárias de dados (ex.: ANA, IBGE, INPE, CPRM), autor do mapa e data de elaboração.
+* **Grade de Coordenadas:** Reticulado com coordenadas em metros (UTM) ou graus decimais/GMS nas margens.
+
+## O Compositor de Impressão do QGIS (*Print Layout*)
+
+Recursos avançados para produção profissional:
+
+* **Mapas de Inserção (*Overview / Inset Maps*):** Janela secundária em escala menor indicando a localização da área de estudo no contexto estadual ou nacional.
+* **Geração Automatizada com Atlas:** Ferramenta que itera sobre feições de uma camada de cobertura (ex.: cada município da bacia ou cada estação de tratamento) e exporta automaticamente dezenas de pranchas PDF padronizadas com filtros dinâmicos de legenda e escala.
+* **Expressões Dinâmicas:** Uso de campos calculados no rodapé (ex.: `[% @project_title %]`, `[% format_date(now(), 'dd/MM/yyyy') %]`).
+
+# Disseminação WebGIS, Dashboards e Dados Abertos
+
+A evolução das geotecnologias descentralizou o consumo de mapas. Gestores municipais, promotores de justiça ambiental e a sociedade civil demandam interfaces acessíveis via navegador web ou dispositivos móveis, dispensando a instalação de softwares de desktop.
+
+```
++-------------------------------------------------------------+
+|                 ECOSSISTEMA DE DISSEMINAÇÃO                 |
++------------------------------+------------------------------+
+                               |
+         +---------------------+---------------------+
+         |                                           |
+   WebGIS em Nuvem                             Formatos Abertos
+(Visualização interativa)                   (Intercâmbio e consumo)
+         |                                           |
+  QGIS Cloud / Felt /                         GeoJSON / Shapefile /
+  Geoserver / Leaflet                         GeoPackage / KML
+```
+
+## Formatos de Intercâmbio de Dados Vetoriais
+
+* **GeoPackage (`.gpkg`):** Padrão aberto da OGC baseado em SQLite. Substitui o formato legado Shapefile (`.shp`), superando limitações de tamanho (máximo de 2 GB do SHP), truncamento de nomes de campos a 10 caracteres e ausência de suporte nativo a múltiplos tipos de geometria em um único arquivo.
+* **GeoJSON (`.geojson`):** Formato leve baseado em notação JSON para dados vetoriais, padrão da web moderna e amplamente suportado por bibliotecas como Leaflet, OpenLayers e Mapbox.
+* **KML/KMZ (`.kml` / `.kmz`):** Estrutura em XML para visualização rápida no Google Earth, indispensável para vistorias visuais preliminares e alinhamento com equipes de campo.
+
+## Plataformas Ágeis de Publicação WebGIS
+
+1. **QGIS Cloud:**
+   * Plugin integrado ao QGIS Desktop que publica o projeto completo (camadas, simbologia e rotulagem) para um banco de dados PostgreSQL/PostGIS hospedado na nuvem, gerando um mapa Web OGC (WMS/WFS) e interface interativa via navegador.
+
+2. **Felt (felt.com):**
+   * Plataforma moderna de mapeamento colaborativo em nuvem. Permite arrastar arquivos `.gpkg`, `.geojson`, `.tif` ou projetos inteiros do QGIS (via complemento oficial), oferecendo ferramentas intuitivas de anotação vetorial, medição de áreas e compartilhamento por link seguro com comitês e gestores.
+
+3. **Dashboards Espaciais:**
+   * Painéis analíticos que sincronizam mapas a gráficos de barras, histogramas de vazão e medidores de cumprimento de metas do marco legal de saneamento.
+
+# Estruturação do Trabalho Final da Disciplina
+
+O Mini-Projeto Aplicado da disciplina foi concebido para aproximar as técnicas aprendidas aos temas de pesquisa do mestrando ou a demandas técnicas reais de suas instituições de origem.
+
+## Roteiro Metodológico Recomendado
+
+O projeto final deve integrar as etapas percorridas durante as 5 semanas da disciplina:
+
+```
+[ 1. Caracterização Morfométrica ]
+Delimitação MDE + Declividade + Drenagem
+              │
+              ▼
+[ 2. Cobertura da Terra e Conflitos ]
+Classificação SCP / MapBiomas + APP Hídrica
+              │
+              ▼
+[ 3. Análise Espacial e Decisão ]
+Interpolação de Qualidade/Chuva OU Matriz AHP (Adequabilidade)
+              │
+              ▼
+[ 4. Comunicação Técnica e Gestão ]
+Prancha A3 Normatizada + Publicação WebGIS / GeoPackage
+```
+
+## Estrutura do Seminário Técnico de Quinta-feira
+
+Cada apresentação terá duração máxima de **15 minutos**, seguida de **5 minutos** de comentários e arguição pela banca:
+
+1. **Contextualização e Problema:** Apresentação da bacia hidrográfica ou município, contexto regulatório ou conflito ambiental identificado (2 a 3 min).
+2. **Base de Dados e Metodologia:** Dados primários e secundários utilizados (estações, imagens orbitais, MDE) e fluxo no QGIS (3 a 4 min).
+3. **Resultados Espaciais e Discussão:** Mapas temáticos, matriz de confusão/validação ou modelo de adequabilidade obtido (5 a 6 min).
+4. **Implicações para a Gestão/Regulação:** Como os produtos geoespaciais apoiam a tomada de decisão prática da instituição ou comitê (2 a 3 min).
+5. **Demonstração WebGIS / Layout:** Breve exibição do mapa interativo ou da prancha final elaborada (1 a 2 min).
+
+# Matriz de Avaliação dos Projetos Finais (Rubrica)
+
+| Dimensão de Avaliação | Critérios de Excelência | Peso |
+| :--- | :--- | :--- |
+| **Rigência Cartográfica** | Aderência aos elementos formais (escala gráfica, SRC, grade, hierarquia visual da legenda e ausência de sobreposições). | 25% |
+| **Consistência Metodológica** | Correção nas etapas de geoprocessamento (reprojeções, interpolações com parâmetros explicados, matriz AHP consistente). | 30% |
+| **Aderência aos Recursos Hídricos / Saneamento** | Relevância da aplicação para os instrumentos da Política de Recursos Hídricos (Lei 9.433/97) ou Saneamento (Lei 14.026/20). | 25% |
+| **Comunicação e Disseminação** | Clareza da apresentação oral, síntese visual dos mapas e facilidade de navegação no produto WebGIS. | 20% |
+
+# Leituras e Recursos de Apoio
+
+1. **MENKE, K.; SMITH, R.; PIRELLI, L.; VAN HOESEN, J.** *Mastering QGIS*. 2nd ed. Packt Publishing, 2016 (Capítulo sobre Cartografia Avançada e Atlas de Impressão).
+2. **VAN DER KWAST, H.; MENKE, K.** *QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management*. Locate Press, 2019.
+3. **ANA - AGÊNCIA NACIONAL DE ÁGUAS E SANEAMENTO BÁSICO.** *Manual de Procedimentos Técnicos e Administrativos de Outorga de Direito de Uso de Recursos Hídricos*. Brasília: ANA, 2021.
+4. **IBGE.** *Normas de Apresentação Cartográfica da Cartografia Sistemática Nacional*. Diretoria de Geociências, Rio de Janeiro.

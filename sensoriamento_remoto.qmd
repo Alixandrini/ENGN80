@@ -5,16 +5,283 @@ description: "Sensoriamento Remoto, Uso do Solo e Processamento Digital de Image
 image: "logo_labfsr.png"
 ---
 
-o Princípios físicos do Sensoriamento Remoto (Espectro Eletromagnético e Comportamento Espectral da Água, Vegetação e Solo).
+# Introdução ao Módulo
 
-o Satélites e Sensores Ópticos e de Radar (Landsat, Sentinel-2, Sentinel-1, CBERS).
+O **Sensoriamento Remoto (SR)** constitui uma das ferramentas mais estratégicas para a gestão e regulação de recursos hídricos. Ao viabilizar a aquisição contínua, multitemporal e sinótica de informações sobre a superfície terrestre sem contato físico direto, o SR permite monitorar a dinâmica de reservatórios, identificar conflitos pelo uso da água, mapear a cobertura vegetal em bacias hidrográficas e auditar a integridade de Áreas de Preservação Permanente (APPs).
 
-o Índices Espectrais para recursos hídricos: NDWI (Normalized Difference Water Index), NDVI (Normalized Difference Vegetation Index).
+Neste módulo, abordaremos as bases físicas da radiação eletromagnética, a resposta espectral dos principais alvos da paisagem, as características das constelações orbitais mais utilizadas no Brasil, o cálculo de índices biofísicos e os fluxos práticos de Processamento Digital de Imagens (PDI) no **QGIS** com o complemento **SCP (Semi-Automatic Classification Plugin)**.
 
-o Introdução ao Processamento Digital de Imagens (PDI): Classificação Supervisionada e Não-Supervisionada de Uso e Ocupação do Solo.
 
-o Mapeamento de espelhos d'água e variação reservatórios/represas via NDWI.
+# Princípios Físicos do Sensoriamento Remoto
 
-o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).
+## Radiação Eletromagnética (REM) e Leis da Radiação
 
-o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d'água.
+O sensoriamento remoto passivo baseia-se na detecção da **Radiação Eletromagnética (REM)** originada primariamente pelo Sol, propagada pelo vácuo e pela atmosfera, e refletida ou emitida pelos alvos da superfície terrestre.
+
+A REM propaga-se na velocidade da luz ($c \approx 3 \times 10^8 \text{ m/s}$) e sua energia é descrita pela relação de Planck:
+
+$$
+Q = h \cdot \nu = \frac{h \cdot c}{\lambda}
+$$
+
+Onde:
+* $Q$: Energia de um fóton ($\text{J}$)
+* $h$: Constante de Planck ($6{,}626 \times 10^{-34} \text{ J}\cdot\text{s}$)
+* $\nu$: Frequência da onda ($\text{Hz}$)
+* $\lambda$: Comprimento de onda ($\mu\text{m}$ ou $\text{nm}$)
+
+Dois princípios fundamentais regem a emissão de radiação térmica por corpos negros:
+
+1. **Lei de Stefan-Boltzmann:** A emitância radiante total ($M$) é proporcional à quarta potência da temperatura absoluta ($T$, em Kelvin):
+   $$
+   M = \sigma \cdot T^4 \quad (\sigma \approx 5{,}67 \times 10^{-8} \text{ W}\cdot\text{m}^{-2}\cdot\text{K}^{-4})
+   $$
+
+2. **Lei do Deslocamento de Wien:** O comprimento de onda de máxima emissão ($\lambda_{\max}$) é inversamente proporcional à temperatura absoluta:
+   $$
+   \lambda_{\max} = \frac{2898}{T} \quad (\mu\text{m}\cdot\text{K})
+   $$
+   * Para o Sol ($T \approx 6.000\text{ K}$), $\lambda_{\max} \approx 0{,}48 \mu\text{m}$ (região do visível).
+   * Para a Terra ($T \approx 300\text{ K}$), $\lambda_{\max} \approx 9{,}7 \mu\text{m}$ (infravermelho termal).
+
+```
+                      ESPECTRO ELETROMAGNÉTICO NO SR
++-------------+---------------------+-------------------+-------------------+
+|  UV (<0,4)  |  Visível (0,4-0,7)  |  Infravermelho    | Micro-ondas /     |
+|             |  Azul / Verde /     |  NIR (0,7 - 1,1)  | Radar             |
+|             |  Vermelho           |  SWIR (1,1 - 2,5) | (1 mm a 1 m)      |
+|             |                     |  TIR (8 - 14)     |                   |
++-------------+---------------------+-------------------+-------------------+
+```
+
+## Janelas Atmosféricas e Interações
+
+Ao atravessar a atmosfera terrestre, a REM sofre atenuação por **espalhamento** e **absorção** pelos gases constituintes ($O_3$, $CO_2$, $H_2O$ vapor):
+
+* **Espalhamento Rayleigh:** Ocorre quando o diâmetro das partículas é muito menor que o comprimento de onda ($\propto \lambda^{-4}$). Provoca a coloração azul do céu e degrada o contraste no canal visível.
+* **Espalhamento Mie:** Ocorre quando o diâmetro é similar a $\lambda$ (poeira, fumaça, pólen).
+* **Espalhamento Não-Seletivo:** Ocorre quando o diâmetro das partículas é muito maior que $\lambda$ (gotículas de água em nuvens e nevoeiros, bloqueando uniformemente o visível e o infravermelho).
+* **Janelas Atmosféricas:** Faixas espectrais em que a absorção gasosa é mínima, viabilizando a observação orbital (ex.: $0{,}4\text{ a }1{,}1 \mu\text{m}$; $1{,}5\text{ a }1{,}8 \mu\text{m}$; $2{,}0\text{ a }2{,}4 \mu\text{m}$; e na janela termal de $8\text{ a }12 \mu\text{m}$).
+
+
+# Comportamento Espectral dos Alvos Naturais
+
+A reflectância espectral ($\rho_\lambda$) expressa a razão entre a energia refletida e a energia incidente em um dado comprimento de onda:
+
+$$
+\rho_\lambda = \frac{\Phi_{\text{refletido}}(\lambda)}{\Phi_{\text{incidente}}(\lambda)} \times 100 \quad [\%]
+$$
+
+```
+Reflectância (%)
+  ^
+60|                          .--. Vegetação Sadia (Pico no NIR)
+  |                         /    \
+40|         Solo Seco      /      '--.
+  |      .----------------'           '--. (Absorção por água no SWIR)
+20|     /
+  |    /  Água Limpa
+  |   .--.______
+ 0+---+---------+------------+------------+--------> Comprimento de Onda
+     0.4 (Azul) 0.7 (Vermelho) 1.1 (NIR)   2.5 (SWIR) (µm)
+```
+
+## Água e Ambientes Aquáticos
+* **Água Pura e Profunda:** Apresenta reflectância máxima na região do azul-esverdeado ($0{,}45\text{ a }0{,}55 \mu\text{m}$) e **absorção quase total a partir de $0{,}75 \mu\text{m}$ (NIR e SWIR)**. Por essa razão, corpos d'água límpidos aparecem escuros ou negros em composições coloridas envolvendo bandas de infravermelho.
+* **Água Turva / Sedimentos em Suspensão:** O aumento de sólidos suspensos inorgânicos desloca o pico de reflectância em direção ao vermelho ($0{,}6\text{ a }0{,}7 \mu\text{m}$) e ao infravermelho próximo, elevando o albedo geral.
+* **Florações de Algas / Eutrofização:** A presença de clorofila-*a* gera um pequeno pico no verde, absorção no vermelho e uma elevação no NIR (comportamento semelhante a um dossel vegetal flutuante).
+
+## Vegetação Verde Sadia
+* **Visível ($0{,}4\text{ a }0{,}7 \mu\text{m}$):** Forte absorção pelos pigmentos fotossintetizantes (clorofilas *a* e *b* no azul e vermelho), gerando um pico relativo no verde ($0{,}55 \mu\text{m}$).
+* **Infravermelho Próximo (NIR: $0{,}7\text{ a }1{,}1 \mu\text{m}$):** Altíssima reflectância ($40\text{ a }60\%$) decorrente do espalhamento múltiplo da luz no mesofilo foliar esponjoso (*red-edge* característico).
+* **Infravermelho de Ondas Curtas (SWIR: $1{,}1\text{ a }2{,}5 \mu\text{m}$):** Vales de absorção marcados pelo conteúdo de água na folha, centrados em $1{,}45 \mu\text{m}$ e $1{,}95 \mu\text{m}$.
+
+## Solos Expostos
+Apresentam curva espectral geralmente ascendente e contínua do visível ao SWIR. A magnitude da curva é influenciada pelo teor de umidade (água reduz a reflectância global), presença de matéria orgânica (curva mais escura e plana) e mineralogia (presença de óxidos de ferro gera feições de absorção diagnósticas no visível e no NIR).
+
+
+
+# Plataformas Orbitais: Sensores Ópticos e Sensores Radar
+
+| Satélite / Sensor | Tipo | Resolução Espacial | Resolução Temporal | Bandas Principais de Interesse Hidroambiental |
+|---|---|---|---|---|
+| **Sentinel-2 (MSI)** | Óptico multiespectral | 10 m (Vis/NIR), 20 m (Red-Edge/SWIR) | 5 dias (constelação A/B) | B3 (Verde), B4 (Vermelho), B8 (NIR), B11/B12 (SWIR) |
+| **Landsat-8/9 (OLI/TIRS)** | Óptico multiespectral + Termal | 30 m (Multiespectral), 15 m (Pancromático), 100 m (Termal) | 16 dias (8 dias combinados) | B3 (Verde), B4 (Vermelho), B5 (NIR), B6/B7 (SWIR), B10 (TIR) |
+| **CBERS-4A (WPM/MUX)** | Óptico multiespectral | 2 m (Pan), 8 m (Multiespectral WPM); 20 m (MUX) | 31 dias | B2 (Verde), B3 (Vermelho), B4 (NIR) - Excelente para detalhe de APPs |
+| **Sentinel-1 (C-SAR)** | Radar de Abertura Sintética (SAR, banda C) | ~10 m (modo IW) | 6 a 12 dias | Polarizações VV e VH; opera através de nuvens e à noite |
+
+## Sensores Ópticos vs. Radar de Abertura Sintética (SAR)
+Enquanto os sensores ópticos dependem da iluminação solar e sofrem obstrução persistente por cobertura de nuvens (um gargalo recorrente em períodos chuvosos no Brasil), os sensores **SAR (ex.: Sentinel-1)** emitem seus próprios pulsos de micro-ondas.
+
+Sobre superfícies d'água calmas, o feixe de radar sofre **reflexão especular** para longe da antena receptora, registrando coeficiente de retroespalhamento ($\sigma^0$) extremamente baixo (valores em dB muito negativos, aparecendo como pixels negros). Esse contraste torna o SAR uma ferramenta complementar de alta precisão para delimitar inundações e cheias históricas mesmo sob céu completamente nublado.
+
+
+
+# Índices Espectrais Aplicados a Recursos Hídricos
+
+Os índices espectrais baseiam-se em razões de bandas matemáticas desenhadas para realçar o contraste radiométrico entre alvos específicos e atenuar variações de iluminação topográfica e sombras.
+
+## NDVI (*Normalized Difference Vegetation Index*)
+Desenvolvido por Rouse et al. (1973), explora o contraste entre o espalhamento no NIR e a absorção clorofiliana no Vermelho:
+
+$$
+\text{NDVI} = \frac{\rho_{\text{NIR}} - \rho_{\text{Vermelho}}}{\rho_{\text{NIR}} + \rho_{\text{Vermelho}}}
+$$
+
+* Varia no intervalo de $[-1, +1]$.
+* Água: Valores negativos ($\text{NDVI} < 0$).
+* Solo exposto e áreas urbanizadas: Próximo de zero ($0{,}0 \text{ a } 0{,}2$).
+* Vegetação rala/pastagem: $0{,}2 \text{ a } 0{,}5$.
+* Florestas densas e matas ciliares preservadas: $\text{NDVI} > 0{,}7$.
+
+## NDWI (*Normalized Difference Water Index*)
+Para detecção de corpos d'água e mapeamento de espelhos d'água, destacam-se duas formulações clássicas:
+
+### Formulação de McFeeters (1996)
+Explora o pico de reflectância da água no Verde e a alta absorção no NIR:
+
+$$
+\text{NDWI}_{\text{McFeeters}} = \frac{\rho_{\text{Verde}} - \rho_{\text{NIR}}}{\rho_{\text{Verde}} + \rho_{\text{NIR}}}
+$$
+
+* Valores positivos ($\text{NDWI} > 0$) delineiam tipicamente corpos hídricos.
+* Em áreas urbanas consolidadas, pode ocorrer confusão entre água e construções ou asfalto escuro.
+
+### MNDWI (*Modified NDWI* - Xu, 2006)
+Substitui o NIR pelo infravermelho de ondas curtas (SWIR), suprimindo ruídos urbanos e solos úmidos com grande eficácia:
+
+$$
+\text{MNDWI} = \frac{\rho_{\text{Verde}} - \rho_{\text{SWIR}}}{\rho_{\text{Verde}} + \rho_{\text{SWIR}}}
+$$
+
+* **Equivalência de bandas:**
+  * **Sentinel-2:** $\frac{\text{B03} - \text{B11}}{\text{B03} + \text{B11}}$
+  * **Landsat 8/9:** $\frac{\text{B03} - \text{B06}}{\text{B03} + \text{B06}}$
+
+
+
+# Processamento Digital de Imagens (PDI) e Classificação de Uso do Solo
+
+A classificação de imagens visa atribuir cada pixel da cena a uma classe temática representativa do meio físico (ex.: Floresta, Pastagem, Agricultura, Área Urbana, Água).
+
+```
++-------------------------------------------------------+
+|              Técnicas de Classificação                |
++---------------------------+---------------------------+
+                            |
+         +------------------+------------------+
+         |                                     |
+   Não-Supervisionada                    Supervisionada
+(Agrupamento estatístico)           (Amostras de treinamento/ROIs)
+         |                                     |
+    K-Means / ISODATA                Máxima Verossimilhança (MaxVer)
+                                     Random Forest (RF)
+                                     Support Vector Machines (SVM)
+```
+
+## Classificação Não-Supervisionada
+O algoritmo agrupa pixels no espaço de atributos espectrais com base em medidas de similaridade euclidiana (como $k$-médias), sem intervenção prévia do analista. O intérprete analisa os *clusters* resultantes e atribui os significados ambientais *a posteriori*.
+
+## Classificação Supervisionada
+O analista define previamente amostras de treinamento representativas (*Regions of Interest* - ROIs) para cada classe temática. O algoritmo aprende a assinatura espectral dessas amostras e classifica o restante da imagem.
+
+* **Máxima Verossimilhança (*MaxVer* / *Maximum Likelihood*):** Algoritmo paramétrico clássico fundamentado no Teorema de Bayes; assume distribuição normal multivariada das classes espectrais.
+* **Random Forest (RF):** Modelo não-paramétrico de aprendizado de máquina (*ensemble* de árvores de decisão). Robusto a ruídos e dados colineares, sendo o estado da arte na maioria das plataformas ambientais modernas (como MapBiomas).
+
+## Avaliação de Exatidão Temática
+A validação estatística do mapa gerado é indispensável e deve ser conduzida contra pontos de controle de campo ou imagens de alta resolução espacial não utilizados no treinamento:
+
+* **Matriz de Confusão (Matriz de Erros)**
+* **Exatidão Global (*Overall Accuracy*):** Proporção total de pixels classificados corretamente.
+* **Coeficiente Kappa ($\hat{K}$):** Mede o grau de concordância descontando a concordância que ocorreria puramente por acaso:
+  $$
+  \hat{K} = \frac{N \sum_{i=1}^r x_{ii} - \sum_{i=1}^r (x_{i+} \cdot x_{+i})}{N^2 - \sum_{i=1}^r (x_{i+} \cdot x_{+i})}
+  $$
+
+
+
+# Mapeamento Prático de Uso e Cobertura com o Plugin SCP (QGIS)
+
+O **Semi-Automatic Classification Plugin (SCP)**, desenvolvido por Luca Congedo, é a suíte de código aberto mais completa para PDI e classificação de imagens orbitais integrada ao QGIS.
+
+## Fluxo Metodológico do SCP
+
+```
+[ Download / Importação de Bandas ]
+                │
+                ▼
+[ Pré-processamento: Correção Atmosférica DOS1 / TOA -> BOA ]
+                │
+                ▼
+[ Criação do Band Set e Definição de Metadados ]
+                │
+                ▼
+[ Coleta de ROIs: Classes Macro (MC ID) e Micro (C ID) ]
+                │
+                ▼
+[ Avaliação da Separabilidade Espectral das Assinaturas ]
+                │
+                ▼
+[ Execução do Algoritmo (Random Forest, MaxVer ou Spectral Angle Mapping) ]
+                │
+                ▼
+[ Pós-processamento: Filtro de Moda (Limpeza de Ruído Sal-e-Pimenta) ]
+```
+
+### Boas Práticas na Coleta de ROIs
+1. Distribuir as amostras uniformemente ao longo de toda a cena, e não concentradas em um único quadrante.
+2. Evitar bordas de transição entre alvos para impedir assinaturas de "pixels mistos".
+3. Utilizar o gráfico de assinaturas espectrais do SCP para inspecionar a separabilidade entre classes espectralmente próximas (como pastagem degradada e solo exposto).
+
+
+
+# Análise de Conflito de Uso da Terra em Áreas de Preservação Permanente (APPs)
+
+As Áreas de Preservação Permanente hídricas desempenham papel central na conservação de recursos hídricos, amortecimento de cheias, recarga de aquíferos e contenção de processos erosivos e assoreamento.
+
+## Parâmetros Legais (Lei Federal nº 12.651/2012 - Código Florestal)
+
+| Feição Hidrográfica | Largura Mínima da Faixa Marginal de APP |
+|---|---|
+| Cursos d'água com largura $< 10\text{ m}$ | **30 metros** |
+| Cursos d'água de $10\text{ a }50\text{ m}$ | **50 metros** |
+| Cursos d'água de $50\text{ a }200\text{ m}$ | **100 metros** |
+| Cursos d'água de $200\text{ a }600\text{ m}$ | **200 metros** |
+| Cursos d'água com largura $> 600\text{ m}$ | **500 metros** |
+| Nascentes e olhos d'água perenes | **Raio de 50 metros** |
+| Lagos e lagoas naturais em área rural ($> 20\text{ ha}$) | **100 metros** |
+
+## Protocolo Espacial de Diagnóstico no QGIS
+
+A identificação de passivos ambientais em APPs hídricas segue o cruzamento vetorial e matricial (*overlay*):
+
+```
+       Drenagem Vetorial (Rios / Nascentes)
+                        │
+                        ▼
+       [ Buffer Normativo (30m, 50m, etc.) ]
+                        │
+                        ▼
+               Polígono de APP Legal
+                        │
+                        ├─── Interseção Espacial / Clip
+                        ▼
+       Raster de Uso e Cobertura da Terra (SCP)
+                        │
+                        ▼
+   [ Classificação de Conflito em Tabela Cruzada ]
+         ├── Vegetação Nativa  -> APP Preservada
+         ├── Pastagem / Café   -> Uso Consolidado / Conflito
+         └── Solo Exposto / Urb-> Alto Risco Erosivo / Degradação
+```
+
+O diagnóstico resultante fornece a base quantitativa (em hectares e percentual) para subsidiar **Planos de Recuperação de Áreas Degradadas (PRAD)**, Termos de Ajustamento de Conduta (TAC) emitidos por órgãos reguladores ou comitês de bacia, e priorização de ações do Plano Diretor de Recursos Hídricos.
+
+
+
+# Questões de Fixação e Debate
+
+1. Por que corpos d'água limpos e profundos apresentam valores de reflectância próximos de zero no infravermelho próximo e médio, enquanto a vegetação verde exibe um pico acentuado no NIR?
+2. Em que circunstâncias práticas de gestão hidroambiental a aplicação do índice **MNDWI** (Xu, 2006) é tecnicamente preferível ao **NDWI** original (McFeeters, 1996)?
+3. Durante uma cheia severa de verão em uma bacia hidrográfica do Semiárido ou Sudeste brasileiro com cobertura de nuvens contínua por duas semanas, qual estratégia de sensoriamento remoto você recomendaria à agência reguladora e à defesa civil para delimitar o avanço da inundação? Justifique sua resposta com base nas propriedades dos sensores orbitais.
+4. Explique como a presença de pixels mistos (*mixels*) nas margens dos corpos hídricos afeta o cálculo do balanço hídrico superficial e quais cuidados metodológicos devem ser tomados na fase de treinamento do algoritmo supervisionado.

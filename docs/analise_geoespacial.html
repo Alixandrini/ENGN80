@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -74,6 +109,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -189,8 +253,57 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#apresentação-do-módulo" id="toc-apresentação-do-módulo" class="nav-link active" data-scroll-target="#apresentação-do-módulo">Apresentação do Módulo</a></li>
+  <li><a href="#fundamentos-teóricos-operações-analíticas-espaciais" id="toc-fundamentos-teóricos-operações-analíticas-espaciais" class="nav-link" data-scroll-target="#fundamentos-teóricos-operações-analíticas-espaciais">Fundamentos Teóricos: Operações Analíticas Espaciais</a>
+  <ul class="collapse">
+  <li><a href="#operações-geométricas-e-de-proximidade" id="toc-operações-geométricas-e-de-proximidade" class="nav-link" data-scroll-target="#operações-geométricas-e-de-proximidade">Operações Geométricas e de Proximidade</a>
+  <ul class="collapse">
+  <li><a href="#zonas-de-amortecimento-buffers" id="toc-zonas-de-amortecimento-buffers" class="nav-link" data-scroll-target="#zonas-de-amortecimento-buffers">Zonas de Amortecimento (<em>Buffers</em>)</a></li>
+  <li><a href="#operações-topológicas-de-sobreposição-overlay" id="toc-operações-topológicas-de-sobreposição-overlay" class="nav-link" data-scroll-target="#operações-topológicas-de-sobreposição-overlay">Operações Topológicas de Sobreposição (<em>Overlay</em>)</a></li>
+  <li><a href="#junção-espacial-spatial-join" id="toc-junção-espacial-spatial-join" class="nav-link" data-scroll-target="#junção-espacial-spatial-join">Junção Espacial (<em>Spatial Join</em>)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#interpolação-espacial-da-amostragem-pontual-à-superfície-contínua" id="toc-interpolação-espacial-da-amostragem-pontual-à-superfície-contínua" class="nav-link" data-scroll-target="#interpolação-espacial-da-amostragem-pontual-à-superfície-contínua">Interpolação Espacial: Da Amostragem Pontual à Superfície Contínua</a>
+  <ul class="collapse">
+  <li><a href="#ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting" id="toc-ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting" class="nav-link" data-scroll-target="#ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting">Ponderação pelo Inverso da Distância (IDW - <em>Inverse Distance Weighting</em>)</a></li>
+  <li><a href="#geoestatística-e-krigagem-ordinária" id="toc-geoestatística-e-krigagem-ordinária" class="nav-link" data-scroll-target="#geoestatística-e-krigagem-ordinária">Geoestatística e Krigagem Ordinária</a>
+  <ul class="collapse">
+  <li><a href="#anatomia-do-semivariograma-teórico" id="toc-anatomia-do-semivariograma-teórico" class="nav-link" data-scroll-target="#anatomia-do-semivariograma-teórico">Anatomia do Semivariograma Teórico</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#geotecnologias-no-saneamento-básico" id="toc-geotecnologias-no-saneamento-básico" class="nav-link" data-scroll-target="#geotecnologias-no-saneamento-básico">Geotecnologias no Saneamento Básico</a>
+  <ul class="collapse">
+  <li><a href="#cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento" id="toc-cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento" class="nav-link" data-scroll-target="#cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento">Cadastro Técnico Multifinalitário (CTM) e Redes de Abastecimento/Esgotamento</a></li>
+  <li><a href="#gestão-de-perdas-reais-e-aparentes-de-água" id="toc-gestão-de-perdas-reais-e-aparentes-de-água" class="nav-link" data-scroll-target="#gestão-de-perdas-reais-e-aparentes-de-água">Gestão de Perdas Reais e Aparentes de Água</a></li>
+  <li><a href="#planejamento-da-drenagem-urbana-e-esgotamento" id="toc-planejamento-da-drenagem-urbana-e-esgotamento" class="nav-link" data-scroll-target="#planejamento-da-drenagem-urbana-e-esgotamento">Planejamento da Drenagem Urbana e Esgotamento</a></li>
+  </ul></li>
+  <li><a href="#análise-de-decisão-multi-critério-mcda-e-o-método-ahp" id="toc-análise-de-decisão-multi-critério-mcda-e-o-método-ahp" class="nav-link" data-scroll-target="#análise-de-decisão-multi-critério-mcda-e-o-método-ahp">Análise de Decisão Multi-Critério (MCDA) e o Método AHP</a>
+  <ul class="collapse">
+  <li><a href="#critérios-fatores-vs.-restrições" id="toc-critérios-fatores-vs.-restrições" class="nav-link" data-scroll-target="#critérios-fatores-vs.-restrições">Critérios: Fatores vs.&nbsp;Restrições</a></li>
+  <li><a href="#o-processo-analítico-hierárquico-ahp---thomas-saaty" id="toc-o-processo-analítico-hierárquico-ahp---thomas-saaty" class="nav-link" data-scroll-target="#o-processo-analítico-hierárquico-ahp---thomas-saaty">O Processo Analítico Hierárquico (AHP - Thomas Saaty)</a>
+  <ul class="collapse">
+  <li><a href="#cálculo-dos-pesos-e-da-razão-de-consistência-cr" id="toc-cálculo-dos-pesos-e-da-razão-de-consistência-cr" class="nav-link" data-scroll-target="#cálculo-dos-pesos-e-da-razão-de-consistência-cr">Cálculo dos Pesos e da Razão de Consistência (<span class="math inline">\(CR\)</span>)</a></li>
+  </ul></li>
+  <li><a href="#combinação-linear-ponderada-wlc---weighted-linear-combination" id="toc-combinação-linear-ponderada-wlc---weighted-linear-combination" class="nav-link" data-scroll-target="#combinação-linear-ponderada-wlc---weighted-linear-combination">Combinação Linear Ponderada (WLC - <em>Weighted Linear Combination</em>)</a></li>
+  </ul></li>
+  <li><a href="#roteiro-da-sessão-prática-de-quinta-feira" id="toc-roteiro-da-sessão-prática-de-quinta-feira" class="nav-link" data-scroll-target="#roteiro-da-sessão-prática-de-quinta-feira">Roteiro da Sessão Prática de Quinta-feira</a>
+  <ul class="collapse">
+  <li><a href="#exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva" id="toc-exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva" class="nav-link" data-scroll-target="#exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva">Exercício Prático 1: Interpolação de Qualidade da Água e Chuva</a></li>
+  <li><a href="#exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc" id="toc-exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc" class="nav-link" data-scroll-target="#exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc">Exercício Prático 2: Alocação Locacional de Aterro Sanitário / ETE (AHP + WLC)</a></li>
+  </ul></li>
+  <li><a href="#materiais-complementares-e-leituras-recomendadas" id="toc-materiais-complementares-e-leituras-recomendadas" class="nav-link" data-scroll-target="#materiais-complementares-e-leituras-recomendadas">Materiais Complementares e Leituras Recomendadas</a></li>
+  <li><a href="#quinta-feira-prática" id="toc-quinta-feira-prática" class="nav-link" data-scroll-target="#quinta-feira-prática">Quinta-Feira Prática</a>
+  <ul class="collapse">
+  <li><a href="#prática-1-interpolação-espacial-idw-e-krigagem" id="toc-prática-1-interpolação-espacial-idw-e-krigagem" class="nav-link" data-scroll-target="#prática-1-interpolação-espacial-idw-e-krigagem">1. Prática 1: Interpolação Espacial (IDW e Krigagem)</a></li>
+  <li><a href="#prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada" id="toc-prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada" class="nav-link" data-scroll-target="#prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada">2. Prática 2: Análise Multi-critério (AHP e Combinação Linear Ponderada)</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -219,14 +332,300 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>o Ferramentas analíticas e operações de proximidade (Buffer, Overlay, Interseção, Junção Espacial).</p>
-<p>o Interpolação Espacial (IDW, Krigagem): Aplicação para mapeamento de precipitação/qualidade da água a partir de pontos de amostragem.</p>
-<p>o Aplicações do SIG no Saneamento Básico: Mapeamento de redes de água e esgoto, universalização dos serviços, gestão de perdas e localização de áreas para instalação de infraestruturas (ETEs, aterros sanitários).</p>
-<p>o Mapeamento de espelhos d’água e variação reservatórios/represas via NDWI.</p>
-<p>o Classificação de Uso e Ocupação do Solo da Bacia Hidrográfica usando o plugin SCP (Semi-Automatic Classification Plugin).</p>
-<p>o Análise do impacto do uso da terra nas APPs (Áreas de Preservação Permanente) de cursos d’água.</p>
+<section id="apresentação-do-módulo" class="level1">
+<h1>Apresentação do Módulo</h1>
+<p>Sejam bem-vindos ao <strong>Módulo 4</strong> da nossa disciplina! Após termos explorado a estrutura de dados matriciais, modelos digitais de elevação (MDE) e o sensoriamento remoto com classificação de uso da terra nos módulos anteriores, avançamos agora para a <strong>análise espacial analítica e modelagem de decisão</strong>.</p>
+<p>Neste módulo, nosso foco se divide em dois pilares complementares:</p>
+<ol type="1">
+<li><strong>Terça-feira (Teoria e Fundamentos):</strong> Operações geométricas e analíticas avançadas em SIG, formulação matemática de interpolações espaciais contínuas (IDW e Krigagem) e o panorama da aplicação geoespacial no Saneamento Básico (perdas, universalização e infraestrutura).</li>
+<li><strong>Quinta-feira (Prática Hands-on no QGIS):</strong> Da amostragem pontual à modelagem de decisão multi-critério (AHP / Combinação Linear Ponderada) para alocação locacional de infraestruturas hidroambientais (ETEs / Aterros Sanitários).</li>
+</ol>
+</section>
+<section id="fundamentos-teóricos-operações-analíticas-espaciais" class="level1">
+<h1>Fundamentos Teóricos: Operações Analíticas Espaciais</h1>
+<p>A análise espacial consiste na aplicação de operadores matemáticos, lógicos e topológicos a dados referenciados geograficamente, visando derivar novas informações a partir de relações de adjacência, proximidade, inclusão e sobreposição.</p>
+<section id="operações-geométricas-e-de-proximidade" class="level2">
+<h2 class="anchored" data-anchor-id="operações-geométricas-e-de-proximidade">Operações Geométricas e de Proximidade</h2>
+<section id="zonas-de-amortecimento-buffers" class="level3">
+<h3 class="anchored" data-anchor-id="zonas-de-amortecimento-buffers">Zonas de Amortecimento (<em>Buffers</em>)</h3>
+<p>O operador de <em>Buffer</em> delimita uma área circunscrita a uma distância euclidiana <span class="math inline">\(d\)</span> em torno de um elemento geométrico (ponto, linha ou polígono):</p>
+<p><span class="math display">\[B(A, d) = \{ x \in \mathbb{R}^2 \mid \exists y \in A, \, \|x - y\| \le d \}\]</span></p>
+<ul>
+<li><strong>Aplicação no Saneamento e Recursos Hídricos:</strong>
+<ul>
+<li>Delimitação automática de Áreas de Preservação Permanente (APPs) marginais de cursos d’água conforme Lei Federal 12.651/2012 (faixas de 30 m, 50 m, 100 m, etc.).</li>
+<li>Faixas de servidão e não-edificação ao longo de adutoras, emissários e canais de drenagem.</li>
+<li>Zonas de proteção sanitária em poços tubulares profundos de captação de água subterrânea.</li>
+</ul></li>
+</ul>
+</section>
+<section id="operações-topológicas-de-sobreposição-overlay" class="level3">
+<h3 class="anchored" data-anchor-id="operações-topológicas-de-sobreposição-overlay">Operações Topológicas de Sobreposição (<em>Overlay</em>)</h3>
+<p>As operações de sobreposição integram geometrias e tabelas de atributos de duas ou mais camadas de entrada:</p>
+<ul>
+<li><strong>Interseção (<em>Intersect</em>):</strong> Retorna apenas a porção geométrica comum entre duas camadas, unindo seus atributos alfanuméricos. Essencial para identificar onde trechos de rede de esgoto cruzam zonas de risco geológico ou áreas ambientalmente protegidas.</li>
+<li><strong>União (<em>Union</em>):</strong> Combina a abrangência total de polígonos sobrepostos, segmentando-os em novas feições poligonais com a fusão de atributos.</li>
+<li><strong>Diferença / Corte (<em>Clip</em> e <em>Difference</em>):</strong> O <em>Clip</em> atua como um “cortador de biscoitos”, restringindo os dados de uma camada vetorial à fronteira administrativa ou hidrográfica de interesse.</li>
+</ul>
+</section>
+<section id="junção-espacial-spatial-join" class="level3">
+<h3 class="anchored" data-anchor-id="junção-espacial-spatial-join">Junção Espacial (<em>Spatial Join</em>)</h3>
+<p>Diferente da junção relacional clássica baseada em chaves primárias e estrangeiras (<code>ID</code>), a junção espacial transfere atributos com base no relacionamento topológico espacial entre feições: * <em>Contém / Está contido</em> (<code>Contains</code> / <code>Within</code>) * <em>Intercepta</em> (<code>Intersects</code>) * <em>Mais próximo</em> (<code>Nearest</code>)</p>
+<p><strong>Exemplo Prático:</strong> Associar a cada imóvel cadastrado no município o ID do setor censitário e a bacia de esgotamento na qual ele está geometricamente contido, calculando o déficit de cobertura domiciliar.</p>
+</section>
+</section>
+</section>
+<section id="interpolação-espacial-da-amostragem-pontual-à-superfície-contínua" class="level1">
+<h1>Interpolação Espacial: Da Amostragem Pontual à Superfície Contínua</h1>
+<p>Em hidrologia e engenharia sanitária, grandezas ambientais como <strong>precipitação pluvial</strong>, <strong>vazão</strong>, <strong>concentração de oxigênio dissolvido (OD)</strong>, <strong>demanda bioquímica de oxigênio (DBO)</strong> e <strong>turbidez</strong> são monitoradas por amostragem pontual discreta (postos pluviométricos, réguas fluviométricas e pontos de coleta da rede de monitoramento de qualidade).</p>
+<p>Para converter pontos discretos em uma superfície contínua <span class="math inline">\(Z(x, y)\)</span>, empregamos métodos de interpolação determinísticos ou geoestatísticos.</p>
+<pre><code>+-------------------------------------------------------+
+|                 Métodos de Interpolação               |
++---------------------------+---------------------------+
+                            |
+         +------------------+------------------+
+         |                                     |
+   Determinísticos                       Geoestatísticos
+(Ex: Vizinho Mais Próximo,                 (Ex: Krigagem)
+ IDW, Splines)                                 |
+         |                                     v
+         v                              Modelagem da
+   Baseados puramente na            dependência espacial via
+   distância geométrica             semivariograma experimental</code></pre>
+<section id="ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting" class="level2">
+<h2 class="anchored" data-anchor-id="ponderação-pelo-inverso-da-distância-idw---inverse-distance-weighting">Ponderação pelo Inverso da Distância (IDW - <em>Inverse Distance Weighting</em>)</h2>
+<p>O IDW é um estimador determinístico linear baseado na <strong>Primeira Lei da Geografia de Waldo Tobler</strong>: <em>“Todas as coisas estão correlacionadas, mas coisas próximas estão mais correlacionadas do que coisas distantes”</em>.</p>
+<p>A estimativa do valor <span class="math inline">\(\hat{Z}\)</span> no ponto não amostrado <span class="math inline">\(s_0 = (x_0, y_0)\)</span> é calculada pela média ponderada dos valores medidos nos <span class="math inline">\(n\)</span> pontos vizinhos <span class="math inline">\(s_i\)</span>:</p>
+<p><span class="math display">\[\hat{Z}(s_0) = \frac{\sum_{i=1}^{n} w_i Z(s_i)}{\sum_{i=1}^{n} w_i}\]</span></p>
+<p>Onde o peso <span class="math inline">\(w_i\)</span> atribuído ao ponto <span class="math inline">\(i\)</span> é o inverso de sua distância euclidiana <span class="math inline">\(d(s_0, s_i)\)</span> elevado a uma potência de atenuação <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[w_i = \frac{1}{d(s_0, s_i)^p}\]</span></p>
+<ul>
+<li><strong>Parâmetro de Potência (<span class="math inline">\(p\)</span>):</strong>
+<ul>
+<li>Habitualmente adota-se <span class="math inline">\(p = 2\)</span> (quadrado do inverso da distância).</li>
+<li>Quanto maior o valor de <span class="math inline">\(p\)</span>, maior é o peso atribuído aos pontos estritamente vizinhos, gerando superfícies com picos isolados em torno dos pontos de amostragem (“efeito olho de boi” / <em>bull’s eyes</em>).</li>
+</ul></li>
+<li><strong>Limitações:</strong> O IDW não extrapola valores fora do intervalo amostral (<span class="math inline">\(Z_{\min} \le \hat{Z} \le Z_{\max}\)</span>) e não fornece estimativa do erro associado à predição.</li>
+</ul>
+</section>
+<section id="geoestatística-e-krigagem-ordinária" class="level2">
+<h2 class="anchored" data-anchor-id="geoestatística-e-krigagem-ordinária">Geoestatística e Krigagem Ordinária</h2>
+<p>A Krigagem é um estimador linear não viesado de variância mínima (<em>Best Linear Unbiased Estimator</em> - BLUE). Ela fundamenta-se na <strong>Teoria das Variáveis Regionalizadas</strong> formulada por Georges Matheron.</p>
+<p>Diferente do IDW, a ponderação da Krigagem não considera apenas a distância geométrica, mas a <strong>estrutura de dependência espacial</strong> da variável, quantificada pelo <strong>Semivariograma Experimental</strong> <span class="math inline">\(\gamma(h)\)</span>:</p>
+<p><span class="math display">\[\gamma(h) = \frac{1}{2 N(h)} \sum_{i=1}^{N(h)} \left[ Z(s_i) - Z(s_i + h) \right]^2\]</span></p>
+<p>Onde: * <span class="math inline">\(h\)</span>: vetor de distância de separação (<em>lag</em>). * <span class="math inline">\(N(h)\)</span>: número de pares de pontos separados pela distância <span class="math inline">\(h\)</span>.</p>
+<section id="anatomia-do-semivariograma-teórico" class="level3">
+<h3 class="anchored" data-anchor-id="anatomia-do-semivariograma-teórico">Anatomia do Semivariograma Teórico</h3>
+<p>Após calcular os pontos experimentais, ajusta-se um modelo teórico contínuo (Esférico, Exponencial ou Gaussiano), cujos parâmetros estruturais são:</p>
+<ol type="1">
+<li><strong>Efeito Pepita (<span class="math inline">\(C_0\)</span>):</strong> Descontinuidade na origem (<span class="math inline">\(h \to 0\)</span>), representando erros de medição ou variabilidade em microescala menor que a malha amostral.</li>
+<li><strong>Patamar (<span class="math inline">\(C_0 + C\)</span>):</strong> Valor em que o semivariograma estabiliza; representa a variância total da amostra.</li>
+<li><strong>Alcance (<span class="math inline">\(a\)</span>):</strong> Distância limite além da qual cessa a autocorrelação espacial entre amostras. Amostras separadas por distâncias maiores que <span class="math inline">\(a\)</span> são estatisticamente independentes.</li>
+</ol>
+<p><span class="math display">\[\text{Grau de Dependência Espacial (GDE)} = \left(\frac{C_0}{C_0 + C}\right) \times 100\]</span></p>
+<ul>
+<li><span class="math inline">\(\text{GDE} \le 25\%\)</span>: Forte dependência espacial.</li>
+<li><span class="math inline">\(25\% &lt; \text{GDE} \le 75\%\)</span>: Moderada dependência espacial.</li>
+<li><span class="math inline">\(\text{GDE} &gt; 75\%\)</span>: Fraca dependência espacial.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="geotecnologias-no-saneamento-básico" class="level1">
+<h1>Geotecnologias no Saneamento Básico</h1>
+<p>O Novo Marco Legal do Saneamento Básico no Brasil (Lei Federal nº 14.026/2020) impôs metas desafiadoras: universalização com <strong>99% da população com acesso à água potável</strong> e <strong>90% com coleta e tratamento de esgoto sanitário</strong> até 2033. O SIG é a espinha dorsal técnica para viabilizar esse planejamento.</p>
+<section id="cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento" class="level2">
+<h2 class="anchored" data-anchor-id="cadastro-técnico-multifinalitário-ctm-e-redes-de-abastecimentoesgotamento">Cadastro Técnico Multifinalitário (CTM) e Redes de Abastecimento/Esgotamento</h2>
+<ul>
+<li>Modelagem de redes em formato vetorial orientado a grafos topológicos (nós = conexões/válvulas/bombas; arcos = tubulações/adutoras/coletores).</li>
+<li>Integração de dados cadastrais físicos (diâmetro, material, ano de assentamento, cota piezométrica) com dados comerciais e cadastros de hidrômetros georreferenciados.</li>
+</ul>
+</section>
+<section id="gestão-de-perdas-reais-e-aparentes-de-água" class="level2">
+<h2 class="anchored" data-anchor-id="gestão-de-perdas-reais-e-aparentes-de-água">Gestão de Perdas Reais e Aparentes de Água</h2>
+<ul>
+<li><strong>Distritos de Medição e Controle (DMCs):</strong> Setorização espacial da rede de distribuição para monitoramento de balanço hídrico.</li>
+<li>Cruzamento de dados de pressão hidráulica simulada com o histórico geoespacial de ordens de serviço (OS) de rompimento de tubulações, permitindo priorizar trocas preventivas de ramais e redes antigas.</li>
+</ul>
+</section>
+<section id="planejamento-da-drenagem-urbana-e-esgotamento" class="level2">
+<h2 class="anchored" data-anchor-id="planejamento-da-drenagem-urbana-e-esgotamento">Planejamento da Drenagem Urbana e Esgotamento</h2>
+<ul>
+<li>Análise topográfica via MDE de alta resolução para determinar bacias de contribuição e traçados ótimos por gravidade para coletores-tronco e interceptores ao longo dos talvegues.</li>
+<li>Simulação de manchas de inundação e áreas suscetíveis a alagamento urbano para dimensionamento de bacias de detenção/retenção e infraestrutura verde.</li>
+</ul>
+</section>
+</section>
+<section id="análise-de-decisão-multi-critério-mcda-e-o-método-ahp" class="level1">
+<h1>Análise de Decisão Multi-Critério (MCDA) e o Método AHP</h1>
+<p>Em engenharia hidroambiental e saneamento, a seleção locacional de infraestruturas críticas (ex: Aterros Sanitários, Estações de Tratamento de Esgoto - ETE, Estações de Tratamento de Água - ETA, Usinas de Triagem) envolve objetivos conflitantes de ordem técnica, econômica, social e ambiental.</p>
+<section id="critérios-fatores-vs.-restrições" class="level2">
+<h2 class="anchored" data-anchor-id="critérios-fatores-vs.-restrições">Critérios: Fatores vs.&nbsp;Restrições</h2>
+<ul>
+<li><strong>Restrições (Booleanas):</strong> Condições excludentes obrigatórias (binárias: 0 ou 1).
+<ul>
+<li><em>Exemplo:</em> Dentro de APP marginal = 0 (proibido); Distância a aeródromos <span class="math inline">\(&lt; 20\text{ km}\)</span> para aterros sanitários (risco aviário) = 0.</li>
+</ul></li>
+<li><strong>Fatores (Gradativos):</strong> Variáveis que aumentam ou reduzem a aptidão de uma área específica. São normalizados em uma escala contínua (ex: 0 a 10 ou 0 a 100).
+<ul>
+<li><em>Exemplo:</em> Declividade do terreno, proximidade da malha viária existente, permeabilidade do solo.</li>
+</ul></li>
+</ul>
+</section>
+<section id="o-processo-analítico-hierárquico-ahp---thomas-saaty" class="level2">
+<h2 class="anchored" data-anchor-id="o-processo-analítico-hierárquico-ahp---thomas-saaty">O Processo Analítico Hierárquico (AHP - Thomas Saaty)</h2>
+<p>O AHP decompõe o problema decisório em uma estrutura hierárquica e estabelece pesos relativos aos fatores por meio de uma <strong>matriz de comparação pareada</strong>, utilizando a escala fundamental de Saaty (1 a 9):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Intensidade</th>
+<th style="text-align: left;">Definição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Igual importância</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Importância moderada de um critério sobre outro</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Forte importância</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">Importância muito forte ou demonstrada</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: left;">Importância extrema</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2, 4, 6, 8</td>
+<td style="text-align: left;">Valores intermediários entre julgamentos adjacentes</td>
+</tr>
+</tbody>
+</table>
+<section id="cálculo-dos-pesos-e-da-razão-de-consistência-cr" class="level3">
+<h3 class="anchored" data-anchor-id="cálculo-dos-pesos-e-da-razão-de-consistência-cr">Cálculo dos Pesos e da Razão de Consistência (<span class="math inline">\(CR\)</span>)</h3>
+<ol type="1">
+<li>Constrói-se a matriz quadrada recíproca <span class="math inline">\(A = [a_{ij}]_{n \times n}\)</span>, onde <span class="math inline">\(a_{ji} = \frac{1}{a_{ij}}\)</span> e <span class="math inline">\(a_{ii} = 1\)</span>.</li>
+<li>Determina-se o autovetor principal normalizado, correspondente aos pesos <span class="math inline">\(w_i\)</span> de cada critério: <span class="math display">\[\sum_{i=1}^n w_i = 1\]</span></li>
+<li>Avalia-se a consistência lógica dos julgamentos do tomador de decisão calculando o Índice de Consistência (<span class="math inline">\(CI\)</span>): <span class="math display">\[CI = \frac{\lambda_{\max} - n}{n - 1}\]</span></li>
+<li>Calcula-se a Razão de Consistência (<span class="math inline">\(CR\)</span>): <span class="math display">\[CR = \frac{CI}{RI}\]</span> <em>(onde <span class="math inline">\(RI\)</span> é o Índice Randômico tabelado em função da dimensão <span class="math inline">\(n\)</span> da matriz)</em>.</li>
+</ol>
+<p><span class="math display">\[\text{Regra de Validação: } CR &lt; 0{,}10 \quad (10\%)\]</span> Se <span class="math inline">\(CR \ge 0{,}10\)</span>, os julgamentos são inconsistentes e a matriz de comparação pareada deve ser revisada pelo especialista.</p>
+</section>
+</section>
+<section id="combinação-linear-ponderada-wlc---weighted-linear-combination" class="level2">
+<h2 class="anchored" data-anchor-id="combinação-linear-ponderada-wlc---weighted-linear-combination">Combinação Linear Ponderada (WLC - <em>Weighted Linear Combination</em>)</h2>
+<p>A modelagem final de adequabilidade espacial (<span class="math inline">\(S\)</span>) é gerada na calculadora raster do QGIS pela equação:</p>
+<p><span class="math display">\[S(x, y) = \left( \sum_{i=1}^{k} w_i \cdot f_i(x, y) \right) \times \prod_{j=1}^{m} r_j(x, y)\]</span></p>
+<p>Onde: * <span class="math inline">\(w_i\)</span>: peso de importância do fator <span class="math inline">\(i\)</span> obtido via AHP (<span class="math inline">\(\sum w_i = 1\)</span>). * <span class="math inline">\(f_i(x, y)\)</span>: valor padronizado do fator <span class="math inline">\(i\)</span> na célula <span class="math inline">\((x, y)\)</span>. * <span class="math inline">\(r_j(x, y)\)</span>: restrição booleana <span class="math inline">\(j\)</span> (0 para impróprio, 1 para apto).</p>
+</section>
+</section>
+<section id="roteiro-da-sessão-prática-de-quinta-feira" class="level1">
+<h1>Roteiro da Sessão Prática de Quinta-feira</h1>
+<p>Para a aula prática em laboratório, utilizaremos o <strong>QGIS</strong> com os complementos <em>Easy AHP</em> / <em>AHP for GIS</em> e as ferramentas nativas de análise raster e vetorial.</p>
+<section id="exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-prático-1-interpolação-de-qualidade-da-água-e-chuva">Exercício Prático 1: Interpolação de Qualidade da Água e Chuva</h2>
+<ul>
+<li><strong>Objetivo:</strong> Mapear a variabilidade espacial da Demanda Bioquímica de Oxigênio (DBO) ou precipitação média em uma bacia hidrográfica.</li>
+<li><strong>Passo a Passo Técnico:</strong>
+<ol type="1">
+<li>Carregar planilha de pontos monitorados (<code>.csv</code> georreferenciado em SIRGAS 2000 UTM).</li>
+<li>Executar a interpolação por <strong>IDW</strong> via menu <code>Raster -&gt; Análise -&gt; Grade (IDW)</code> ou ferramentas do <code>SAGA</code>.</li>
+<li>Executar a <strong>Krigagem Ordinária</strong> via <em>Smart-Map Plugin</em> ou <code>SAGA GIS -&gt; Variogram Fitting &amp; Ordinary Kriging</code>.</li>
+<li>Comparar os resultados matriciais, avaliando o comportamento nas bordas da bacia e o efeito de anisotropia.</li>
+</ol></li>
+</ul>
+</section>
+<section id="exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc" class="level2">
+<h2 class="anchored" data-anchor-id="exercício-prático-2-alocação-locacional-de-aterro-sanitário-ete-ahp-wlc">Exercício Prático 2: Alocação Locacional de Aterro Sanitário / ETE (AHP + WLC)</h2>
+<ul>
+<li><strong>Objetivo:</strong> Elaborar o mapa final de aptidão locacional para implantação de uma infraestrutura de saneamento ambientalmente segura.</li>
+<li><strong>Camadas de Entrada e Pré-processamento:</strong>
+<ul>
+<li><strong>Restrições:</strong>
+<ul>
+<li>Rios e corpos hídricos: <em>Buffer</em> de 200 m (Restrição total = 0).</li>
+<li>Mancha urbana consolidada: <em>Buffer</em> de 1.000 m (Restrição total = 0).</li>
+</ul></li>
+<li><strong>Fatores:</strong>
+<ul>
+<li>Declividade do terreno derivada do MDE (faixa ótima: 2% a 15%).</li>
+<li>Distância às rodovias/acessos viários existentes (quanto mais próximo, menor o custo de transporte).</li>
+<li>Tipo de solo / permeabilidade.</li>
+</ul></li>
+</ul></li>
+<li><strong>Processamento:</strong>
+<ol type="1">
+<li>Padronização dos fatores na escala contínua de 0 (pior) a 10 (melhor) via reclassificação raster (<code>r.reclass</code> ou calculadora raster).</li>
+<li>Estruturação da matriz AHP de comparação pareada e validação de <span class="math inline">\(CR &lt; 0{,}10\)</span>.</li>
+<li>Execução da Combinação Linear Ponderada na <strong>Calculadora Raster</strong>: <span class="math display">\[\text{Aptidao} = (0{,}45 \cdot \text{Decliv\_Norm} + 0{,}35 \cdot \text{Vias\_Norm} + 0{,}20 \cdot \text{Solos\_Norm}) \times (\text{Restr\_Rios} \times \text{Restr\_Urb})\]</span></li>
+<li>Extração e vetorização das três melhores poligonais candidatas para a tomada de decisão gerencial.</li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="materiais-complementares-e-leituras-recomendadas" class="level1">
+<h1>Materiais Complementares e Leituras Recomendadas</h1>
+<ol type="1">
+<li><strong>VAN DER KWAST, H.; MENKE, K.</strong> <em>QGIS for Hydrological Applications: Recipes for Catchment Hydrology and Water Management</em>. Locate Press, 2019 (Capítulo sobre análise de terreno e modelagem raster).</li>
+<li><strong>SAATY, T. L.</strong> <em>How to make a decision: The Analytic Hierarchy Process</em>. European Journal of Operational Research, v. 48, p.&nbsp;9-26, 1990.</li>
+<li><strong>MENDES, C. A. B.; CIRILO, J. A.</strong> <em>Geoprocessamento em Recursos Hídricos: princípios, integração e aplicação</em>. ABRH, 2001 (Capítulo 7: Ferramentas analíticas e tomada de decisão).</li>
+<li><strong>BRASIL.</strong> <em>Lei Federal nº 14.026, de 15 de julho de 2020</em>. Atualiza o marco legal do saneamento básico.</li>
+</ol>
+</section>
+<section id="quinta-feira-prática" class="level1">
+<h1>Quinta-Feira Prática</h1>
+<section id="prática-1-interpolação-espacial-idw-e-krigagem" class="level2">
+<h2 class="anchored" data-anchor-id="prática-1-interpolação-espacial-idw-e-krigagem">1. Prática 1: Interpolação Espacial (IDW e Krigagem)</h2>
+<ul>
+<li><p><strong>Arquivo:</strong> <a href="dados_praticos_modulo4_qgis.zip"><code>monitoramento_qualidade_chuva.csv</code></a></p></li>
+<li><p><strong>Estrutura:</strong> 22 estações com coordenadas geográficas (<code>EPSG:4326</code>), contendo variáveis hidrológicas e de qualidade de água calibradas:</p></li>
+<li><p>Precipitação mensal acumulada (<code>precipitacao_mm</code>)</p></li>
+<li><p>Demanda Bioquímica de Oxigênio (<code>dbo_mg_l</code>), apresentando picos a jusante de centros urbanos e ETEs</p></li>
+<li><p>Turbidez (<code>turbidez_ntu</code>), Oxigênio Dissolvido (<code>od_mg_l</code>) e Coliformes Termotolerantes (<code>coliformes_nmp</code>)</p></li>
+<li><p><strong>Fluxo no QGIS:</strong></p></li>
+</ul>
+<ol type="1">
+<li>Carregar via <strong>Camada &gt; Adicionar Camada de Texto Delimitado</strong> (X = <code>longitude</code>, Y = <code>latitude</code>).</li>
+<li>Reprojetar para o sistema métrico da região (ex.: <strong>SIRGAS 2000 / UTM zone 24S — EPSG:31984</strong>) para cálculos métricos exatos.</li>
+<li>No menu <strong>Processamento (Caixa de Ferramentas)</strong>:</li>
+</ol>
+<ul>
+<li>Executar <strong>IDW Interpolation</strong> (testando expoentes de potência <span class="math inline">\(p = 1\)</span>, <span class="math inline">\(2\)</span> e <span class="math inline">\(3\)</span>).</li>
+<li>Executar <strong>Krigagem Ordinária</strong> (usando o módulo SAGA ou plugin Smart-Map/GRASS).</li>
+</ul>
+</section>
+<section id="prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada" class="level2">
+<h2 class="anchored" data-anchor-id="prática-2-análise-multi-critério-ahp-e-combinação-linear-ponderada">2. Prática 2: Análise Multi-critério (AHP e Combinação Linear Ponderada)</h2>
+<ul>
+<li><p><strong>Arquivos:</strong> <code>pesos_criterios_ahp.csv</code> e <code>tabela_reclassificacao_notas.csv</code></p></li>
+<li><p><strong>Vetor de Pesos Calculado (Consistência <span class="math inline">\(CR = 0{,}028 &lt; 0{,}10\)</span>):</strong></p></li>
+<li><p><strong>Distância a Corpos Hídricos (<span class="math inline">\(w_1\)</span>):</strong> <span class="math inline">\(39{,}8\%\)</span></p></li>
+<li><p><strong>Distância a Núcleos Urbanos (<span class="math inline">\(w_2\)</span>):</strong> <span class="math inline">\(25{,}6\%\)</span></p></li>
+<li><p><strong>Declividade (<span class="math inline">\(w_3\)</span>):</strong> <span class="math inline">\(16{,}1\%\)</span></p></li>
+<li><p><strong>Uso e Cobertura do Solo (<span class="math inline">\(w_4\)</span>):</strong> <span class="math inline">\(11{,}6\%\)</span></p></li>
+<li><p><strong>Permeabilidade / Geotecnia do Solo (<span class="math inline">\(w_5\)</span>):</strong> <span class="math inline">\(6{,}9\%\)</span></p></li>
+<li><p><strong>Fórmula Pronta para a Calculadora Raster do QGIS:</strong></p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  (<span class="ot">"R_Dist_Agua@1"</span> <span class="op">*</span> <span class="fl">0.398</span>) <span class="op">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (<span class="ot">"R_Dist_Urbana@1"</span> <span class="op">*</span> <span class="fl">0.256</span>) <span class="op">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  (<span class="ot">"R_Declividade@1"</span> <span class="op">*</span> <span class="fl">0.161</span>) <span class="op">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  (<span class="ot">"R_Uso_Solo@1"</span> <span class="op">*</span> <span class="fl">0.116</span>) <span class="op">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  (<span class="ot">"R_Geologia@1"</span> <span class="op">*</span> <span class="fl">0.069</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>) <span class="op">*</span> <span class="ot">"Mascara_Restricao@1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>(Onde <code>"Mascara_Restricao@1"</code> assume valor <code>0</code> para áreas de exclusão legal — buffers de rios, áreas urbanas consolidadas e declividades <span class="math inline">\(&gt; 30\%\)</span> — e <code>1</code> para áreas aptas à instalação).</em></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

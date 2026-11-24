@@ -1,5 +1,5 @@
 ---
-title: "Módulo 5"
+title: "Módulo 6"
 format: html
 description: "Integração, Estudos de Caso em Gestão/Regulação e Apresentação de Projetos"
 ---

@@ -167,174 +167,244 @@
   {
     "objectID": "integracao.html",
     "href": "integracao.html",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "",
     "text": "Chegamos ao Módulo 5, momento de síntese e consolidação das competências desenvolvidas ao longo de toda a disciplina. Após dominarmos os conceitos de cartografia, bacias hidrográficas em modelos digitais de elevação, sensoriamento remoto multiespectral e análise espacial multi-critério, o foco migra para o elo decisivo: a comunicação técnica eficiente e a tomada de decisão gerencial.\nNo contexto do mestrado profissional e da atuação prática em órgãos gestores (ANA, órgãos estaduais), comitês de bacia hidrográfica (CBHs), concessionárias de saneamento e consultorias ambientais, o dado geoespacial só ganha valor pleno quando traduzido em instrumentos inteligíveis: mapas temáticos normatizados, plataformas WebGIS acessíveis e painéis de indicadores integrados.\nA organização deste módulo compreende:\n\nTerça-feira (4,5h) – Comunicação de Dados, WebGIS e Indicadores:\n\nIntegração de Geoprocessamento com Sistemas de Apoio à Decisão (SAD) e Regulação.\nCartografia Temática Profissional e Composição de Layouts no QGIS.\nDisseminação via WebGIS, Dashboards e Formatos de Intercâmbio (GeoJSON, KML, QGIS Cloud, Felt).\nOficina de Mentoria e Apoio Direto aos Mini-Projetos Aplicados dos mestrandos.\n\nQuinta-feira (4,5h) – Apresentação dos Projetos Aplicados e Encerramento:\n\nApresentação dos seminários técnicos individuais ou em duplas focados em problemas hidroambientais reais.\nRoda de discussão, avaliação por rubrica técnica e fechamento do semestre.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#aplicações-estratégicas-na-regulação-hídrica",
     "href": "integracao.html#aplicações-estratégicas-na-regulação-hídrica",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Aplicações Estratégicas na Regulação Hídrica",
     "text": "Aplicações Estratégicas na Regulação Hídrica\nO uso integrado do SIG subsidia diretamente instrumentos da Política Nacional de Recursos Hídricos (Lei Federal nº 9.433/1997):\n\nOutorga de Direito de Uso dos Recursos Hídricos:\n\nCálculo automatizado do balanço hídrico espacial: relação entre a soma das vazões outorgadas a montante (\\(\\sum Q_{\\text{outorgada}}\\)) e a vazão de referência mínima da bacia (ex.: \\(Q_{7,10}\\) ou \\(Q_{95}\\)):\n\n\n\\[\nI_{\\text{comprometimento}} = \\frac{\\sum_{i=1}^n Q_{\\text{outorgada}, i}}{Q_{\\text{referência}}} \\times 100 \\quad [\\%]\n\\]\n\nIdentificação de trechos fluviais sob estresse hídrico crítico (\\(I &gt; 70\\%\\)).\n\n\nCobrança pelo Uso da Água e Enquadramento:\n\nEspacialização de cargas poluidoras lançadas e outorgadas (DBO, fósforo total, nitrogênio) em relação à capacidade de autodepuração do corpo receptor.\n\nSegurança de Barragens e Contingência:\n\nManchas de inundação derivadas de simulações de rompimento (dam break) integradas a cadastros urbanos para definição de Zonas de Auto Salvamento (ZAS).",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt",
     "href": "integracao.html#elementos-normativos-de-um-mapa-técnico-nbr-13.133-e-padrões-da-abnt",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)",
     "text": "Elementos Normativos de um Mapa Técnico (NBR 13.133 e Padrões da ABNT)\nTodo mapa gerado para fins de regulação, licenciamento ou plano de bacia deve contemplar:\n\nTítulo Claro e Objetivo: Deve responder O quê?, Onde? e Quando? (ex.: “Balanço de Disponibilidade Hídrica na Sub-bacia do Rio das Velhas - 2026”).\nProjeção e Datum: Indicação explícita do Sistema de Referência Geocêntrico (ex.: SIRGAS 2000, Projeção UTM Fuso 24S, EPSG: 31984).\nEscala Gráfica e Numérica: A escala gráfica é indispensável, pois permanece válida mesmo quando o mapa é redimensionado em relatórios digitais.\nOrientação do Norte Geográfico: Símbolo discreto e posicionado sem obstruir feições relevantes.\nLegenda Estruturada: Hierarquizada, com nomes descritivos em português (evitando códigos brutos de atributos como cod_trech_hidro).\nMetadados e Créditos: Fontes primárias de dados (ex.: ANA, IBGE, INPE, CPRM), autor do mapa e data de elaboração.\nGrade de Coordenadas: Reticulado com coordenadas em metros (UTM) ou graus decimais/GMS nas margens.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#o-compositor-de-impressão-do-qgis-print-layout",
     "href": "integracao.html#o-compositor-de-impressão-do-qgis-print-layout",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "O Compositor de Impressão do QGIS (Print Layout)",
     "text": "O Compositor de Impressão do QGIS (Print Layout)\nRecursos avançados para produção profissional:\n\nMapas de Inserção (Overview / Inset Maps): Janela secundária em escala menor indicando a localização da área de estudo no contexto estadual ou nacional.\nGeração Automatizada com Atlas: Ferramenta que itera sobre feições de uma camada de cobertura (ex.: cada município da bacia ou cada estação de tratamento) e exporta automaticamente dezenas de pranchas PDF padronizadas com filtros dinâmicos de legenda e escala.\nExpressões Dinâmicas: Uso de campos calculados no rodapé (ex.: [% @project_title %], [% format_date(now(), 'dd/MM/yyyy') %]).",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#formatos-de-intercâmbio-de-dados-vetoriais",
     "href": "integracao.html#formatos-de-intercâmbio-de-dados-vetoriais",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Formatos de Intercâmbio de Dados Vetoriais",
     "text": "Formatos de Intercâmbio de Dados Vetoriais\n\nGeoPackage (.gpkg): Padrão aberto da OGC baseado em SQLite. Substitui o formato legado Shapefile (.shp), superando limitações de tamanho (máximo de 2 GB do SHP), truncamento de nomes de campos a 10 caracteres e ausência de suporte nativo a múltiplos tipos de geometria em um único arquivo.\nGeoJSON (.geojson): Formato leve baseado em notação JSON para dados vetoriais, padrão da web moderna e amplamente suportado por bibliotecas como Leaflet, OpenLayers e Mapbox.\nKML/KMZ (.kml / .kmz): Estrutura em XML para visualização rápida no Google Earth, indispensável para vistorias visuais preliminares e alinhamento com equipes de campo.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#plataformas-ágeis-de-publicação-webgis",
     "href": "integracao.html#plataformas-ágeis-de-publicação-webgis",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Plataformas Ágeis de Publicação WebGIS",
     "text": "Plataformas Ágeis de Publicação WebGIS\n\nQGIS Cloud:\n\nPlugin integrado ao QGIS Desktop que publica o projeto completo (camadas, simbologia e rotulagem) para um banco de dados PostgreSQL/PostGIS hospedado na nuvem, gerando um mapa Web OGC (WMS/WFS) e interface interativa via navegador.\n\nFelt (felt.com):\n\nPlataforma moderna de mapeamento colaborativo em nuvem. Permite arrastar arquivos .gpkg, .geojson, .tif ou projetos inteiros do QGIS (via complemento oficial), oferecendo ferramentas intuitivas de anotação vetorial, medição de áreas e compartilhamento por link seguro com comitês e gestores.\n\nDashboards Espaciais:\n\nPainéis analíticos que sincronizam mapas a gráficos de barras, histogramas de vazão e medidores de cumprimento de metas do marco legal de saneamento.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#roteiro-metodológico-recomendado",
     "href": "integracao.html#roteiro-metodológico-recomendado",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Roteiro Metodológico Recomendado",
     "text": "Roteiro Metodológico Recomendado\nO projeto final deve integrar as etapas percorridas durante as 5 semanas da disciplina:\n[ 1. Caracterização Morfométrica ]\nDelimitação MDE + Declividade + Drenagem\n              │\n              ▼\n[ 2. Cobertura da Terra e Conflitos ]\nClassificação SCP / MapBiomas + APP Hídrica\n              │\n              ▼\n[ 3. Análise Espacial e Decisão ]\nInterpolação de Qualidade/Chuva OU Matriz AHP (Adequabilidade)\n              │\n              ▼\n[ 4. Comunicação Técnica e Gestão ]\nPrancha A3 Normatizada + Publicação WebGIS / GeoPackage",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
     "objectID": "integracao.html#estrutura-do-seminário-técnico-de-quinta-feira",
     "href": "integracao.html#estrutura-do-seminário-técnico-de-quinta-feira",
-    "title": "Módulo 5",
+    "title": "Módulo 6",
     "section": "Estrutura do Seminário Técnico de Quinta-feira",
     "text": "Estrutura do Seminário Técnico de Quinta-feira\nCada apresentação terá duração máxima de 15 minutos, seguida de 5 minutos de comentários e arguição pela banca:\n\nContextualização e Problema: Apresentação da bacia hidrográfica ou município, contexto regulatório ou conflito ambiental identificado (2 a 3 min).\nBase de Dados e Metodologia: Dados primários e secundários utilizados (estações, imagens orbitais, MDE) e fluxo no QGIS (3 a 4 min).\nResultados Espaciais e Discussão: Mapas temáticos, matriz de confusão/validação ou modelo de adequabilidade obtido (5 a 6 min).\nImplicações para a Gestão/Regulação: Como os produtos geoespaciais apoiam a tomada de decisão prática da instituição ou comitê (2 a 3 min).\nDemonstração WebGIS / Layout: Breve exibição do mapa interativo ou da prancha final elaborada (1 a 2 min).",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 5 - Integração de Ferramentas"
+      "Módulo 6 - Integração de Ferramentas"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html",
-    "href": "aquisicao_dados.html",
-    "title": "Módulo 2",
+    "objectID": "aula-extra.html",
+    "href": "aula-extra.html",
+    "title": "Módulo 5",
     "section": "",
-    "text": "Modelos de Elevação representam a altimetria da superfície terrestre, divididos principalmente entre MDT/DTM (Modelo Digital do Terreno — superfície do solo “careca”) e MDS/DSM (Modelo Digital de Superfície — inclui topo de vegetação e edificações). Princípios do Processamento e DiferençasOs modelos citados utilizam diferentes tecnologias para capturar e tratar a altimetria:InSAR (Interferometria Radar): Sensores emissores de micro-ondas (bandas C, L ou X) capturam o retorno de fase da onda eletromagnética para calcular o relevo, atravessando nuvens sem dependência de iluminação solar.Comprimento de Onda: Ondas mais curtas (Banda C/X) refletem no topo do dossel florestal e infraestrutura (gerando MDS). Ondas mais longas (Banda L) penetram mais na copa de árvores, atingindo o solo com maior facilidade. Remoção por Machine Learning: Quando o dado bruto inclui artefatos da vegetação e construções (MDS), utilizam-se algoritmos preditivos e dados auxiliares para “filtrar” e estimar a cota real do solo humano/natural (MDT).\n\n\n\nModelo\nTecnologia/Banda\nTipo Originário\nResolução\nFontes de Acesso Gratuito\n\n\n\n\nSRTM\nRadar de Apertura Sintética Interf. (InSAR - Banda C / X)\nMDS (reflete topo da vegetação)\n~30 metros (1 arc-sec)\nUSGS EarthExplorer, NASA Earthdata, Google Earth Engine\n\n\nALOS PALSAR\nRadar de Apertura Sintética (InSAR - Banda L)\nMDS (maior penetração em vegetação)\n12,5 metros (radiométrico)/30 m\nASF Data Search (Alaska Satellite Facility), JAXA EORC\n\n\nCOPENHAGEN/ COPERNICUS DEM\nRadar TanDEM-X/TerraSAR-X (InSAR - Banda X)\nMDS (GLO-30 e GLO-90)\n30 metros / 90 metros\nCopernicus Open Access Hub, OpenTopography, AWS Public Dataset\n\n\nFABDEM\nProcessamento computacional sobre o Copernicus DEM\nMDT (Forest And Buildings removed)\n~30 metros\nRepositório da University of Bristol (Data.bris), OpenTopography",
+    "text": "Além da regulação microclimática e da retenção do escoamento superficial (stormwater retention), as florestas urbanas e áreas verdes prestam um amplo conjunto de serviços ecossistêmicos — tradicionalmente organizados segundo a classificação da Avaliação Ecossistêmica do Milênio (MEA) e do quadro CICES (Common International Classification of Ecosystem Services).\nPara o contexto de gestão hídrica, infraestrutura urbana e modelagem por sensoriamento remoto (como nos projetos do CNR-ITIAm/IRET), os principais serviços são:",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#correção-hidrológica-preenchimento-de-depressões",
-    "href": "aquisicao_dados.html#correção-hidrológica-preenchimento-de-depressões",
-    "title": "Módulo 2",
-    "section": "Correção Hidrológica (Preenchimento de Depressões)",
-    "text": "Correção Hidrológica (Preenchimento de Depressões)\nAntes de extrair redes de drenagem ou delimitar bacias, é necessário remover imperfeições (sinks ou depressions) para garantir o fluxo contínuo da água.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nFill Sinks (Wang & Liu)\nSAGA GIS\nIdentifica e preenche depressões espúrias mantendo uma inclinação mínima contínua em direção às saídas.\n\n\nFill Sinks (Planchon & Darboux)\nSAGA GIS\nAlgoritmo rápido que “inunda” a superfície e remove as depressões secando as células sobressalentes.\n\n\nr.fill.dir\nGRASS GIS\nFiltra depressões e gera diretamente as superfícies corrigidas e os mapas de direção de fluxo (Flow Direction).\n\n\nFill Sinks (XXL / Wang & Liu)\nSAGA GIS\nOtimizado para gerenciar matrizes de dados massivas com baixo consumo de memória RAM.",
+    "objectID": "aula-extra.html#quem-desenvolveu-e-mantém",
+    "href": "aula-extra.html#quem-desenvolveu-e-mantém",
+    "title": "Módulo 5",
+    "section": "Quem Desenvolveu e Mantém?",
+    "text": "Quem Desenvolveu e Mantém?\nO InVEST é desenvolvido e mantido pelo Natural Capital Project (NatCap), uma parceria científica internacional sediada na Stanford University (EUA), fundada em conjunto com:\n\nUniversity of Minnesota (Institute on the Environment)\nChinese Academy of Sciences (CAS)\nThe Nature Conservancy (TNC)\nWorld Wildlife Fund (WWF)\nStockholm Resilience Centre\n\nO software é distribuído sob licença aberta (BSD), possui interface gráfica própria (Workbench) e também dispõe de uma biblioteca Python (natcap.invest) que permite automação em scripts ou integração direta com fluxos de trabalho no QGIS.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#suavização-e-filtragem-de-ruído-filtering-smoothing",
-    "href": "aquisicao_dados.html#suavização-e-filtragem-de-ruído-filtering-smoothing",
-    "title": "Módulo 2",
-    "section": "Suavização e Filtragem de Ruído (Filtering & Smoothing)",
-    "text": "Suavização e Filtragem de Ruído (Filtering & Smoothing)\nUtilizados para suavizar variações bruscas de altimetria, artefatos de sensoriamento remoto ou ruídos do processamento de nuvem de pontos.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nSimple Filter / Gaussian Filter\nSAGA GIS\nAplica filtros convolutionais (passa-baixas, gaussianos ou mediana) para suavizar a matriz de pixels.\n\n\nr.denoise\nGRASS GIS\nPreserva cristas e talvegues afiados (edges) enquanto remove o ruído em superfícies suaves.\n\n\nFilter (Gauß, Median, Mean)\nGDAL / QGIS\nSuavização rápida via reamostragem ou aplicação de matriz de vizinhança.",
+    "objectID": "aula-extra.html#principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano",
+    "href": "aula-extra.html#principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano",
+    "title": "Módulo 5",
+    "section": "Principais Produtos e Modelos Disponíveis (Foco em Recursos Hídricos e Urbano)",
+    "text": "Principais Produtos e Modelos Disponíveis (Foco em Recursos Hídricos e Urbano)\nO InVEST funciona de forma modular: cada serviço ecossistêmico é um modelo independente baseado em processos biofísicos simplificados (produção espacializada) que, opcionalmente, pode ser acoplado a modelos de valoração econômica ou social.\n\n\n\n\n\n\n\n\nMódulo InVEST\nO que Modela / Calcula\nPrincipais Produtos Gerados (Saídas)\n\n\n\n\nUrban Flood Risk Mitigation (Mitigação de Risco de Inundação Urbana)\nBaseado no método SCS-CN, calcula a redução do escoamento superficial promovida por áreas verdes durante eventos extremos de chuva.\nRasters de escoamento gerado (\\(\\text{mm}\\)), volume retido (\\(\\text{m}^3\\)/pixel), índices de retenção por sub-bacia e valoração de danos evitados à infraestrutura urbana.\n\n\nAnnual Water Yield (Produção Hídrica Anual)\nBalanço hídrico simplificado (precipitação menos evapotranspiração real via curva de Budyko) para estimar a contribuição de cada sub-bacia para a vazão anual.\nMapas de produção hídrica anual (\\(\\text{mm}\\) e \\(\\text{m}^3\\)), evapotranspiração real por pixel e tabelas agregadas por bacia hidrográfica (útil para gestão de reservatórios e hidrelétricas).\n\n\nSeasonal Water Yield (Produção Hídrica Sazonal)\nSepara o balanço hídrico mensal em escoamento rápido (quickflow) e recarga de base (baseflow), indicando onde ocorre recarga de aquíferos.\nMapas mensais e anuais de recarga local (\\(L\\)), recarga acumulada (\\(B\\)) e escoamento rápido (\\(QF\\)).\n\n\nNutrient Delivery Ratio (NDR) (Retenção e Exportação de Nutrientes)\nModela a fonte e o transporte de Nitrogênio (N) e Fósforo (P) na bacia e a capacidade da vegetação ripária de reter essa carga difusa.\nMapas de carga de nutrientes exportada para os rios (\\(\\text{kg/ha/ano}\\)), eficiência de retenção por pixel e carga total na exutória.\n\n\nSediment Delivery Ratio (SDR) (Retenção e Exportação de Sedimentos)\nAplica a Equação Universal de Perda de Solo (USLE) combinada à conectividade hidrológica para mapear erosão e aporte de sedimentos aos rios.\nMapas de perda de solo potencial e real (\\(\\text{ton/ha/ano}\\)), retenção de sedimentos pela vegetação e aporte líquido aos corpos d’água (assoreamento).\n\n\nUrban Cooling (Resfriamento Urbano)\nCalcula o efeito de mitigação da ilha de calor urbana por sombreamento, evapotranspiração e albedo das áreas verdes.\nMapas de índice de mitigação de calor, temperatura do ar estimada (\\(^\\circ\\text{C}\\)), economia de energia em refrigeração e produtividade laboral preservada.\n\n\nCarbon Storage and Sequestration (Estoque e Sequestro de Carbono)\nAgrega estoques de carbono em 4 compartimentos (biomassa aérea, subterrânea, solo e serrapilheira) entre cenários temporais.\nMapas de estoque total de carbono (\\(\\text{Mg C/pixel}\\)), balanço líquido de sequestro/emissão entre datas e valor social do carbono.\n\n\nHabitat Quality (Qualidade de Habitat)\nAvalia a integridade da biodiversidade cruzando tipos de cobertura vegetal com a proximidade e intensidade de ameaças antrópicas (vias, áreas urbanas, agricultura).\nMapas contínuos de qualidade de habitat (\\(0\\) a \\(1\\)) e mapas de degradação espacial.\n\n\n\n\n3. Como Utilizar na Prática (Fluxo de Trabalho com QGIS)\nO InVEST não é um visualizador de mapas; ele atua como um motor de processamento espacial que lê os arquivos preparados no QGIS e devolve rasters (.tif) e vetores (.gpkg / .shp) prontos para análise e layout final no próprio QGIS.\n\nPasso 1: Instalação\n\nBaixe o instalador gratuito (InVEST Workbench) no site oficial do Natural Capital Project (naturalcapitalproject.stanford.edu/software/invest). Há versões nativas para Windows, macOS e Linux (Ubuntu), além da instalação via conda ou pip (pip install natcap.invest) para execução em linha de comando ou scripts Python.\n\n\n\nPasso 2: Preparação dos Dados no QGIS (Pré-processamento)\nTodos os rasters de entrada de um mesmo projeto devem estar rigorosamente no mesmo Sistema de Referência de Coordenadas projetado (ex.: SIRGAS 2000 / UTM — em metros) e preferencialmente alinhados. Os insumos básicos exigidos pela maioria dos módulos hídricos são:\n\nRaster de Uso e Cobertura do Solo (LULC): Em formato GeoTIFF com códigos numéricos inteiros para cada classe (ex.: MapBiomas ou classificação Sentinel-2/CBERS-4A).\nModelo Digital de Elevação (MDE): Hidrologicamente consistente (ex.: SRTM, ALOS PALSAR ou Copernicus DEM).\nDados Climáticos / Biofísicos: Rasters de precipitação média anual/mensal (ex.: WorldClim, CHIRPS ou interpolação de estações ANA/INMET) e evapotranspiração de referência (\\(ET_0\\)).\nVetor de Bacias ou Sub-bacias Hidrográficas: Polígonos onde os resultados serão sumarizados em tabelas.\nTabela Biofísica (.csv): Uma planilha simples vinculando cada código inteiro da classe de uso do solo (lucode) aos parâmetros da literatura (coeficiente de cultura \\(K_c\\), profundidade radicular, número de curva \\(CN\\), fatores \\(C\\) e \\(P\\) da USLE, ou estoques de carbono). O próprio instalador do InVEST traz uma pasta sample_data com exemplos completos dessas tabelas .csv prontas para adaptação.\n\n\n\nPasso 3: Execução no InVEST Workbench\n\nAbra o InVEST Workbench e escolha o modelo desejado (por exemplo, Urban Flood Risk Mitigation).\nAponte os caminhos dos rasters, vetores e da tabela .csv nos campos da interface (o programa valida automaticamente em tempo real se há erro de projeção, ausência de valores NoData ou incompatibilidade de códigos entre o raster e o CSV).\nDefina a pasta de saída (Workspace) e clique em Run. O processamento de uma bacia urbana leva de alguns segundos a poucos minutos.\n\n\n\nPasso 4: Pós-processamento e Análise no QGIS\n\nCarregue os arquivos gerados na pasta de saída no QGIS:\nOs arquivos .tif mostram a distribuição espacial detalhada pixel a pixel (onde a água é retida ou onde há maior geração de sedimentos).\nO arquivo vetorial agregado (ex.: flood_risk_service.shp ou .gpkg) já traz na tabela de atributos os totais calculados por sub-bacia ou bairro, prontos para elaboração de mapas coropléticos ou publicação em WebGIS no Módulo 5.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#interpolação-e-preenchimento-de-nulos-nodata-fill",
-    "href": "aquisicao_dados.html#interpolação-e-preenchimento-de-nulos-nodata-fill",
-    "title": "Módulo 2",
-    "section": "Interpolação e Preenchimento de Nulos (NoData Fill)",
-    "text": "Interpolação e Preenchimento de Nulos (NoData Fill)\nPreenchem lacunas causadas por nuvens, sombras de radar ou ausência de dados na aquisição.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nFill NoData\nGDAL\nPreenche pixels sem valor extrapolando as bordas válidas via interpolação ponderada pela distância (IDW).\n\n\nClose Gaps\nSAGA GIS\nUtiliza interpolação por B-Splines ou métodos locais para recompor falhas internas na grade raster.\n\n\nr.fillnulls\nGRASS GIS\nEmprega Regularized Splines with Tension (RST) para reconstituir lacunas grandes mantendo a continuidade topográfica.",
+    "objectID": "aula-extra.html#contextualização-e-motivação-científica",
+    "href": "aula-extra.html#contextualização-e-motivação-científica",
+    "title": "Módulo 5",
+    "section": "Contextualização e Motivação Científica",
+    "text": "Contextualização e Motivação Científica\nEsta aula prática foi concebida como uma ponte aplicada entre os conceitos de Sensoriamento Remoto, Sistemas de Informação Geográfica (SIG) e a agenda internacional de pesquisa discutida no seminário sobre o projeto “Remote Sensing and innovative modeling to support biodiversity and ecosystem services in urban forests in Brazil and Italy”, desenvolvido por pesquisadores do Consiglio Nazionale delle Ricerche (CNR — institutos ITIAm e IRET).\nNas regiões metropolitanas do Brasil e da Europa, os fragmentos florestais urbanos (parques naturais, matas ciliares e remanescentes florestais) atuam como infraestruturas verdes essenciais para a segurança hídrica. Entre os múltiplos Serviços Ecossistêmicos (SE) prestados por esses ambientes, destaca-se a regulação do ciclo hidrológico e a mitigação do escoamento superficial urbano (Stormwater Runoff Retention).",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#reamostragem-reprojeção-e-ajuste-de-resolução",
-    "href": "aquisicao_dados.html#reamostragem-reprojeção-e-ajuste-de-resolução",
-    "title": "Módulo 2",
-    "section": "Reamostragem, Reprojeção e Ajuste de Resolução",
-    "text": "Reamostragem, Reprojeção e Ajuste de Resolução\n\nWarp / Reproject (gdal:warpreproject): Reprojeta o MDE entre sistemas de coordenadas (ex: de WGS 84 geográfico para SIRGAS 2000 UTM) ajustando a escala vertical e a orientação dos pixels.\n\nResample / Grid Normalization: Altera a resolução espacial (ex: de 30m para 10m) utilizando métodos de interpolação como Bilinear, Cubic, ou Nearest Neighbor.",
+    "objectID": "aula-extra.html#objetivo-da-prática",
+    "href": "aula-extra.html#objetivo-da-prática",
+    "title": "Módulo 5",
+    "section": "Objetivo da Prática",
+    "text": "Objetivo da Prática\nQuantificar espacialmente, no QGIS, o volume de água pluvial (em \\(\\text{m}^3\\)) que uma floresta urbana retém durante um evento de precipitação intensa, comparando o cenário atual vegetado com um cenário contrafactual de impermeabilização urbana.",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#direção-de-fluxo-flow-direction",
-    "href": "aquisicao_dados.html#direção-de-fluxo-flow-direction",
-    "title": "Módulo 2",
-    "section": "Direção de Fluxo (Flow Direction)",
-    "text": "Direção de Fluxo (Flow Direction)\nDetermina para qual célula vizinha a água contida na célula central irá escoar. O algoritmo avalia as 8 células adjacentes (matriz \\(3 \\times 3\\)) e calcula a rampa de maior declive (\\(S\\)):\n\\[S = \\frac{\\Delta Z}{d}\\]\nonde \\(\\Delta Z\\) é a diferença de altitude entre o pixel central e o vizinho, e \\(d\\) é a distância entre os centros dos pixels (\\(d = \\text{resolução}\\) para vizinhos cardinais; \\(d = \\text{resolução} \\cdot \\sqrt{2}\\) para diagonais).\n\nMétodo D8 (Determinístico 8): O mais tradicional. Direciona 100% do fluxo para uma única célula vizinha com o maior valor de \\(S\\). Cada direção recebe um código binário (\\(1=\\text{Leste}\\), \\(2=\\text{Sudeste}\\), \\(4=\\text{Sul}\\), \\(8=\\text{Sudoeste}\\), etc.).\nMétodos Múltiplos (FD8 / MFD / D-Infinity): Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.\n\n\nAcúmulo de Fluxo (Flow Accumulation)\nCalcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em \\(\\text{m}^2\\) ou \\(\\text{km}^2\\)).\n\nContribuição Recursiva: Células localizadas em divisores de água (topos de morro) têm acúmulo igual a \\(0\\) ou \\(1\\) (apenas sua própria área).\nDefinição da Rede de Drenagem: Ao aplicar um limiar (threshold) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.\n\n\n\nDelimitação Automática de Bacias e Sub-bacias\nCom base na matriz de direção de fluxo e na rede de drenagem gerada, os algoritmos agrupam as células do terreno aplicando o conceito topológico de exutório:\n\nPonto de Exutório (Pour Point): Define-se a seção transversal de interesse na rede de drenagem.\nRastreamento Inverso (Upstream Tracing): O algoritmo percorre a matriz de direção de fluxo “contra a corrente”, identificando e selecionando todas as células montante cujas direções apontam direta ou indiretamente para aquele ponto de exutório.\nVetorização e Delimitação: A borda externa do conjunto de pixels selecionados forma o divisor topográfico de águas. Quando executado de forma automática para toda a grade (ex: algoritmo r.watershed do GRASS ou Basin Channels do SAGA), o software segmenta a área total em sub-bacias correspondentes às confluências da rede de drenagem.\n\n\n\nExtração da rede de drenagem sintética\nA extração da rede de drenagem sintética é o processo de mapear computacionalmente os canais de escoamento superficial a partir do acúmulo de fluxo calculado sobre um Modelo Digital de Elevação (MDE). É chamada de “sintética” porque não é mapeada por vetorização manual ou fotointerpretação, mas derivada matematicamente da topografia.\nPrincípio da Extração e Etapas\nO cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:\n\nDefinição do Limiar Crítico (Threshold): Estabelece a área de contribuição mínima necessária (em número de pixels ou \\(\\text{km}^2\\)) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:\n\\[\\text{Canal} = \\begin{cases} 1, & \\text{se Acúmulo de Fluxo} \\ge \\text{Limiar} \\\\\\\\ \\text{NoData}, & \\text{se Acúmulo de Fluxo} &lt; \\text{Limiar} \\end{cases}\\]\nClassificação de Ordem dos Canais (Stream Order): Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:\n\nStrahler: Canais de nascente recebem ordem 1. A junção de dois canais de mesma ordem \\(n\\) gera um canal de ordem \\(n+1\\). A junção de ordens diferentes mantém a ordem do maior.\nShreve: Soma as ordens de todos os tributários a jusante, refletindo a magnitude total do fluxo acumulado.\nVetorização e Esqueletização (Thinning): As células raster contínuas marcadas como canais são conectadas e convertidas em feições vetoriais de linha (polylines), conectando os centros dos pixels ordenadamente do topo da bacia até o exutório.\n\n\nAlgoritmos Principais no QGIS\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção e Saída\n\n\n\n\nChannel Network and Drainage Basins\nSAGA GIS\nGera diretamente o raster de canais, o vetor de drenagem (.shp/.gpkg) e a hierarquia de Strahler/Shreve em um único passo.\n\n\nr.stream.extract\nGRASS GIS\nExtrai a rede de drenagem vetorial com alta precisão topológica, permitindo calibrar o limiar por área ou fluxo acumulado.\n\n\nr.stream.order\nGRASS GIS\nCalcula múltiplos índices de ordenação fluvial (Strahler, Shreve, Horton, Hack) sobre a rede extraída.\n\n\nCalculadora Raster (Nativa)\nQGIS\nExecuta a filtragem por limiar customizado via expressão booleana (“Acumulo@1” &gt;= 500).",
+    "objectID": "aula-extra.html#equações-governantes",
+    "href": "aula-extra.html#equações-governantes",
+    "title": "Módulo 5",
+    "section": "Equações Governantes",
+    "text": "Equações Governantes\n\n1. Retenção Potencial Máxima (\\(S\\))\nA capacidade máxima de armazenamento de água na superfície, no dossel e no perfil superior do solo após o início do escoamento depende diretamente do parâmetro adimensional \\(CN\\) (\\(0 &lt; CN \\le 100\\)):\n\\[\nS = \\frac{25400}{CN} - 254\n\\]\nOnde:\n\n\\(S\\): Retenção potencial máxima (\\(\\text{mm}\\)).\n\\(CN\\): Número da Curva (Curve Number), tabelado em função do uso do solo, tratamento/cobertura e Grupo Hidrológico do Solo (A, B, C ou D).\n\n\n\n2. Abstração Inicial (\\(I_a\\))\nRepresenta todas as perdas antes do início do escoamento superficial (interceptação pelas copas das árvores, infiltração inicial e armazenamento em depressões do terreno). Na formulação clássica do SCS:\n\\[\nI_a = 0{,}2 \\cdot S\n\\]\n\n\n3. Lâmina de Escoamento Superficial (\\(Q\\))\nPara uma chuva de projeto \\(P\\) (\\(\\text{mm}\\)), a lâmina escoada \\(Q\\) (\\(\\text{mm}\\)) em cada célula matricial é dada por:\n\\[\nQ = \\begin{cases}\n0, & \\text{se } P \\le 0{,}2 \\cdot S \\\\\n\\dfrac{(P - 0{,}2 \\cdot S)^2}{P + 0{,}8 \\cdot S}, & \\text{se } P &gt; 0{,}2 \\cdot S\n\\end{cases}\n\\]",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "aquisicao_dados.html#cálculo-do-índice-de-umidade-topográfica",
-    "href": "aquisicao_dados.html#cálculo-do-índice-de-umidade-topográfica",
-    "title": "Módulo 2",
-    "section": "Cálculo do Índice de Umidade Topográfica",
-    "text": "Cálculo do Índice de Umidade Topográfica\nO Índice de Umidade Topográfica (TWI - Topographic Wetness Index), desenvolvido por Beven e Kirkby (1979), quantifica o controle topográfico nos processos hidrológicos e prevê áreas propensas à acumulação de água e saturação do solo.\nO TWI é definido por:\n\\[\\text{TWI} = \\ln\\left(\\frac{a}{\\tan \\beta}\\right)\\]\nOnde:\n\n\\(a\\) é a área de contribuição específica a montante por unidade de largura de contorno (\\(\\text{m}^2/\\text{m}\\) ou simplesmente a extensão de acúmulo ajustada à resolução do pixel).\n\n\\(\\beta\\) é o ângulo de declividade do terreno em radianos (slope).\n\n\n1.Verificação do MDE:Formato e projeção do raster.\n\n\n\nCertifique-se de que o seu Modelo Digital de Elevação (MDE) esteja em um Sistema de Coordenadas Projetadas (UTM) com unidade em metros (ex: SIRGAS 2000 / UTM zone 24S).\n\nGaranta que o MDE passou pelo pré-processamento de correção hidrológica (Fill Sinks), evitando falhas de cálculo no acúmulo de fluxo.\n\n\n2.Cálculo Direto Automático (Método Recomendado): Toolbox.\nO QGIS possui um algoritmo nativo via GRASS que calcula todos os componentes intermediários e entrega o TWI direto em um passo:\n\n\nNa Caixa de Ferramentas de Processamento, busque por GRASS \\(\\rightarrow\\) r.topidx.\nEm Input elevation map, selecione o MDE corrigido (Filled DEM).\nEm Topographic index, defina o caminho ou nome para salvar a camada raster final.\nClique em Executar. O QGIS gerará a camada raster do TWI diretamente.\n\n\n3.Cálculo Manual por Etapas (Para Controle de Parâmetros): GRASS / Calculadora Raster.\nCaso deseje personalizar os métodos de escoamento e declividade, você pode gerar as camadas intermediárias separadamente:\n\n\nCom o raster de Acúmulo de Fluxo (células \\(\\times\\) resolução) e a Declividade em Radianos, abra a Calculadora Raster (GDAL ou nativa) e aplique a fórmula ajustada para evitar divisão por zero:\n\nln( (\"Acumulo_m2@1\") / tan( max(\"Declividade_rad@1\", 0.001) ) )\n*Os valores do TWI resultantes concentram números maiores (10–20) nas linhas de talvegue/drenagem e números menores (3–6) nos divisores de água.\n\n\n4.Estilização do Resultado:Simbologia e Interpretação.\n\n\n\nClique com o botão direito na camada TWI gerada e acesse Propriedades \\(\\rightarrow\\) Simbologia.\n\nModifique o tipo de renderização para Banda simples falsa-cor.\n\nEscolha uma rampa de cores apropriada (ex: Blues ou YlGnBu).\n\nInterpretação dos Valores:\n\n\n\nValores Elevados (Altos): Zonas planas, fundos de vale e áreas de convergência de fluxo \\(\\rightarrow\\) Alta capacidade de retenção e saturação de umidade.\n\nValores Baixos: Cristas, topos de morro e encostas íngremes \\(\\rightarrow\\) Rápido escoamento superficial e baixa retenção de água.",
+    "objectID": "aula-extra.html#camadas-de-entrada-inputs",
+    "href": "aula-extra.html#camadas-de-entrada-inputs",
+    "title": "Módulo 5",
+    "section": "Camadas de Entrada (Inputs)",
+    "text": "Camadas de Entrada (Inputs)\n\nLimite da Microbacia e Polígono do Parque Urbano (.gpkg): Camadas vetoriais projetadas em SIRGAS 2000 / UTM Zone 24S (EPSG:31984).\nMapa de Uso e Cobertura da Terra (LULC.tif): Raster classificado (resolução espacial de \\(10\\text{ m}\\) ou \\(30\\text{ m}\\)) com os seguintes códigos inteiros padronizados:\n\n1: Floresta Urbana Densa (Mata Atlântica / Parque)\n2: Vegetação Herbácea / Gramados / Parques Abertos\n3: Solo Exposto / Áreas em Terraplenagem\n4: Área Urbana Consolidada (Impermeável / Edificações / Vias)\n5: Corpos d’Água\n\nGrupo Hidrológico do Solo (HSG.tif): Camada matricial alinhada ao LULC.tif representando a permeabilidade pedológica predominante (ex.: Grupo B — solos moderadamente profundos e bem drenados; Grupo C — solos com camada de impedimento ou textura argilosa).",
     "crumbs": [
       "Introdução às Geotecnologias",
-      "Módulo 2 - Aquisição de dados"
+      "Módulo 5 - Serviços Ecossistêmicos"
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Sobre o Curso",
-    "section": "",
-    "text": "Esta é uma pagina feita com recurso Quarto.org para a disciplina de Geotécnologia aplicada aos Recursos Hídricos do Mestrado Profissional em Gestão e Regulação de RH e Saneamento do polo UFBA."
+    "objectID": "aula-extra.html#tabela-de-parametrização-scs-cn",
+    "href": "aula-extra.html#tabela-de-parametrização-scs-cn",
+    "title": "Módulo 5",
+    "section": "Tabela de Parametrização SCS-CN",
+    "text": "Tabela de Parametrização SCS-CN\n\n\n\n\n\n\n\n\n\nCódigo LULC\nClasse de Uso e Cobertura\nCN (Solo Grupo B)\nCN (Solo Grupo C)\n\n\n\n\n1\nFloresta Urbana Densa\n55\n70\n\n\n2\nVegetação Herbácea / Gramados\n61\n74\n\n\n3\nSolo Exposto\n86\n91\n\n\n4\nÁrea Urbana Consolidada\n92\n94\n\n\n5\nCorpos d’Água\n100\n100",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-1-geração-do-mapa-de-curve-number-cn",
+    "href": "aula-extra.html#etapa-1-geração-do-mapa-de-curve-number-cn",
+    "title": "Módulo 5",
+    "section": "Etapa 1: Geração do Mapa de Curve Number (\\(CN\\))",
+    "text": "Etapa 1: Geração do Mapa de Curve Number (\\(CN\\))\nAssumindo uma microbacia com predominância de Solo Grupo B, abra a Calculadora Raster (Raster -&gt; Calculadora Raster) e converta as classes de uso do solo nos respectivos valores de \\(CN\\) para o Cenário Atual:\n(\"LULC@1\" = 1) * 55 + \n(\"LULC@1\" = 2) * 61 + \n(\"LULC@1\" = 3) * 86 + \n(\"LULC@1\" = 4) * 92 + \n(\"LULC@1\" = 5) * 100\n\nSalve o arquivo de saída como CN_Atual.tif.\nInspecione o resultado: áreas florestadas devem exibir valores baixos (\\(55\\)), enquanto a malha urbana apresentará valores elevados (\\(92\\)).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-2-cálculo-da-retenção-potencial-máxima-s",
+    "href": "aula-extra.html#etapa-2-cálculo-da-retenção-potencial-máxima-s",
+    "title": "Módulo 5",
+    "section": "Etapa 2: Cálculo da Retenção Potencial Máxima (\\(S\\))",
+    "text": "Etapa 2: Cálculo da Retenção Potencial Máxima (\\(S\\))\nAinda na Calculadora Raster, aplique a equação de transformação do \\(CN\\) para a capacidade de retenção em milímetros:\n(25400.0 / \"CN_Atual@1\") - 254.0\n\nSalve o arquivo de saída como S_Atual_mm.tif.\nObserve que na floresta urbana \\(S \\approx 207{,}8\\text{ mm}\\), enquanto na área urbana impermeável \\(S \\approx 22{,}1\\text{ mm}\\).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-3-simulação-da-lâmina-escoada-q_textatual",
+    "href": "aula-extra.html#etapa-3-simulação-da-lâmina-escoada-q_textatual",
+    "title": "Módulo 5",
+    "section": "Etapa 3: Simulação da Lâmina Escoada (\\(Q_{\\text{atual}}\\))",
+    "text": "Etapa 3: Simulação da Lâmina Escoada (\\(Q_{\\text{atual}}\\))\nAdotaremos um evento de chuva intensa de projeto de \\(P = 80\\text{ mm}\\) (precipitação diária crítica associada a eventos de alagamento urbano).\nNa Calculadora Raster, insira a expressão condicional do modelo SCS:\n(80.0 &gt; (0.2 * \"S_Atual_mm@1\")) * (((80.0 - 0.2 * \"S_Atual_mm@1\") ^ 2) / (80.0 + 0.8 * \"S_Atual_mm@1\"))\n\nSalve o resultado como Q_Atual_mm.tif.\nInterpretação Física: Nas células de floresta urbana (\\(0{,}2 \\cdot S = 41{,}56\\text{ mm}\\)), apenas \\(8{,}6\\text{ mm}\\) convertem-se em enxurrada; o restante (\\(71{,}4\\text{ mm}\\)) é interceptado pelo dossel e infiltrado no solo. Na área urbana consolidada, mais de \\(60\\text{ mm}\\) escoam superficialmente.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-4-cenário-contrafactual-substituição-por-área-urbana",
+    "href": "aula-extra.html#etapa-4-cenário-contrafactual-substituição-por-área-urbana",
+    "title": "Módulo 5",
+    "section": "Etapa 4: Cenário Contrafactual (Substituição por Área Urbana)",
+    "text": "Etapa 4: Cenário Contrafactual (Substituição por Área Urbana)\nPara mensurar o serviço ecossistêmico prestado pela floresta, precisamos responder à pergunta: “Quanto escoamento adicional ocorreria se o parque florestal fosse suprimido e urbanizado (\\(CN = 92\\))?”\n\nCrie o raster de retenção urbana uniforme (S_Urbano_mm.tif para \\(CN = 92\\), onde \\(S = 22{,}09\\text{ mm}\\)) ou substitua apenas a classe 1 por 92 no mapa de \\(CN\\):\n\n(\"LULC@1\" = 1) * 92 + (\"LULC@1\" != 1) * \"CN_Atual@1\"\n\nRecalcule \\(S_{\\text{contrafactual}}\\) e \\(Q_{\\text{contrafactual}}\\) para a mesma chuva de \\(P = 80\\text{ mm}\\), salvando como Q_Contrafactual_mm.tif.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3",
+    "href": "aula-extra.html#etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3",
+    "title": "Módulo 5",
+    "section": "Etapa 5: Quantificação do Serviço Ecossistêmico em Volume (\\(\\text{m}^3\\))",
+    "text": "Etapa 5: Quantificação do Serviço Ecossistêmico em Volume (\\(\\text{m}^3\\))\nA diferença entre o escoamento no cenário sem floresta e o escoamento no cenário atual representa a lâmina de água retida pelo ecossistema (\\(\\Delta Q\\) em \\(\\text{mm}\\)). Para converter milímetros de lâmina em metros cúbicos (\\(\\text{m}^3\\)) por pixel, multiplicamos pela área da célula (ex.: para pixels de \\(10\\text{ m} \\times 10\\text{ m}\\), a área é \\(100\\text{ m}^2\\)) e dividimos por \\(1000\\):\n((\"Q_Contrafactual_mm@1\" - \"Q_Atual_mm@1\") / 1000.0) * 100.0\n(Nota: Caso utilize imagens Landsat de \\(30\\text{ m}\\), substitua 100.0 por 900.0).\n\nSalve o mapa final como Servico_Retencao_Hidrica_m3.tif.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
+  },
+  {
+    "objectID": "aula-extra.html#etapa-6-integração-por-estatística-zonal-zonal-statistics",
+    "href": "aula-extra.html#etapa-6-integração-por-estatística-zonal-zonal-statistics",
+    "title": "Módulo 5",
+    "section": "Etapa 6: Integração por Estatística Zonal (Zonal Statistics)",
+    "text": "Etapa 6: Integração por Estatística Zonal (Zonal Statistics)\nPara obter o indicador gerencial consolidado para o parque urbano ou para toda a microbacia:\n\nAbra a Caixa de Ferramentas de Processamento (Ctrl + Alt + T) e busque por Estatísticas Zonais (Zonal Statistics).\nCamada de entrada: Polígono do Parque Florestal Urbano.\nCamada raster: Servico_Retencao_Hidrica_m3.tif.\nEstatísticas a calcular: Marque Soma (Sum) e Média (Mean).\nExecute o algoritmo e abra a tabela de atributos do polígono. O campo _sum informa exatamente o volume total em metros cúbicos (\\(\\text{m}^3\\)) retido pela floresta urbana durante a tempestade de \\(80\\text{ mm}\\).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 5 - Serviços Ecossistêmicos"
+    ]
   },
   {
     "objectID": "analise_geoespacial.html",
@@ -488,6 +558,90 @@
     "crumbs": [
       "Introdução às Geotecnologias",
       "Módulo 4 - Análise Geoespacial"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre o Curso",
+    "section": "",
+    "text": "Esta é uma pagina feita com recurso Quarto.org para a disciplina de Geotécnologia aplicada aos Recursos Hídricos do Mestrado Profissional em Gestão e Regulação de RH e Saneamento do polo UFBA."
+  },
+  {
+    "objectID": "aquisicao_dados.html",
+    "href": "aquisicao_dados.html",
+    "title": "Módulo 2",
+    "section": "",
+    "text": "Modelos de Elevação representam a altimetria da superfície terrestre, divididos principalmente entre MDT/DTM (Modelo Digital do Terreno — superfície do solo “careca”) e MDS/DSM (Modelo Digital de Superfície — inclui topo de vegetação e edificações). Princípios do Processamento e DiferençasOs modelos citados utilizam diferentes tecnologias para capturar e tratar a altimetria:InSAR (Interferometria Radar): Sensores emissores de micro-ondas (bandas C, L ou X) capturam o retorno de fase da onda eletromagnética para calcular o relevo, atravessando nuvens sem dependência de iluminação solar.Comprimento de Onda: Ondas mais curtas (Banda C/X) refletem no topo do dossel florestal e infraestrutura (gerando MDS). Ondas mais longas (Banda L) penetram mais na copa de árvores, atingindo o solo com maior facilidade. Remoção por Machine Learning: Quando o dado bruto inclui artefatos da vegetação e construções (MDS), utilizam-se algoritmos preditivos e dados auxiliares para “filtrar” e estimar a cota real do solo humano/natural (MDT).\n\n\n\nModelo\nTecnologia/Banda\nTipo Originário\nResolução\nFontes de Acesso Gratuito\n\n\n\n\nSRTM\nRadar de Apertura Sintética Interf. (InSAR - Banda C / X)\nMDS (reflete topo da vegetação)\n~30 metros (1 arc-sec)\nUSGS EarthExplorer, NASA Earthdata, Google Earth Engine\n\n\nALOS PALSAR\nRadar de Apertura Sintética (InSAR - Banda L)\nMDS (maior penetração em vegetação)\n12,5 metros (radiométrico)/30 m\nASF Data Search (Alaska Satellite Facility), JAXA EORC\n\n\nCOPENHAGEN/ COPERNICUS DEM\nRadar TanDEM-X/TerraSAR-X (InSAR - Banda X)\nMDS (GLO-30 e GLO-90)\n30 metros / 90 metros\nCopernicus Open Access Hub, OpenTopography, AWS Public Dataset\n\n\nFABDEM\nProcessamento computacional sobre o Copernicus DEM\nMDT (Forest And Buildings removed)\n~30 metros\nRepositório da University of Bristol (Data.bris), OpenTopography",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#correção-hidrológica-preenchimento-de-depressões",
+    "href": "aquisicao_dados.html#correção-hidrológica-preenchimento-de-depressões",
+    "title": "Módulo 2",
+    "section": "Correção Hidrológica (Preenchimento de Depressões)",
+    "text": "Correção Hidrológica (Preenchimento de Depressões)\nAntes de extrair redes de drenagem ou delimitar bacias, é necessário remover imperfeições (sinks ou depressions) para garantir o fluxo contínuo da água.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nFill Sinks (Wang & Liu)\nSAGA GIS\nIdentifica e preenche depressões espúrias mantendo uma inclinação mínima contínua em direção às saídas.\n\n\nFill Sinks (Planchon & Darboux)\nSAGA GIS\nAlgoritmo rápido que “inunda” a superfície e remove as depressões secando as células sobressalentes.\n\n\nr.fill.dir\nGRASS GIS\nFiltra depressões e gera diretamente as superfícies corrigidas e os mapas de direção de fluxo (Flow Direction).\n\n\nFill Sinks (XXL / Wang & Liu)\nSAGA GIS\nOtimizado para gerenciar matrizes de dados massivas com baixo consumo de memória RAM.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#suavização-e-filtragem-de-ruído-filtering-smoothing",
+    "href": "aquisicao_dados.html#suavização-e-filtragem-de-ruído-filtering-smoothing",
+    "title": "Módulo 2",
+    "section": "Suavização e Filtragem de Ruído (Filtering & Smoothing)",
+    "text": "Suavização e Filtragem de Ruído (Filtering & Smoothing)\nUtilizados para suavizar variações bruscas de altimetria, artefatos de sensoriamento remoto ou ruídos do processamento de nuvem de pontos.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nSimple Filter / Gaussian Filter\nSAGA GIS\nAplica filtros convolutionais (passa-baixas, gaussianos ou mediana) para suavizar a matriz de pixels.\n\n\nr.denoise\nGRASS GIS\nPreserva cristas e talvegues afiados (edges) enquanto remove o ruído em superfícies suaves.\n\n\nFilter (Gauß, Median, Mean)\nGDAL / QGIS\nSuavização rápida via reamostragem ou aplicação de matriz de vizinhança.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#interpolação-e-preenchimento-de-nulos-nodata-fill",
+    "href": "aquisicao_dados.html#interpolação-e-preenchimento-de-nulos-nodata-fill",
+    "title": "Módulo 2",
+    "section": "Interpolação e Preenchimento de Nulos (NoData Fill)",
+    "text": "Interpolação e Preenchimento de Nulos (NoData Fill)\nPreenchem lacunas causadas por nuvens, sombras de radar ou ausência de dados na aquisição.\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção / Princípio\n\n\n\n\nFill NoData\nGDAL\nPreenche pixels sem valor extrapolando as bordas válidas via interpolação ponderada pela distância (IDW).\n\n\nClose Gaps\nSAGA GIS\nUtiliza interpolação por B-Splines ou métodos locais para recompor falhas internas na grade raster.\n\n\nr.fillnulls\nGRASS GIS\nEmprega Regularized Splines with Tension (RST) para reconstituir lacunas grandes mantendo a continuidade topográfica.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#reamostragem-reprojeção-e-ajuste-de-resolução",
+    "href": "aquisicao_dados.html#reamostragem-reprojeção-e-ajuste-de-resolução",
+    "title": "Módulo 2",
+    "section": "Reamostragem, Reprojeção e Ajuste de Resolução",
+    "text": "Reamostragem, Reprojeção e Ajuste de Resolução\n\nWarp / Reproject (gdal:warpreproject): Reprojeta o MDE entre sistemas de coordenadas (ex: de WGS 84 geográfico para SIRGAS 2000 UTM) ajustando a escala vertical e a orientação dos pixels.\n\nResample / Grid Normalization: Altera a resolução espacial (ex: de 30m para 10m) utilizando métodos de interpolação como Bilinear, Cubic, ou Nearest Neighbor.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#direção-de-fluxo-flow-direction",
+    "href": "aquisicao_dados.html#direção-de-fluxo-flow-direction",
+    "title": "Módulo 2",
+    "section": "Direção de Fluxo (Flow Direction)",
+    "text": "Direção de Fluxo (Flow Direction)\nDetermina para qual célula vizinha a água contida na célula central irá escoar. O algoritmo avalia as 8 células adjacentes (matriz \\(3 \\times 3\\)) e calcula a rampa de maior declive (\\(S\\)):\n\\[S = \\frac{\\Delta Z}{d}\\]\nonde \\(\\Delta Z\\) é a diferença de altitude entre o pixel central e o vizinho, e \\(d\\) é a distância entre os centros dos pixels (\\(d = \\text{resolução}\\) para vizinhos cardinais; \\(d = \\text{resolução} \\cdot \\sqrt{2}\\) para diagonais).\n\nMétodo D8 (Determinístico 8): O mais tradicional. Direciona 100% do fluxo para uma única célula vizinha com o maior valor de \\(S\\). Cada direção recebe um código binário (\\(1=\\text{Leste}\\), \\(2=\\text{Sudeste}\\), \\(4=\\text{Sul}\\), \\(8=\\text{Sudoeste}\\), etc.).\nMétodos Múltiplos (FD8 / MFD / D-Infinity): Permitem o fluxo fracionado para mais de uma célula vizinha em áreas de rampa convergente ou plana, modelando a dispersão do escoamento superficial de forma mais realista.\n\n\nAcúmulo de Fluxo (Flow Accumulation)\nCalcula a quantidade acumulada de células montante que drenam para cada pixel do modelo. O valor de cada célula representa o número total de pixels cujas trajetórias de fluxo passam por ela (multiplicado pela área do pixel para obter a área de drenagem acumulada em \\(\\text{m}^2\\) ou \\(\\text{km}^2\\)).\n\nContribuição Recursiva: Células localizadas em divisores de água (topos de morro) têm acúmulo igual a \\(0\\) ou \\(1\\) (apenas sua própria área).\nDefinição da Rede de Drenagem: Ao aplicar um limiar (threshold) sobre a matriz acumulada (por exemplo, Acúmulo &gt; 1000 pixels), as células que ultrapassam a cota limite passam a definir os canais de drenagem e talvegues.\n\n\n\nDelimitação Automática de Bacias e Sub-bacias\nCom base na matriz de direção de fluxo e na rede de drenagem gerada, os algoritmos agrupam as células do terreno aplicando o conceito topológico de exutório:\n\nPonto de Exutório (Pour Point): Define-se a seção transversal de interesse na rede de drenagem.\nRastreamento Inverso (Upstream Tracing): O algoritmo percorre a matriz de direção de fluxo “contra a corrente”, identificando e selecionando todas as células montante cujas direções apontam direta ou indiretamente para aquele ponto de exutório.\nVetorização e Delimitação: A borda externa do conjunto de pixels selecionados forma o divisor topográfico de águas. Quando executado de forma automática para toda a grade (ex: algoritmo r.watershed do GRASS ou Basin Channels do SAGA), o software segmenta a área total em sub-bacias correspondentes às confluências da rede de drenagem.\n\n\n\nExtração da rede de drenagem sintética\nA extração da rede de drenagem sintética é o processo de mapear computacionalmente os canais de escoamento superficial a partir do acúmulo de fluxo calculado sobre um Modelo Digital de Elevação (MDE). É chamada de “sintética” porque não é mapeada por vetorização manual ou fotointerpretação, mas derivada matematicamente da topografia.\nPrincípio da Extração e Etapas\nO cálculo no QGIS ocorre pela combinação de limiares numéricos, ordenação hierárquica e conversão de dados matriciais em vetores:\n\nDefinição do Limiar Crítico (Threshold): Estabelece a área de contribuição mínima necessária (em número de pixels ou \\(\\text{km}^2\\)) para iniciar o surgimento de um canal permanente ou intermitente. Aplica-se uma expressão condicional no raster de acúmulo de fluxo:\n\\[\\text{Canal} = \\begin{cases} 1, & \\text{se Acúmulo de Fluxo} \\ge \\text{Limiar} \\\\\\\\ \\text{NoData}, & \\text{se Acúmulo de Fluxo} &lt; \\text{Limiar} \\end{cases}\\]\nClassificação de Ordem dos Canais (Stream Order): Os segmentos de rede extraídos são hierarquizados topologicamente para classificar a importância dos rios:\n\nStrahler: Canais de nascente recebem ordem 1. A junção de dois canais de mesma ordem \\(n\\) gera um canal de ordem \\(n+1\\). A junção de ordens diferentes mantém a ordem do maior.\nShreve: Soma as ordens de todos os tributários a jusante, refletindo a magnitude total do fluxo acumulado.\nVetorização e Esqueletização (Thinning): As células raster contínuas marcadas como canais são conectadas e convertidas em feições vetoriais de linha (polylines), conectando os centros dos pixels ordenadamente do topo da bacia até o exutório.\n\n\nAlgoritmos Principais no QGIS\n\n\n\n\n\n\n\n\nAlgoritmo\nProvedor\nFunção e Saída\n\n\n\n\nChannel Network and Drainage Basins\nSAGA GIS\nGera diretamente o raster de canais, o vetor de drenagem (.shp/.gpkg) e a hierarquia de Strahler/Shreve em um único passo.\n\n\nr.stream.extract\nGRASS GIS\nExtrai a rede de drenagem vetorial com alta precisão topológica, permitindo calibrar o limiar por área ou fluxo acumulado.\n\n\nr.stream.order\nGRASS GIS\nCalcula múltiplos índices de ordenação fluvial (Strahler, Shreve, Horton, Hack) sobre a rede extraída.\n\n\nCalculadora Raster (Nativa)\nQGIS\nExecuta a filtragem por limiar customizado via expressão booleana (“Acumulo@1” &gt;= 500).",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
+    ]
+  },
+  {
+    "objectID": "aquisicao_dados.html#cálculo-do-índice-de-umidade-topográfica",
+    "href": "aquisicao_dados.html#cálculo-do-índice-de-umidade-topográfica",
+    "title": "Módulo 2",
+    "section": "Cálculo do Índice de Umidade Topográfica",
+    "text": "Cálculo do Índice de Umidade Topográfica\nO Índice de Umidade Topográfica (TWI - Topographic Wetness Index), desenvolvido por Beven e Kirkby (1979), quantifica o controle topográfico nos processos hidrológicos e prevê áreas propensas à acumulação de água e saturação do solo.\nO TWI é definido por:\n\\[\\text{TWI} = \\ln\\left(\\frac{a}{\\tan \\beta}\\right)\\]\nOnde:\n\n\\(a\\) é a área de contribuição específica a montante por unidade de largura de contorno (\\(\\text{m}^2/\\text{m}\\) ou simplesmente a extensão de acúmulo ajustada à resolução do pixel).\n\n\\(\\beta\\) é o ângulo de declividade do terreno em radianos (slope).\n\n\n1.Verificação do MDE:Formato e projeção do raster.\n\n\n\nCertifique-se de que o seu Modelo Digital de Elevação (MDE) esteja em um Sistema de Coordenadas Projetadas (UTM) com unidade em metros (ex: SIRGAS 2000 / UTM zone 24S).\n\nGaranta que o MDE passou pelo pré-processamento de correção hidrológica (Fill Sinks), evitando falhas de cálculo no acúmulo de fluxo.\n\n\n2.Cálculo Direto Automático (Método Recomendado): Toolbox.\nO QGIS possui um algoritmo nativo via GRASS que calcula todos os componentes intermediários e entrega o TWI direto em um passo:\n\n\nNa Caixa de Ferramentas de Processamento, busque por GRASS \\(\\rightarrow\\) r.topidx.\nEm Input elevation map, selecione o MDE corrigido (Filled DEM).\nEm Topographic index, defina o caminho ou nome para salvar a camada raster final.\nClique em Executar. O QGIS gerará a camada raster do TWI diretamente.\n\n\n3.Cálculo Manual por Etapas (Para Controle de Parâmetros): GRASS / Calculadora Raster.\nCaso deseje personalizar os métodos de escoamento e declividade, você pode gerar as camadas intermediárias separadamente:\n\n\nCom o raster de Acúmulo de Fluxo (células \\(\\times\\) resolução) e a Declividade em Radianos, abra a Calculadora Raster (GDAL ou nativa) e aplique a fórmula ajustada para evitar divisão por zero:\n\nln( (\"Acumulo_m2@1\") / tan( max(\"Declividade_rad@1\", 0.001) ) )\n*Os valores do TWI resultantes concentram números maiores (10–20) nas linhas de talvegue/drenagem e números menores (3–6) nos divisores de água.\n\n\n4.Estilização do Resultado:Simbologia e Interpretação.\n\n\n\nClique com o botão direito na camada TWI gerada e acesse Propriedades \\(\\rightarrow\\) Simbologia.\n\nModifique o tipo de renderização para Banda simples falsa-cor.\n\nEscolha uma rampa de cores apropriada (ex: Blues ou YlGnBu).\n\nInterpretação dos Valores:\n\n\n\nValores Elevados (Altos): Zonas planas, fundos de vale e áreas de convergência de fluxo \\(\\rightarrow\\) Alta capacidade de retenção e saturação de umidade.\n\nValores Baixos: Cristas, topos de morro e encostas íngremes \\(\\rightarrow\\) Rápido escoamento superficial e baixa retenção de água.",
+    "crumbs": [
+      "Introdução às Geotecnologias",
+      "Módulo 2 - Aquisição de dados"
     ]
   },
   {

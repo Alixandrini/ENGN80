@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Serviços Ecossitêmicos">
+
+<title>Módulo 5</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./integracao.html" rel="next">
+<link href="./analise_geoespacial.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./introducao.html" aria-current="page"> <i class="bi bi-globe2" role="img">
+</i> 
+<span class="menu-text">Introdução às Geotecnologias</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aquisicao_dados.html"> <i class="bi bi-globe-americas" role="img">
+</i> 
+<span class="menu-text">Aquisição de dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./sensoriamento_remoto.html"> <i class="bi bi-rocket-takeoff" role="img">
+</i> 
+<span class="menu-text">Sensoriamento Remoto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./analise_geoespacial.html"> <i class="bi bi-graph-up-arrow" role="img">
+</i> 
+<span class="menu-text">Análise Geoespacial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aula-extra.html"> <i class="bi bi-leaf-fill" role="img">
+</i> 
+<span class="menu-text">Serviços Ecossistêmicos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./integracao.html"> <i class="bi bi-diagram-3" role="img">
+</i> 
+<span class="menu-text">Integração de Ferramentas</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Sobre o Curso</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aula-extra.html">Módulo 5 - Serviços Ecossistêmicos</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./logo_labfsr.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação da Disciplina</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introducao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 1 - Introdução às Geotecnologias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aquisicao_dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 2 - Aquisição de dados</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensoriamento_remoto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 3 - Sensoriamento Remoto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analise_geoespacial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 4 - Análise Geoespacial</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula-extra.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Módulo 5 - Serviços Ecossistêmicos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Módulo 6 - Integração de Ferramentas</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#serviços-de-regulação-e-manutenção-foco-hídrico-e-ambiental" id="toc-serviços-de-regulação-e-manutenção-foco-hídrico-e-ambiental" class="nav-link active" data-scroll-target="#serviços-de-regulação-e-manutenção-foco-hídrico-e-ambiental">1. Serviços de Regulação e Manutenção (Foco Hídrico e Ambiental)</a></li>
+  <li><a href="#serviços-de-suporte-e-biodiversidade" id="toc-serviços-de-suporte-e-biodiversidade" class="nav-link" data-scroll-target="#serviços-de-suporte-e-biodiversidade">2. Serviços de Suporte e Biodiversidade</a></li>
+  <li><a href="#serviços-culturais-e-sociais" id="toc-serviços-culturais-e-sociais" class="nav-link" data-scroll-target="#serviços-culturais-e-sociais">3. Serviços Culturais e Sociais</a></li>
+  <li><a href="#serviços-de-provisão-menor-escala-no-meio-urbano-mas-relevantes" id="toc-serviços-de-provisão-menor-escala-no-meio-urbano-mas-relevantes" class="nav-link" data-scroll-target="#serviços-de-provisão-menor-escala-no-meio-urbano-mas-relevantes">4. Serviços de Provisão (Menor escala no meio urbano, mas relevantes)</a></li>
+  <li><a href="#invest" id="toc-invest" class="nav-link" data-scroll-target="#invest">InVEST</a>
+  <ul class="collapse">
+  <li><a href="#quem-desenvolveu-e-mantém" id="toc-quem-desenvolveu-e-mantém" class="nav-link" data-scroll-target="#quem-desenvolveu-e-mantém">Quem Desenvolveu e Mantém?</a></li>
+  <li><a href="#principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano" id="toc-principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano" class="nav-link" data-scroll-target="#principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano">Principais Produtos e Modelos Disponíveis (Foco em Recursos Hídricos e Urbano)</a>
+  <ul class="collapse">
+  <li><a href="#como-utilizar-na-prática-fluxo-de-trabalho-com-qgis" id="toc-como-utilizar-na-prática-fluxo-de-trabalho-com-qgis" class="nav-link" data-scroll-target="#como-utilizar-na-prática-fluxo-de-trabalho-com-qgis">3. Como Utilizar na Prática (Fluxo de Trabalho com QGIS)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#atividade-prática" id="toc-atividade-prática" class="nav-link" data-scroll-target="#atividade-prática">ATIVIDADE PRÁTICA</a>
+  <ul class="collapse">
+  <li><a href="#contextualização-e-motivação-científica" id="toc-contextualização-e-motivação-científica" class="nav-link" data-scroll-target="#contextualização-e-motivação-científica">Contextualização e Motivação Científica</a></li>
+  <li><a href="#objetivo-da-prática" id="toc-objetivo-da-prática" class="nav-link" data-scroll-target="#objetivo-da-prática">Objetivo da Prática</a></li>
+  </ul></li>
+  <li><a href="#fundamentação-hidrológica-o-método-scs-cn-espacializado" id="toc-fundamentação-hidrológica-o-método-scs-cn-espacializado" class="nav-link" data-scroll-target="#fundamentação-hidrológica-o-método-scs-cn-espacializado">Fundamentação Hidrológica: O Método SCS-CN Espacializado</a>
+  <ul class="collapse">
+  <li><a href="#equações-governantes" id="toc-equações-governantes" class="nav-link" data-scroll-target="#equações-governantes">Equações Governantes</a>
+  <ul class="collapse">
+  <li><a href="#retenção-potencial-máxima-s" id="toc-retenção-potencial-máxima-s" class="nav-link" data-scroll-target="#retenção-potencial-máxima-s">1. Retenção Potencial Máxima (<span class="math inline">\(S\)</span>)</a></li>
+  <li><a href="#abstração-inicial-i_a" id="toc-abstração-inicial-i_a" class="nav-link" data-scroll-target="#abstração-inicial-i_a">2. Abstração Inicial (<span class="math inline">\(I_a\)</span>)</a></li>
+  <li><a href="#lâmina-de-escoamento-superficial-q" id="toc-lâmina-de-escoamento-superficial-q" class="nav-link" data-scroll-target="#lâmina-de-escoamento-superficial-q">3. Lâmina de Escoamento Superficial (<span class="math inline">\(Q\)</span>)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#preparação-dos-dados-no-qgis" id="toc-preparação-dos-dados-no-qgis" class="nav-link" data-scroll-target="#preparação-dos-dados-no-qgis">Preparação dos Dados no QGIS</a>
+  <ul class="collapse">
+  <li><a href="#camadas-de-entrada-inputs" id="toc-camadas-de-entrada-inputs" class="nav-link" data-scroll-target="#camadas-de-entrada-inputs">Camadas de Entrada (Inputs)</a></li>
+  <li><a href="#tabela-de-parametrização-scs-cn" id="toc-tabela-de-parametrização-scs-cn" class="nav-link" data-scroll-target="#tabela-de-parametrização-scs-cn">Tabela de Parametrização SCS-CN</a></li>
+  </ul></li>
+  <li><a href="#roteiro-passo-a-passo-na-bancada-qgis" id="toc-roteiro-passo-a-passo-na-bancada-qgis" class="nav-link" data-scroll-target="#roteiro-passo-a-passo-na-bancada-qgis">Roteiro Passo a Passo na Bancada (QGIS)</a>
+  <ul class="collapse">
+  <li><a href="#etapa-1-geração-do-mapa-de-curve-number-cn" id="toc-etapa-1-geração-do-mapa-de-curve-number-cn" class="nav-link" data-scroll-target="#etapa-1-geração-do-mapa-de-curve-number-cn">Etapa 1: Geração do Mapa de Curve Number (<span class="math inline">\(CN\)</span>)</a></li>
+  <li><a href="#etapa-2-cálculo-da-retenção-potencial-máxima-s" id="toc-etapa-2-cálculo-da-retenção-potencial-máxima-s" class="nav-link" data-scroll-target="#etapa-2-cálculo-da-retenção-potencial-máxima-s">Etapa 2: Cálculo da Retenção Potencial Máxima (<span class="math inline">\(S\)</span>)</a></li>
+  <li><a href="#etapa-3-simulação-da-lâmina-escoada-q_textatual" id="toc-etapa-3-simulação-da-lâmina-escoada-q_textatual" class="nav-link" data-scroll-target="#etapa-3-simulação-da-lâmina-escoada-q_textatual">Etapa 3: Simulação da Lâmina Escoada (<span class="math inline">\(Q_{\text{atual}}\)</span>)</a></li>
+  <li><a href="#etapa-4-cenário-contrafactual-substituição-por-área-urbana" id="toc-etapa-4-cenário-contrafactual-substituição-por-área-urbana" class="nav-link" data-scroll-target="#etapa-4-cenário-contrafactual-substituição-por-área-urbana">Etapa 4: Cenário Contrafactual (Substituição por Área Urbana)</a></li>
+  <li><a href="#etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3" id="toc-etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3" class="nav-link" data-scroll-target="#etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3">Etapa 5: Quantificação do Serviço Ecossistêmico em Volume (<span class="math inline">\(\text{m}^3\)</span>)</a></li>
+  <li><a href="#etapa-6-integração-por-estatística-zonal-zonal-statistics" id="toc-etapa-6-integração-por-estatística-zonal-zonal-statistics" class="nav-link" data-scroll-target="#etapa-6-integração-por-estatística-zonal-zonal-statistics">Etapa 6: Integração por Estatística Zonal (<em>Zonal Statistics</em>)</a></li>
+  </ul></li>
+  <li><a href="#discussão-avançada-refinamento-com-índices-espectrais-abordagem-cnr" id="toc-discussão-avançada-refinamento-com-índices-espectrais-abordagem-cnr" class="nav-link" data-scroll-target="#discussão-avançada-refinamento-com-índices-espectrais-abordagem-cnr">Discussão Avançada: Refinamento com Índices Espectrais (Abordagem CNR)</a></li>
+  <li><a href="#referências-bibliográficas" id="toc-referências-bibliográficas" class="nav-link" data-scroll-target="#referências-bibliográficas">Referências Bibliográficas</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Módulo 5</h1>
+</div>
+
+<div>
+  <div class="description">
+    Serviços Ecossitêmicos
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Além da regulação microclimática e da retenção do escoamento superficial (<em>stormwater retention</em>), as florestas urbanas e áreas verdes prestam um amplo conjunto de serviços ecossistêmicos — tradicionalmente organizados segundo a classificação da Avaliação Ecossistêmica do Milênio (MEA) e do quadro <strong>CICES</strong> (<em>Common International Classification of Ecosystem Services</em>).</p>
+<p>Para o contexto de gestão hídrica, infraestrutura urbana e modelagem por sensoriamento remoto (como nos projetos do CNR-ITIAm/IRET), os principais serviços são:</p>
+<section id="serviços-de-regulação-e-manutenção-foco-hídrico-e-ambiental" class="level3">
+<h3 class="anchored" data-anchor-id="serviços-de-regulação-e-manutenção-foco-hídrico-e-ambiental">1. Serviços de Regulação e Manutenção (Foco Hídrico e Ambiental)</h3>
+<ul>
+<li><strong>Purificação da Água e Filtragem de Poluentes Difusos:</strong> Zonas ripárias (APPs urbanas) e biovaletas interceptam sedimentos, metais pesados, óleos e nutrientes (nitrogênio e fósforo) carreados pela drenagem pluvial antes que atinjam córregos, rios e reservatórios de abastecimento.</li>
+<li><strong>Recarga de Aquíferos e Manutenção da Vazão de Base:</strong> A cobertura florestal favorece a infiltração profunda em detrimento do escoamento superficial rápido, alimentando o lençol freático e garantindo vazões mínimas em períodos de estiagem.</li>
+<li><strong>Controle de Erosão e Estabilização de Encostas:</strong> Sistemas radiculares profundos aumentam a resistência ao cisalhamento do solo em áreas de relevo acidentado (crítico em cidades costeiras e com topografia movimentada), prevenindo deslizamentos de terra e o consequente assoreamento da rede de drenagem e de corpos hídricos.</li>
+<li><strong>Sequestro e Estoque de Carbono:</strong> Biomassa aérea (troncos, galhos, folhas) e carbono orgânico do solo atuam como sumidouros locais de <span class="math inline">\(\text{CO}_2\)</span>, mensuráveis via LiDAR terrestre/aerotransportado (SLAM/UAV) e índices de vegetação orbitais.</li>
+<li><strong>Purificação do Ar (Remoção de Material Particulado e Gases):</strong> Interceptação foliar de material particulado fino (<span class="math inline">\(\text{PM}_{2.5}\)</span> e <span class="math inline">\(\text{PM}_{10}\)</span>) e absorção de poluentes atmosféricos (<span class="math inline">\(\text{NO}_x\)</span>, <span class="math inline">\(\text{SO}_2\)</span>, <span class="math inline">\(\text{O}_3\)</span>), reduzindo também a deposição atmosférica de poluentes sobre espelhos d’água.</li>
+<li><strong>Atenuação Acústica:</strong> Barreiras vegetais densas absorvem e dispersam ondas sonoras provenientes de eixos viários intensos.</li>
+</ul>
+</section>
+<section id="serviços-de-suporte-e-biodiversidade" class="level3">
+<h3 class="anchored" data-anchor-id="serviços-de-suporte-e-biodiversidade">2. Serviços de Suporte e Biodiversidade</h3>
+<ul>
+<li><strong>Conectividade Ecológica e Corredores de Fauna:</strong> Fragmentos florestais e matas ciliares urbanas funcionam como <em>stepping stones</em> (trampolins ecológicos) para avifauna, polinizadores e dispersores de sementes, mantendo o fluxo gênico entre remanescentes maiores.</li>
+<li><strong>Manutenção da Fertilidade e Ciclagem de Nutrientes:</strong> A serrapilheira e a microbiota do solo florestal mantêm a porosidade e a estrutura biológica necessária para a própria capacidade de infiltração hídrica do solo.</li>
+</ul>
+</section>
+<section id="serviços-culturais-e-sociais" class="level3">
+<h3 class="anchored" data-anchor-id="serviços-culturais-e-sociais">3. Serviços Culturais e Sociais</h3>
+<ul>
+<li><strong>Recreação, Lazer e Saúde Física/Mental:</strong> Parques urbanos e trilhas ecológicas oferecem espaços de contato com a natureza, associados à redução do estresse e ao incentivo à atividade física.</li>
+<li><strong>Educação Ambiental e Pesquisa Científica:</strong> Laboratórios vivos para monitoramento hidrometeorológico, ecológico e sensibilização comunitária sobre a proteção de mananciais urbanos.</li>
+<li><strong>Valorização Estética e Paisagística:</strong> Melhoria da qualidade visual da paisagem urbana e valorização imobiliária no entorno imediato de parques e corpos d’água despoluídos.</li>
+</ul>
+</section>
+<section id="serviços-de-provisão-menor-escala-no-meio-urbano-mas-relevantes" class="level3">
+<h3 class="anchored" data-anchor-id="serviços-de-provisão-menor-escala-no-meio-urbano-mas-relevantes">4. Serviços de Provisão (Menor escala no meio urbano, mas relevantes)</h3>
+<ul>
+<li><strong>Segurança Hídrica Local:</strong> Proteção direta de nascentes urbanas e poços rasos utilizados por comunidades locais ou para irrigação de áreas verdes.</li>
+<li><strong>Agricultura Urbana e Sistemas Agroflorestais:</strong> Produção pontual de alimentos, frutos e plantas medicinais em hortas comunitárias e quintais produtivos.</li>
+</ul>
+<p><strong>Conexão com Modelagem Geoespacial (QGIS / Sensoriamento Remoto):</strong> Para os alunos do ProfÁgua que desejarem expandir os projetos finais no <strong>Módulo 5</strong>, ferramentas abertas como o <strong>InVEST</strong> (<em>Integrated Valuation of Ecosystem Services and Tradeoffs</em>, que integra diretamente com rasters do QGIS) possuem módulos prontos para espacializar vários desses itens: <em>Urban Flood Risk Mitigation</em> (retenção hídrica), <em>Nutrient Delivery Ratio</em> (purificação/retenção de nutrientes), <em>Sediment Delivery Ratio</em> (controle de erosão e assoreamento) e <em>Carbon Storage and Sequestration</em> (estoque de carbono).</p>
+</section>
+<section id="invest" class="level1">
+<h1>InVEST</h1>
+<p>O InVEST (Integrated Valuation of Ecosystem Services and Tradeoffs) é uma suíte de software livre e de código aberto desenvolvida para mapear e valorar espacialmente os bens e serviços que a natureza fornece à sociedade, permitindo avaliar trade-offs (conflitos e sinergias) entre diferentes cenários de uso e ocupação da terra ou mudanças climáticas.</p>
+<section id="quem-desenvolveu-e-mantém" class="level2">
+<h2 class="anchored" data-anchor-id="quem-desenvolveu-e-mantém">Quem Desenvolveu e Mantém?</h2>
+<p>O InVEST é desenvolvido e mantido pelo Natural Capital Project (NatCap), uma parceria científica internacional sediada na Stanford University (EUA), fundada em conjunto com:</p>
+<ul>
+<li>University of Minnesota (Institute on the Environment)</li>
+<li>Chinese Academy of Sciences (CAS)</li>
+<li>The Nature Conservancy (TNC)</li>
+<li>World Wildlife Fund (WWF)</li>
+<li>Stockholm Resilience Centre</li>
+</ul>
+<p>O software é distribuído sob licença aberta (BSD), possui interface gráfica própria (Workbench) e também dispõe de uma biblioteca Python (natcap.invest) que permite automação em scripts ou integração direta com fluxos de trabalho no QGIS.</p>
+</section>
+<section id="principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano" class="level2">
+<h2 class="anchored" data-anchor-id="principais-produtos-e-modelos-disponíveis-foco-em-recursos-hídricos-e-urbano">Principais Produtos e Modelos Disponíveis (Foco em Recursos Hídricos e Urbano)</h2>
+<p>O InVEST funciona de forma modular: cada serviço ecossistêmico é um modelo independente baseado em processos biofísicos simplificados (produção espacializada) que, opcionalmente, pode ser acoplado a modelos de valoração econômica ou social.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Módulo InVEST</th>
+<th>O que Modela / Calcula</th>
+<th>Principais Produtos Gerados (Saídas)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Urban Flood Risk Mitigation</strong> <em>(Mitigação de Risco de Inundação Urbana)</em></td>
+<td>Baseado no método SCS-CN, calcula a redução do escoamento superficial promovida por áreas verdes durante eventos extremos de chuva.</td>
+<td>Rasters de escoamento gerado (<span class="math inline">\(\text{mm}\)</span>), volume retido (<span class="math inline">\(\text{m}^3\)</span>/pixel), índices de retenção por sub-bacia e valoração de danos evitados à infraestrutura urbana.</td>
+</tr>
+<tr class="even">
+<td><strong>Annual Water Yield</strong> <em>(Produção Hídrica Anual)</em></td>
+<td>Balanço hídrico simplificado (precipitação menos evapotranspiração real via curva de Budyko) para estimar a contribuição de cada sub-bacia para a vazão anual.</td>
+<td>Mapas de produção hídrica anual (<span class="math inline">\(\text{mm}\)</span> e <span class="math inline">\(\text{m}^3\)</span>), evapotranspiração real por pixel e tabelas agregadas por bacia hidrográfica (útil para gestão de reservatórios e hidrelétricas).</td>
+</tr>
+<tr class="odd">
+<td><strong>Seasonal Water Yield</strong> <em>(Produção Hídrica Sazonal)</em></td>
+<td>Separa o balanço hídrico mensal em escoamento rápido (<em>quickflow</em>) e recarga de base (<em>baseflow</em>), indicando onde ocorre recarga de aquíferos.</td>
+<td>Mapas mensais e anuais de recarga local (<span class="math inline">\(L\)</span>), recarga acumulada (<span class="math inline">\(B\)</span>) e escoamento rápido (<span class="math inline">\(QF\)</span>).</td>
+</tr>
+<tr class="even">
+<td><strong>Nutrient Delivery Ratio (NDR)</strong> <em>(Retenção e Exportação de Nutrientes)</em></td>
+<td>Modela a fonte e o transporte de Nitrogênio (N) e Fósforo (P) na bacia e a capacidade da vegetação ripária de reter essa carga difusa.</td>
+<td>Mapas de carga de nutrientes exportada para os rios (<span class="math inline">\(\text{kg/ha/ano}\)</span>), eficiência de retenção por pixel e carga total na exutória.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sediment Delivery Ratio (SDR)</strong> <em>(Retenção e Exportação de Sedimentos)</em></td>
+<td>Aplica a Equação Universal de Perda de Solo (USLE) combinada à conectividade hidrológica para mapear erosão e aporte de sedimentos aos rios.</td>
+<td>Mapas de perda de solo potencial e real (<span class="math inline">\(\text{ton/ha/ano}\)</span>), retenção de sedimentos pela vegetação e aporte líquido aos corpos d’água (assoreamento).</td>
+</tr>
+<tr class="even">
+<td><strong>Urban Cooling</strong> <em>(Resfriamento Urbano)</em></td>
+<td>Calcula o efeito de mitigação da ilha de calor urbana por sombreamento, evapotranspiração e albedo das áreas verdes.</td>
+<td>Mapas de índice de mitigação de calor, temperatura do ar estimada (<span class="math inline">\(^\circ\text{C}\)</span>), economia de energia em refrigeração e produtividade laboral preservada.</td>
+</tr>
+<tr class="odd">
+<td><strong>Carbon Storage and Sequestration</strong> <em>(Estoque e Sequestro de Carbono)</em></td>
+<td>Agrega estoques de carbono em 4 compartimentos (biomassa aérea, subterrânea, solo e serrapilheira) entre cenários temporais.</td>
+<td>Mapas de estoque total de carbono (<span class="math inline">\(\text{Mg C/pixel}\)</span>), balanço líquido de sequestro/emissão entre datas e valor social do carbono.</td>
+</tr>
+<tr class="even">
+<td><strong>Habitat Quality</strong> <em>(Qualidade de Habitat)</em></td>
+<td>Avalia a integridade da biodiversidade cruzando tipos de cobertura vegetal com a proximidade e intensidade de ameaças antrópicas (vias, áreas urbanas, agricultura).</td>
+<td>Mapas contínuos de qualidade de habitat (<span class="math inline">\(0\)</span> a <span class="math inline">\(1\)</span>) e mapas de degradação espacial.</td>
+</tr>
+</tbody>
+</table>
+<section id="como-utilizar-na-prática-fluxo-de-trabalho-com-qgis" class="level3">
+<h3 class="anchored" data-anchor-id="como-utilizar-na-prática-fluxo-de-trabalho-com-qgis">3. Como Utilizar na Prática (Fluxo de Trabalho com QGIS)</h3>
+<p>O InVEST <strong>não é um visualizador de mapas</strong>; ele atua como um motor de processamento espacial que lê os arquivos preparados no QGIS e devolve rasters (<code>.tif</code>) e vetores (<code>.gpkg</code> / <code>.shp</code>) prontos para análise e layout final no próprio QGIS.</p>
+<section id="passo-1-instalação" class="level4">
+<h4 class="anchored" data-anchor-id="passo-1-instalação">Passo 1: Instalação</h4>
+<ul>
+<li>Baixe o instalador gratuito (<strong>InVEST Workbench</strong>) no site oficial do <em>Natural Capital Project</em> (<code>naturalcapitalproject.stanford.edu/software/invest</code>). Há versões nativas para <strong>Windows</strong>, <strong>macOS</strong> e <strong>Linux (Ubuntu)</strong>, além da instalação via <code>conda</code> ou <code>pip</code> (<code>pip install natcap.invest</code>) para execução em linha de comando ou scripts Python.</li>
+</ul>
+</section>
+<section id="passo-2-preparação-dos-dados-no-qgis-pré-processamento" class="level4">
+<h4 class="anchored" data-anchor-id="passo-2-preparação-dos-dados-no-qgis-pré-processamento">Passo 2: Preparação dos Dados no QGIS (Pré-processamento)</h4>
+<p>Todos os rasters de entrada de um mesmo projeto devem estar rigorosamente no <strong>mesmo Sistema de Referência de Coordenadas projetado (ex.: SIRGAS 2000 / UTM — em metros)</strong> e preferencialmente alinhados. Os insumos básicos exigidos pela maioria dos módulos hídricos são:</p>
+<ol type="1">
+<li><strong>Raster de Uso e Cobertura do Solo (LULC):</strong> Em formato GeoTIFF com códigos numéricos inteiros para cada classe (ex.: MapBiomas ou classificação Sentinel-2/CBERS-4A).</li>
+<li><strong>Modelo Digital de Elevação (MDE):</strong> Hidrologicamente consistente (ex.: SRTM, ALOS PALSAR ou Copernicus DEM).</li>
+<li><strong>Dados Climáticos / Biofísicos:</strong> Rasters de precipitação média anual/mensal (ex.: WorldClim, CHIRPS ou interpolação de estações ANA/INMET) e evapotranspiração de referência (<span class="math inline">\(ET_0\)</span>).</li>
+<li><strong>Vetor de Bacias ou Sub-bacias Hidrográficas:</strong> Polígonos onde os resultados serão sumarizados em tabelas.</li>
+<li><strong>Tabela Biofísica (<code>.csv</code>):</strong> Uma planilha simples vinculando cada código inteiro da classe de uso do solo (<code>lucode</code>) aos parâmetros da literatura (coeficiente de cultura <span class="math inline">\(K_c\)</span>, profundidade radicular, número de curva <span class="math inline">\(CN\)</span>, fatores <span class="math inline">\(C\)</span> e <span class="math inline">\(P\)</span> da USLE, ou estoques de carbono). O próprio instalador do InVEST traz uma pasta <code>sample_data</code> com exemplos completos dessas tabelas <code>.csv</code> prontas para adaptação.</li>
+</ol>
+</section>
+<section id="passo-3-execução-no-invest-workbench" class="level4">
+<h4 class="anchored" data-anchor-id="passo-3-execução-no-invest-workbench">Passo 3: Execução no InVEST Workbench</h4>
+<ol type="1">
+<li>Abra o <strong>InVEST Workbench</strong> e escolha o modelo desejado (por exemplo, <em>Urban Flood Risk Mitigation</em>).</li>
+<li>Aponte os caminhos dos rasters, vetores e da tabela <code>.csv</code> nos campos da interface (o programa valida automaticamente em tempo real se há erro de projeção, ausência de valores <code>NoData</code> ou incompatibilidade de códigos entre o raster e o CSV).</li>
+<li>Defina a pasta de saída (<em>Workspace</em>) e clique em <strong>Run</strong>. O processamento de uma bacia urbana leva de alguns segundos a poucos minutos.</li>
+</ol>
+</section>
+<section id="passo-4-pós-processamento-e-análise-no-qgis" class="level4">
+<h4 class="anchored" data-anchor-id="passo-4-pós-processamento-e-análise-no-qgis">Passo 4: Pós-processamento e Análise no QGIS</h4>
+<ul>
+<li>Carregue os arquivos gerados na pasta de saída no QGIS:</li>
+<li>Os arquivos <code>.tif</code> mostram a distribuição espacial detalhada pixel a pixel (onde a água é retida ou onde há maior geração de sedimentos).</li>
+<li>O arquivo vetorial agregado (ex.: <code>flood_risk_service.shp</code> ou <code>.gpkg</code>) já traz na tabela de atributos os totais calculados por sub-bacia ou bairro, prontos para elaboração de mapas coropléticos ou publicação em WebGIS no Módulo 5.</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="atividade-prática" class="level1">
+<h1>ATIVIDADE PRÁTICA</h1>
+<section id="contextualização-e-motivação-científica" class="level2">
+<h2 class="anchored" data-anchor-id="contextualização-e-motivação-científica">Contextualização e Motivação Científica</h2>
+<p>Esta aula prática foi concebida como uma ponte aplicada entre os conceitos de Sensoriamento Remoto, Sistemas de Informação Geográfica (SIG) e a agenda internacional de pesquisa discutida no seminário sobre o projeto <strong>“Remote Sensing and innovative modeling to support biodiversity and ecosystem services in urban forests in Brazil and Italy”</strong>, desenvolvido por pesquisadores do <em>Consiglio Nazionale delle Ricerche</em> (CNR — institutos <strong>ITIAm</strong> e <strong>IRET</strong>).</p>
+<p>Nas regiões metropolitanas do Brasil e da Europa, os fragmentos florestais urbanos (parques naturais, matas ciliares e remanescentes florestais) atuam como infraestruturas verdes essenciais para a segurança hídrica. Entre os múltiplos <strong>Serviços Ecossistêmicos (SE)</strong> prestados por esses ambientes, destaca-se a <strong>regulação do ciclo hidrológico e a mitigação do escoamento superficial urbano</strong> (<em>Stormwater Runoff Retention</em>).</p>
+</section>
+<section id="objetivo-da-prática" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo-da-prática">Objetivo da Prática</h2>
+<p>Quantificar espacialmente, no <strong>QGIS</strong>, o volume de água pluvial (em <span class="math inline">\(\text{m}^3\)</span>) que uma floresta urbana retém durante um evento de precipitação intensa, comparando o cenário atual vegetado com um cenário contrafactual de impermeabilização urbana.</p>
+</section>
+</section>
+<section id="fundamentação-hidrológica-o-método-scs-cn-espacializado" class="level1">
+<h1>Fundamentação Hidrológica: O Método SCS-CN Espacializado</h1>
+<p>Para estimar o escoamento superficial direto (<span class="math inline">\(Q\)</span>) a partir de dados orbitais de uso e cobertura da terra e pedologia, utilizaremos o modelo hidrológico empírico do <strong>Soil Conservation Service — Curve Number (SCS-CN)</strong>, desenvolvido pelo USDA e amplamente adaptado para álgebra de mapas em ambiente SIG.</p>
+<pre><code>[ Uso e Cobertura (Sentinel-2 / MapBiomas) ]     [ Grupo Hidrológico do Solo (HSG) ]
+                      │                                          │
+                      └────────────────────┬─────────────────────┘
+                                           ▼
+                         [ Raster de Curve Number (CN) ]
+                                           │
+                                           ▼
+                      [ Retenção Potencial Máxima: S (mm) ]
+                                           │
+                                           ▼
+          [ Lâmina de Escoamento Superficial: Q (mm) para Chuva P ]
+                                           │
+                                           ▼
+              [ Valoração do Serviço Ecossistêmico: ΔV (m³) ]</code></pre>
+<section id="equações-governantes" class="level2">
+<h2 class="anchored" data-anchor-id="equações-governantes">Equações Governantes</h2>
+<section id="retenção-potencial-máxima-s" class="level3">
+<h3 class="anchored" data-anchor-id="retenção-potencial-máxima-s">1. Retenção Potencial Máxima (<span class="math inline">\(S\)</span>)</h3>
+<p>A capacidade máxima de armazenamento de água na superfície, no dossel e no perfil superior do solo após o início do escoamento depende diretamente do parâmetro adimensional <span class="math inline">\(CN\)</span> (<span class="math inline">\(0 &lt; CN \le 100\)</span>):</p>
+<p><span class="math display">\[
+S = \frac{25400}{CN} - 254
+\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(S\)</span>: Retenção potencial máxima (<span class="math inline">\(\text{mm}\)</span>).</li>
+<li><span class="math inline">\(CN\)</span>: Número da Curva (<em>Curve Number</em>), tabelado em função do uso do solo, tratamento/cobertura e Grupo Hidrológico do Solo (A, B, C ou D).</li>
+</ul>
+</section>
+<section id="abstração-inicial-i_a" class="level3">
+<h3 class="anchored" data-anchor-id="abstração-inicial-i_a">2. Abstração Inicial (<span class="math inline">\(I_a\)</span>)</h3>
+<p>Representa todas as perdas antes do início do escoamento superficial (interceptação pelas copas das árvores, infiltração inicial e armazenamento em depressões do terreno). Na formulação clássica do SCS:</p>
+<p><span class="math display">\[
+I_a = 0{,}2 \cdot S
+\]</span></p>
+</section>
+<section id="lâmina-de-escoamento-superficial-q" class="level3">
+<h3 class="anchored" data-anchor-id="lâmina-de-escoamento-superficial-q">3. Lâmina de Escoamento Superficial (<span class="math inline">\(Q\)</span>)</h3>
+<p>Para uma chuva de projeto <span class="math inline">\(P\)</span> (<span class="math inline">\(\text{mm}\)</span>), a lâmina escoada <span class="math inline">\(Q\)</span> (<span class="math inline">\(\text{mm}\)</span>) em cada célula matricial é dada por:</p>
+<p><span class="math display">\[
+Q = \begin{cases}
+0, &amp; \text{se } P \le 0{,}2 \cdot S \\
+\dfrac{(P - 0{,}2 \cdot S)^2}{P + 0{,}8 \cdot S}, &amp; \text{se } P &gt; 0{,}2 \cdot S
+\end{cases}
+\]</span></p>
+</section>
+</section>
+</section>
+<section id="preparação-dos-dados-no-qgis" class="level1">
+<h1>Preparação dos Dados no QGIS</h1>
+<p>Para o estudo de caso, utilizaremos o recorte de uma microbacia urbana contendo um fragmento florestal relevante (ex.: Bacia do Rio Pituaçu ou Rio Lucaia, em Salvador-BA).</p>
+<section id="camadas-de-entrada-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="camadas-de-entrada-inputs">Camadas de Entrada (Inputs)</h2>
+<ol type="1">
+<li><strong>Limite da Microbacia e Polígono do Parque Urbano (<code>.gpkg</code>):</strong> Camadas vetoriais projetadas em <strong>SIRGAS 2000 / UTM Zone 24S (<code>EPSG:31984</code>)</strong>.</li>
+<li><strong>Mapa de Uso e Cobertura da Terra (<code>LULC.tif</code>):</strong> Raster classificado (resolução espacial de <span class="math inline">\(10\text{ m}\)</span> ou <span class="math inline">\(30\text{ m}\)</span>) com os seguintes códigos inteiros padronizados:
+<ul>
+<li><code>1</code>: Floresta Urbana Densa (Mata Atlântica / Parque)</li>
+<li><code>2</code>: Vegetação Herbácea / Gramados / Parques Abertos</li>
+<li><code>3</code>: Solo Exposto / Áreas em Terraplenagem</li>
+<li><code>4</code>: Área Urbana Consolidada (Impermeável / Edificações / Vias)</li>
+<li><code>5</code>: Corpos d’Água</li>
+</ul></li>
+<li><strong>Grupo Hidrológico do Solo (<code>HSG.tif</code>):</strong> Camada matricial alinhada ao <code>LULC.tif</code> representando a permeabilidade pedológica predominante (ex.: Grupo B — solos moderadamente profundos e bem drenados; Grupo C — solos com camada de impedimento ou textura argilosa).</li>
+</ol>
+</section>
+<section id="tabela-de-parametrização-scs-cn" class="level2">
+<h2 class="anchored" data-anchor-id="tabela-de-parametrização-scs-cn">Tabela de Parametrização SCS-CN</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 27%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código LULC</th>
+<th style="text-align: left;">Classe de Uso e Cobertura</th>
+<th style="text-align: center;">CN (Solo Grupo B)</th>
+<th style="text-align: center;">CN (Solo Grupo C)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>1</code></td>
+<td style="text-align: left;">Floresta Urbana Densa</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>2</code></td>
+<td style="text-align: left;">Vegetação Herbácea / Gramados</td>
+<td style="text-align: center;">61</td>
+<td style="text-align: center;">74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>3</code></td>
+<td style="text-align: left;">Solo Exposto</td>
+<td style="text-align: center;">86</td>
+<td style="text-align: center;">91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>4</code></td>
+<td style="text-align: left;">Área Urbana Consolidada</td>
+<td style="text-align: center;">92</td>
+<td style="text-align: center;">94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>5</code></td>
+<td style="text-align: left;">Corpos d’Água</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="roteiro-passo-a-passo-na-bancada-qgis" class="level1">
+<h1>Roteiro Passo a Passo na Bancada (QGIS)</h1>
+<section id="etapa-1-geração-do-mapa-de-curve-number-cn" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-1-geração-do-mapa-de-curve-number-cn">Etapa 1: Geração do Mapa de Curve Number (<span class="math inline">\(CN\)</span>)</h2>
+<p>Assumindo uma microbacia com predominância de <strong>Solo Grupo B</strong>, abra a <strong>Calculadora Raster</strong> (<code>Raster -&gt; Calculadora Raster</code>) e converta as classes de uso do solo nos respectivos valores de <span class="math inline">\(CN\)</span> para o <strong>Cenário Atual</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">55</span> <span class="op">+</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">2</span>) <span class="op">*</span> <span class="dv">61</span> <span class="op">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">86</span> <span class="op">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">4</span>) <span class="op">*</span> <span class="dv">92</span> <span class="op">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">5</span>) <span class="op">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Salve o arquivo de saída como <code>CN_Atual.tif</code>.</li>
+<li>Inspecione o resultado: áreas florestadas devem exibir valores baixos (<span class="math inline">\(55\)</span>), enquanto a malha urbana apresentará valores elevados (<span class="math inline">\(92\)</span>).</li>
+</ul>
+</section>
+<section id="etapa-2-cálculo-da-retenção-potencial-máxima-s" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-2-cálculo-da-retenção-potencial-máxima-s">Etapa 2: Cálculo da Retenção Potencial Máxima (<span class="math inline">\(S\)</span>)</h2>
+<p>Ainda na <strong>Calculadora Raster</strong>, aplique a equação de transformação do <span class="math inline">\(CN\)</span> para a capacidade de retenção em milímetros:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">25400.0</span> <span class="op">/</span> <span class="ot">"CN_Atual@1"</span>) <span class="op">-</span> <span class="fl">254.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Salve o arquivo de saída como <code>S_Atual_mm.tif</code>.</li>
+<li>Observe que na floresta urbana <span class="math inline">\(S \approx 207{,}8\text{ mm}\)</span>, enquanto na área urbana impermeável <span class="math inline">\(S \approx 22{,}1\text{ mm}\)</span>.</li>
+</ul>
+</section>
+<section id="etapa-3-simulação-da-lâmina-escoada-q_textatual" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-3-simulação-da-lâmina-escoada-q_textatual">Etapa 3: Simulação da Lâmina Escoada (<span class="math inline">\(Q_{\text{atual}}\)</span>)</h2>
+<p>Adotaremos um evento de chuva intensa de projeto de <strong><span class="math inline">\(P = 80\text{ mm}\)</span></strong> (precipitação diária crítica associada a eventos de alagamento urbano).</p>
+<p>Na <strong>Calculadora Raster</strong>, insira a expressão condicional do modelo SCS:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">80.0</span> <span class="op">&gt;</span> (<span class="fl">0.2</span> <span class="op">*</span> <span class="ot">"S_Atual_mm@1"</span>)) <span class="op">*</span> (((<span class="fl">80.0</span> <span class="op">-</span> <span class="fl">0.2</span> <span class="op">*</span> <span class="ot">"S_Atual_mm@1"</span>) ^ <span class="dv">2</span>) <span class="op">/</span> (<span class="fl">80.0</span> <span class="op">+</span> <span class="fl">0.8</span> <span class="op">*</span> <span class="ot">"S_Atual_mm@1"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Salve o resultado como <code>Q_Atual_mm.tif</code>.</li>
+<li><strong>Interpretação Física:</strong> Nas células de floresta urbana (<span class="math inline">\(0{,}2 \cdot S = 41{,}56\text{ mm}\)</span>), apenas <strong><span class="math inline">\(8{,}6\text{ mm}\)</span></strong> convertem-se em enxurrada; o restante (<span class="math inline">\(71{,}4\text{ mm}\)</span>) é interceptado pelo dossel e infiltrado no solo. Na área urbana consolidada, mais de <strong><span class="math inline">\(60\text{ mm}\)</span></strong> escoam superficialmente.</li>
+</ul>
+</section>
+<section id="etapa-4-cenário-contrafactual-substituição-por-área-urbana" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-4-cenário-contrafactual-substituição-por-área-urbana">Etapa 4: Cenário Contrafactual (Substituição por Área Urbana)</h2>
+<p>Para mensurar o serviço ecossistêmico prestado pela floresta, precisamos responder à pergunta: <em>“Quanto escoamento adicional ocorreria se o parque florestal fosse suprimido e urbanizado (<span class="math inline">\(CN = 92\)</span>)?”</em></p>
+<ol type="1">
+<li>Crie o raster de retenção urbana uniforme (<code>S_Urbano_mm.tif</code> para <span class="math inline">\(CN = 92\)</span>, onde <span class="math inline">\(S = 22{,}09\text{ mm}\)</span>) ou substitua apenas a classe <code>1</code> por <code>92</code> no mapa de <span class="math inline">\(CN\)</span>:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="ot">"LULC@1"</span> <span class="op">=</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">92</span> <span class="op">+</span> (<span class="ot">"LULC@1"</span> <span class="op">!=</span> <span class="dv">1</span>) <span class="op">*</span> <span class="ot">"CN_Atual@1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Recalcule <span class="math inline">\(S_{\text{contrafactual}}\)</span> e <span class="math inline">\(Q_{\text{contrafactual}}\)</span> para a mesma chuva de <span class="math inline">\(P = 80\text{ mm}\)</span>, salvando como <code>Q_Contrafactual_mm.tif</code>.</li>
+</ol>
+</section>
+<section id="etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-5-quantificação-do-serviço-ecossistêmico-em-volume-textm3">Etapa 5: Quantificação do Serviço Ecossistêmico em Volume (<span class="math inline">\(\text{m}^3\)</span>)</h2>
+<p>A diferença entre o escoamento no cenário sem floresta e o escoamento no cenário atual representa a <strong>lâmina de água retida pelo ecossistema</strong> (<span class="math inline">\(\Delta Q\)</span> em <span class="math inline">\(\text{mm}\)</span>). Para converter milímetros de lâmina em <strong>metros cúbicos (<span class="math inline">\(\text{m}^3\)</span>) por pixel</strong>, multiplicamos pela área da célula (ex.: para pixels de <span class="math inline">\(10\text{ m} \times 10\text{ m}\)</span>, a área é <span class="math inline">\(100\text{ m}^2\)</span>) e dividimos por <span class="math inline">\(1000\)</span>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>((<span class="ot">"Q_Contrafactual_mm@1"</span> <span class="op">-</span> <span class="ot">"Q_Atual_mm@1"</span>) <span class="op">/</span> <span class="fl">1000.0</span>) <span class="op">*</span> <span class="fl">100.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>(Nota: Caso utilize imagens Landsat de <span class="math inline">\(30\text{ m}\)</span>, substitua <code>100.0</code> por <code>900.0</code>).</em></p>
+<ul>
+<li>Salve o mapa final como <code>Servico_Retencao_Hidrica_m3.tif</code>.</li>
+</ul>
+</section>
+<section id="etapa-6-integração-por-estatística-zonal-zonal-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="etapa-6-integração-por-estatística-zonal-zonal-statistics">Etapa 6: Integração por Estatística Zonal (<em>Zonal Statistics</em>)</h2>
+<p>Para obter o indicador gerencial consolidado para o parque urbano ou para toda a microbacia:</p>
+<ol type="1">
+<li>Abra a Caixa de Ferramentas de Processamento (<code>Ctrl + Alt + T</code>) e busque por <strong>Estatísticas Zonais</strong> (<em>Zonal Statistics</em>).</li>
+<li><strong>Camada de entrada:</strong> Polígono do Parque Florestal Urbano.</li>
+<li><strong>Camada raster:</strong> <code>Servico_Retencao_Hidrica_m3.tif</code>.</li>
+<li><strong>Estatísticas a calcular:</strong> Marque <strong>Soma (<code>Sum</code>)</strong> e <strong>Média (<code>Mean</code>)</strong>.</li>
+<li>Execute o algoritmo e abra a tabela de atributos do polígono. O campo <code>_sum</code> informa exatamente o <strong>volume total em metros cúbicos (<span class="math inline">\(\text{m}^3\)</span>) retido pela floresta urbana</strong> durante a tempestade de <span class="math inline">\(80\text{ mm}\)</span>.</li>
+</ol>
+</section>
+</section>
+<section id="discussão-avançada-refinamento-com-índices-espectrais-abordagem-cnr" class="level1">
+<h1>Discussão Avançada: Refinamento com Índices Espectrais (Abordagem CNR)</h1>
+<p>Como discutido pelos pesquisadores do <strong>ITIAm / IRET (CNR-Itália)</strong>, modelos hidroambientais tradicionais baseados apenas em classes categóricas de uso do solo tratam todas as florestas de forma homogênea. No mestrado profissional, podemos aprimorar essa estimativa integrando dados biofísicos contínuos de sensoriamento remoto:</p>
+<ol type="1">
+<li><strong>Modulação do CN pelo NDVI / Fração de Cobertura Vegetal (FVC):</strong>
+<ul>
+<li>Fragmentos florestais degradados ou com efeito de borda acentuado possuem menor interceptação de dossel e solo mais compactado do que núcleos florestais preservados.</li>
+<li>Pode-se ajustar dinamicamente o <span class="math inline">\(CN\)</span> dentro da classe florestal usando o <strong>NDVI</strong> derivado do Sentinel-2: pixels com <span class="math inline">\(\text{NDVI} &gt; 0{,}80\)</span> recebem <span class="math inline">\(CN = 50\)</span>, enquanto bordas com <span class="math inline">\(\text{NDVI} \approx 0{,}55\)</span> recebem <span class="math inline">\(CN = 65\)</span>.</li>
+</ul></li>
+<li><strong>Coupling com Ilhas de Calor Urbanas (Banda Termal Landsat 8/9):</strong>
+<ul>
+<li>O cruzamento do mapa de retenção hídrica (<span class="math inline">\(\text{m}^3\)</span>) com o mapa de <strong>Temperatura de Superfície Terrestre (LST)</strong> demonstra a sinergia entre dois serviços ecossistêmicos vitais: amortecimento de cheias e regulação microclimática.</li>
+</ul></li>
+<li><strong>Subsídio à Regulação e Infraestrutura Verde:</strong>
+<ul>
+<li>O volume total retido (<span class="math inline">\(\text{m}^3\)</span>) permite calcular o <strong>custo evitado de engenharia</strong> (equivalência ao volume de reservatórios de detenção/piscinões urbanos necessários para conter a mesma vazão de pico), fundamentando políticas municipais de <strong>Pagamento por Serviços Ambientais (PSA)</strong> e planos diretores de drenagem urbana sustentável (SUDs).</li>
+</ul></li>
+</ol>
+</section>
+<section id="referências-bibliográficas" class="level1">
+<h1>Referências Bibliográficas</h1>
+<ol type="1">
+<li><strong>USDA - Natural Resources Conservation Service.</strong> <em>Urban Hydrology for Small Watersheds (Technical Release 55 - TR-55)</em>. Washington, D.C.: USDA, 1986.</li>
+<li><strong>TUCCI, C. E. M.</strong> <em>Hidrologia: Ciência e Aplicação</em>. 4. ed.&nbsp;Porto Alegre: Editora da UFRGS / ABRH, 2009.</li>
+<li><strong>SHARP, R. et al.</strong> <em>InVEST User’s Guide: Urban Flood Risk Mitigation Model</em>. Stanford: The Natural Capital Project, Stanford University, 2020.</li>
+<li><strong>SARTORI, A.; LOMBARDI NETO, F.; GENOVEZ, A. M.</strong> Classificação Hidrológica de Solos Brasileiros para a Estimativa da Chuva Excedente com o Método do Serviço de Conservação do Solo dos Estados Unidos Parte 1: Classificação. <em>Revista Brasileira de Recursos Hídricos (RBRH)</em>, v. 10, n.&nbsp;4, p.&nbsp;5-18, 2005.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./analise_geoespacial.html" class="pagination-link" aria-label="Módulo 4 - Análise Geoespacial">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Módulo 4 - Análise Geoespacial</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./integracao.html" class="pagination-link" aria-label="Módulo 6 - Integração de Ferramentas">
+        <span class="nav-page-text">Módulo 6 - Integração de Ferramentas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2026, Mauro Alixandrini</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

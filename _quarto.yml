@@ -18,6 +18,9 @@ website:
       - href: analise_geoespacial.qmd
         text: Análise Geoespacial
         icon: graph-up-arrow
+      - href: aula-extra.qmd
+        text: Serviços Ecossistêmicos
+        icon: leaf-fill
       - href: integracao.qmd
         text: Integração de Ferramentas
         icon: diagram-3
@@ -36,8 +39,10 @@ website:
         text: Módulo 3 - Sensoriamento Remoto
       - href: analise_geoespacial.qmd
         text: Módulo 4 - Análise Geoespacial
+      - href: aula-extra.qmd
+        text: Módulo 5 - Serviços Ecossistêmicos
       - href: integracao.qmd
-        text: Módulo 5 - Integração de Ferramentas
+        text: Módulo 6 - Integração de Ferramentas
 
 logo: 
   medium: logo.png

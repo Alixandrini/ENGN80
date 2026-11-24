@@ -1,0 +1,286 @@
+---
+title: "Módulo 5"
+format: html
+description: "Serviços Ecossitêmicos"
+---
+Além da regulação microclimática e da retenção do escoamento superficial (*stormwater retention*), as florestas urbanas e áreas verdes prestam um amplo conjunto de serviços ecossistêmicos — tradicionalmente organizados segundo a classificação da Avaliação Ecossistêmica do Milênio (MEA) e do quadro **CICES** (*Common International Classification of Ecosystem Services*).
+
+Para o contexto de gestão hídrica, infraestrutura urbana e modelagem por sensoriamento remoto (como nos projetos do CNR-ITIAm/IRET), os principais serviços são:
+
+### 1. Serviços de Regulação e Manutenção (Foco Hídrico e Ambiental)
+
+* **Purificação da Água e Filtragem de Poluentes Difusos:** Zonas ripárias (APPs urbanas) e biovaletas interceptam sedimentos, metais pesados, óleos e nutrientes (nitrogênio e fósforo) carreados pela drenagem pluvial antes que atinjam córregos, rios e reservatórios de abastecimento.
+* **Recarga de Aquíferos e Manutenção da Vazão de Base:** A cobertura florestal favorece a infiltração profunda em detrimento do escoamento superficial rápido, alimentando o lençol freático e garantindo vazões mínimas em períodos de estiagem.
+* **Controle de Erosão e Estabilização de Encostas:** Sistemas radiculares profundos aumentam a resistência ao cisalhamento do solo em áreas de relevo acidentado (crítico em cidades costeiras e com topografia movimentada), prevenindo deslizamentos de terra e o consequente assoreamento da rede de drenagem e de corpos hídricos.
+* **Sequestro e Estoque de Carbono:** Biomassa aérea (troncos, galhos, folhas) e carbono orgânico do solo atuam como sumidouros locais de $\text{CO}_2$, mensuráveis via LiDAR terrestre/aerotransportado (SLAM/UAV) e índices de vegetação orbitais.
+* **Purificação do Ar (Remoção de Material Particulado e Gases):** Interceptação foliar de material particulado fino ($\text{PM}_{2.5}$ e $\text{PM}_{10}$) e absorção de poluentes atmosféricos ($\text{NO}_x$, $\text{SO}_2$, $\text{O}_3$), reduzindo também a deposição atmosférica de poluentes sobre espelhos d'água.
+* **Atenuação Acústica:** Barreiras vegetais densas absorvem e dispersam ondas sonoras provenientes de eixos viários intensos.
+
+### 2. Serviços de Suporte e Biodiversidade
+
+* **Conectividade Ecológica e Corredores de Fauna:** Fragmentos florestais e matas ciliares urbanas funcionam como *stepping stones* (trampolins ecológicos) para avifauna, polinizadores e dispersores de sementes, mantendo o fluxo gênico entre remanescentes maiores.
+* **Manutenção da Fertilidade e Ciclagem de Nutrientes:** A serrapilheira e a microbiota do solo florestal mantêm a porosidade e a estrutura biológica necessária para a própria capacidade de infiltração hídrica do solo.
+
+### 3. Serviços Culturais e Sociais
+
+* **Recreação, Lazer e Saúde Física/Mental:** Parques urbanos e trilhas ecológicas oferecem espaços de contato com a natureza, associados à redução do estresse e ao incentivo à atividade física.
+* **Educação Ambiental e Pesquisa Científica:** Laboratórios vivos para monitoramento hidrometeorológico, ecológico e sensibilização comunitária sobre a proteção de mananciais urbanos.
+* **Valorização Estética e Paisagística:** Melhoria da qualidade visual da paisagem urbana e valorização imobiliária no entorno imediato de parques e corpos d'água despoluídos.
+
+### 4. Serviços de Provisão (Menor escala no meio urbano, mas relevantes)
+
+* **Segurança Hídrica Local:** Proteção direta de nascentes urbanas e poços rasos utilizados por comunidades locais ou para irrigação de áreas verdes.
+* **Agricultura Urbana e Sistemas Agroflorestais:** Produção pontual de alimentos, frutos e plantas medicinais em hortas comunitárias e quintais produtivos.
+
+
+
+**Conexão com Modelagem Geoespacial (QGIS / Sensoriamento Remoto):**
+Para os alunos do ProfÁgua que desejarem expandir os projetos finais no **Módulo 5**, ferramentas abertas como o **InVEST** (*Integrated Valuation of Ecosystem Services and Tradeoffs*, que integra diretamente com rasters do QGIS) possuem módulos prontos para espacializar vários desses itens: *Urban Flood Risk Mitigation* (retenção hídrica), *Nutrient Delivery Ratio* (purificação/retenção de nutrientes), *Sediment Delivery Ratio* (controle de erosão e assoreamento) e *Carbon Storage and Sequestration* (estoque de carbono).
+
+# InVEST
+O InVEST (Integrated Valuation of Ecosystem Services and Tradeoffs) é uma suíte de software livre e de código aberto desenvolvida para mapear e valorar espacialmente os bens e serviços que a natureza fornece à sociedade, permitindo avaliar trade-offs (conflitos e sinergias) entre diferentes cenários de uso e ocupação da terra ou mudanças climáticas.
+
+## Quem Desenvolveu e Mantém?
+
+O InVEST é desenvolvido e mantido pelo Natural Capital Project (NatCap), uma parceria científica internacional sediada na Stanford University (EUA), fundada em conjunto com:
+
+* University of Minnesota (Institute on the Environment)
+* Chinese Academy of Sciences (CAS)
+* The Nature Conservancy (TNC)
+* World Wildlife Fund (WWF)
+* Stockholm Resilience Centre
+
+O software é distribuído sob licença aberta (BSD), possui interface gráfica própria (Workbench) e também dispõe de uma biblioteca Python (natcap.invest) que permite automação em scripts ou integração direta com fluxos de trabalho no QGIS.
+
+## Principais Produtos e Modelos Disponíveis (Foco em Recursos Hídricos e Urbano)
+
+O InVEST funciona de forma modular: cada serviço ecossistêmico é um modelo independente baseado em processos biofísicos simplificados (produção espacializada) que, opcionalmente, pode ser acoplado a modelos de valoração econômica ou social.
+
+| Módulo InVEST | O que Modela / Calcula | Principais Produtos Gerados (Saídas) |
+| --- | --- | --- |
+| **Urban Flood Risk Mitigation** *(Mitigação de Risco de Inundação Urbana)* | Baseado no método SCS-CN, calcula a redução do escoamento superficial promovida por áreas verdes durante eventos extremos de chuva. | Rasters de escoamento gerado ($\text{mm}$), volume retido ($\text{m}^3$/pixel), índices de retenção por sub-bacia e valoração de danos evitados à infraestrutura urbana. |
+| **Annual Water Yield** *(Produção Hídrica Anual)* | Balanço hídrico simplificado (precipitação menos evapotranspiração real via curva de Budyko) para estimar a contribuição de cada sub-bacia para a vazão anual. | Mapas de produção hídrica anual ($\text{mm}$ e $\text{m}^3$), evapotranspiração real por pixel e tabelas agregadas por bacia hidrográfica (útil para gestão de reservatórios e hidrelétricas). |
+| **Seasonal Water Yield** *(Produção Hídrica Sazonal)* | Separa o balanço hídrico mensal em escoamento rápido (*quickflow*) e recarga de base (*baseflow*), indicando onde ocorre recarga de aquíferos. | Mapas mensais e anuais de recarga local ($L$), recarga acumulada ($B$) e escoamento rápido ($QF$). |
+| **Nutrient Delivery Ratio (NDR)** *(Retenção e Exportação de Nutrientes)* | Modela a fonte e o transporte de Nitrogênio (N) e Fósforo (P) na bacia e a capacidade da vegetação ripária de reter essa carga difusa. | Mapas de carga de nutrientes exportada para os rios ($\text{kg/ha/ano}$), eficiência de retenção por pixel e carga total na exutória. |
+| **Sediment Delivery Ratio (SDR)** *(Retenção e Exportação de Sedimentos)* | Aplica a Equação Universal de Perda de Solo (USLE) combinada à conectividade hidrológica para mapear erosão e aporte de sedimentos aos rios. | Mapas de perda de solo potencial e real ($\text{ton/ha/ano}$), retenção de sedimentos pela vegetação e aporte líquido aos corpos d'água (assoreamento). |
+| **Urban Cooling** *(Resfriamento Urbano)* | Calcula o efeito de mitigação da ilha de calor urbana por sombreamento, evapotranspiração e albedo das áreas verdes. | Mapas de índice de mitigação de calor, temperatura do ar estimada ($^\circ\text{C}$), economia de energia em refrigeração e produtividade laboral preservada. |
+| **Carbon Storage and Sequestration** *(Estoque e Sequestro de Carbono)* | Agrega estoques de carbono em 4 compartimentos (biomassa aérea, subterrânea, solo e serrapilheira) entre cenários temporais. | Mapas de estoque total de carbono ($\text{Mg C/pixel}$), balanço líquido de sequestro/emissão entre datas e valor social do carbono. |
+| **Habitat Quality** *(Qualidade de Habitat)* | Avalia a integridade da biodiversidade cruzando tipos de cobertura vegetal com a proximidade e intensidade de ameaças antrópicas (vias, áreas urbanas, agricultura). | Mapas contínuos de qualidade de habitat ($0$ a $1$) e mapas de degradação espacial. |
+
+
+### 3. Como Utilizar na Prática (Fluxo de Trabalho com QGIS)
+
+O InVEST **não é um visualizador de mapas**; ele atua como um motor de processamento espacial que lê os arquivos preparados no QGIS e devolve rasters (`.tif`) e vetores (`.gpkg` / `.shp`) prontos para análise e layout final no próprio QGIS.
+
+#### Passo 1: Instalação
+
+* Baixe o instalador gratuito (**InVEST Workbench**) no site oficial do *Natural Capital Project* (`naturalcapitalproject.stanford.edu/software/invest`). Há versões nativas para **Windows**, **macOS** e **Linux (Ubuntu)**, além da instalação via `conda` ou `pip` (`pip install natcap.invest`) para execução em linha de comando ou scripts Python.
+
+#### Passo 2: Preparação dos Dados no QGIS (Pré-processamento)
+
+Todos os rasters de entrada de um mesmo projeto devem estar rigorosamente no **mesmo Sistema de Referência de Coordenadas projetado (ex.: SIRGAS 2000 / UTM — em metros)** e preferencialmente alinhados. Os insumos básicos exigidos pela maioria dos módulos hídricos são:
+
+1. **Raster de Uso e Cobertura do Solo (LULC):** Em formato GeoTIFF com códigos numéricos inteiros para cada classe (ex.: MapBiomas ou classificação Sentinel-2/CBERS-4A).
+2. **Modelo Digital de Elevação (MDE):** Hidrologicamente consistente (ex.: SRTM, ALOS PALSAR ou Copernicus DEM).
+3. **Dados Climáticos / Biofísicos:** Rasters de precipitação média anual/mensal (ex.: WorldClim, CHIRPS ou interpolação de estações ANA/INMET) e evapotranspiração de referência ($ET_0$).
+4. **Vetor de Bacias ou Sub-bacias Hidrográficas:** Polígonos onde os resultados serão sumarizados em tabelas.
+5. **Tabela Biofísica (`.csv`):** Uma planilha simples vinculando cada código inteiro da classe de uso do solo (`lucode`) aos parâmetros da literatura (coeficiente de cultura $K_c$, profundidade radicular, número de curva $CN$, fatores $C$ e $P$ da USLE, ou estoques de carbono). O próprio instalador do InVEST traz uma pasta `sample_data` com exemplos completos dessas tabelas `.csv` prontas para adaptação.
+
+#### Passo 3: Execução no InVEST Workbench
+
+1. Abra o **InVEST Workbench** e escolha o modelo desejado (por exemplo, *Urban Flood Risk Mitigation*).
+2. Aponte os caminhos dos rasters, vetores e da tabela `.csv` nos campos da interface (o programa valida automaticamente em tempo real se há erro de projeção, ausência de valores `NoData` ou incompatibilidade de códigos entre o raster e o CSV).
+3. Defina a pasta de saída (*Workspace*) e clique em **Run**. O processamento de uma bacia urbana leva de alguns segundos a poucos minutos.
+
+#### Passo 4: Pós-processamento e Análise no QGIS
+
+* Carregue os arquivos gerados na pasta de saída no QGIS:
+* Os arquivos `.tif` mostram a distribuição espacial detalhada pixel a pixel (onde a água é retida ou onde há maior geração de sedimentos).
+* O arquivo vetorial agregado (ex.: `flood_risk_service.shp` ou `.gpkg`) já traz na tabela de atributos os totais calculados por sub-bacia ou bairro, prontos para elaboração de mapas coropléticos ou publicação em WebGIS no Módulo 5.
+
+
+# ATIVIDADE PRÁTICA 
+
+## Contextualização e Motivação Científica
+
+Esta aula prática foi concebida como uma ponte aplicada entre os conceitos de Sensoriamento Remoto, Sistemas de Informação Geográfica (SIG) e a agenda internacional de pesquisa discutida no seminário sobre o projeto **"Remote Sensing and innovative modeling to support biodiversity and ecosystem services in urban forests in Brazil and Italy"**, desenvolvido por pesquisadores do *Consiglio Nazionale delle Ricerche* (CNR — institutos **ITIAm** e **IRET**).
+
+Nas regiões metropolitanas do Brasil e da Europa, os fragmentos florestais urbanos (parques naturais, matas ciliares e remanescentes florestais) atuam como infraestruturas verdes essenciais para a segurança hídrica. Entre os múltiplos **Serviços Ecossistêmicos (SE)** prestados por esses ambientes, destaca-se a **regulação do ciclo hidrológico e a mitigação do escoamento superficial urbano** (*Stormwater Runoff Retention*).
+
+## Objetivo da Prática
+
+Quantificar espacialmente, no **QGIS**, o volume de água pluvial (em $\text{m}^3$) que uma floresta urbana retém durante um evento de precipitação intensa, comparando o cenário atual vegetado com um cenário contrafactual de impermeabilização urbana.
+
+# Fundamentação Hidrológica: O Método SCS-CN Espacializado
+
+Para estimar o escoamento superficial direto ($Q$) a partir de dados orbitais de uso e cobertura da terra e pedologia, utilizaremos o modelo hidrológico empírico do **Soil Conservation Service — Curve Number (SCS-CN)**, desenvolvido pelo USDA e amplamente adaptado para álgebra de mapas em ambiente SIG.
+
+```
+[ Uso e Cobertura (Sentinel-2 / MapBiomas) ]     [ Grupo Hidrológico do Solo (HSG) ]
+                      │                                          │
+                      └────────────────────┬─────────────────────┘
+                                           ▼
+                         [ Raster de Curve Number (CN) ]
+                                           │
+                                           ▼
+                      [ Retenção Potencial Máxima: S (mm) ]
+                                           │
+                                           ▼
+          [ Lâmina de Escoamento Superficial: Q (mm) para Chuva P ]
+                                           │
+                                           ▼
+              [ Valoração do Serviço Ecossistêmico: ΔV (m³) ]
+```
+
+## Equações Governantes
+
+### 1. Retenção Potencial Máxima ($S$)
+
+A capacidade máxima de armazenamento de água na superfície, no dossel e no perfil superior do solo após o início do escoamento depende diretamente do parâmetro adimensional $CN$ ($0 < CN \le 100$):
+
+$$
+S = \frac{25400}{CN} - 254
+$$
+
+Onde:
+
+* $S$: Retenção potencial máxima ($\text{mm}$).
+* $CN$: Número da Curva (*Curve Number*), tabelado em função do uso do solo, tratamento/cobertura e Grupo Hidrológico do Solo (A, B, C ou D).
+
+### 2. Abstração Inicial ($I_a$)
+
+Representa todas as perdas antes do início do escoamento superficial (interceptação pelas copas das árvores, infiltração inicial e armazenamento em depressões do terreno). Na formulação clássica do SCS:
+
+$$
+I_a = 0{,}2 \cdot S
+$$
+
+### 3. Lâmina de Escoamento Superficial ($Q$)
+
+Para uma chuva de projeto $P$ ($\text{mm}$), a lâmina escoada $Q$ ($\text{mm}$) em cada célula matricial é dada por:
+
+$$
+Q = \begin{cases} 
+0, & \text{se } P \le 0{,}2 \cdot S \\
+\dfrac{(P - 0{,}2 \cdot S)^2}{P + 0{,}8 \cdot S}, & \text{se } P > 0{,}2 \cdot S 
+\end{cases}
+$$
+
+# Preparação dos Dados no QGIS
+
+Para o estudo de caso, utilizaremos o recorte de uma microbacia urbana contendo um fragmento florestal relevante (ex.: Bacia do Rio Pituaçu ou Rio Lucaia, em Salvador-BA).
+
+## Camadas de Entrada (Inputs)
+
+1. **Limite da Microbacia e Polígono do Parque Urbano (`.gpkg`):** Camadas vetoriais projetadas em **SIRGAS 2000 / UTM Zone 24S (`EPSG:31984`)**.
+2. **Mapa de Uso e Cobertura da Terra (`LULC.tif`):** Raster classificado (resolução espacial de $10\text{ m}$ ou $30\text{ m}$) com os seguintes códigos inteiros padronizados:
+   * `1`: Floresta Urbana Densa (Mata Atlântica / Parque)
+   * `2`: Vegetação Herbácea / Gramados / Parques Abertos
+   * `3`: Solo Exposto / Áreas em Terraplenagem
+   * `4`: Área Urbana Consolidada (Impermeável / Edificações / Vias)
+   * `5`: Corpos d'Água
+3. **Grupo Hidrológico do Solo (`HSG.tif`):** Camada matricial alinhada ao `LULC.tif` representando a permeabilidade pedológica predominante (ex.: Grupo B — solos moderadamente profundos e bem drenados; Grupo C — solos com camada de impedimento ou textura argilosa).
+
+## Tabela de Parametrização SCS-CN
+
+| Código LULC | Classe de Uso e Cobertura | CN (Solo Grupo B) | CN (Solo Grupo C) |
+| :--- | :--- | :---: | :---: |
+| `1` | Floresta Urbana Densa | 55 | 70 |
+| `2` | Vegetação Herbácea / Gramados | 61 | 74 |
+| `3` | Solo Exposto | 86 | 91 |
+| `4` | Área Urbana Consolidada | 92 | 94 |
+| `5` | Corpos d'Água | 100 | 100 |
+
+# Roteiro Passo a Passo na Bancada (QGIS)
+
+## Etapa 1: Geração do Mapa de Curve Number ($CN$)
+
+Assumindo uma microbacia com predominância de **Solo Grupo B**, abra a **Calculadora Raster** (`Raster -> Calculadora Raster`) e converta as classes de uso do solo nos respectivos valores de $CN$ para o **Cenário Atual**:
+
+```sql
+("LULC@1" = 1) * 55 + 
+("LULC@1" = 2) * 61 + 
+("LULC@1" = 3) * 86 + 
+("LULC@1" = 4) * 92 + 
+("LULC@1" = 5) * 100
+```
+
+* Salve o arquivo de saída como `CN_Atual.tif`.
+* Inspecione o resultado: áreas florestadas devem exibir valores baixos ($55$), enquanto a malha urbana apresentará valores elevados ($92$).
+
+## Etapa 2: Cálculo da Retenção Potencial Máxima ($S$)
+
+Ainda na **Calculadora Raster**, aplique a equação de transformação do $CN$ para a capacidade de retenção em milímetros:
+
+```sql
+(25400.0 / "CN_Atual@1") - 254.0
+```
+
+* Salve o arquivo de saída como `S_Atual_mm.tif`.
+* Observe que na floresta urbana $S \approx 207{,}8\text{ mm}$, enquanto na área urbana impermeável $S \approx 22{,}1\text{ mm}$.
+
+## Etapa 3: Simulação da Lâmina Escoada ($Q_{\text{atual}}$)
+
+Adotaremos um evento de chuva intensa de projeto de **$P = 80\text{ mm}$** (precipitação diária crítica associada a eventos de alagamento urbano).
+
+Na **Calculadora Raster**, insira a expressão condicional do modelo SCS:
+
+```sql
+(80.0 > (0.2 * "S_Atual_mm@1")) * (((80.0 - 0.2 * "S_Atual_mm@1") ^ 2) / (80.0 + 0.8 * "S_Atual_mm@1"))
+```
+
+* Salve o resultado como `Q_Atual_mm.tif`.
+* **Interpretação Física:** Nas células de floresta urbana ($0{,}2 \cdot S = 41{,}56\text{ mm}$), apenas **$8{,}6\text{ mm}$** convertem-se em enxurrada; o restante ($71{,}4\text{ mm}$) é interceptado pelo dossel e infiltrado no solo. Na área urbana consolidada, mais de **$60\text{ mm}$** escoam superficialmente.
+
+## Etapa 4: Cenário Contrafactual (Substituição por Área Urbana)
+
+Para mensurar o serviço ecossistêmico prestado pela floresta, precisamos responder à pergunta: *"Quanto escoamento adicional ocorreria se o parque florestal fosse suprimido e urbanizado ($CN = 92$)?"*
+
+1. Crie o raster de retenção urbana uniforme (`S_Urbano_mm.tif` para $CN = 92$, onde $S = 22{,}09\text{ mm}$) ou substitua apenas a classe `1` por `92` no mapa de $CN$:
+
+```sql
+("LULC@1" = 1) * 92 + ("LULC@1" != 1) * "CN_Atual@1"
+```
+
+2. Recalcule $S_{\text{contrafactual}}$ e $Q_{\text{contrafactual}}$ para a mesma chuva de $P = 80\text{ mm}$, salvando como `Q_Contrafactual_mm.tif`.
+
+## Etapa 5: Quantificação do Serviço Ecossistêmico em Volume ($\text{m}^3$)
+
+A diferença entre o escoamento no cenário sem floresta e o escoamento no cenário atual representa a **lâmina de água retida pelo ecossistema** ($\Delta Q$ em $\text{mm}$). Para converter milímetros de lâmina em **metros cúbicos ($\text{m}^3$) por pixel**, multiplicamos pela área da célula (ex.: para pixels de $10\text{ m} \times 10\text{ m}$, a área é $100\text{ m}^2$) e dividimos por $1000$:
+
+```sql
+(("Q_Contrafactual_mm@1" - "Q_Atual_mm@1") / 1000.0) * 100.0
+```
+
+*(Nota: Caso utilize imagens Landsat de $30\text{ m}$, substitua `100.0` por `900.0`).*
+
+* Salve o mapa final como `Servico_Retencao_Hidrica_m3.tif`.
+
+## Etapa 6: Integração por Estatística Zonal (*Zonal Statistics*)
+
+Para obter o indicador gerencial consolidado para o parque urbano ou para toda a microbacia:
+
+1. Abra a Caixa de Ferramentas de Processamento (`Ctrl + Alt + T`) e busque por **Estatísticas Zonais** (*Zonal Statistics*).
+2. **Camada de entrada:** Polígono do Parque Florestal Urbano.
+3. **Camada raster:** `Servico_Retencao_Hidrica_m3.tif`.
+4. **Estatísticas a calcular:** Marque **Soma (`Sum`)** e **Média (`Mean`)**.
+5. Execute o algoritmo e abra a tabela de atributos do polígono. O campo `_sum` informa exatamente o **volume total em metros cúbicos ($\text{m}^3$) retido pela floresta urbana** durante a tempestade de $80\text{ mm}$.
+
+# Discussão Avançada: Refinamento com Índices Espectrais (Abordagem CNR)
+
+Como discutido pelos pesquisadores do **ITIAm / IRET (CNR-Itália)**, modelos hidroambientais tradicionais baseados apenas em classes categóricas de uso do solo tratam todas as florestas de forma homogênea. No mestrado profissional, podemos aprimorar essa estimativa integrando dados biofísicos contínuos de sensoriamento remoto:
+
+1. **Modulação do CN pelo NDVI / Fração de Cobertura Vegetal (FVC):**
+   * Fragmentos florestais degradados ou com efeito de borda acentuado possuem menor interceptação de dossel e solo mais compactado do que núcleos florestais preservados.
+   * Pode-se ajustar dinamicamente o $CN$ dentro da classe florestal usando o **NDVI** derivado do Sentinel-2: pixels com $\text{NDVI} > 0{,}80$ recebem $CN = 50$, enquanto bordas com $\text{NDVI} \approx 0{,}55$ recebem $CN = 65$.
+2. **Coupling com Ilhas de Calor Urbanas (Banda Termal Landsat 8/9):**
+   * O cruzamento do mapa de retenção hídrica ($\text{m}^3$) com o mapa de **Temperatura de Superfície Terrestre (LST)** demonstra a sinergia entre dois serviços ecossistêmicos vitais: amortecimento de cheias e regulação microclimática.
+3. **Subsídio à Regulação e Infraestrutura Verde:**
+   * O volume total retido ($\text{m}^3$) permite calcular o **custo evitado de engenharia** (equivalência ao volume de reservatórios de detenção/piscinões urbanos necessários para conter a mesma vazão de pico), fundamentando políticas municipais de **Pagamento por Serviços Ambientais (PSA)** e planos diretores de drenagem urbana sustentável (SUDs).
+
+# Referências Bibliográficas
+
+1. **USDA - Natural Resources Conservation Service.** *Urban Hydrology for Small Watersheds (Technical Release 55 - TR-55)*. Washington, D.C.: USDA, 1986.
+2. **TUCCI, C. E. M.** *Hidrologia: Ciência e Aplicação*. 4. ed. Porto Alegre: Editora da UFRGS / ABRH, 2009.
+3. **SHARP, R. et al.** *InVEST User's Guide: Urban Flood Risk Mitigation Model*. Stanford: The Natural Capital Project, Stanford University, 2020.
+4. **SARTORI, A.; LOMBARDI NETO, F.; GENOVEZ, A. M.** Classificação Hidrológica de Solos Brasileiros para a Estimativa da Chuva Excedente com o Método do Serviço de Conservação do Solo dos Estados Unidos Parte 1: Classificação. *Revista Brasileira de Recursos Hídricos (RBRH)*, v. 10, n. 4, p. 5-18, 2005.
